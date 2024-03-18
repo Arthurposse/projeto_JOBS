@@ -13,7 +13,7 @@
 </h5>
 
 <h5>
-  No site, irá ter 2 opções de usuário, o registrado como jovem e o empresa. Cada um possui suas funcionalidades no site. A seguir será apresetada cada funcionalidades de cada usuário.
+  No site, irá ter 2 opções de usuário, o registrado como jovem e o empresa. Cada um possui suas funcionalidades no site. A seguir será apresetado cada funcionalidades de cada usuário.
 </h5>
 
 <h3>
