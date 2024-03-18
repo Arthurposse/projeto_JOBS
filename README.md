@@ -42,7 +42,7 @@
 - <b> Sistema de Login/cadastro: </b> Realtime js (ajuda na comunicação entre cliente e servidor).
 - <b> Gráfico: </b> Charts js (biblioteca de gráficos).
 - <b> Chat: </b> Procurar ainda.
-- <b> BD: </b> SQL.
+- <b> BD: </b> MySQL.
 - <b> Upload de arquivo: </b> FormData.
 - <b> Verificação de email: </b> Test.
 
