@@ -45,6 +45,7 @@
 - <b> BD: </b> MySQL.
 - <b> Upload de arquivo: </b> FormData.
 - <b> Verificação de email: </b> Test.
+- <b> Buscar por empregos: </b> API indeed.
 
 
 
