@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Teste Chart.js </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h2 style="text-align: center;"> Testando Chart JS - Gráfico </h2>
+
+    <canvas id="myChart" width="100" height="50"></canvas>
+
+    <script>
+        // Obtendo o elemento canvas pelo ID
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Configurando os dados do gráfico
+        var data = {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            datasets: [{
+                label: 'Visualização currículo',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 4,
+                data: [12, 19, 3, 5, 2, 3, 2, 6, 7, 9, 12, 15] // Dados apresentados
+            }]
+        };
+
+        // Configurando as opções do gráfico
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        // Criando o objeto de gráfico de linha
+        var myChart = new Chart(ctx, {
+            type: 'line', // Tipo do gráfico
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+</html>
