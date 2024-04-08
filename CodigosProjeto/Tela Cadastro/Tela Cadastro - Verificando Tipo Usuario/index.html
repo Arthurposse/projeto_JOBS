@@ -11,7 +11,7 @@
 </head>
 <body>
     <main>
-        <section>
+        <section class="bloco">
             <img src="./Img/Logo.png" alt="">
             
             <form action="/enviar" method="post">
@@ -19,15 +19,17 @@
                     <label for="name">Você está criando esta conta como um trabalhador individual ou em nome de uma empresa?</label>
                 </div>
 
-                <div>
-                    <input type="checkbox" id="name" name="name">
-                    <label for="name">Trabalhador</label>
-                </div>
-
-                <div>
-                    <input type="checkbox" id="name" name="name">
-                    <label for="name">Empresa</label>
-                </div>
+                <section>
+                    <div>
+                        <input type="checkbox" id="name" name="name">
+                        <label for="name">Trabalhador</label>
+                    </div>
+    
+                    <div>
+                        <input type="checkbox" id="name" name="name">
+                        <label for="name">Empresa</label>
+                    </div>
+                </section>
 
                 <div>
                     <button type="submit">Continuar</button>
