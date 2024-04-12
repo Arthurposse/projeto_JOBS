@@ -21,8 +21,9 @@ body {
 
 main {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 main .bloco {
@@ -33,8 +34,10 @@ main .bloco {
     gap: 50px;
     backdrop-filter: blur(10px);
     width: 70%;
-    height: 100vh;
+    height: 85vh;
     padding: 5%;
+    box-shadow: 0 0 1px 1.5px white;
+    border-radius: 4vw;
 }
 
 main .bloco img {
