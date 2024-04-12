@@ -21,8 +21,9 @@ body {
 
 main {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 main section {
@@ -32,13 +33,15 @@ main section {
     flex-direction: column;
     gap: 50px;
     backdrop-filter: blur(10px);
-    width: 50%;
-    height: 100vh;
+    width: 30%;
+    height: 50vh;
     padding: 5%;
+    border-radius: 4vw;
+    box-shadow: 0 0 1px 1.5px white;
 }
 
 main section img {
-    width: 15%;
+    width: 20%;
 }
 
 main section form {
@@ -83,6 +86,10 @@ i {
 
 @media screen and (min-width: 481px) and (max-width: 820px){
     
+    main {
+        padding: 10%;
+    }
+
     main section {
         width: 100%;
     }
@@ -109,6 +116,10 @@ i {
 /* Celular */
 
 @media screen and (min-width: 320px) and (max-width: 480px){
+
+    main {
+        padding: 10%;
+    }
 
     main section {
         width: 100%;
