@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-principal: #19a7ce;
+    --cor-fonte: white;
+}
+
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header .header_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 60vh;
+    padding-top: 2%;
+    padding-left: 3%;
+}
+
+header .Logo_JOBS {
+    width: 12%;
+}
+
+header .bloco_usuario {
+    background-color: rgba(25, 167, 206, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 0.5%;
+    border-radius: 2vw 0 0 2vw;
+}
+
+header .img_user_nao_logado {
+    width: 24%;
+}
