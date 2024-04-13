@@ -56,7 +56,6 @@ main section form div {
     display: flex;
     flex-direction: column;
     color: var(--cor-fonte);
-    margin-top: 5%;
 }
 
 main section form div input {

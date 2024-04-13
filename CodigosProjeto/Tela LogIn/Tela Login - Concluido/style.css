@@ -34,7 +34,7 @@ main section {
     gap: 50px;
     backdrop-filter: blur(10px);
     width: 30%;
-    height: 50vh;
+    height: 60vh;
     padding: 5%;
     box-shadow: 0 0 1px 1.5px white;
     border-radius: 4vw;
