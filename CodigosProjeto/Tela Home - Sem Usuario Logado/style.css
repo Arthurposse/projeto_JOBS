@@ -6,26 +6,31 @@
 
 :root {
     --cor-principal: #19a7ce;
+    --cor-secundaria: #0E566A;
     --cor-fonte: white;
 }
+
+/* Header */
 
 header {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_header.png');
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 62vh;
+    color: var(--cor-fonte);
 }
 
 header .header_topo {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    height: 60vh;
-    padding-top: 2%;
-    padding-left: 3%;
+    align-items: center;
 }
 
 header .Logo_JOBS {
-    width: 12%;
+    width: 15%;
+    margin: 1.5%;
 }
 
 header .bloco_usuario {
@@ -39,4 +44,38 @@ header .bloco_usuario {
 
 header .img_user_nao_logado {
     width: 24%;
+}
+
+header .header_meio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4%;
+} 
+
+header .forma {
+    background-color: rgba(25, 167, 206);
+    width: 4%;
+    height: 2vh;
+    border-radius: 2vw;
+}
+
+/* Main - Busque sua oportunidade */
+
+main .buscar_oportunidade {
+    background-color: var(--cor-principal);
+    height: 80vh;
+    padding: 2%;
+}
+
+main .titulo_buscar {
+    color: var(--cor-secundaria);
+}
+
+main .buscar_oportunidade hr {
+    width: 85%;
+    border: 1px solid var(--cor-secundaria);
+    margin-top: .5%;
 }
