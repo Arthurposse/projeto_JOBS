@@ -10,8 +10,9 @@
 }
 
 :root {
-    --cor-principal: #19a7ce;
+    --cor-primaria: #19a7ce;
     --cor-secundaria: #0E566A;
+    --cor-terciaria: #9DD4D1;
     --cor-fonte: white;
 }
 
@@ -70,7 +71,7 @@ header .forma {
 /* Main - Busque sua oportunidade */
 
 main .buscar_oportunidade {
-    background-color: var(--cor-principal);
+    background-color: var(--cor-primaria);
     height: 80vh;
     padding: 2%;
 }
@@ -83,4 +84,64 @@ main .buscar_oportunidade hr {
     width: 85%;
     border: 1px solid var(--cor-secundaria);
     margin-top: .5%;
+}
+
+/* Main - Dúvidas frequentes dos jovens */
+
+main .duvidas_freq {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_main.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 15%;
+}
+
+main .titulo_duvidas {
+    font-size: 2rem;
+    color: var(--cor-secundaria);
+}
+
+main .duvidas_jovens {
+    display: flex;
+    gap: 20px;
+    margin-top: 4%;
+    color: var(--cor-secundaria);
+}
+
+main .duvidas_jovens .bloco_duvida {
+    background-color: var(--cor-terciaria);
+    padding: 4%;
+    margin-top: 5%;
+    border-radius: 1vw;
+}
+
+/* Main - Espaço de mais sobre */
+
+main .buscar_mais_sobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 5%;
+    color: var(--cor-fonte);
+    text-align: center;
+}
+
+main .buscar_mais_sobre button {
+    background-color: var(--cor-secundaria);
+    padding: 1%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    color: var(--cor-fonte);
+    cursor: pointer;
+}
+
+main .buscar_mais_sobre #botao_duvidas {
+    padding: 1%;
+    width: 13%;
 }
