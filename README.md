@@ -6,8 +6,6 @@
   Resumo
 </h3>
 
-<hr>
-
 <h5>
   Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercade de trabalho, por este motivo a escolha desta projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
 </h5>
@@ -15,6 +13,8 @@
 <h5>
   No site, irá ter 2 opções de usuário, o registrado como jovem e o empresa. Cada um possui suas funcionalidades no site. A seguir será apresetado cada funcionalidade de cada usuário.
 </h5>
+
+<hr>
 
 <h3>
   Usuários
@@ -33,19 +33,16 @@
       - Buscar currículos.
       - Tirar dúvidas dos jovens.
 
+<hr>
+
 <h3>
   Tecnologias que serão utilizadas
 </h3>
-
-<hr>
 
 - <b> Sistema de Login/cadastro: </b> Realtime js (ajuda na comunicação entre cliente e servidor).
 - <b> Gráfico: </b> Charts js (biblioteca de gráficos).
 - <b> Chat: </b> Procurar ainda.
 - <b> BD: </b> MySQL.
-- <b> Upload de arquivo: </b> FormData.
+- <b> Upload de arquivo: </b> Procurar ainda.
 - <b> Verificação de email: </b> Test.
-- <b> Buscar por empregos: </b> API indeed.
-
-
-
+- <b> Buscar por empregos: </b> API indeed (Buscar por mais).
