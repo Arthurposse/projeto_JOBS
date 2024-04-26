@@ -45,4 +45,4 @@
 - <b> BD: </b> MySQL.
 - <b> Upload de arquivo: </b> Procurar ainda.
 - <b> Verificação de email: </b> Test.
-- <b> Buscar por empregos: </b> API indeed (Buscar por mais).
+- <b> Buscar por empregos: </b> Procurar ainda.
