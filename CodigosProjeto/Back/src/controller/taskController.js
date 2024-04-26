@@ -32,58 +32,58 @@ async function storeTask(request, response) {
     })
 }
 
-async function getElements(request, response) {
-    const query = "SELECT * FROM users";
+// async function getElements(request, response) {
+//     const query = "SELECT * FROM users";
 
-    connection.query(query, (err, results) => {
-        if(results) {
-            response
-            .status(201)
-            .json({
-                sucess: true,
-                message: "Sucesso com o GET!!",
-                data: results
-            });
+//     connection.query(query, (err, results) => {
+//         if(results) {
+//             response
+//             .status(201)
+//             .json({
+//                 sucess: true,
+//                 message: "Sucesso com o GET!!",
+//                 data: results
+//             });
 
-        } else {
-            response
-            .status(400)
-            .json({
-                sucess: false,
-                message: "Ops, deu problemas no GET!",
-                data: err
-            })
-        }
-    })
-}
+//         } else {
+//             response
+//             .status(400)
+//             .json({
+//                 sucess: false,
+//                 message: "Ops, deu problemas no GET!",
+//                 data: err
+//             })
+//         }
+//     })
+// }
 
-async function deletarItens(request, response) {
-    const query = "DELETE FROM users";
+// async function deletarItens(request, response) {
+//     const query = "DELETE FROM users";
 
-    connection.query(query, (err, results) => {
-        if(results) {
-            response
-            .status(201)
-            .json({
-                sucess: true,
-                message: "Sucesso com o DELETE!!",
-                data: results
-            });
+//     connection.query(query, (err, results) => {
+//         if(results) {
+//             response
+//             .status(201)
+//             .json({
+//                 sucess: true,
+//                 message: "Sucesso com o DELETE!!",
+//                 data: results
+//             });
 
-        } else {
-            response
-            .status(400)
-            .json({
-                sucess: false,
-                message: "Ops, deu problemas no DELETE!",
-                data: err
-            })
-        }
-    })
-}
+//         } else {
+//             response
+//             .status(400)
+//             .json({
+//                 sucess: false,
+//                 message: "Ops, deu problemas no DELETE!",
+//                 data: err
+//             })
+//         }
+//     })
+// }
 
 module.exports = {
-    storeTask,
-    getElements,
-    deletarItens
+    storeTask
+    // getElements,
+    // deletarItens
 }
