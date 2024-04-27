@@ -7,7 +7,10 @@ button.onclick = async function (e) {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    let data = { name, email, password }
+    let razao_social = document.getElementById('razao_social').value;
+    let cnpj = document.getElementById('cnpj').value;
+    let setor_atividade = document.getElementById('setor_atividade').value;
+    let data = { name, email, password, razao_social, cnpj, setor_atividade }
 
     // POST
     const response = await fetch('http://localhost:3008/api/store/task', {

@@ -17,7 +17,7 @@ create table user_empresa(
     cidade varchar(30) not null,
     cnpj varchar(14) not null,
     razao_social varchar(20) not null,
-    setor varchar(25) not null
+    setor_atividade varchar(25) not null
 );
 
 create table duvidas(
