@@ -2,8 +2,8 @@ const { Router } = require('express');
 const router = Router();
 
 // const { storeTask, getElements, deletarItens } = require('../controller/taskController');
-const { storeTask } = require('../controller/taskController');
+const { userJovem } = require('../controller/taskController');
 
-router.post('/store/task', storeTask);
+router.post('/user/jovem', userJovem);
 
 module.exports = router;

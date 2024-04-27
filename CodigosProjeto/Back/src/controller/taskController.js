@@ -1,14 +1,19 @@
 const connection = require('../config/db');
 const dotenv = require('dotenv').config();
 
-async function storeTask(request, response) {
+// Cadastro usuários (POST)
+
+async function userJovem(request, response) {
     const params = Array(
         request.body.name,
         request.body.email,
-        request.body.password
+        request.body.password,
+        request.body.data_nascimento,
+        request.body.telefone,
+        request.body.cidade
     )
 
-    const query = "INSERT INTO users(name, email, password) VALUES(?,?,?)";
+    const query = "INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES(?,?,?,?,?,?)";
 
     connection.query(query, params, (err, results) => {
         if(results) {
@@ -83,7 +88,7 @@ async function storeTask(request, response) {
 // }
 
 module.exports = {
-    storeTask
+    userJovem
     // getElements,
     // deletarItens
 }
