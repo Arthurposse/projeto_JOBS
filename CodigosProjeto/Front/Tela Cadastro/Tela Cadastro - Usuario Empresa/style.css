@@ -31,11 +31,10 @@ main .bloco {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 50px;
     backdrop-filter: blur(10px);
     width: 70%;
     height: 92vh;
-    padding: 5%;
+    padding: 8%;
     box-shadow: 0 0 1px 1.5px white;
     border-radius: 4vw;
 }
