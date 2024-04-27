@@ -38,7 +38,7 @@ button.onclick = function(e) {
             title: "Selecione uma opção!!",
             icon: "warning",
             showConfirmButton: false,
-            timer: 1800,
+            timer: 2000,
             width: 400
           });
     }
