@@ -128,7 +128,8 @@ async function userEmpresa(request, response) {
 // }
 
 module.exports = {
-    userJovem
+    userJovem,
+    userEmpresa
     // getElements,
     // deletarItens
 }
