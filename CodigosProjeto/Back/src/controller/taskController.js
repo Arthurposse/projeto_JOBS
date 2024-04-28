@@ -77,6 +77,34 @@ async function userEmpresa(request, response) {
     })
 }
 
+// LogIn
+
+async function logIn(request, response) {
+
+    const query = "SELECT email, password FROM jobs.user_empresa UNION SELECT email, password FROM jobs.user_jovem;";
+
+    connection.query(query, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET LogIn!!",
+                data: results
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET LogIn!",
+                data: err
+            })
+        }
+    })
+}
+
 // async function getElements(request, response) {
 //     const query = "SELECT * FROM users";
 
@@ -129,7 +157,8 @@ async function userEmpresa(request, response) {
 
 module.exports = {
     userJovem,
-    userEmpresa
+    userEmpresa,
+    logIn
     // getElements,
     // deletarItens
 }
