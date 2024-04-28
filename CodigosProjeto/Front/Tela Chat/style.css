@@ -109,7 +109,7 @@ main .barra_pesquisa input {
     background-color: var(--cor-terciaria);
     width: 70%;
     padding: 3%;
-    border-radius: 2vw;
+    border-radius: 1vw;
     border: 0;
 }
 
