@@ -22,7 +22,7 @@ button.onclick = async function (e) {
         // Iterando sobre o array de chaves
         for (let i = 0; i < content.data.length; i++) {
             
-            if(content.data[i].email === email) {
+            if(content.data[i].email === email && content.data[i].password === password) {
                 Swal.fire({
                     title: "LogIn realizado com sucesso!!",
                     icon: "success",
