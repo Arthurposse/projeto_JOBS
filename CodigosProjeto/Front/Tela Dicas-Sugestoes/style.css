@@ -106,7 +106,29 @@ main .buscar_oportunidade hr {
 }
 
 main .buscar_oportunidade h3 {
+    padding: 2%;
+    color: var(--cor-secundaria);
+}
 
+main .bloco_dicas_importantes {
+    display: flex;
+    gap: 3vw;
+}
+
+main .bloco_dicas_importantes .quadrado_dica {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    width: 15vw;
+    padding: 2%;
+    border-radius: 1vw;
+}
+
+main .quadrado_dica img {
+    width: 70%;
 }
 
 /* Footer */
