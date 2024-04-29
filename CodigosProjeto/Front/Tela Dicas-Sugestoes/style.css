@@ -112,6 +112,7 @@ main .buscar_oportunidade h3 {
 
 main .bloco_dicas_importantes {
     display: flex;
+    justify-content: center;
     gap: 3vw;
 }
 
@@ -127,8 +128,25 @@ main .bloco_dicas_importantes .quadrado_dica {
     border-radius: 1vw;
 }
 
+main .quadrado_dica {
+    text-align: center;
+}
+
 main .quadrado_dica img {
     width: 70%;
+}
+
+/* Main - Dúvidas dos jovens */
+
+main .duvidas_jovens {
+    background-color: var(--cor-primaria);
+    padding: 2%;
+    margin-bottom: 10%;
+}
+
+main .duvidas_jovens h3 {
+    padding: 2%;
+    color: var(--cor-secundaria);
 }
 
 /* Footer */
