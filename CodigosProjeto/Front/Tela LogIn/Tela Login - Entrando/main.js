@@ -30,7 +30,7 @@ button.onclick = async function (e) {
                     timer: 2000
                 });
                 setTimeout(() => {
-                    window.location.href = '../../Tela Home - Sem Usuario Logado/index.html';
+                    window.location.href = '../../Tela Home - Usuario Jovem/index.html';
                 }, 2000);
                 break
             }
