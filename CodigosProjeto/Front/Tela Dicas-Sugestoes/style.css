@@ -191,6 +191,39 @@ main .topo_duvidas_jovens button:hover {
     background-color: var(--cor-terciaria);
 }
 
+main .bloco_cards_duvidas_jovens {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .bloco_cards_duvidas_jovens {
+
+}
+
+main .bloco_cards_duvidas_jovens .card_duv_jovem {
+
+}
+
+main .bloco_cards_duvidas_jovens button {
+    background-color: var(--cor-secundaria);
+    width: 6vw;
+    padding: 0.5%;
+    margin-top: 5%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    color: var(--cor-fonte);
+    cursor: pointer;
+}
+
+main .bloco_cards_duvidas_jovens button:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    font-weight: 400;
+}
+
 /* Footer */
 
 footer {
