@@ -196,14 +196,40 @@ main .bloco_cards_duvidas_jovens {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 5%;
+    margin-top: 5%;
 }
 
-main .bloco_cards_duvidas_jovens {
-
+main .bloco_cards_duvidas_jovens .secao_cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-main .bloco_cards_duvidas_jovens .card_duv_jovem {
+main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
+    background-color: var(--cor-terciaria);
+    padding: 3%;
+    border-radius: 1vw;
+    color: var(--cor-secundaria);
+    margin: 2%;
+}
 
+main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem .usuario_duvida {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    width: 100%;
+    font-size: 0.9rem;
+    padding-bottom: 5%;
+}
+
+main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem .usuario_duvida img {
+    width: 15%;
+}
+
+main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem .usuario_duvida h2 {
+    font-weight: bold;
+    font-weight: 600;
 }
 
 main .bloco_cards_duvidas_jovens button {
