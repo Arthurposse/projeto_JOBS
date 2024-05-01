@@ -29,6 +29,8 @@ create table duvidas(
 );
 
 create table respostas(
-	id_duvida decimal primary key,
-    resposta text not null
+	id_duvida int,
+    resposta text not null,
+
+    Foreign Key (id_duvida) REFERENCES duvidas(id_duvida)
 );
