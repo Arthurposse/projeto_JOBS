@@ -21,9 +21,11 @@ create table user_empresa(
 );
 
 create table duvidas(
-	id_user int primary key,
-    id_duvida decimal primary key,
-    duvida text not null
+	id_user int,
+    id_duvida int auto_increment primary key,
+    duvida text not null,
+
+    Foreign Key (id_user) REFERENCES user_jovem(id)
 );
 
 create table respostas(
