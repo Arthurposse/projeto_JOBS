@@ -12,5 +12,4 @@ router.post('/user/enviando_duvida', duvidaJovem)
 
 router.get('/verif/logIn', logIn);
 
-
 module.exports = router;

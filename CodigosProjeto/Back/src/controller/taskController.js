@@ -110,10 +110,11 @@ async function logIn(request, response) {
 async function duvidaJovem(request, response) {
 
     const params = Array(
-        request.body.teste_duvida
+        request.body.id_user,
+        request.body.userInput
     )
 
-    const query = "INSERT INTO duvidas(duvida) VALUES(?)";
+    const query = "INSERT INTO duvidas(id_user, duvida) VALUES(?, ?)";
 
     connection.query(query, params, (err, results) => {
         if(results) {
