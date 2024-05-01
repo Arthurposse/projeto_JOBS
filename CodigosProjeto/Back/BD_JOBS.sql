@@ -1,36 +1,37 @@
 create table user_jovem(
-	id int auto_increment primary key,
-    name varchar(100) not null,
-    data_nascimento date not null,
-    email varchar(50) unique not null,
-    password varchar(50) not null,
-    telefone varchar(11) not null,
-    cidade varchar(30) not null
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    telefone VARCHAR(11) NOT NULL,
+    cidade VARCHAR(30) NOT NULL
 );
 
 create table user_empresa(
-	id int auto_increment primary key,
-    name varchar(100) not null,
-    email varchar(50) unique not null,
-    password varchar(50) not null,
-    telefone varchar(10) not null,
-    cidade varchar(30) not null,
-    cnpj varchar(14) not null,
-    razao_social varchar(20) not null,
-    setor_atividade varchar(25) not null
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    telefone VARCHAR(10) NOT NULL,
+    cidade VARCHAR(30) NOT NULL,
+    cnpj VARCHAR(14) NOT NULL,
+    razao_social VARCHAR(20) NOT NULL,
+    setor_atividade VARCHAR(25) NOT NULL
 );
 
 create table duvidas(
-	id_user int,
-    id_duvida int auto_increment primary key,
-    duvida text not null,
+	id_user INT,
+    id_duvida INT PRIMARY KEY AUTO_INCREMENT,
+    duvida TEXT NOT NULL,
 
-    Foreign Key (id_user) REFERENCES user_jovem(id)
+    FOREIGN KEY (id_user) REFERENCES user_jovem(id)
 );
 
 create table respostas(
-	id_duvida int,
-    resposta text not null,
+	id_duvida INT,
+    resposta TEXT NOT NULL,
+    type_user VARCHAR(7) NOT NULL CHECK (type_user IN ('Jovem', 'Empresa')) 
 
-    Foreign Key (id_duvida) REFERENCES duvidas(id_duvida)
+    FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );
