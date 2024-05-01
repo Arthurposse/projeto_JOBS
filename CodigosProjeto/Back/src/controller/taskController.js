@@ -77,11 +77,11 @@ async function userEmpresa(request, response) {
     })
 }
 
-// LogIn (GET)
+// LogIn / Buscar ID user (GET)
 
 async function logIn(request, response) {
 
-    const query = "SELECT email, password FROM jobs.user_empresa UNION SELECT email, password FROM jobs.user_jovem;";
+    const query = "SELECT id, email, password FROM jobs.user_empresa UNION SELECT id, email, password FROM jobs.user_jovem;";
 
     connection.query(query, (err, results) => {
         if(results) {

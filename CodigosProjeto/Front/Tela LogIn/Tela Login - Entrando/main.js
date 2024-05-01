@@ -7,22 +7,21 @@ button.onclick = async function (e) {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
 
-    // POST
+    // GET
     const response = await fetch('http://localhost:3008/api/verif/logIn', {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
     });
 
     let content = await response.json();
-    console.log(content);
     
     if (content.sucess) {
-        alert ("Sucesso com o GET!!");
 
         // Iterando sobre o array de chaves
         for (let i = 0; i < content.data.length; i++) {
             
             if(content.data[i].email === email && content.data[i].password === password) {
+                localStorage.setItem('ID_user', content.data[i].id);
                 Swal.fire({
                     title: "LogIn realizado com sucesso!!",
                     icon: "success",
