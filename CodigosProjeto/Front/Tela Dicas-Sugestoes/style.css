@@ -86,7 +86,6 @@ header .forma {
 
 main {
     background-color: var(--cor-primaria);
-    height: 100vh;
 }
 
 main .buscar_oportunidade {
@@ -141,12 +140,55 @@ main .quadrado_dica img {
 main .duvidas_jovens {
     background-color: var(--cor-primaria);
     padding: 2%;
-    margin-bottom: 10%;
+    padding-bottom: 20%;
 }
 
 main .duvidas_jovens h3 {
     padding: 2%;
     color: var(--cor-secundaria);
+}
+
+main .topo_duvidas_jovens {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .topo_duvidas_jovens .barra_buscar {
+    display: flex;
+    align-items: center;
+    gap: 8%;
+}
+
+main .topo_duvidas_jovens .barra_buscar i {
+    font-size: 1.4rem;
+}
+
+main .topo_duvidas_jovens .barra_buscar input {
+    background-color: var(--cor-secundaria);
+    width: 35vw;
+    padding: 2%;
+    border: 0;
+    border-radius: 1vw;
+    color: var(--cor-fonte);
+}
+
+main .topo_duvidas_jovens .barra_buscar input::placeholder {
+    color: var(--cor-fonte);
+    opacity: 0.4;
+}
+
+main .topo_duvidas_jovens button {
+    background-color: var(--cor-secundaria);
+    width: 6vw;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+main .topo_duvidas_jovens button:hover {
+    background-color: var(--cor-terciaria);
 }
 
 /* Footer */
