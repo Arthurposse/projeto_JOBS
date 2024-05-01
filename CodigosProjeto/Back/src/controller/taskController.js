@@ -77,7 +77,7 @@ async function userEmpresa(request, response) {
     })
 }
 
-// LogIn
+// LogIn (GET)
 
 async function logIn(request, response) {
 
@@ -105,60 +105,41 @@ async function logIn(request, response) {
     })
 }
 
-// async function getElements(request, response) {
-//     const query = "SELECT * FROM users";
+// Dúvida Jovem (POST)
 
-//     connection.query(query, (err, results) => {
-//         if(results) {
-//             response
-//             .status(201)
-//             .json({
-//                 sucess: true,
-//                 message: "Sucesso com o GET!!",
-//                 data: results
-//             });
+async function duvidaJovem(request, response) {
 
-//         } else {
-//             response
-//             .status(400)
-//             .json({
-//                 sucess: false,
-//                 message: "Ops, deu problemas no GET!",
-//                 data: err
-//             })
-//         }
-//     })
-// }
+    const params = Array(
+        request.body.teste_duvida
+    )
 
-// async function deletarItens(request, response) {
-//     const query = "DELETE FROM users";
+    const query = "INSERT INTO duvidas(duvida) VALUES(?)";
 
-//     connection.query(query, (err, results) => {
-//         if(results) {
-//             response
-//             .status(201)
-//             .json({
-//                 sucess: true,
-//                 message: "Sucesso com o DELETE!!",
-//                 data: results
-//             });
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com POST dúvida!!",
+                data: results
+            });
 
-//         } else {
-//             response
-//             .status(400)
-//             .json({
-//                 sucess: false,
-//                 message: "Ops, deu problemas no DELETE!",
-//                 data: err
-//             })
-//         }
-//     })
-// }
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com POST dúvida!",
+                data: err
+            })
+        }
+    })
+}
 
 module.exports = {
     userJovem,
     userEmpresa,
-    logIn
-    // getElements,
-    // deletarItens
+    logIn,
+    duvidaJovem
 }
