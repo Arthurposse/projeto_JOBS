@@ -86,7 +86,113 @@ header .forma {
 
 main {
   background-color: var(--cor-primaria);
+}
+
+/* Main - Estatísticas do Currículo do Jovem */
+
+main .estatisca_curriculo {
   height: 100vh;
+  padding: 2%;
+}
+
+main .estatisca_curriculo h2 {
+  color: var(--cor-secundaria);
+}
+
+main .estatisca_curriculo hr {
+  width: 85%;
+  border: 1px solid var(--cor-secundaria);
+  margin-top: .5%;
+}
+
+/* Main - Perfil */
+
+main .perfil {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_perfil.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 114vh;
+  padding: 5%;
+}
+
+main .perfil h2 {
+  font-size: 2rem;
+  color: var(--cor-secundaria);
+}
+
+main .perfil .secao_perfil {
+  display: flex;
+  gap: 3vw;
+  padding-top: 4%;
+  color: var(--cor-secundaria);
+}
+
+main .perfil .parte_esquerda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+main .perfil .parte_esquerda .ft_perfil {
+  background-color: var(--cor-terciaria);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vw;
+  padding: 30%;
+  border-radius: 1vw;
+}
+
+main .perfil .parte_esquerda .quant_pessoas {
+  background-color: var(--cor-terciaria);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  padding: 8%;
+  width: 14vw;
+  border-radius: 1vw;
+}
+
+main .perfil .parte_esquerda .quant_pessoas i {
+  font-size: 1.7rem;
+}
+
+main .perfil .parte_direita {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+main .perfil .parte_direita .bloco_pt_direita {
+  background-color: var(--cor-terciaria);
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  width: 25vw;
+  padding: 5%;
+  border-radius: 1vw;
+}
+
+main .perfil .parte_direita .bloco_pt_direita h3 {
+  font-weight: bold;
+}
+
+main .perfil button {
+  background-color: var(--cor-secundaria);
+  padding: 1%;
+  margin-top: 4%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1rem;
+  color: var(--cor-fonte);
+  cursor: pointer;
 }
 
 /* Footer */
