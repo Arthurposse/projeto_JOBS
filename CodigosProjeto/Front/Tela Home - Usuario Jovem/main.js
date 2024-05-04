@@ -101,14 +101,14 @@ botao_editar.onclick = async function () {
         }
 
         lapis_email.onclick = async function () {
-            const { value: email } = await Swal.fire({
+            const { value: emailValor } = await Swal.fire({
                 title: "Altere seu email",
                 input: "email",
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-            if(email) {
-                email.textContent = email;
+            if(emailValor) {
+                email.textContent = emailValor;
             }
         }
 
@@ -140,13 +140,27 @@ botao_editar.onclick = async function () {
             const { value: date } = await Swal.fire({
                 title: "Selecione a sua data de nascimento",
                 input: "date",
-                didOpen: () => {
-                    const today = (new Date()).toISOString();
-                    Swal.getInput().min = today.split("T")[0];
-                }
             });
             if(date) {
-                idade.textContent = date;
+
+                let ano_user_alert = date.slice(0, 4);
+
+                let mes_user_alert = date.slice(5, 7);
+            
+                let dia_user_alert = date.slice(8, 10);
+            
+                const data = new Date();
+                const ano = data.getFullYear();
+                const mes = data.getMonth() + 1;
+                const dia = data.getDate();
+            
+                let userAge = ano - ano_user_alert;
+            
+                if (mes < mes_user_alert || (mes === mes_user_alert && dia < dia_user_alert)) {
+                    userAge--;
+                }
+            
+                idade.textContent = `${userAge} anos`;
             }
         }
             
