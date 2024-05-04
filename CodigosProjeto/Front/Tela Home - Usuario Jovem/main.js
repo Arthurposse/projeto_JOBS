@@ -95,8 +95,9 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-
-            nome.textContent = name;
+            if(name) {
+                nome.textContent = name;
+            }
         }
 
         lapis_email.onclick = async function () {
@@ -106,8 +107,9 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-
-            email.textContent = email;
+            if(email) {
+                email.textContent = email;
+            }
         }
 
         lapis_telefone.onclick = async function () {
@@ -117,8 +119,9 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-
-            telefone.textContent = tel;
+            if(tel) {
+                telefone.textContent = tel;
+            }
         }
 
         lapis_cidade.onclick = async function () {
@@ -128,8 +131,9 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-
-            cidade.textContent = city;
+            if(city) {
+                cidade.textContent = city;
+            }
         }
 
         lapis_idade.onclick = async function () {
@@ -141,8 +145,9 @@ botao_editar.onclick = async function () {
                     Swal.getInput().min = today.split("T")[0];
                 }
             });
-
-            idade.textContent = date;
+            if(date) {
+                idade.textContent = date;
+            }
         }
             
         editando = false;
