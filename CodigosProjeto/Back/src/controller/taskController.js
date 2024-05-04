@@ -178,11 +178,11 @@ async function getUserJovem(request, response) {
 async function uptadeUserJovem(request, response) {
     
     const params = Array(
-        request.body.nome,
-        request.body.email,
-        request.body.idade,
-        request.body.telefone,
-        request.body.cidade,
+        request.body.nome_user,
+        request.body.idade_user,
+        request.body.email_user,
+        request.body.telefone_user,
+        request.body.cidade_user,
         request.params.id
     )
     

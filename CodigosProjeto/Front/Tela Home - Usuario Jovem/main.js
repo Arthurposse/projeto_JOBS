@@ -97,6 +97,7 @@ botao_editar.onclick = async function (e) {
             });
             if(name) {
                 nome.textContent = name;
+                nome_user = name;
             }
         }
 
@@ -109,6 +110,7 @@ botao_editar.onclick = async function (e) {
             });
             if(emailValor) {
                 email.textContent = emailValor;
+                email_user = emailValor;
             }
         }
 
@@ -121,6 +123,7 @@ botao_editar.onclick = async function (e) {
             });
             if(tel) {
                 telefone.textContent = tel;
+                telefone_user = tel;
             }
         }
 
@@ -133,6 +136,7 @@ botao_editar.onclick = async function (e) {
             });
             if(city) {
                 cidade.textContent = city;
+                cidade_user = city;
             }
         }
 
@@ -161,6 +165,7 @@ botao_editar.onclick = async function (e) {
                 }
             
                 idade.textContent = `${userAge} anos`;
+                idade_user = date;
             }
         }
             
@@ -171,34 +176,37 @@ botao_editar.onclick = async function (e) {
         iconesLapis.forEach(iconeLapis => {
             iconeLapis.style.display = 'none';
         });
-        
-        let nome_user = nome.textContext;
-        let email_user = email.textContext;
-        let telefone_user = telefone.textContext;
-        let cidade_user = cidade.textContext;
-        let idade_user = idade.textContext;
+
+        // let nome_user = nome.textContent;
+        // let email_user = email.textContent;
+        // let telefone_user = telefone.textContent;
+        // let cidade_user = cidade.textContent;
+        // let idade_user = idade.textContent;
 
         let data = { nome_user, email_user, telefone_user, cidade_user, idade_user }
 
+    
         // PUT
-        const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
-            method: "PUT",
-            headers: { "Content-type": "application/json;charset=UTF-8" },
-            body: JSON.stringify(data)
-        });
-
-        let content = await response.json();
-        console.log(content);
-
-        if (content.sucess) {
-            alert ("Sucesso com o PUT!!");
-            // window.location.reload();
-            //recarrega a página
-
-        } else {
-            console.error()
-            alert("Não deu o PUT!!");
-        };
+        if(nome.textContent) {
+            const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
+                method: "PUT",
+                headers: { "Content-type": "application/json;charset=UTF-8" },
+                body: JSON.stringify(data)
+            });
+    
+            let content = await response.json();
+            console.log(content);
+    
+            if (content.sucess) {
+                alert ("Sucesso com o PUT!!");
+                // window.location.reload();
+                //recarrega a página
+    
+            } else {
+                console.error()
+                alert("Não deu o PUT!!");
+            };
+        }
 
         editando = true;
     }

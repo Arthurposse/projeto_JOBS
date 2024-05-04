@@ -1,7 +1,7 @@
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
     data_nascimento DATE NOT NULL,
+    name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
