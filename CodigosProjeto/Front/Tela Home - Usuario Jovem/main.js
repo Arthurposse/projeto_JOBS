@@ -56,7 +56,7 @@ const lapis_cidade = document.getElementById('lapis_cidade');
 const lapis_idade = document.getElementById('lapis_idade');
 
 let editando = true;
-botao_editar.onclick = async function () {
+botao_editar.onclick = async function (e) {
     
     if (editando) {
         botao_editar.textContent = 'Salvar';
@@ -171,8 +171,14 @@ botao_editar.onclick = async function () {
         iconesLapis.forEach(iconeLapis => {
             iconeLapis.style.display = 'none';
         });
+        
+        let nome_user = nome.textContext;
+        let email_user = email.textContext;
+        let telefone_user = telefone.textContext;
+        let cidade_user = cidade.textContext;
+        let idade_user = idade.textContext;
 
-        let data = { nome, email, telefone, cidade, idade }
+        let data = { nome_user, email_user, telefone_user, cidade_user, idade_user }
 
         // PUT
         const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
