@@ -1,5 +1,6 @@
 // Coletando dados perfil (GET)
 
+let nome = document.getElementById('nome_user');
 let email = document.getElementById('email_user');
 let telefone = document.getElementById('telefone_user');
 let cidade = document.getElementById('cidade_user');
@@ -13,6 +14,7 @@ async function getUserJovem(id_user) {
 
     content = await response.json();
     
+    nome.textContent = content.data[0].name;
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     cidade.textContent = content.data[0].cidade;

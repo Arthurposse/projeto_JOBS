@@ -147,7 +147,7 @@ async function getUserJovem(request, response) {
         request.params.id
     )
     
-    const query = "SELECT email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+    const query = "SELECT name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
 
     connection.query(query, params, (err, results) => {
         if(results) {
