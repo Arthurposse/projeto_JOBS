@@ -149,6 +149,11 @@ main .perfil .parte_esquerda .ft_perfil {
   text-align: center;
 }
 
+main .perfil .parte_esquerda .ft_perfil #lapis_nome {
+  display: none;
+  cursor: pointer;
+}
+
 main .perfil .parte_esquerda .quant_pessoas {
   background-color: var(--cor-terciaria);
   display: flex;
@@ -183,6 +188,11 @@ main .perfil .parte_direita .bloco_pt_direita {
 
 main .perfil .parte_direita .bloco_pt_direita h3 {
   font-weight: bold;
+}
+
+main .perfil .parte_direita .bloco_pt_direita i {
+  cursor: pointer;
+  display: none;
 }
 
 main .perfil button {

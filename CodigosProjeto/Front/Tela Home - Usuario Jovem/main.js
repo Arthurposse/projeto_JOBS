@@ -9,11 +9,11 @@ let idade = document.getElementById('idade_user');
 async function getUserJovem(id_user) {
     const response = await fetch(`http://localhost:3008/api/uptade/userJovem/${id_user}`, {
         method: "GET",
-        headers: {"Content-type": "application/json;charset=UTF-8"}
+        headers: { "Content-type": "application/json;charset=UTF-8" }
     });
 
     content = await response.json();
-    
+
     nome.textContent = content.data[0].name;
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
@@ -27,9 +27,9 @@ async function getUserJovem(id_user) {
 
     const data = new Date();
     const ano = data.getFullYear();
-    const mes = data.getMonth() + 1; 
+    const mes = data.getMonth() + 1;
     const dia = data.getDate();
-    
+
     let userAge = ano - ano_user;
 
     if (mes < mes_user || (mes === mes_user && dia < dia_user)) {
@@ -45,31 +45,112 @@ let teste = getUserJovem(id_user);
 // Editando dados perfil (PUT)
 
 const botao_editar = document.getElementById('editar_perfil');
+const iconesLapis = document.querySelectorAll('.bi-pencil-square');
 
-botao_editar.onclick = async function (e) {
-    e.preventDefault();
-    //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
+const lapis_nome = document.getElementById('lapis_nome');
+const lapis_email = document.getElementById('lapis_email');
+const lapis_telefone = document.getElementById('lapis_telefone');
+const lapis_cidade = document.getElementById('lapis_cidade');
+const lapis_idade = document.getElementById('lapis_idade');
 
-    let name = document.getElementById('name').value;
-    let data = { name, email, password, data_nascimento, telefone, cidade }
+let editando = true;
+botao_editar.onclick = async function () {
 
-    // POST
-    const response = await fetch('http://localhost:3008/api/user/jovem', {
-        method: "PUT",
-        headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data)
-    });
+    if (editando) {
+        botao_editar.textContent = 'Salvar';
 
-    let content = await response.json();
-    console.log(content);
-    
-    if (content.sucess) {
-        alert ("Sucesso com o PUT!!");
-        // window.location.reload();
-        //recarrega a página
+        // lapis_nome.onclick = async function() {
 
+        // }
+
+        lapis_email.onclick = async function() {
+            const { value: email } = await Swal.fire({
+                title: "Altere seu email",
+                input: "email",
+                inputLabel: "Insira abaixo:",
+                inputPlaceholder: "Digite aqui para atualizar"
+              });
+              if (email) {
+                Swal.fire(`Entered email: ${email}`);
+              }
+        }
+
+        lapis_telefone.onclick = async function() {
+            const { value: tel } = await Swal.fire({
+                title: "Altere seu número",
+                input: "tel",
+                inputLabel: "Insira abaixo:",
+                inputPlaceholder: "Digite aqui para atualizar"
+              });
+              if (tel) {
+                Swal.fire(`Entered number: ${tel}`);
+              }
+        }
+
+        lapis_cidade.onclick = async function() {
+            const { value: city } = await Swal.fire({
+                title: "Altere sua cidade",
+                input: "text",
+                inputLabel: "Insira abaixo:",
+                inputPlaceholder: "Digite aqui para atualizar"
+              });
+              if (city) {
+                Swal.fire(`Entered city: ${city}`);
+              }
+        }
+
+        lapis_idade.onclick = async function () {
+            const { value: date } = await Swal.fire({
+                title: "Selecione a sua data de nascimento",
+                input: "date",
+                didOpen: () => {
+                    const today = (new Date()).toISOString();
+                    Swal.getInput().min = today.split("T")[0];
+                }
+            });
+            if (date) {
+                Swal.fire("Departure date", date);
+            }
+        }
+
+        iconesLapis.forEach(iconeLapis => {
+            iconeLapis.style.display = 'flex';
+        });
+
+        editando = false;
     } else {
-        console.error()
-        alert("Não deu o PUT!!");
-    };
+        botao_editar.textContent = 'Editar';
+
+        iconesLapis.forEach(iconeLapis => {
+            iconeLapis.style.display = 'none';
+        });
+
+        editando = true;
+    }
 };
+
+// e.preventDefault();
+// //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
+
+// let name = document.getElementById('name').value;
+// let data = { name, email, password, data_nascimento, telefone, cidade }
+
+// // POST
+// const response = await fetch('http://localhost:3008/api/user/jovem', {
+//     method: "PUT",
+//     headers: { "Content-type": "application/json;charset=UTF-8" },
+//     body: JSON.stringify(data)
+// });
+
+// let content = await response.json();
+// console.log(content);
+
+// if (content.sucess) {
+//     alert ("Sucesso com o PUT!!");
+//     // window.location.reload();
+//     //recarrega a página
+
+// } else {
+//     console.error()
+//     alert("Não deu o PUT!!");
+// };
