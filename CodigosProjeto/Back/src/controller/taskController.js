@@ -175,6 +175,40 @@ async function getUserJovem(request, response) {
 
 // Jovem
 
+async function uptadeUserJovem(request, response) {
+    
+    const params = Array(
+        request.body.nome,
+        request.body.email,
+        request.body.idade,
+        request.body.telefone,
+        request.body.cidade,
+        request.params.id
+    )
+    
+    const query = "UPDATE user_jovem SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id_user` = ?";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET dados!!",
+                data: results,
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET dados!",
+                data: err
+            })
+        }
+    })
+}
 
 // Empresa
 
@@ -183,5 +217,6 @@ module.exports = {
     userEmpresa,
     logIn,
     duvidaJovem,
-    getUserJovem
+    getUserJovem,
+    uptadeUserJovem
 }

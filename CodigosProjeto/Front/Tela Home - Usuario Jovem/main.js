@@ -7,7 +7,8 @@ let cidade = document.getElementById('cidade_user');
 let idade = document.getElementById('idade_user');
 
 async function getUserJovem(id_user) {
-    const response = await fetch(`http://localhost:3008/api/uptade/userJovem/${id_user}`, {
+
+    const response = await fetch(`http://localhost:3008/api//get/userJovem/${id_user}`, {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
     });
@@ -56,7 +57,7 @@ const lapis_idade = document.getElementById('lapis_idade');
 
 let editando = true;
 botao_editar.onclick = async function () {
-
+    
     if (editando) {
         botao_editar.textContent = 'Salvar';
 
@@ -65,66 +66,70 @@ botao_editar.onclick = async function () {
             iconeLapis.style.animation = 'all 1s ease';
         });
 
-        lapis_ft_perfil.onclick = async function() {
+        lapis_ft_perfil.onclick = async function () {
             const { value: file } = await Swal.fire({
                 title: "Select image",
                 input: "file",
                 inputAttributes: {
-                  "accept": "image/*",
-                  "aria-label": "Upload your profile picture"
+                    "accept": "image/*",
+                    "aria-label": "Upload your profile picture"
                 }
-              });
-              if (file) {
+            });
+            if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                  Swal.fire({
-                    title: "Your uploaded picture",
-                    imageUrl: e.target.result,
-                    imageAlt: "The uploaded picture"
-                  });
+                    Swal.fire({
+                        title: "Your uploaded picture",
+                        imageUrl: e.target.result,
+                        imageAlt: "The uploaded picture"
+                    });
                 };
                 reader.readAsDataURL(file);
-              }
+            }
         }
 
-        // lapis_nome.onclick = async function() {
+        lapis_nome.onclick = async function () {
+            const { value: name } = await Swal.fire({
+                title: "Altere seu nome",
+                input: "text",
+                inputLabel: "Insira abaixo:",
+                inputPlaceholder: "Digite aqui para atualizar"
+            });
 
-        // }
+            nome.textContent = name;
+        }
 
-        lapis_email.onclick = async function() {
+        lapis_email.onclick = async function () {
             const { value: email } = await Swal.fire({
                 title: "Altere seu email",
                 input: "email",
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
-              });
-              if (email) {
-                Swal.fire(`Entered email: ${email}`);
-              }
+            });
+
+            email.textContent = email;
         }
 
-        lapis_telefone.onclick = async function() {
+        lapis_telefone.onclick = async function () {
             const { value: tel } = await Swal.fire({
                 title: "Altere seu número",
                 input: "tel",
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
-              });
-              if (tel) {
-                Swal.fire(`Entered number: ${tel}`);
-              }
+            });
+
+            telefone.textContent = tel;
         }
 
-        lapis_cidade.onclick = async function() {
+        lapis_cidade.onclick = async function () {
             const { value: city } = await Swal.fire({
                 title: "Altere sua cidade",
                 input: "text",
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
-              });
-              if (city) {
-                Swal.fire(`Entered city: ${city}`);
-              }
+            });
+
+            cidade.textContent = city;
         }
 
         lapis_idade.onclick = async function () {
@@ -136,11 +141,10 @@ botao_editar.onclick = async function () {
                     Swal.getInput().min = today.split("T")[0];
                 }
             });
-            if (date) {
-                Swal.fire("Departure date", date);
-            }
-        }
 
+            idade.textContent = date;
+        }
+            
         editando = false;
     } else {
         botao_editar.textContent = 'Editar';
@@ -149,32 +153,28 @@ botao_editar.onclick = async function () {
             iconeLapis.style.display = 'none';
         });
 
+        let data = { nome, email, telefone, cidade, idade }
+
+        // PUT
+        const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
+            method: "PUT",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(data)
+        });
+
+        let content = await response.json();
+        console.log(content);
+
+        if (content.sucess) {
+            alert ("Sucesso com o PUT!!");
+            // window.location.reload();
+            //recarrega a página
+
+        } else {
+            console.error()
+            alert("Não deu o PUT!!");
+        };
+
         editando = true;
     }
 };
-
-// e.preventDefault();
-// //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
-
-// let name = document.getElementById('name').value;
-// let data = { name, email, password, data_nascimento, telefone, cidade }
-
-// // POST
-// const response = await fetch('http://localhost:3008/api/user/jovem', {
-//     method: "PUT",
-//     headers: { "Content-type": "application/json;charset=UTF-8" },
-//     body: JSON.stringify(data)
-// });
-
-// let content = await response.json();
-// console.log(content);
-
-// if (content.sucess) {
-//     alert ("Sucesso com o PUT!!");
-//     // window.location.reload();
-//     //recarrega a página
-
-// } else {
-//     console.error()
-//     alert("Não deu o PUT!!");
-// };
