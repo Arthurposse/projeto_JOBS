@@ -12,4 +12,8 @@ router.post('/user/enviando_duvida', duvidaJovem)
 
 router.get('/verif/logIn', logIn);
 
+// router.put('/uptade/userJovem/:id', uptadeUserJovem);
+
+// router.put('/uptade/userJovem/:id', uptadeUserEmpresa);
+
 module.exports = router;

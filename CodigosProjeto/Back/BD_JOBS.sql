@@ -23,14 +23,14 @@ create table user_empresa(
 create table duvidas(
 	id_user INT NOT NULL,
     id_duvida INT PRIMARY KEY AUTO_INCREMENT,
-    duvida TEXT NOT NULL,
+    duvida TEXT NOT NULL
 );
 
 create table respostas(
     id_user INT NOT NULL,
 	id_duvida INT,
     resposta TEXT NOT NULL,
-    type_user VARCHAR(7) NOT NULL CHECK (type_user IN ('Jovem', 'Empresa')) 
+    type_user VARCHAR(7) NOT NULL CHECK (type_user IN ('Jovem', 'Empresa')),
 
     FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );

@@ -53,7 +53,7 @@ async function userEmpresa(request, response) {
         request.body.setor_atividade
     )
 
-    const query = "INSERT INTO user_empresa(name, email, password, telefone, cidade, cnpj, razao_social, setor_atividade) VALUES(?,?,?,?,?,?,?,?)";
+    const query = "INSERT INTO user_empresa(name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?)";
 
     connection.query(query, params, (err, results) => {
         if(results) {
@@ -80,8 +80,7 @@ async function userEmpresa(request, response) {
 // LogIn / Buscar ID user (GET)
 
 async function logIn(request, response) {
-
-    const query = "SELECT id, email, password FROM jobs.user_empresa UNION SELECT id, email, password FROM jobs.user_jovem;";
+    const query = "SELECT id, email, password, 'user_empresa' as origin FROM jobs.user_empresa UNION SELECT id, email, password, 'user_jovem' as origin FROM jobs.user_jovem;";
 
     connection.query(query, (err, results) => {
         if(results) {
@@ -90,7 +89,7 @@ async function logIn(request, response) {
             .json({
                 sucess: true,
                 message: "Sucesso com GET LogIn!!",
-                data: results
+                data: results,
             });
 
         } else {
@@ -104,6 +103,7 @@ async function logIn(request, response) {
         }
     })
 }
+
 
 // Dúvida Jovem (POST)
 
@@ -137,6 +137,13 @@ async function duvidaJovem(request, response) {
         }
     })
 }
+
+// Atualizando dados do usuário
+
+// Jovem
+
+
+// Empresa
 
 module.exports = {
     userJovem,
