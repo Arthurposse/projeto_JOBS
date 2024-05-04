@@ -14,6 +14,7 @@ button.onclick = async function (e) {
     });
 
     let content = await response.json();
+    console.log(content);
     
     if (content.sucess) {
 
@@ -22,15 +23,17 @@ button.onclick = async function (e) {
             
             if(content.data[i].email === email && content.data[i].password === password) {
                 localStorage.setItem('ID_user', content.data[i].id);
+                localStorage.setItem('TabelaOrigem', content.data[i].origin);
+
                 Swal.fire({
                     title: "LogIn realizado com sucesso!!",
                     icon: "success",
                     showConfirmButton: false,
                     timer: 2000
                 });
-                setTimeout(() => {
-                    window.location.href = '../../Tela Home - Usuario Jovem/index.html';
-                }, 2000);
+                // setTimeout(() => {
+                //     window.location.href = '../../Tela Home - Usuario Jovem/index.html';
+                // }, 2000);
                 break
             }
             

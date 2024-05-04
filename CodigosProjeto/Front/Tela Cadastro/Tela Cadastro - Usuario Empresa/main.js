@@ -1,4 +1,4 @@
-let button = document.getElementById('handleSubmit');
+let button = document.getElementById('cadastro_user');
 
 button.onclick = async function (e) {
     e.preventDefault();
