@@ -114,7 +114,7 @@ main .perfil {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 114vh;
+  height: 130vh;
   padding: 5%;
 }
 
@@ -149,7 +149,7 @@ main .perfil .parte_esquerda .ft_perfil {
   text-align: center;
 }
 
-main .perfil .parte_esquerda .ft_perfil #lapis_nome {
+main .perfil .parte_esquerda .ft_perfil #lapis_nome, #lapis_ft_perfil {
   display: none;
   cursor: pointer;
 }
@@ -181,8 +181,8 @@ main .perfil .parte_direita .bloco_pt_direita {
   display: flex;
   align-items: center;
   gap: 1vw;
-  width: 25vw;
-  padding: 5%;
+  width: 28vw;
+  padding: 4%;
   border-radius: 1vw;
 }
 
@@ -204,6 +204,15 @@ main .perfil button {
   font-size: 1rem;
   color: var(--cor-fonte);
   cursor: pointer;
+}
+
+@keyframes all {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Footer */

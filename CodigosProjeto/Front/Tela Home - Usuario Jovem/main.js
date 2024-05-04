@@ -47,6 +47,7 @@ let teste = getUserJovem(id_user);
 const botao_editar = document.getElementById('editar_perfil');
 const iconesLapis = document.querySelectorAll('.bi-pencil-square');
 
+const lapis_ft_perfil = document.getElementById('lapis_ft_perfil');
 const lapis_nome = document.getElementById('lapis_nome');
 const lapis_email = document.getElementById('lapis_email');
 const lapis_telefone = document.getElementById('lapis_telefone');
@@ -58,6 +59,33 @@ botao_editar.onclick = async function () {
 
     if (editando) {
         botao_editar.textContent = 'Salvar';
+
+        iconesLapis.forEach(iconeLapis => {
+            iconeLapis.style.display = 'flex';
+            iconeLapis.style.animation = 'all 1s ease';
+        });
+
+        lapis_ft_perfil.onclick = async function() {
+            const { value: file } = await Swal.fire({
+                title: "Select image",
+                input: "file",
+                inputAttributes: {
+                  "accept": "image/*",
+                  "aria-label": "Upload your profile picture"
+                }
+              });
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  Swal.fire({
+                    title: "Your uploaded picture",
+                    imageUrl: e.target.result,
+                    imageAlt: "The uploaded picture"
+                  });
+                };
+                reader.readAsDataURL(file);
+              }
+        }
 
         // lapis_nome.onclick = async function() {
 
@@ -112,10 +140,6 @@ botao_editar.onclick = async function () {
                 Swal.fire("Departure date", date);
             }
         }
-
-        iconesLapis.forEach(iconeLapis => {
-            iconeLapis.style.display = 'flex';
-        });
 
         editando = false;
     } else {
