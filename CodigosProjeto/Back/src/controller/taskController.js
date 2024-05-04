@@ -108,7 +108,6 @@ async function logIn(request, response) {
 // Dúvida Jovem (POST)
 
 async function duvidaJovem(request, response) {
-
     const params = Array(
         request.body.id_user,
         request.body.userInput
@@ -138,6 +137,40 @@ async function duvidaJovem(request, response) {
     })
 }
 
+// Coletando dados do usuário (GET)
+
+// Jovem
+
+async function getUserJovem(request, response) {
+    
+    const params = Array(
+        request.params.id
+    )
+    
+    const query = "SELECT email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET dados!!",
+                data: results,
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET dados!",
+                data: err
+            })
+        }
+    })
+}
+
 // Atualizando dados do usuário
 
 // Jovem
@@ -149,5 +182,6 @@ module.exports = {
     userJovem,
     userEmpresa,
     logIn,
-    duvidaJovem
+    duvidaJovem,
+    getUserJovem
 }

@@ -31,9 +31,9 @@ button.onclick = async function (e) {
                     showConfirmButton: false,
                     timer: 2000
                 });
-                // setTimeout(() => {
-                //     window.location.href = '../../Tela Home - Usuario Jovem/index.html';
-                // }, 2000);
+                setTimeout(() => {
+                    window.location.href = '../../Tela Home - Usuario Jovem/index.html';
+                }, 2000);
                 break
             }
             
