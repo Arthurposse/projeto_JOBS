@@ -69,6 +69,8 @@ botao_editar.onclick = async function () {
     let cidade_user = cidade.textContent;
     let idade_user = guardar_idade_user;
 
+    console.log("Idade atual:", idade_user);
+
     if (editando) {
         botao_editar.textContent = 'Salvar';
 
@@ -176,7 +178,8 @@ botao_editar.onclick = async function () {
                 }
             
                 idade.textContent = `${userAge} anos`;
-                idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
+                guardar_idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
+                idade_user = guardar_idade_user;
             }
                
         }
