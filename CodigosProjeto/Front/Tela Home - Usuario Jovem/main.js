@@ -6,6 +6,8 @@ let telefone = document.getElementById('telefone_user');
 let cidade = document.getElementById('cidade_user');
 let idade = document.getElementById('idade_user');
 
+let guardar_idade_user = '';
+
 async function getUserJovem(id_user) {
 
     const response = await fetch(`http://localhost:3008/api//get/userJovem/${id_user}`, {
@@ -19,6 +21,8 @@ async function getUserJovem(id_user) {
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     cidade.textContent = content.data[0].cidade;
+    guardar_idade_user = content.data[0].data_nascimento;
+    guardar_idade_user
 
     let ano_user = content.data[0].data_nascimento.slice(0, 4);
 
@@ -40,8 +44,8 @@ async function getUserJovem(id_user) {
     idade.textContent = `${userAge} anos`;
 };
 
-let id_user = localStorage.getItem('ID_user');
-let teste = getUserJovem(id_user);
+let id_user = Number(localStorage.getItem('ID_user'));
+getUserJovem(id_user);
 
 // Editando dados perfil (PUT)
 
@@ -55,9 +59,18 @@ const lapis_telefone = document.getElementById('lapis_telefone');
 const lapis_cidade = document.getElementById('lapis_cidade');
 const lapis_idade = document.getElementById('lapis_idade');
 
+
 let editando = true;
-botao_editar.onclick = async function (e) {
+botao_editar.onclick = async function () {
     
+    let nome_user = nome.textContent;
+    let email_user = email.textContent;
+    let telefone_user = telefone.textContent;
+    let cidade_user = cidade.textContent;
+    let idade_user = guardar_idade_user;
+    console.log(typeof(guardar_idade_user));
+    idade_user = idade_user.toISOString().split('T')[0];
+
     if (editando) {
         botao_editar.textContent = 'Salvar';
 
@@ -97,7 +110,9 @@ botao_editar.onclick = async function (e) {
             });
             if(name) {
                 nome.textContent = name;
-                nome_user = name;
+                nome_user = nome.textContent;
+            } else {
+                nome_user = nome.textContent;
             }
         }
 
@@ -110,7 +125,9 @@ botao_editar.onclick = async function (e) {
             });
             if(emailValor) {
                 email.textContent = emailValor;
-                email_user = emailValor;
+                email_user = email.textContent;
+            } else {
+                email_user = email.textContent;
             }
         }
 
@@ -123,7 +140,9 @@ botao_editar.onclick = async function (e) {
             });
             if(tel) {
                 telefone.textContent = tel;
-                telefone_user = tel;
+                telefone_user = telefone.textContent;
+            } else {
+                telefone_user = telefone.textContent;
             }
         }
 
@@ -136,7 +155,9 @@ botao_editar.onclick = async function (e) {
             });
             if(city) {
                 cidade.textContent = city;
-                cidade_user = city;
+                cidade_user = cidade.textContent;
+            } else {
+                cidade_user = cidade.textContent;
             }
         }
 
@@ -165,7 +186,9 @@ botao_editar.onclick = async function (e) {
                 }
             
                 idade.textContent = `${userAge} anos`;
-                idade_user = date;
+                idade_user = idade.textContent;
+            } else {
+                idade_user = '03-12-2005';
             }
         }
             
@@ -184,29 +207,27 @@ botao_editar.onclick = async function (e) {
         // let idade_user = idade.textContent;
 
         let data = { nome_user, email_user, telefone_user, cidade_user, idade_user }
-
     
         // PUT
-        if(nome.textContent) {
-            const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
-                method: "PUT",
-                headers: { "Content-type": "application/json;charset=UTF-8" },
-                body: JSON.stringify(data)
-            });
-    
-            let content = await response.json();
-            console.log(content);
-    
-            if (content.sucess) {
-                alert ("Sucesso com o PUT!!");
-                // window.location.reload();
-                //recarrega a página
-    
-            } else {
-                console.error()
-                alert("Não deu o PUT!!");
-            };
-        }
+
+        const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
+            method: "PUT",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify(data)
+        });
+
+        let content = await response.json();
+        console.log(content);
+
+        if (content.sucess) {
+            alert ("Sucesso com o PUT!!");
+            // window.location.reload();
+            //recarrega a página
+
+        } else {
+            console.error()
+            alert("Não deu o PUT!!");
+        };
 
         editando = true;
     }

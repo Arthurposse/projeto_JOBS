@@ -186,7 +186,7 @@ async function uptadeUserJovem(request, response) {
         request.params.id
     )
     
-    const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id_user` = ?;";
+    const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
 
     connection.query(query, params, (err, results) => {
         if(results) {
