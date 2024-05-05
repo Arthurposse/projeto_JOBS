@@ -69,8 +69,6 @@ botao_editar.onclick = async function () {
     let cidade_user = cidade.textContent;
     let idade_user = guardar_idade_user;
 
-    console.log("Idade atual:", idade_user);
-
     if (editando) {
         botao_editar.textContent = 'Salvar';
 
@@ -181,7 +179,6 @@ botao_editar.onclick = async function () {
                 guardar_idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
                 idade_user = guardar_idade_user;
             }
-               
         }
             
         editando = false;
@@ -191,12 +188,6 @@ botao_editar.onclick = async function () {
         iconesLapis.forEach(iconeLapis => {
             iconeLapis.style.display = 'none';
         });
-
-        // let nome_user = nome.textContent;
-        // let email_user = email.textContent;
-        // let telefone_user = telefone.textContent;
-        // let cidade_user = cidade.textContent;
-        // let idade_user = idade.textContent;
 
         let data = { nome_user, email_user, telefone_user, cidade_user, idade_user }
     
