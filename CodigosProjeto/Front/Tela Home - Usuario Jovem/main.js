@@ -21,14 +21,14 @@ async function getUserJovem(id_user) {
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     cidade.textContent = content.data[0].cidade;
-    guardar_idade_user = content.data[0].data_nascimento;
-    guardar_idade_user
-
+    
     let ano_user = content.data[0].data_nascimento.slice(0, 4);
-
+    
     let mes_user = content.data[0].data_nascimento.slice(5, 7);
-
+    
     let dia_user = content.data[0].data_nascimento.slice(8, 10);
+
+    guardar_idade_user = `${ano_user}-${mes_user}-${dia_user}`;
 
     const data = new Date();
     const ano = data.getFullYear();
@@ -67,9 +67,10 @@ botao_editar.onclick = async function () {
     let email_user = email.textContent;
     let telefone_user = telefone.textContent;
     let cidade_user = cidade.textContent;
+
+    console.log(idade_user);
+
     let idade_user = guardar_idade_user;
-    console.log(typeof(guardar_idade_user));
-    idade_user = idade_user.toISOString().split('T')[0];
 
     if (editando) {
         botao_editar.textContent = 'Salvar';
