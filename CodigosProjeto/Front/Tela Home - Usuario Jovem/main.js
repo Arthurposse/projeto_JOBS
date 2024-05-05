@@ -67,9 +67,6 @@ botao_editar.onclick = async function () {
     let email_user = email.textContent;
     let telefone_user = telefone.textContent;
     let cidade_user = cidade.textContent;
-
-    console.log(idade_user);
-
     let idade_user = guardar_idade_user;
 
     if (editando) {
