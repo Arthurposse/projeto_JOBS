@@ -1,3 +1,20 @@
+// Planejamento de carreira - Metas usuário
+
+const blocos_metas = document.querySelectorAll('.bloco_meta');
+const icon_alert = document.querySelectorAll('.bi bi-exclamation-triangle');
+
+const json_blocos_meta = {
+    titulo: 'teste',
+    infos: '',
+    data: '',
+    prioridade: ''
+}
+
+blocos_metas.forEach(e => {
+    const icons = e.querySelectorAll('i');
+
+});
+
 // Coletando dados perfil (GET)
 
 let nome = document.getElementById('nome_user');
