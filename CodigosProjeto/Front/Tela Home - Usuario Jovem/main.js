@@ -63,6 +63,7 @@ const lapis_idade = document.getElementById('lapis_idade');
 let editando = true;
 botao_editar.onclick = async function () {
     
+    let ft_user = '';
     let nome_user = nome.textContent;
     let email_user = email.textContent;
     let telefone_user = telefone.textContent;
@@ -95,7 +96,7 @@ botao_editar.onclick = async function () {
                         imageAlt: "The uploaded picture"
                     });
                 };
-                reader.readAsDataURL(file);
+                ft_user = reader.readAsDataURL(file);
                 console.log(file);
             }
         }
@@ -190,7 +191,7 @@ botao_editar.onclick = async function () {
             iconeLapis.style.display = 'none';
         });
 
-        let data = { nome_user, email_user, telefone_user, cidade_user, idade_user }
+        let data = { nome_user, email_user, telefone_user, cidade_user, idade_user };
     
         // PUT
 
@@ -204,13 +205,20 @@ botao_editar.onclick = async function () {
         console.log(content);
 
         if (content.sucess) {
-            alert ("Sucesso com o PUT!!");
-            // window.location.reload();
-            //recarrega a página
+            Swal.fire({
+                title: "Seus dados foram atualizados com sucesso!!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000
+            });
 
         } else {
-            console.error()
-            alert("Não deu o PUT!!");
+            Swal.fire({
+                title: "Não foi possível alterar seus dados!!",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 2000
+            });
         };
 
         editando = true;

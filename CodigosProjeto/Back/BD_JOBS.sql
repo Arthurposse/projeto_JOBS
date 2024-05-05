@@ -1,3 +1,7 @@
+create database jobs;
+
+use jobs;
+
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     ft_perfil JSON,
@@ -6,7 +10,7 @@ create table user_jovem(
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
-    cidade VARCHAR(30) NOT NULL,
+    cidade VARCHAR(30) NOT NULL
 );
 
 create table user_empresa(
@@ -19,7 +23,7 @@ create table user_empresa(
     cidade VARCHAR(30) NOT NULL,
     cnpj VARCHAR(14) NOT NULL,
     razao_social VARCHAR(20) NOT NULL,
-    setor_atividade VARCHAR(25) NOT NULL,
+    setor_atividade VARCHAR(25) NOT NULL
 );
 
 create table duvidas(

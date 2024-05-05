@@ -178,6 +178,7 @@ async function getUserJovem(request, response) {
 async function uptadeUserJovem(request, response) {
     
     const params = Array(
+        // request.body.ft_user,
         request.body.nome_user,
         request.body.idade_user,
         request.body.email_user,
@@ -186,6 +187,10 @@ async function uptadeUserJovem(request, response) {
         request.params.id
     )
     
+    // COM var ft_user
+    // const query = "UPDATE `user_jovem` SET `ft_perfil` = ?, `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
+
+    // SEM var ft_user
     const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
 
     connection.query(query, params, (err, results) => {
