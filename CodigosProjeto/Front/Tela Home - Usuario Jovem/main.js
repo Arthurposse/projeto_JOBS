@@ -176,7 +176,7 @@ botao_editar.onclick = async function () {
                 }
             
                 idade.textContent = `${userAge} anos`;
-                idade_user = idade.textContent;
+                idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
             }
                
         }
