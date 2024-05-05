@@ -185,10 +185,12 @@ main .topo_duvidas_jovens button {
     border-radius: 1vw;
     font-size: 1.4rem;
     cursor: pointer;
+    color: var(--cor-terciaria);
 }
 
 main .topo_duvidas_jovens button:hover {
     background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
 }
 
 main .bloco_cards_duvidas_jovens {

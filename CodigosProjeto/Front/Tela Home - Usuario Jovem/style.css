@@ -88,22 +88,72 @@ main {
   background-color: var(--cor-primaria);
 }
 
-/* Main - Estatísticas do Currículo do Jovem */
-
-main .estatisca_curriculo {
+main .planejamento_carreira, main .estatisca_curriculo {
   height: 100vh;
   padding: 2%;
 }
 
-main .estatisca_curriculo h2 {
+main .planejamento_carreira h2, main .estatisca_curriculo h2 {
   color: var(--cor-secundaria);
 }
 
-main .estatisca_curriculo hr {
+main .planejamento_carreira hr, main .estatisca_curriculo hr {
   width: 85%;
   border: 1px solid var(--cor-secundaria);
   margin-top: .5%;
 }
+
+main .planejamento_carreira h3 {
+  padding: 2%;
+  color: var(--cor-secundaria);
+}
+
+/* Main - Planejamento de carreira */
+
+main #criar_meta {
+  background-color: var(--cor-secundaria);
+  width: 6vw;
+  margin-bottom: 3%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--cor-terciaria);
+}
+
+main #criar_meta:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+}
+
+main .pc_metas {
+  /* background-color: var(--cor-terciaria); */
+  display: flex;
+  gap: 2vw;
+  border-radius: 1vw;
+}
+
+main .bloco_meta {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 1vw;
+}
+
+main .bloco_meta {
+  text-align: center;
+}
+
+main .bloco_meta .bloco_meta_rodape {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Main - Estatísticas do Currículo do Jovem */
+
 
 /* Main - Perfil */
 
