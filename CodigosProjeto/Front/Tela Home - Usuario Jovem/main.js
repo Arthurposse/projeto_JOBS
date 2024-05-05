@@ -96,6 +96,7 @@ botao_editar.onclick = async function () {
                     });
                 };
                 reader.readAsDataURL(file);
+                console.log(file);
             }
         }
 

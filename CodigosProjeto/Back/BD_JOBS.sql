@@ -1,15 +1,17 @@
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    ft_perfil JSON
     data_nascimento DATE NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     telefone VARCHAR(11) NOT NULL,
-    cidade VARCHAR(30) NOT NULL
+    cidade VARCHAR(30) NOT NULL,
 );
 
 create table user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    ft_perfil JSON
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -17,7 +19,7 @@ create table user_empresa(
     cidade VARCHAR(30) NOT NULL,
     cnpj VARCHAR(14) NOT NULL,
     razao_social VARCHAR(20) NOT NULL,
-    setor_atividade VARCHAR(25) NOT NULL
+    setor_atividade VARCHAR(25) NOT NULL,
 );
 
 create table duvidas(
