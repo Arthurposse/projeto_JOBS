@@ -1,6 +1,6 @@
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    ft_perfil JSON
+    ft_perfil JSON,
     data_nascimento DATE NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
@@ -11,7 +11,7 @@ create table user_jovem(
 
 create table user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    ft_perfil JSON
+    ft_perfil JSON,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
