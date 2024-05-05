@@ -109,8 +109,6 @@ botao_editar.onclick = async function () {
             if(name) {
                 nome.textContent = name;
                 nome_user = nome.textContent;
-            } else {
-                nome_user = nome.textContent;
             }
         }
 
@@ -123,8 +121,6 @@ botao_editar.onclick = async function () {
             });
             if(emailValor) {
                 email.textContent = emailValor;
-                email_user = email.textContent;
-            } else {
                 email_user = email.textContent;
             }
         }
@@ -139,8 +135,6 @@ botao_editar.onclick = async function () {
             if(tel) {
                 telefone.textContent = tel;
                 telefone_user = telefone.textContent;
-            } else {
-                telefone_user = telefone.textContent;
             }
         }
 
@@ -153,8 +147,6 @@ botao_editar.onclick = async function () {
             });
             if(city) {
                 cidade.textContent = city;
-                cidade_user = cidade.textContent;
-            } else {
                 cidade_user = cidade.textContent;
             }
         }
@@ -185,9 +177,8 @@ botao_editar.onclick = async function () {
             
                 idade.textContent = `${userAge} anos`;
                 idade_user = idade.textContent;
-            } else {
-                idade_user = '03-12-2005';
             }
+               
         }
             
         editando = false;
