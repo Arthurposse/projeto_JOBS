@@ -10,6 +10,7 @@ button.onclick = async function (e) {
     let data_nascimento = document.getElementById('data_nascimento').value;
     let telefone = document.getElementById('telefone').value;
     let cidade = document.getElementById('cidade').value;
+    
     let data = { name, email, password, data_nascimento, telefone, cidade }
 
     // POST

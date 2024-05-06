@@ -80,7 +80,7 @@ async function userEmpresa(request, response) {
 // LogIn / Buscar ID user (GET)
 
 async function logIn(request, response) {
-    const query = "SELECT id, email, password, 'user_empresa' as origin FROM jobs.user_empresa UNION SELECT id, email, password, 'user_jovem' as origin FROM jobs.user_jovem;";
+    const query = "SELECT id, name, email, password, 'user_empresa' as origin FROM jobs.user_empresa UNION SELECT id, name, email, password, 'user_jovem' as origin FROM jobs.user_jovem;";
 
     connection.query(query, (err, results) => {
         if(results) {
@@ -217,11 +217,43 @@ async function uptadeUserJovem(request, response) {
 
 // Empresa
 
+// Buscar metas Usuário Jovem
+
+async function getMetasJovem(request, response) {
+    const params = Array(
+        request.query.User_name
+    )
+
+    const query = "SELECT `user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade` FROM jobs.metas WHERE user_name = ?;";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET metas!!",
+                data: results,
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET metas!",
+                data: err
+            })
+        }
+    })
+}
+
 module.exports = {
     userJovem,
     userEmpresa,
     logIn,
     duvidaJovem,
     getUserJovem,
-    uptadeUserJovem
+    uptadeUserJovem,
+    getMetasJovem
 }

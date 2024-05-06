@@ -1,26 +1,62 @@
 // Planejamento de carreira - Metas usuário
 
-const blocos_metas = document.querySelectorAll('.bloco_meta');
 
-const json_blocos = [];
+async function getMetas() {
+    let User_name = localStorage.getItem('User_name');
 
-blocos_metas.forEach(e => {
-    const titulo = e.querySelector('h2').textContent;
-    const infos = e.querySelector('.infos_meta').textContent;
-    const data = e.querySelector('.data_meta').textContent;
-    const icon = e.querySelector('i').style.color;
+    const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${User_name}`, {
+        method: "GET",
+        headers: { "Content-type": "application/json;charset=UTF-8" }
+    });
+    
+    let content = await response.json();
+    
+    for(let i = 0; i < content.data.length; i++) {
+        const titulo = content.data[i].titulo;
+        const infos = content.data[i].infos;
+        const data = content.data[i].data_conclusao;
+        const prioridade = content.data[i].prioridade;
 
-    const novo_json = {
-        titulo: titulo,
-        infos: infos,
-        data: data,
-        prioridade: icon
+        const pc_metas = document.querySelector('.pc_metas');
+
+        const bloco_meta = document.createElement('section');
+        bloco_meta.classList.add('bloco_meta');
+
+        const h2 = document.createElement('h2');
+        h2.textContent = titulo;
+
+        const p_infos_meta = document.createElement('p');
+        p_infos_meta.classList.add('infos_meta');
+        p_infos_meta.textContent = infos;
+
+        const bloco_meta_rodape = document.createElement('section');
+        bloco_meta_rodape.classList.add('bloco_meta_rodape');
+
+        // let ano_user = data.slice(0, 4);
+
+        let mes_user = data.slice(5, 7);
+            
+        let dia_user = data.slice(8, 10);
+
+        const p_data_meta = document.createElement('p');
+        p_data_meta.classList.add('data_meta');
+        p_data_meta.textContent = `${dia_user}/${mes_user}`;
+
+        const icon = document.createElement('i');
+        icon.classList.add('bi-exclamation-triangle');
+        icon.style.color = prioridade;
+
+        bloco_meta.appendChild(h2);
+        bloco_meta.appendChild(p_infos_meta);
+        bloco_meta_rodape.appendChild(p_data_meta);
+        bloco_meta_rodape.appendChild(icon);
+        bloco_meta.appendChild(bloco_meta_rodape);
+
+        pc_metas.appendChild(bloco_meta);
     }
+}
 
-    json_blocos.push(novo_json)
-});
-
-console.log(json_blocos);
+getMetas();
 
 // Coletando dados perfil (GET)
 

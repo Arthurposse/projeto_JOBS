@@ -40,3 +40,12 @@ create table respostas(
 
     FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );
+
+create table metas(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(50) NOT NULL,
+    titulo VARCHAR(20) NOT NULL,
+    infos text NOT NULL,
+    data_conclusao date NOT NULL, 
+    prioridade ENUM('red', 'yellow', 'green')
+);

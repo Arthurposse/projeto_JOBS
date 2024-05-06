@@ -14,7 +14,6 @@ button.onclick = async function (e) {
     });
 
     let content = await response.json();
-    console.log(content);
     
     if (content.sucess) {
 
@@ -23,6 +22,7 @@ button.onclick = async function (e) {
             
             if(content.data[i].email === email && content.data[i].password === password) {
                 localStorage.setItem('ID_user', content.data[i].id);
+                localStorage.setItem('User_name', content.data[i].name);
                 localStorage.setItem('TabelaOrigem', content.data[i].origin);
 
                 Swal.fire({
