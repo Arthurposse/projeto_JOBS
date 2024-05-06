@@ -3,6 +3,7 @@
 // Metas - GET
 
 let User_name = localStorage.getItem('User_name');
+let titulos_metas = [];
 
 async function getMetas() {
     const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${User_name}`, {
@@ -14,6 +15,9 @@ async function getMetas() {
 
     for (let i = 0; i < content.data.length; i++) {
         const titulo = content.data[i].titulo;
+
+        titulos_metas.push(titulo);
+
         const infos = content.data[i].infos;
         const data = content.data[i].data_conclusao;
         const prioridade = content.data[i].prioridade;
@@ -68,7 +72,7 @@ let infos = '';
 let data_alterar = '';
 let prioridade = '';
 
-botao_criar_metas.onclick = async function (e) {
+botao_criar_metas.onclick = async function () {
 
     const { value: titulo_criar } = await Swal.fire({
         title: 'Título meta',
@@ -113,9 +117,6 @@ botao_criar_metas.onclick = async function (e) {
         }
     }
 
-    e.preventDefault();
-    //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
-
     let data = { User_name, titulo, infos, data_alterar, prioridade}
 
     // POST
@@ -145,6 +146,51 @@ botao_criar_metas.onclick = async function (e) {
 
 async function putMetas() {
 
+}
+
+// Metas - DELETE
+
+const botao_deletar_metas = document.getElementById('deletar_meta');
+
+botao_deletar_metas.onclick = async function () {
+
+    const opcoes = {};
+
+    for (let i = 0; i < titulos_metas.length; i++) {
+        opcoes[`${titulos_metas[i]}`] = titulos_metas[i];
+    }
+
+    const { value: metas_deletar } = await Swal.fire({
+        title: "Deletar meta",
+        input: "select",
+        inputOptions: opcoes,
+        inputPlaceholder: "Selecionar aquele que deseja deletar",
+        showCancelButton: true
+      });
+      if (metas_deletar) {
+        data = { metas_deletar };
+      }
+
+      const response = await fetch('http://localhost:3008/api/metas/deletando', {
+        method: "DELETE",
+        headers: { "Content-type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(data)
+    });
+
+    let content = await response.json();
+    console.log(content);
+
+    if (content.sucess) {
+
+        alert('Deu bom o DELETE!!')
+
+        window.location.reload();
+        //recarrega a página
+
+    } else {
+        alert("Deu ruim o DELETE!!");
+        console.error()
+    };
 }
 
 // Coletando dados perfil (GET)

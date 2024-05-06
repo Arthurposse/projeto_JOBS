@@ -282,13 +282,49 @@ async function postMetasJovem(request, response) {
     })
 }
 
+// Deletando meta Usuário Jovem (DELETE)
+
+async function deleteMetasJovem(request, response) {
+    const params = Array(
+        request.body.metas_deletar
+    )
+
+    const query = "DELETE FROM metas WHERE `titulo` = ?";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com DELETE meta!!",
+                data: results
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com DELETE meta!",
+                data: err
+            })
+        }
+    })
+}
+
 module.exports = {
     userJovem,
     userEmpresa,
+
     logIn,
+
     duvidaJovem,
+
     getUserJovem,
     uptadeUserJovem,
+    
     getMetasJovem,
-    postMetasJovem
+    postMetasJovem,
+    deleteMetasJovem
 }

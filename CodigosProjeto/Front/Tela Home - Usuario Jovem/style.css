@@ -110,7 +110,7 @@ main .planejamento_carreira h3 {
 
 /* Main - Planejamento de carreira */
 
-main #criar_meta {
+main .botao_meta {
   background-color: var(--cor-secundaria);
   width: 6vw;
   margin-bottom: 3%;
@@ -121,7 +121,7 @@ main #criar_meta {
   color: var(--cor-terciaria);
 }
 
-main #criar_meta:hover {
+main .botao_meta:hover {
   background-color: var(--cor-terciaria);
   color: var(--cor-secundaria);
 }
