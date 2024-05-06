@@ -1,5 +1,6 @@
 // Planejamento de carreira - Metas usuário
 
+// Metas - GET
 
 async function getMetas() {
     let User_name = localStorage.getItem('User_name');
@@ -57,6 +58,12 @@ async function getMetas() {
 }
 
 getMetas();
+
+// Metas - PUT
+
+async function putMetas() {
+
+}
 
 // Coletando dados perfil (GET)
 
