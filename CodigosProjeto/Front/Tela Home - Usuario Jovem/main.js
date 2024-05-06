@@ -9,10 +9,10 @@ async function getMetas() {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
     });
-    
+
     let content = await response.json();
-    
-    for(let i = 0; i < content.data.length; i++) {
+
+    for (let i = 0; i < content.data.length; i++) {
         const titulo = content.data[i].titulo;
         const infos = content.data[i].infos;
         const data = content.data[i].data_conclusao;
@@ -36,7 +36,7 @@ async function getMetas() {
         // let ano_user = data.slice(0, 4);
 
         let mes_user = data.slice(5, 7);
-            
+
         let dia_user = data.slice(8, 10);
 
         const p_data_meta = document.createElement('p');
@@ -58,6 +58,88 @@ async function getMetas() {
 }
 
 getMetas();
+
+// Metas - POST
+
+const botao_criar_metas = document.getElementById('criar_meta');
+
+let titulo = '';
+let infos = '';
+let data_alterar = '';
+let prioridade = '';
+
+botao_criar_metas.onclick = async function (e) {
+
+    const { value: titulo_criar } = await Swal.fire({
+        title: 'Título meta',
+        input: 'text',
+        inputPlaceholder: "Digite aqui"
+    });
+    
+    if (titulo_criar) {
+        const { value: infos_criar } = await Swal.fire({
+            title: 'Detalhes meta',
+            input: 'text',
+            inputPlaceholder: "Digite aqui"
+        });
+    
+        if (infos_criar) {
+            const { value: data_criar } = await Swal.fire({
+                title: 'Data de conclusão da meta',
+                input: 'date'
+            });
+
+            if(data_criar) {
+                const { value: prioridade_criar } = await Swal.fire({
+                    title: "Selecione a prioridade da meta",
+                    input: "select",
+                    inputOptions: {
+                      Prioridades: {
+                        red: "Alta",
+                        yellow: "Media",
+                        green: "Baixa",
+                      }
+                    },
+                    inputPlaceholder: "Seleciona o nível",
+                    showCancelButton: true
+                  });
+                  if (prioridade_criar) {
+                      titulo = titulo_criar;
+                      infos = infos_criar;
+                      data_alterar = data_criar;
+                      prioridade = prioridade_criar;
+                  }
+            }
+        }
+    }
+
+    e.preventDefault();
+    //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
+
+    let data = {}
+
+    // POST
+    const response = await fetch('http://localhost:3008/api/', {
+        method: "POST",
+        headers: { "Content-type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(data)
+    });
+
+    let content = await response.json();
+    console.log(content);
+
+    if (content.sucess) {
+
+        alert('Deu bom o POST!!')
+
+        // window.location.reload();
+        //recarrega a página
+
+    } else {
+        alert("Deu ruim o POST!!");
+        console.error()
+    };
+}
 
 // Metas - PUT
 
@@ -88,11 +170,11 @@ async function getUserJovem(id_user) {
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     cidade.textContent = content.data[0].cidade;
-    
+
     let ano_user = content.data[0].data_nascimento.slice(0, 4);
-    
+
     let mes_user = content.data[0].data_nascimento.slice(5, 7);
-    
+
     let dia_user = content.data[0].data_nascimento.slice(8, 10);
 
     guardar_idade_user = `${ano_user}-${mes_user}-${dia_user}`;
@@ -129,7 +211,7 @@ const lapis_idade = document.getElementById('lapis_idade');
 
 let editando = true;
 botao_editar.onclick = async function () {
-    
+
     let ft_user = '';
     let nome_user = nome.textContent;
     let email_user = email.textContent;
@@ -175,7 +257,7 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-            if(name) {
+            if (name) {
                 nome.textContent = name;
                 nome_user = nome.textContent;
             }
@@ -188,7 +270,7 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-            if(emailValor) {
+            if (emailValor) {
                 email.textContent = emailValor;
                 email_user = email.textContent;
             }
@@ -201,7 +283,7 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-            if(tel) {
+            if (tel) {
                 telefone.textContent = tel;
                 telefone_user = telefone.textContent;
             }
@@ -214,7 +296,7 @@ botao_editar.onclick = async function () {
                 inputLabel: "Insira abaixo:",
                 inputPlaceholder: "Digite aqui para atualizar"
             });
-            if(city) {
+            if (city) {
                 cidade.textContent = city;
                 cidade_user = cidade.textContent;
             }
@@ -225,31 +307,31 @@ botao_editar.onclick = async function () {
                 title: "Selecione a sua data de nascimento",
                 input: "date",
             });
-            if(date) {
+            if (date) {
 
                 let ano_user_alert = date.slice(0, 4);
 
                 let mes_user_alert = date.slice(5, 7);
-            
+
                 let dia_user_alert = date.slice(8, 10);
-            
+
                 const data = new Date();
                 const ano = data.getFullYear();
                 const mes = data.getMonth() + 1;
                 const dia = data.getDate();
-            
+
                 let userAge = ano - ano_user_alert;
-            
+
                 if (mes < mes_user_alert || (mes === mes_user_alert && dia < dia_user_alert)) {
                     userAge--;
                 }
-            
+
                 idade.textContent = `${userAge} anos`;
                 guardar_idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
                 idade_user = guardar_idade_user;
             }
         }
-            
+
         editando = false;
     } else {
         botao_editar.textContent = 'Editar';
@@ -259,7 +341,7 @@ botao_editar.onclick = async function () {
         });
 
         let data = { nome_user, email_user, telefone_user, cidade_user, idade_user };
-    
+
         // PUT
 
         const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
