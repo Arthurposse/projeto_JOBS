@@ -2,9 +2,9 @@
 
 // Metas - GET
 
-async function getMetas() {
-    let User_name = localStorage.getItem('User_name');
+let User_name = localStorage.getItem('User_name');
 
+async function getMetas() {
     const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${User_name}`, {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -116,10 +116,10 @@ botao_criar_metas.onclick = async function (e) {
     e.preventDefault();
     //cancela o comportamento padrão de um formulario, tem que colocar o "e" no parametro
 
-    let data = {}
+    let data = { User_name, titulo, infos, data_alterar, prioridade}
 
     // POST
-    const response = await fetch('http://localhost:3008/api/', {
+    const response = await fetch('http://localhost:3008/api/metas/criando', {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify(data)
@@ -132,7 +132,7 @@ botao_criar_metas.onclick = async function (e) {
 
         alert('Deu bom o POST!!')
 
-        // window.location.reload();
+        window.location.reload();
         //recarrega a página
 
     } else {

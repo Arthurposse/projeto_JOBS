@@ -104,7 +104,6 @@ async function logIn(request, response) {
     })
 }
 
-
 // Dúvida Jovem (POST)
 
 async function duvidaJovem(request, response) {
@@ -217,7 +216,7 @@ async function uptadeUserJovem(request, response) {
 
 // Empresa
 
-// Buscar metas Usuário Jovem
+// Buscar metas Usuário Jovem (GET)
 
 async function getMetasJovem(request, response) {
     const params = Array(
@@ -248,6 +247,41 @@ async function getMetasJovem(request, response) {
     })
 }
 
+// Criando meta Usuário Jovem (POST)
+
+async function postMetasJovem(request, response) {
+    const params = Array(
+        request.body.User_name,
+        request.body.titulo,
+        request.body.infos,
+        request.body.data_alterar,
+        request.body.prioridade
+    )
+
+    const query = "INSERT INTO metas(`user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade`) VALUES(?, ?, ?, ?, ?)";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com POST meta!!",
+                data: results
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com POST meta!",
+                data: err
+            })
+        }
+    })
+}
+
 module.exports = {
     userJovem,
     userEmpresa,
@@ -255,5 +289,6 @@ module.exports = {
     duvidaJovem,
     getUserJovem,
     uptadeUserJovem,
-    getMetasJovem
+    getMetasJovem,
+    postMetasJovem
 }

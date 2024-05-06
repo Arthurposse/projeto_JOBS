@@ -127,8 +127,8 @@ main #criar_meta:hover {
 }
 
 main .pc_metas {
-  /* background-color: var(--cor-terciaria); */
   display: flex;
+  flex-wrap: wrap;
   gap: 2vw;
   border-radius: 1vw;
 }
