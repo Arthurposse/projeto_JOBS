@@ -50,6 +50,7 @@ async function getMetas() {
         const icon = document.createElement('i');
         icon.classList.add('bi-exclamation-triangle');
         icon.style.color = prioridade;
+        icon.style.fontSize = '1.5rem';
 
         bloco_meta.appendChild(h2);
         bloco_meta.appendChild(p_infos_meta);
