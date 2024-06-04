@@ -58,9 +58,15 @@ async function getMetas(nome, ordem) {
                 const bloco_meta_rodape = document.createElement('section');
                 bloco_meta_rodape.classList.add('bloco_meta_rodape');
 
+                function adicionarZero(numero) {
+                    return numero < 10 ? '0' + numero : numero;
+                }
+
+                const diaFormatado = adicionarZero(currentDate.getDate());
+
                 const p_data_meta = document.createElement('p');
                 p_data_meta.classList.add('data_meta');
-                p_data_meta.textContent = `${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+                p_data_meta.textContent = `${diaFormatado}/${currentDate.getMonth()}`;
 
                 const icon = document.createElement('i');
                 icon.classList.add('bi-exclamation-triangle');
@@ -240,12 +246,7 @@ async function putMetas(nome, nome_antigo) {
     console.log(content);
 
     if (content.sucess) {
-
         alert('Deu bom o PUT METAS!!')
-
-        window.location.reload();
-        //recarrega a página
-
     } else {
         alert("Deu ruim o PUT METAS!!");
         console.error()
@@ -543,6 +544,10 @@ botao_editar.onclick = async function () {
                 showConfirmButton: false,
                 timer: 2000
             });
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
 
         } else {
             Swal.fire({
