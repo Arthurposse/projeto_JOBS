@@ -295,7 +295,7 @@ botao_deletar_metas.onclick = async function () {
         alert("Deu ruim o DELETE!!");
         console.error()
     };
-}
+};
 
 // Metas - Filtro
 

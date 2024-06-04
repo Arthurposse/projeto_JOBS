@@ -232,7 +232,7 @@ async function getMetasJovem(request, response) {
             .json({
                 sucess: true,
                 message: "Sucesso com GET metas!!",
-                data: results,
+                data: results
             });
 
         } else {
