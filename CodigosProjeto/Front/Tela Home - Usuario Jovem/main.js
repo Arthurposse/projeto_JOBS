@@ -39,7 +39,6 @@ async function getMetas(nome, ordem) {
 
             eventosOrdenados.sort((a, b) => a.data - b.data);
 
-            // Limpa o contêiner antes de adicionar os cards ordenados
             section_pc_metas.innerHTML = '';
 
             // Adiciona os cards ordenados ao contêiner
@@ -91,13 +90,57 @@ async function getMetas(nome, ordem) {
         }
     }
     else if (ordem === 'red' || ordem === 'yellow' || ordem === 'green') {
-        if (ordem === 'red') {
 
-        }
-        else if (ordem === 'yellow') {
+        section_pc_metas.innerHTML = '';
 
-        }
-        else if (ordem === 'green') {
+        for (let i = 0; i < content.data.length; i++) {
+            if (content.data[i].prioridade === ordem) {
+                const titulo = content.data[i].titulo;
+
+                titulos_metas.push(titulo);
+
+                const infos = content.data[i].infos;
+                const data = content.data[i].data_conclusao;
+                const prioridade = content.data[i].prioridade;
+
+                const pc_metas = document.querySelector('.pc_metas');
+
+                const bloco_meta = document.createElement('section');
+                bloco_meta.classList.add('bloco_meta');
+
+                const h2 = document.createElement('h2');
+                h2.textContent = titulo;
+
+                const p_infos_meta = document.createElement('p');
+                p_infos_meta.classList.add('infos_meta');
+                p_infos_meta.textContent = infos;
+
+                const bloco_meta_rodape = document.createElement('section');
+                bloco_meta_rodape.classList.add('bloco_meta_rodape');
+
+                // let ano_user = data.slice(0, 4);
+
+                let mes_user = data.slice(5, 7);
+
+                let dia_user = data.slice(8, 10);
+
+                const p_data_meta = document.createElement('p');
+                p_data_meta.classList.add('data_meta');
+                p_data_meta.textContent = `${dia_user}/${mes_user}`;
+
+                const icon = document.createElement('i');
+                icon.classList.add('bi-exclamation-triangle');
+                icon.style.color = prioridade;
+                icon.style.fontSize = '1.5rem';
+
+                bloco_meta.appendChild(h2);
+                bloco_meta.appendChild(p_infos_meta);
+                bloco_meta_rodape.appendChild(p_data_meta);
+                bloco_meta_rodape.appendChild(icon);
+                bloco_meta.appendChild(bloco_meta_rodape);
+
+                pc_metas.appendChild(bloco_meta);
+            }
 
         }
     }
