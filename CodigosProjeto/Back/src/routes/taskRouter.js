@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 
 // const { storeTask, getElements, deletarItens } = require('../controller/taskController');
-const { userJovem, userEmpresa, logIn, duvidaJovem, getUserJovem, uptadeUserJovem, getMetasJovem, postMetasJovem, deleteMetasJovem } = require('../controller/taskController');
+const { userJovem, userEmpresa, logIn, duvidaJovem, getUserJovem, uptadeUserJovem, getMetasJovem, uptadeMetasJovem, postMetasJovem, deleteMetasJovem } = require('../controller/taskController');
 
 // POST
 
@@ -25,6 +25,8 @@ router.get('/metaJovem', getMetasJovem);
 // PUT
 
 router.put('/uptade/userJovem/:id', uptadeUserJovem);
+
+router.put('/metas/atualizando/:id', uptadeMetasJovem)
 
 // router.put('/uptade/userJovem/:id', uptadeUserEmpresa);
 

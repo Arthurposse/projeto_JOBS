@@ -247,6 +247,39 @@ async function getMetasJovem(request, response) {
     })
 }
 
+// Atualizando metas Usuário Jovem (PUT)
+
+async function uptadeMetasJovem(request, response) {
+    
+    const params = Array(
+        request.body.nome,
+        request.params.id
+    )
+
+    const query = "UPDATE `metas` SET `user_name` = ? WHERE `id` = ?;";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET dados!!",
+                data: results,
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET dados!",
+                data: err
+            })
+        }
+    })
+}
+
 // Criando meta Usuário Jovem (POST)
 
 async function postMetasJovem(request, response) {
@@ -325,6 +358,7 @@ module.exports = {
     uptadeUserJovem,
     
     getMetasJovem,
+    uptadeMetasJovem,
     postMetasJovem,
     deleteMetasJovem
 }

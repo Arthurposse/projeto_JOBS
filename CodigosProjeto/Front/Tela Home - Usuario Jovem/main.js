@@ -1,12 +1,14 @@
 // Planejamento de carreira - Metas usuário
 
+let id_user = Number(localStorage.getItem('ID_user'));
+
 // Metas - GET
 
 let User_name = localStorage.getItem('User_name');
 let titulos_metas = [];
 
-async function getMetas() {
-    const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${User_name}`, {
+async function getMetas(nome) {
+    const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${nome}`, {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
     });
@@ -62,7 +64,7 @@ async function getMetas() {
     }
 }
 
-getMetas();
+getMetas(User_name);
 
 // Metas - POST
 
@@ -80,45 +82,45 @@ botao_criar_metas.onclick = async function () {
         input: 'text',
         inputPlaceholder: "Digite aqui"
     });
-    
+
     if (titulo_criar) {
         const { value: infos_criar } = await Swal.fire({
             title: 'Detalhes meta',
             input: 'text',
             inputPlaceholder: "Digite aqui"
         });
-    
+
         if (infos_criar) {
             const { value: data_criar } = await Swal.fire({
                 title: 'Data de conclusão da meta',
                 input: 'date'
             });
 
-            if(data_criar) {
+            if (data_criar) {
                 const { value: prioridade_criar } = await Swal.fire({
                     title: "Selecione a prioridade da meta",
                     input: "select",
                     inputOptions: {
-                      Prioridades: {
-                        red: "Alta",
-                        yellow: "Media",
-                        green: "Baixa",
-                      }
+                        Prioridades: {
+                            red: "Alta",
+                            yellow: "Media",
+                            green: "Baixa",
+                        }
                     },
                     inputPlaceholder: "Seleciona o nível",
                     showCancelButton: true
-                  });
-                  if (prioridade_criar) {
-                      titulo = titulo_criar;
-                      infos = infos_criar;
-                      data_alterar = data_criar;
-                      prioridade = prioridade_criar;
-                  }
+                });
+                if (prioridade_criar) {
+                    titulo = titulo_criar;
+                    infos = infos_criar;
+                    data_alterar = data_criar;
+                    prioridade = prioridade_criar;
+                }
             }
         }
     }
 
-    let data = { User_name, titulo, infos, data_alterar, prioridade}
+    let data = { User_name, titulo, infos, data_alterar, prioridade }
 
     // POST
     const response = await fetch('http://localhost:3008/api/metas/criando', {
@@ -145,8 +147,30 @@ botao_criar_metas.onclick = async function () {
 
 // Metas - PUT
 
-async function putMetas() {
+async function putMetas(nome) {
 
+    let data = { nome };
+
+    const response = await fetch(`http://localhost:3008/api/metas/atualizando/${id_user}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(data)
+    });
+
+    let content = await response.json();
+    console.log(content);
+
+    if (content.sucess) {
+
+        alert('Deu bom o PUT METAS!!')
+
+        // window.location.reload();
+        //recarrega a página
+
+    } else {
+        alert("Deu ruim o PUT METAS!!");
+        console.error()
+    };
 }
 
 // Metas - DELETE
@@ -167,12 +191,12 @@ botao_deletar_metas.onclick = async function () {
         inputOptions: opcoes,
         inputPlaceholder: "Selecionar aquele que deseja deletar",
         showCancelButton: true
-      });
-      if (metas_deletar) {
+    });
+    if (metas_deletar) {
         data = { metas_deletar };
-      }
+    }
 
-      const response = await fetch('http://localhost:3008/api/metas/deletando', {
+    const response = await fetch('http://localhost:3008/api/metas/deletando', {
         method: "DELETE",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify(data)
@@ -240,7 +264,6 @@ async function getUserJovem(id_user) {
     idade.textContent = `${userAge} anos`;
 };
 
-let id_user = Number(localStorage.getItem('ID_user'));
 getUserJovem(id_user);
 
 // Editando dados perfil (PUT)
@@ -381,6 +404,12 @@ botao_editar.onclick = async function () {
 
         editando = false;
     } else {
+
+        putMetas(nome_user);
+        getMetas(nome_user);
+
+        localStorage.setItem('User_name', nome_user);
+
         botao_editar.textContent = 'Editar';
 
         iconesLapis.forEach(iconeLapis => {
