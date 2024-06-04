@@ -57,14 +57,20 @@ header .bloco_usuario {
   background-color: rgba(25, 167, 206, 0.6);
   display: flex;
   align-items: center;
-  gap: 25px;
-  padding: 0.5%;
+  gap: 20px;
+  padding: 1%;
   border-radius: 2vw 0 0 2vw;
+  width: 16%;
 }
 
-header .img_user_nao_logado {
-  width: 24%;
+header .bloco_usuario img {
+  width: 20%;
 }
+
+header .bloco_usuario h3 {
+  font-size: 1rem;
+}
+
 
 header .header_meio {
   display: flex;
@@ -180,6 +186,7 @@ main .modulo_card {
 main .modulo_card:hover {
   background-color: var(--cor-secundaria);
   color: var(--cor-terciaria);
+  transition: all 0.3s ease-out;
 }
 
 main .modulo_card i {

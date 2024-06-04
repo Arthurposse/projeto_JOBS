@@ -1,11 +1,14 @@
 // Planejamento de carreira - Metas usuário
 
 let id_user = Number(localStorage.getItem('ID_user'));
+let User_name = localStorage.getItem('User_name');
+let user_logado = document.getElementById('user_logado');
+
+user_logado.textContent = User_name;
 
 // Metas - GET
 
 let section_pc_metas = document.querySelector('.pc_metas');
-let User_name = localStorage.getItem('User_name');
 let titulos_metas = [];
 
 async function getMetas(nome, ordem) {
