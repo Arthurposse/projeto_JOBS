@@ -4,10 +4,11 @@ let id_user = Number(localStorage.getItem('ID_user'));
 
 // Metas - GET
 
+let section_pc_metas = document.querySelector('.pc_metas');
 let User_name = localStorage.getItem('User_name');
 let titulos_metas = [];
 
-async function getMetas(nome) {
+async function getMetas(nome, ordem) {
     const response = await fetch(`http://localhost:3008/api/metaJovem?User_name=${nome}`, {
         method: "GET",
         headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -15,52 +16,130 @@ async function getMetas(nome) {
 
     let content = await response.json();
 
-    for (let i = 0; i < content.data.length; i++) {
-        const titulo = content.data[i].titulo;
+    if (ordem === 'date') {
+        for (let i = 0; i < content.data.length; i++) {
+            const data = content.data;
 
-        titulos_metas.push(titulo);
+            const eventosOrdenados = [];
 
-        const infos = content.data[i].infos;
-        const data = content.data[i].data_conclusao;
-        const prioridade = content.data[i].prioridade;
+            data.forEach((e) => {
+                if (e.data_conclusao) {
+                    const currentDate = new Date(e.data_conclusao);
 
-        const pc_metas = document.querySelector('.pc_metas');
+                    // Adiciona o evento ao array de eventos ordenados
+                    eventosOrdenados.push({
+                        data: currentDate,
+                        evento: e
+                    });
+                }
+            })
 
-        const bloco_meta = document.createElement('section');
-        bloco_meta.classList.add('bloco_meta');
+            eventosOrdenados.sort((a, b) => a.data - b.data);
 
-        const h2 = document.createElement('h2');
-        h2.textContent = titulo;
+            // Limpa o contêiner antes de adicionar os cards ordenados
+            section_pc_metas.innerHTML = '';
 
-        const p_infos_meta = document.createElement('p');
-        p_infos_meta.classList.add('infos_meta');
-        p_infos_meta.textContent = infos;
+            // Adiciona os cards ordenados ao contêiner
+            eventosOrdenados.forEach((evento) => {
+                const currentDate = evento.data;
+                const eventoData = evento.evento;
 
-        const bloco_meta_rodape = document.createElement('section');
-        bloco_meta_rodape.classList.add('bloco_meta_rodape');
+                // Criando elementos do card
+                const bloco_meta = document.createElement('section');
+                bloco_meta.classList.add('bloco_meta');
 
-        // let ano_user = data.slice(0, 4);
+                const h2 = document.createElement('h2');
+                h2.textContent = eventoData.titulo; // Título do Evento
 
-        let mes_user = data.slice(5, 7);
+                const p_infos_meta = document.createElement('p');
+                p_infos_meta.classList.add('infos_meta');
+                p_infos_meta.textContent = eventoData.infos; // Informações do Evento
 
-        let dia_user = data.slice(8, 10);
+                const bloco_meta_rodape = document.createElement('section');
+                bloco_meta_rodape.classList.add('bloco_meta_rodape');
 
-        const p_data_meta = document.createElement('p');
-        p_data_meta.classList.add('data_meta');
-        p_data_meta.textContent = `${dia_user}/${mes_user}`;
+                const p_data_meta = document.createElement('p');
+                p_data_meta.classList.add('data_meta');
+                p_data_meta.textContent = `${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
 
-        const icon = document.createElement('i');
-        icon.classList.add('bi-exclamation-triangle');
-        icon.style.color = prioridade;
-        icon.style.fontSize = '1.5rem';
+                const icon = document.createElement('i');
+                icon.classList.add('bi-exclamation-triangle');
+                icon.style.color = eventoData.prioridade; // Cor baseada na prioridade do evento
+                icon.style.fontSize = '1.5rem';
 
-        bloco_meta.appendChild(h2);
-        bloco_meta.appendChild(p_infos_meta);
-        bloco_meta_rodape.appendChild(p_data_meta);
-        bloco_meta_rodape.appendChild(icon);
-        bloco_meta.appendChild(bloco_meta_rodape);
+                // Adicionando elementos do card ao bloco_meta_rodape
+                bloco_meta_rodape.appendChild(p_data_meta);
+                bloco_meta_rodape.appendChild(icon);
 
-        pc_metas.appendChild(bloco_meta);
+                // Adicionando elementos ao bloco_meta
+                bloco_meta.appendChild(h2);
+                bloco_meta.appendChild(p_infos_meta);
+                bloco_meta.appendChild(bloco_meta_rodape);
+
+                // Adicionando o bloco_meta ao contêiner de cards
+                section_pc_metas.appendChild(bloco_meta);
+            });
+        }
+    }
+    else if (ordem === 'red' || ordem === 'yellow' || ordem === 'green') {
+        if (ordem === 'red') {
+
+        }
+        else if (ordem === 'yellow') {
+
+        }
+        else if (ordem === 'green') {
+
+        }
+    }
+    else {
+        for (let i = 0; i < content.data.length; i++) {
+            const titulo = content.data[i].titulo;
+
+            titulos_metas.push(titulo);
+
+            const infos = content.data[i].infos;
+            const data = content.data[i].data_conclusao;
+            const prioridade = content.data[i].prioridade;
+
+            const pc_metas = document.querySelector('.pc_metas');
+
+            const bloco_meta = document.createElement('section');
+            bloco_meta.classList.add('bloco_meta');
+
+            const h2 = document.createElement('h2');
+            h2.textContent = titulo;
+
+            const p_infos_meta = document.createElement('p');
+            p_infos_meta.classList.add('infos_meta');
+            p_infos_meta.textContent = infos;
+
+            const bloco_meta_rodape = document.createElement('section');
+            bloco_meta_rodape.classList.add('bloco_meta_rodape');
+
+            // let ano_user = data.slice(0, 4);
+
+            let mes_user = data.slice(5, 7);
+
+            let dia_user = data.slice(8, 10);
+
+            const p_data_meta = document.createElement('p');
+            p_data_meta.classList.add('data_meta');
+            p_data_meta.textContent = `${dia_user}/${mes_user}`;
+
+            const icon = document.createElement('i');
+            icon.classList.add('bi-exclamation-triangle');
+            icon.style.color = prioridade;
+            icon.style.fontSize = '1.5rem';
+
+            bloco_meta.appendChild(h2);
+            bloco_meta.appendChild(p_infos_meta);
+            bloco_meta_rodape.appendChild(p_data_meta);
+            bloco_meta_rodape.appendChild(icon);
+            bloco_meta.appendChild(bloco_meta_rodape);
+
+            pc_metas.appendChild(bloco_meta);
+        }
     }
 }
 
@@ -147,11 +226,11 @@ botao_criar_metas.onclick = async function () {
 
 // Metas - PUT
 
-async function putMetas(nome) {
+async function putMetas(nome, nome_antigo) {
 
-    let data = { nome };
+    let data = { nome, nome_antigo };
 
-    const response = await fetch(`http://localhost:3008/api/metas/atualizando/${id_user}`, {
+    const response = await fetch(`http://localhost:3008/api/metas/atualizando`, {
         method: "PUT",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify(data)
@@ -164,7 +243,7 @@ async function putMetas(nome) {
 
         alert('Deu bom o PUT METAS!!')
 
-        // window.location.reload();
+        window.location.reload();
         //recarrega a página
 
     } else {
@@ -222,13 +301,12 @@ botao_deletar_metas.onclick = async function () {
 
 const botao_filtrar_metas = document.getElementById('filtrar_meta');
 
-botao_filtrar_metas.onclick = async function(){
+botao_filtrar_metas.onclick = async function () {
     const { value: result } = await Swal.fire({
         title: "Escolha um filtro de seu desejo",
         input: "select",
         inputOptions: {
             Infos: {
-                title: "Título",
                 date: "Data"
             },
             Prioridades: {
@@ -241,7 +319,7 @@ botao_filtrar_metas.onclick = async function(){
         showCancelButton: true
     });
     if (result) {
-        console.log(result)
+        getMetas(User_name, result);
     }
 };
 
@@ -429,10 +507,12 @@ botao_editar.onclick = async function () {
             }
         }
 
+        localStorage.setItem('User_name_antigo', nome.textContent);
+
         editando = false;
     } else {
 
-        putMetas(nome_user);
+        putMetas(nome_user, localStorage.getItem('User_name_antigo'));
         getMetas(nome_user);
 
         localStorage.setItem('User_name', nome_user);
@@ -447,7 +527,7 @@ botao_editar.onclick = async function () {
 
         // PUT
 
-        const response = await fetch(`http://localhost:3008/api//uptade/userJovem/${id_user}`, {
+        const response = await fetch(`http://localhost:3008/api/uptade/userJovem/${id_user}`, {
             method: "PUT",
             headers: { "Content-type": "application/json;charset=UTF-8" },
             body: JSON.stringify(data)

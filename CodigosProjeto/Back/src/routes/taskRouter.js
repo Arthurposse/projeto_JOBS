@@ -26,7 +26,7 @@ router.get('/metaJovem', getMetasJovem);
 
 router.put('/uptade/userJovem/:id', uptadeUserJovem);
 
-router.put('/metas/atualizando/:id', uptadeMetasJovem)
+router.put('/metas/atualizando', uptadeMetasJovem)
 
 // router.put('/uptade/userJovem/:id', uptadeUserEmpresa);
 

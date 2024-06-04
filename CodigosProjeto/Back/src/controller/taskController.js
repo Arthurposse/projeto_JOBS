@@ -198,7 +198,7 @@ async function uptadeUserJovem(request, response) {
             .status(201)
             .json({
                 sucess: true,
-                message: "Sucesso com GET dados!!",
+                message: "Sucesso com PUT user jovem!!",
                 data: results,
             });
 
@@ -207,7 +207,7 @@ async function uptadeUserJovem(request, response) {
             .status(400)
             .json({
                 sucess: false,
-                message: "Ops, deu problemas com GET dados!",
+                message: "Ops, deu problemas PUT user jovem!",
                 data: err
             })
         }
@@ -253,10 +253,10 @@ async function uptadeMetasJovem(request, response) {
     
     const params = Array(
         request.body.nome,
-        request.params.id
+        request.body.nome_antigo
     )
 
-    const query = "UPDATE `metas` SET `user_name` = ? WHERE `id` = ?;";
+    const query = "UPDATE `metas` SET `user_name` = ? WHERE `user_name` = ?;";
 
     connection.query(query, params, (err, results) => {
         if(results) {
@@ -264,8 +264,8 @@ async function uptadeMetasJovem(request, response) {
             .status(201)
             .json({
                 sucess: true,
-                message: "Sucesso com GET dados!!",
-                data: results,
+                message: "Sucesso com PUT METAS!!",
+                data: results
             });
 
         } else {
@@ -273,7 +273,7 @@ async function uptadeMetasJovem(request, response) {
             .status(400)
             .json({
                 sucess: false,
-                message: "Ops, deu problemas com GET dados!",
+                message: "Ops, deu problemas com PUT METAS!",
                 data: err
             })
         }
