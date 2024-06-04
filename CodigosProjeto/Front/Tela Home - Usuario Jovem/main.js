@@ -218,6 +218,33 @@ botao_deletar_metas.onclick = async function () {
     };
 }
 
+// Metas - Filtro
+
+const botao_filtrar_metas = document.getElementById('filtrar_meta');
+
+botao_filtrar_metas.onclick = async function(){
+    const { value: result } = await Swal.fire({
+        title: "Escolha um filtro de seu desejo",
+        input: "select",
+        inputOptions: {
+            Infos: {
+                title: "Título",
+                date: "Data"
+            },
+            Prioridades: {
+                red: "Alta",
+                yellow: "Media",
+                green: "Baixa",
+            }
+        },
+        inputPlaceholder: "Seleciona o filtro",
+        showCancelButton: true
+    });
+    if (result) {
+        console.log(result)
+    }
+};
+
 // Coletando dados perfil (GET)
 
 let nome = document.getElementById('nome_user');
