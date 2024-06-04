@@ -88,27 +88,27 @@ main {
   background-color: var(--cor-primaria);
 }
 
-main .planejamento_carreira, main .estatisca_curriculo {
+main .planejamento_carreira, main .modulos, main .estatisca_curriculo {
   /* height: 100vh; */
   padding: 2%;
 }
 
-main .planejamento_carreira h2, main .estatisca_curriculo h2 {
+main .planejamento_carreira h2, main .modulos h2, main .estatisca_curriculo h2 {
   color: var(--cor-secundaria);
 }
 
-main .planejamento_carreira hr, main .estatisca_curriculo hr {
+main .planejamento_carreira hr, main .modulos hr, main .estatisca_curriculo hr {
   width: 85%;
   border: 1px solid var(--cor-secundaria);
   margin-top: .5%;
 }
 
+/* Main - Planejamento de carreira */
+
 main .planejamento_carreira h3 {
   padding: 2%;
   color: var(--cor-secundaria);
 }
-
-/* Main - Planejamento de carreira */
 
 main .botao_meta {
   background-color: var(--cor-secundaria);
@@ -153,7 +153,41 @@ main .bloco_meta .bloco_meta_rodape {
   justify-content: space-around;
 }
 
+/* Main - Módulos */
+
+main .bloco_modulos {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 3%;
+  margin-top: 3%;
+}
+
+main .modulo_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--cor-terciaria);
+  width: 15vw;
+  height: 30vh;
+  margin-top: 4%;
+  border-radius: 2vw;
+  color: var(--cor-secundaria);
+  text-align: center;
+  cursor: pointer;
+}
+
+main .modulo_card:hover {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-terciaria);
+}
+
+main .modulo_card i {
+  font-size: 4rem;
+}
+
 /* Main - Estatísticas do Currículo do Jovem */
+
 
 
 /* Main - Perfil */

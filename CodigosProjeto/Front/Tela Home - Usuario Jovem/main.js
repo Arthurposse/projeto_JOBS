@@ -259,7 +259,7 @@ const lapis_idade = document.getElementById('lapis_idade');
 let editando = true;
 botao_editar.onclick = async function () {
 
-    let ft_user = '';
+    let ft_user;
     let nome_user = nome.textContent;
     let email_user = email.textContent;
     let telefone_user = telefone.textContent;
