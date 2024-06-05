@@ -4,18 +4,18 @@ use jobs;
 
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    ft_perfil JSON,
-    data_nascimento DATE NOT NULL,
+    -- ft_perfil JSON,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
+    data_nascimento DATE NOT NULL,
     telefone VARCHAR(11) NOT NULL,
     cidade VARCHAR(30) NOT NULL
 );
 
 create table user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    ft_perfil JSON,
+    -- ft_perfil JSON,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -49,3 +49,7 @@ create table metas(
     data_conclusao date NOT NULL, 
     prioridade ENUM('red', 'yellow', 'green')
 );
+
+-- TESTE - Inserindo valores fictícios
+
+INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES ("Arthur de Souza Possebon", "aspossebon@gmail.com", "1234", "2006-12-03", "51996065708", "Sapucaia do Sul")
