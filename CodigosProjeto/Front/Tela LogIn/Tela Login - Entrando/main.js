@@ -16,10 +16,7 @@ button.onclick = async function (e) {
     let content = await response.json();
     
     if (content.sucess) {
-
-        // Iterando sobre o array de chaves
         for (let i = 0; i < content.data.length; i++) {
-            
             if(content.data[i].email === email && content.data[i].password === password) {
                 localStorage.setItem('ID_user', content.data[i].id);
                 localStorage.setItem('User_name', content.data[i].name);
@@ -54,5 +51,6 @@ button.onclick = async function (e) {
     } else {
         console.error()
         alert("Não deu o GET!!");
+        console.error();
     };
 };

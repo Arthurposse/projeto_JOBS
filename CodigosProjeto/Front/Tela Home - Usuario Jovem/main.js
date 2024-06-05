@@ -140,8 +140,10 @@ async function getMetas(nome, ordem) {
                 bloco_meta.appendChild(bloco_meta_rodape);
 
                 pc_metas.appendChild(bloco_meta);
+            } 
+            else {
+                section_pc_metas.innerHTML = '<h2> Nenhum foi encontrado!! </h2>'
             }
-
         }
     }
     else {
