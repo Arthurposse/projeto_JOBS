@@ -65,10 +65,11 @@ async function getMetas(nome, ordem) {
                 }
 
                 const diaFormatado = adicionarZero(currentDate.getDate());
+                const mesFormatado = adicionarZero(currentDate.getMonth() + 1);
 
                 const p_data_meta = document.createElement('p');
                 p_data_meta.classList.add('data_meta');
-                p_data_meta.textContent = `${diaFormatado}/${currentDate.getMonth()}`;
+                p_data_meta.textContent = `${diaFormatado}/${mesFormatado}`;
 
                 const icon = document.createElement('i');
                 icon.classList.add('bi-exclamation-triangle');
