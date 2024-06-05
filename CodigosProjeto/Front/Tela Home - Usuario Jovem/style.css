@@ -116,6 +116,17 @@ main .planejamento_carreira h3 {
   color: var(--cor-secundaria);
 }
 
+/* Metas - Planos a seguir */
+
+main .planos_seguir {
+  background-color: var(--cor-terciaria);
+  width: 80%;
+  height: 35vh;
+  border-radius: 2vw;
+}
+
+/* Main - Metas */
+
 main .botao_meta {
   background-color: var(--cor-secundaria);
   width: 6vw;
