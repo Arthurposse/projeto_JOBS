@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Livvic", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+:root {
+  --cor-primaria: #19a7ce;
+  --cor-secundaria: #0e566a;
+  --cor-terciaria: #9DD4D1;
+  --cor-fonte: white;
+}
+
+body {
+    background-color: var(--cor-primaria);
+}
+
+/* HEADER */
+
+/* MAIN */
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4%;
+}
+
+main img {
+    width: 16vw;
+}
+
+main .bloco_pergunta {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4vw;
+    margin-top: 4%;
+}
+
+main .bloco_pergunta #pergunta {
+    background-color: var(--cor-terciaria);
+    padding: 5%;
+    border-radius: 2vw;
+}
+
+main .bloco_pergunta #respostas {
+    background-color: var(--cor-terciaria);
+    padding: 10%;
+    border-radius: 2vw;
+}
+
+main .bloco_pergunta button {
+    background-color: var(--cor-secundaria);
+    width: 10vw;
+    padding: 3%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    color: var(--cor-terciaria);
+    cursor: pointer;
+}
+
+main .bloco_pergunta button:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    font-size: 1.1rem;
+    transition: all 0.2s ease-in;
+}
