@@ -26,7 +26,8 @@
     - Procurar emprego (com pesquisa personalizada).
     - Postar seu currículo (em um hub).
     - Postar suas dúvidas.
-    - Disponibilizar ideias de planejamento de carreira.
+    - Ideias de planejamento de carreira.
+    - Estabelecer suas próprias metas
 
   - Usuário Empresa
       - Chat.
