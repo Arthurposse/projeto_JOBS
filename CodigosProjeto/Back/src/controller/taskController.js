@@ -348,7 +348,7 @@ async function deleteMetasJovem(request, response) {
 
 async function getModulos(request, response) {
     const params = Array(
-        // request.query.
+        request.query.buscar
     )
 
     const query = "SELECT `pergunta`, `alternativas`, `res_correta` FROM jobs.questoes_modulos WHERE tipo_modulo = ?;";

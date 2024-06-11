@@ -16,8 +16,27 @@ else if(tipo_modulo_escolhido === 'Resolução de problemas') {
 
 // GET Perguntas e Respostas
 
-const botao_concluir = document.querySelector('button');
+async function getModulos(buscar_modulo) {
+    const response = await fetch(`http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`, {
+        method: "GET",
+        headers: { "Content-type": "application/json;charset=UTF-8" }
+    });
 
-botao_concluir.onclick = function(){
-    
+    let content = await response.json();
+    console.log(content)
+
+    if(content.sucess){
+        alert('Deu bom os MODULOS');
+    }
+    else {
+        alert('Deu ruim os MODULOS');
+    };
 };
+
+getModulos(buscar);
+
+// const botao_concluir = document.querySelector('button');
+
+// botao_concluir.onclick = function(){
+    
+// };
