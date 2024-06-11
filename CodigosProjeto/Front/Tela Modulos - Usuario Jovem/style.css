@@ -32,33 +32,35 @@ main {
 }
 
 main img {
-    width: 16vw;
+    width: 14vw;
 }
 
 main .bloco_pergunta {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 4vw;
-    margin-top: 4%;
+    gap: 3vw;
+    margin-top: 3%;
 }
 
 main .bloco_pergunta #pergunta {
     background-color: var(--cor-terciaria);
+    width: 100%;
     padding: 5%;
     border-radius: 2vw;
 }
 
 main .bloco_pergunta #respostas {
     background-color: var(--cor-terciaria);
-    padding: 10%;
+    width: 100%;
+    padding: 8%;
     border-radius: 2vw;
 }
 
 main .bloco_pergunta button {
     background-color: var(--cor-secundaria);
     width: 10vw;
-    padding: 3%;
+    padding: 2%;
     border: 0;
     border-radius: 1vw;
     font-size: 1rem;
