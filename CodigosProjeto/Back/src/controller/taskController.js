@@ -214,8 +214,6 @@ async function uptadeUserJovem(request, response) {
     })
 }
 
-// Empresa
-
 // Buscar metas Usuário Jovem (GET)
 
 async function getMetasJovem(request, response) {
@@ -346,6 +344,37 @@ async function deleteMetasJovem(request, response) {
     })
 }
 
+// Buscando módulos
+
+async function getModulos(request, response) {
+    const params = Array(
+        // request.query.
+    )
+
+    const query = "SELECT `pergunta`, `alternativas`, `res_correta` FROM jobs.questoes_modulos WHERE tipo_modulo = ?;";
+
+    connection.query(query, params, (err, results) => {
+        if(results) {
+            response
+            .status(201)
+            .json({
+                sucess: true,
+                message: "Sucesso com GET questoes modulos!!",
+                data: results
+            });
+
+        } else {
+            response
+            .status(400)
+            .json({
+                sucess: false,
+                message: "Ops, deu problemas com GET questoes modulos!!",
+                data: err
+            })
+        }
+    })
+}
+
 module.exports = {
     userJovem,
     userEmpresa,
@@ -360,5 +389,7 @@ module.exports = {
     getMetasJovem,
     uptadeMetasJovem,
     postMetasJovem,
-    deleteMetasJovem
+    deleteMetasJovem,
+
+    getModulos
 }
