@@ -7,7 +7,7 @@
 </h3>
 
 <h5>
-  Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercade de trabalho, por este motivo a escolha desta projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
+  Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercado de trabalho, por este motivo a escolha deste projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
 </h5>
 
 <h5>
