@@ -49,7 +49,9 @@ botao_concluir.onclick = function () {
 
   if (marcados === 1) {
     console.log("Apenas uma opção foi selecionada.");
+    // Somar acerto
   } else {
     console.log("Por favor, selecione apenas uma opção.");
+    // Somar erro
   }
 };
