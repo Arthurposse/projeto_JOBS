@@ -50,6 +50,20 @@ create table metas(
     prioridade ENUM('red', 'yellow', 'green')
 );
 
+create table questoes_modulos(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    tipo_modulo ENUM('email', 'entrevista', 'trabalho_equipe', 'res_problema'),
+    pergunta VARCHAR(255) NOT NULL,
+    questao_A VARCHAR(255) NOT NULL,
+    questao_B VARCHAR(255) NOT NULL,
+    questao_C VARCHAR(255) NOT NULL,
+	res_correta VARCHAR(30) NOT NULL
+);
+
+-- Perguntas e Respostas das questões dos módulos
+
+INSERT INTO questoes_modulos(tipo_modulo, pergunta, questao_A, questao_B, questao_C, res_correta) VALUES ("email", "Qual é a melhor prática ao incluir anexos em um e-mail no ambiente de trabalho?", "A) Não mencionar os anexos, para surpreender o destinatário.", "B) Enviar os anexos em um e-mail separado.", "C) Mencionar claramente os anexos e verificar se estão corretos.", "C"), ("email", "Qual é a importância de manter um tom profissional ao redigir um e-mail no ambiente de trabalho?", "A) Não é importante, desde que a mensagem seja clara.", "B) Um tom profissional ajuda a transmitir respeito e credibilidade.", "C) Um tom informal é sempre mais bem recebido pelos destinatários.", "B");
+
 -- TESTE - Inserindo valores fictícios
 
-INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES ("Arthur de Souza Possebon", "aspossebon@gmail.com", "1234", "2006-12-03", "51996065708", "Sapucaia do Sul")
+INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES ("Arthur de Souza Possebon", "aspossebon@gmail.com", "1234", "2006-12-03", "51996065708", "Sapucaia do Sul");

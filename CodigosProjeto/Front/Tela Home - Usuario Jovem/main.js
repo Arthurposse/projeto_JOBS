@@ -141,7 +141,7 @@ async function getMetas(nome, ordem) {
                 bloco_meta.appendChild(bloco_meta_rodape);
 
                 pc_metas.appendChild(bloco_meta);
-            } 
+            }
             else {
                 section_pc_metas.innerHTML = '<h2> Nenhum foi encontrado!! </h2>'
             }
@@ -372,6 +372,18 @@ botao_filtrar_metas.onclick = async function () {
         getMetas(User_name, result);
     }
 };
+
+// Módulos
+
+const cards = document.querySelectorAll('.modulo_card');
+
+cards.forEach(card => {
+    card.addEventListener('click', function () {
+        const texto_card = this.querySelector('h3').textContent;
+        localStorage.setItem('Modulo', texto_card);
+        window.location.href = "../Tela Modulos - Usuario Jovem/index.html";
+    });
+});
 
 // Coletando dados perfil (GET)
 

@@ -7,7 +7,7 @@
 </h3>
 
 <h5>
-  Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercade de trabalho, por este motivo a escolha desta projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
+  Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercado de trabalho, por este motivo a escolha deste projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
 </h5>
 
 <h5>
@@ -26,7 +26,8 @@
     - Procurar emprego (com pesquisa personalizada).
     - Postar seu currículo (em um hub).
     - Postar suas dúvidas.
-    - Disponibilizar ideias de planejamento de carreira.
+    - Ideias de planejamento de carreira.
+    - Estabelecer suas próprias metas
 
   - Usuário Empresa
       - Chat.
