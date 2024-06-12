@@ -64,10 +64,10 @@ botao_concluir.onclick = function () {
   });
 
   if (marcados === 1) {
-    console.log("Apenas uma opção foi selecionada.");
+    alert('Uma opção foi selecionada!')
     // Somar acerto
   } else {
-    console.log("Por favor, selecione apenas uma opção.");
+    alert('Selecione apenas UMA opção!!')
     // Somar erro
   }
 };
