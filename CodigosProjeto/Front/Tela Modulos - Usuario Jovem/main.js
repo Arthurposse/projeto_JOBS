@@ -97,10 +97,12 @@ botao_concluir.onclick = function () {
   
     if (marcados === 1) {
       alert('Uma opção foi selecionada!');
-  
+      
+      let img = document.querySelector('img');
       if(res_marcada[0] == questoes_corretas[0]) {
-        alert('Resposta CORRETA!!');
         
+        img.setAttribute('src', 'img/Img_final.svg');
+
         // Limpando lista com a resposta correta
         while(questoes_corretas.length !== 0) {
           questoes_corretas.shift();
@@ -111,13 +113,16 @@ botao_concluir.onclick = function () {
   
         // Verifica se ainda há perguntas restantes
         if (ordem_questoes.length > 0) {
-          alert('Próxima pergunta!');
+          // alert('Próxima pergunta!');
+          setTimeout(() => {
+            img.setAttribute('src', 'img/Img_boneco.svg');
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
+          }, 2000);
         } else {
           botao_concluir.textContent = 'Concluir';
   
-          alert('Você respondeu todas as perguntas!');
+          // alert('Você respondeu todas as perguntas!');
         }
       } else {
         alert('Resposta ERRADA!!');
@@ -127,6 +132,6 @@ botao_concluir.onclick = function () {
     }
   } 
   else{
-    window.location.href = '../Tela Home - Usuario Jovem/index.html';
+    window.location.href = '../Tela Explicacao Modulos - Usuario Jovem/index.html';
   }
 };

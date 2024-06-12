@@ -15,3 +15,95 @@
   --cor-terciaria: #9DD4D1;
   --cor-fonte: white;
 }
+
+body {
+  background-color: var(--cor-primaria);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5vh;
+  padding-top: 5%;
+}
+
+/* Topo - Explicação Geral */
+
+#quant_acertos {
+  font-size: 2rem;
+}
+
+.bloco_explicacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw;
+}
+
+img {
+  width: 20vw;
+}
+
+#explicacao {
+  text-align: justify;
+  width: 50vw;
+}
+
+/* Meio - Explicação questão por questão */
+
+.bloco_respostas {
+  background-color: var(--cor-secundaria);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3vh;
+  padding: 4%;
+  color: var(--cor-terciaria);
+}
+
+.bloco_respostas h2 {
+  font-size: 2rem;
+}
+
+.bloco_res {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.bloco_res #bloco_res_pergunta, .bloco_res #bloco_res_resposta, .bloco_res #bloco_res_explicacao {
+  font-size: 1.4rem;
+  text-align: justify;
+}
+
+.bloco_res #bloco_res_resposta,
+.bloco_res #bloco_res_explicacao {
+  visibility: hidden;
+}
+
+.bloco_res:hover #bloco_res_resposta,
+.bloco_res:hover #bloco_res_explicacao {
+  visibility: visible;
+}
+
+
+/* Fim - Botão voltar ao início */
+
+button {
+  background-color: var(--cor-secundaria);
+  width: 10vw;
+  padding: 1%;
+  border: 0;
+  border-radius: 1vw;
+  margin-bottom: 3%;
+  font-size: 1rem;
+  color: var(--cor-terciaria);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  font-size: 1.1rem;
+  transition: all 0.2s ease-in;
+}
