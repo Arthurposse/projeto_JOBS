@@ -95,15 +95,12 @@ botao_concluir.onclick = function () {
     });
 
     if (marcados === 1) {
-      alert("Uma opção foi selecionada!");
-
       if (res_marcada[0] == questoes_corretas[0]) {
         Swal.fire({
           title: "Parábens, você acertou!!",
           text: "Bora ver quantas você acertou?",
           imageUrl: "img/Img_final.svg",
           imageHeight: 300,
-          imageAlt: "A tall image",
         });
 
         // Limpando lista com a resposta correta
@@ -122,7 +119,6 @@ botao_concluir.onclick = function () {
             text: "Bora pra próxima!!",
             imageUrl: "img/Img_final.svg",
             imageHeight: 300,
-            imageAlt: "A tall image",
           });
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
@@ -132,7 +128,13 @@ botao_concluir.onclick = function () {
           // alert('Você respondeu todas as perguntas!');
         }
       } else {
-        alert("Resposta ERRADA!!");
+        Swal.fire({
+          title: "Infelizmente você errou.",
+          text: "Mais sorte na próxima vez!!",
+          imageUrl: "img/Img_boneco_errou.svg",
+          imageHeight: 300,
+          imageAlt: "A tall image",
+        });
       }
     } else {
       alert("Selecione apenas UMA opção!!");
