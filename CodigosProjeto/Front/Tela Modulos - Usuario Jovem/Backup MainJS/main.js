@@ -11,9 +11,6 @@ if (tipo_modulo_escolhido == "Enviar email") {
   buscar = "res_problema";
 }
 
-let ordem_questoes = [];
-let questoes_corretas = [];
-
 // GET Perguntas e Respostas
 async function getModulos(buscar_modulo) {
   const response = await fetch(
@@ -27,6 +24,7 @@ async function getModulos(buscar_modulo) {
   let content = await response.json();
   let totalQuestoes = content.data.length;
 
+  let ordem_questoes = [];
   let numerosUsados = [];
 
   for (let i = 0; i < totalQuestoes; i++) {
@@ -40,26 +38,20 @@ async function getModulos(buscar_modulo) {
 
   // Verificação da estrutura de sucesso
   if (content.sucess) {
-    const pergunta_p = document.getElementById("pergunta");
+    const pergunta_p = document.getElementById('pergunta');
     pergunta_p.textContent = content.data[ordem_questoes[0]].pergunta;
 
-    const respostas = document.getElementById("respostas");
-    respostas.innerHTML = ""; // Limpar respostas antes de adicionar novas
+    const respostas = document.getElementById('respostas');
+    respostas.innerHTML = ''; // Limpar respostas antes de adicionar novas
 
     for (let j = 1; j <= 3; j++) {
       let questao = `questao_${j}`;
-      if (
-        content.data[ordem_questoes[0]] &&
-        content.data[ordem_questoes[0]][questao]
-      ) {
+      if (content.data[ordem_questoes[0]] && content.data[ordem_questoes[0]][questao]) {
         let buscando = content.data[ordem_questoes[0]][questao];
-        questoes_corretas.push(content.data[ordem_questoes[0]].res_correta);
         let elemento = `<p><input type="checkbox"> ${buscando} </p>`;
         respostas.innerHTML += elemento;
       } else {
-        console.error(
-          `Propriedade ${questao} não encontrada em content.data[${ordem_questoes[0]}]`
-        );
+        console.error(`Propriedade ${questao} não encontrada em content.data[${ordem_questoes[0]}]`);
       }
     }
   } else {
@@ -70,31 +62,24 @@ async function getModulos(buscar_modulo) {
 getModulos(buscar);
 
 // Adicionando infos no html
-const botao_concluir = document.querySelector("button");
+const botao_concluir = document.querySelector('button');
 
 botao_concluir.onclick = function () {
   const inputs = document.querySelectorAll('input[type="checkbox"]');
   let marcados = 0;
-  let res_marcada;
   inputs.forEach(function (c) {
     if (c.checked) {
       marcados++;
-      res_marcada = c.parentElement.textContent.trim();
+      console.log(c.parentElement.textContent.trim());
     }
   });
 
   if (marcados === 1) {
-    alert('Uma opção foi selecionada!');
-
-    if(res_marcada[0] == questoes_corretas[0]) {
-      alert('Resposta CORRETA!!');
-    }
-    else {
-      alert('Resposta ERRADA!!');
-    }
+    alert('Uma opção foi selecionada!')
+    
     // Somar acerto
   } else {
     alert('Selecione apenas UMA opção!!')
     // Somar erro
-  };
+  }
 };
