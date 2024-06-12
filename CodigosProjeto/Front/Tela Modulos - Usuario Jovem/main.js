@@ -22,25 +22,24 @@ async function getModulos(buscar_modulo) {
   );
 
   let content = await response.json();
-
+  let num_aleatorio = Math.floor(Math.random() * content.data.length);
+  console.log(num_aleatorio);
   // Verificação da estrutura de sucesso
   if (content.sucess) {
     const pergunta_p = document.getElementById('pergunta');
-    pergunta_p.textContent = content.data[0].pergunta;
+    pergunta_p.textContent = content.data[num_aleatorio].pergunta;
 
     const respostas = document.getElementById('respostas');
     respostas.innerHTML = ''; // Limpar respostas antes de adicionar novas
 
-    for (let i = 0; i < 1; i++) {
-      for (let j = 1; j <= 3; j++) {
-        let questao = `questao_${j}`;
-        if (content.data[i] && content.data[i][questao]) {
-          let buscando = content.data[i][questao];
-          let elemento = `<p><input type="checkbox"> ${buscando} </p>`;
-          respostas.innerHTML += elemento;
-        } else {
-          console.error(`Propriedade ${questao} não encontrada em content.data[${i}]`);
-        }
+    for (let j = 1; j <= 3; j++) {
+      let questao = `questao_${j}`;
+      if (content.data[num_aleatorio] && content.data[num_aleatorio][questao]) {
+        let buscando = content.data[num_aleatorio][questao];
+        let elemento = `<p><input type="checkbox"> ${buscando} </p>`;
+        respostas.innerHTML += elemento;
+      } else {
+        console.error(`Propriedade ${questao} não encontrada em content.data[${num_aleatorio}]`);
       }
     }
   } else {
