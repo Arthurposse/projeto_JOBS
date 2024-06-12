@@ -22,24 +22,37 @@ async function getModulos(buscar_modulo) {
   );
 
   let content = await response.json();
+  let totalQuestoes = content.data.length;
+
   let num_aleatorio = Math.floor(Math.random() * content.data.length);
-  console.log(num_aleatorio);
+  let ordem_questoes = [];
+  let numerosUsados = [];
+
+  for (let i = 0; i < totalQuestoes; i++) {
+    let num_aleatorio;
+    do {
+      num_aleatorio = Math.floor(Math.random() * totalQuestoes);
+    } while (numerosUsados.includes(num_aleatorio)); // Verifica se o número já foi usado
+    ordem_questoes.push(num_aleatorio);
+    numerosUsados.push(num_aleatorio); // Adiciona o número à lista de números usados
+  }
+
   // Verificação da estrutura de sucesso
   if (content.sucess) {
     const pergunta_p = document.getElementById('pergunta');
-    pergunta_p.textContent = content.data[num_aleatorio].pergunta;
+    pergunta_p.textContent = content.data[ordem_questoes[0]].pergunta;
 
     const respostas = document.getElementById('respostas');
     respostas.innerHTML = ''; // Limpar respostas antes de adicionar novas
 
     for (let j = 1; j <= 3; j++) {
       let questao = `questao_${j}`;
-      if (content.data[num_aleatorio] && content.data[num_aleatorio][questao]) {
-        let buscando = content.data[num_aleatorio][questao];
+      if (content.data[ordem_questoes[0]] && content.data[ordem_questoes[0]][questao]) {
+        let buscando = content.data[ordem_questoes[0]][questao];
         let elemento = `<p><input type="checkbox"> ${buscando} </p>`;
         respostas.innerHTML += elemento;
       } else {
-        console.error(`Propriedade ${questao} não encontrada em content.data[${num_aleatorio}]`);
+        console.error(`Propriedade ${questao} não encontrada em content.data[${ordem_questoes[0]}]`);
       }
     }
   } else {
