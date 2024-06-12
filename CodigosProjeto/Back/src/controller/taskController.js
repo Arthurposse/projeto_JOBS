@@ -351,7 +351,7 @@ async function getModulos(request, response) {
         request.query.tipo_modulo
     )
 
-    const query = "SELECT `pergunta`, `alternativas`, `res_correta` FROM jobs.questoes_modulos WHERE tipo_modulo = ?;";
+    const query = "SELECT `pergunta`, `questao_A`, `questao_B`, `questao_C`, `res_correta` FROM jobs.questoes_modulos WHERE tipo_modulo = ?;";
 
     connection.query(query, params, (err, results) => {
         if(results) {
