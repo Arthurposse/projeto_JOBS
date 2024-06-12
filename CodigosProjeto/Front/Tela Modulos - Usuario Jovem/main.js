@@ -55,22 +55,17 @@ async function getModulos(buscar_modulo) {
   let content = await response.json();
   res_BD = content;
 
-  if(ordem_questoes.length === 0) {
-    let totalQuestoes = content.data.length;
+  let totalQuestoes = content.data.length;
   
-    let numerosUsados = [];
-  
-    for (let i = 0; i < totalQuestoes; i++) {
-      let num_aleatorio;
-      do {
-        num_aleatorio = Math.floor(Math.random() * totalQuestoes);
-      } while (numerosUsados.includes(num_aleatorio)); // Verifica se o número já foi usado
-      ordem_questoes.push(num_aleatorio);
-      numerosUsados.push(num_aleatorio); // Adiciona o número à lista de números usados
-    }
-  }
-  else {
-    
+  let numerosUsados = [];
+
+  for (let i = 0; i < totalQuestoes; i++) {
+    let num_aleatorio;
+    do {
+      num_aleatorio = Math.floor(Math.random() * totalQuestoes);
+    } while (numerosUsados.includes(num_aleatorio)); // Verifica se o número já foi usado
+    ordem_questoes.push(num_aleatorio);
+    numerosUsados.push(num_aleatorio); // Adiciona o número à lista de números usados
   }
 
   // Verificação da estrutura de sucesso
