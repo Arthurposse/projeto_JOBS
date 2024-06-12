@@ -15,12 +15,12 @@ if (tipo_modulo_escolhido == "Enviar email") {
 let ordem_questoes = [];
 let questoes_corretas = [];
 
-function exibirPergunta(content_){
+function exibirPergunta(content_) {
   const pergunta_p = document.getElementById("pergunta");
   const respostas = document.getElementById("respostas");
 
-  pergunta_p.innerHTML = '';
-  respostas.innerHTML = '';
+  pergunta_p.innerHTML = "";
+  respostas.innerHTML = "";
 
   pergunta_p.textContent = content_.data[ordem_questoes[0]].pergunta;
 
@@ -56,7 +56,7 @@ async function getModulos(buscar_modulo) {
   res_BD = content;
 
   let totalQuestoes = content.data.length;
-  
+
   let numerosUsados = [];
 
   for (let i = 0; i < totalQuestoes; i++) {
@@ -71,7 +71,6 @@ async function getModulos(buscar_modulo) {
   // Verificação da estrutura de sucesso
   if (content.sucess) {
     exibirPergunta(content);
-
   } else {
     alert("Deu ruim os MODULOS");
   }
@@ -86,52 +85,60 @@ botao_concluir.onclick = function () {
   const inputs = document.querySelectorAll('input[type="checkbox"]');
   let marcados = 0;
   let res_marcada;
-  
-  if(botao_concluir.textContent !== 'Concluir') {
+
+  if (botao_concluir.textContent !== "Concluir") {
     inputs.forEach(function (c) {
       if (c.checked) {
         marcados++;
         res_marcada = c.parentElement.textContent.trim();
       }
     });
-  
+
     if (marcados === 1) {
-      alert('Uma opção foi selecionada!');
-      
-      let img = document.querySelector('img');
-      if(res_marcada[0] == questoes_corretas[0]) {
-        
-        img.setAttribute('src', 'img/Img_final.svg');
+      alert("Uma opção foi selecionada!");
+
+      if (res_marcada[0] == questoes_corretas[0]) {
+        Swal.fire({
+          title: "Parábens, você acertou!!",
+          text: "Bora ver quantas você acertou?",
+          imageUrl: "img/Img_final.svg",
+          imageHeight: 300,
+          imageAlt: "A tall image",
+        });
 
         // Limpando lista com a resposta correta
-        while(questoes_corretas.length !== 0) {
+        while (questoes_corretas.length !== 0) {
           questoes_corretas.shift();
         }
 
         // Remove a primeira pergunta da lista
         ordem_questoes.shift();
-  
+
         // Verifica se ainda há perguntas restantes
         if (ordem_questoes.length > 0) {
           // alert('Próxima pergunta!');
-          setTimeout(() => {
-            img.setAttribute('src', 'img/Img_boneco.svg');
+          Swal.fire({
+            title: "Parábens, você acertou!!",
+            text: "Bora pra próxima!!",
+            imageUrl: "img/Img_final.svg",
+            imageHeight: 300,
+            imageAlt: "A tall image",
+          });
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
-          }, 2000);
         } else {
-          botao_concluir.textContent = 'Concluir';
-  
+          botao_concluir.textContent = "Concluir";
+
           // alert('Você respondeu todas as perguntas!');
         }
       } else {
-        alert('Resposta ERRADA!!');
+        alert("Resposta ERRADA!!");
       }
     } else {
-      alert('Selecione apenas UMA opção!!')
+      alert("Selecione apenas UMA opção!!");
     }
-  } 
-  else{
-    window.location.href = '../Tela Explicacao Modulos - Usuario Jovem/index.html';
+  } else {
+    window.location.href =
+      "../Tela Explicacao Modulos - Usuario Jovem/index.html";
   }
 };
