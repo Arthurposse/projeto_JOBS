@@ -55,6 +55,8 @@ img {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  height: 70vh;
   gap: 3vh;
   padding: 4%;
   color: var(--cor-terciaria);
@@ -78,12 +80,14 @@ img {
 
 .bloco_res #bloco_res_resposta,
 .bloco_res #bloco_res_explicacao {
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
 }
 
 .bloco_res:hover #bloco_res_resposta,
 .bloco_res:hover #bloco_res_explicacao {
-  visibility: visible;
+  /* visibility: visible; */
+  display: block;
 }
 
 
