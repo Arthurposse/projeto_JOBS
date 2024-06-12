@@ -21,3 +21,8 @@ if (tipo_modulo_escolhido == "Enviar email") {
   explicacao.textContent = "RESOLUÇÃO DE PROBLEMAS";
 }
 
+const botao_voltar_inicio = document.querySelector('button');
+
+botao_voltar_inicio.onclick = function(){
+    window.location.href = '../Tela Home - Usuario Jovem/index.html';
+}
