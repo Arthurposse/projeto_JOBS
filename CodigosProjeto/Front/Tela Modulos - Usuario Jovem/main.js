@@ -132,8 +132,7 @@ botao_concluir.onclick = function () {
           title: "Infelizmente você errou.",
           text: "Mais sorte na próxima vez!!",
           imageUrl: "img/Img_boneco_errou.svg",
-          imageHeight: 300,
-          imageAlt: "A tall image",
+          imageHeight: 300
         });
       }
     } else {
