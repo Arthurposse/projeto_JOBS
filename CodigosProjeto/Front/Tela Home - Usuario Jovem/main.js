@@ -620,7 +620,6 @@ botao_editar.onclick = async function () {
                 timer: 2000
             });
         };
-
         editando = true;
     }
 };
