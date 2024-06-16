@@ -25,7 +25,7 @@ button.onclick = async function (e) {
     
     if (content.sucess) {
         alert ("Sucesso com o POST!!");
-                window.location.href = '../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html'
+        window.location.href = '../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html'
 
     } else {
         console.error()

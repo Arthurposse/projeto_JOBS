@@ -48,6 +48,5 @@ button.onclick = async function (e) {
     } else {
         console.error()
         alert("Não deu o GET!!");
-        console.error();
     };
 };
