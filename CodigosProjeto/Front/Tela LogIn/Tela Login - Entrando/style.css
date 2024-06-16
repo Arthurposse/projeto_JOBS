@@ -90,12 +90,6 @@ main section form div a {
     text-decoration: none;
 }
 
-i {
-    font-size: 2rem;
-    padding: 1.5%;
-    cursor: pointer;
-}
-
 /* Medias Queries */
 
 /* Tablet */
@@ -127,10 +121,6 @@ i {
     main section form div a {
         font-size: 1.2rem;
     }
-
-    i {
-        display: none;
-    }
 }
 
 /* Celular */
@@ -161,9 +151,5 @@ i {
     
     main section form div a {
         font-size: 1.2rem;
-    }
-
-    i {
-        display: none;
     }
 }

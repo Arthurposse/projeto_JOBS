@@ -89,12 +89,6 @@ main section form .texto {
     text-align: justify;
 }
 
-i {
-    font-size: 2rem;
-    padding: 1.5%;
-    cursor: pointer;
-}
-
 /* Medias Queries */
 
 /* Tablet */
@@ -122,10 +116,6 @@ i {
         height: 7vh;
         font-size: 1.4rem;
     }
-
-    i {
-        display: none;
-    }
 }
 
 /* Celular */
@@ -152,9 +142,5 @@ i {
         width: 50vw;
         height: 6vh;
         font-size: 1.2rem;
-    }
-
-    i {
-        display: none;
     }
 }

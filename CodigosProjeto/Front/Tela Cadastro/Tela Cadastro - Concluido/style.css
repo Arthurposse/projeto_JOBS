@@ -46,7 +46,7 @@ main section {
 }
 
 main section img {
-    width: 20%;
+    width: 30%;
 }
 
 main section form {
@@ -79,12 +79,6 @@ main section form .texto {
     text-align: center;
 }
 
-i {
-    font-size: 2rem;
-    padding: 1.5%;
-    cursor: pointer;
-}
-
 /* Medias Queries */
 
 /* Tablet */
@@ -100,7 +94,7 @@ i {
     }
 
     main section img {
-        width: 15%;
+        width: 24%;
     }
 
     main section form div label {
@@ -111,10 +105,6 @@ i {
         width: 45vw;
         height: 7vh;
         font-size: 1.4rem;
-    }
-
-    i {
-        display: none;
     }
 }
 
@@ -131,7 +121,7 @@ i {
     }
 
     main section img {
-        width: 15%;
+        width: 24%;
     }
 
     main section form div label {
@@ -142,9 +132,5 @@ i {
         width: 60vw;
         height: 6vh;
         font-size: 1.2rem;
-    }
-
-    i {
-        display: none;
     }
 }

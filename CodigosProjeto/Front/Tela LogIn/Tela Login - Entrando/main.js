@@ -45,9 +45,6 @@ button.onclick = async function (e) {
             }
         }
 
-        // window.location.reload();
-        //recarrega a página
-
     } else {
         console.error()
         alert("Não deu o GET!!");

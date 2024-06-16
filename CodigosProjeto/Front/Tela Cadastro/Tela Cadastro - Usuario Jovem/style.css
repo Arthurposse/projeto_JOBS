@@ -80,20 +80,14 @@ main .bloco form div input {
     outline: 0;
 }
 
-main .bloco form div button {
+main .bloco form button {
     background-color: var(--cor-principal);
     width: 20vw;
-    margin-top: 10%;
-    padding: 5%;
+    margin-top: 2%;
+    padding: 3%;
     border: 0;
     border-radius: 1vw;
     color: var(--cor-fonte);
-}
-
-i {
-    font-size: 2rem;
-    padding: 1.5%;
-    cursor: pointer;
 }
 
 /* Medias Queries */
@@ -118,14 +112,10 @@ i {
         width: 40vw;
     }
 
-    main .bloco form div button {
+    main .bloco form button {
         width: 40vw;
         height: 7vh;
         font-size: 1.4rem;
-    }
-
-    i {
-        display: none;
     }
 }
 
@@ -150,7 +140,7 @@ i {
         width: 65vw;
     }
 
-    main .bloco form div button {
+    main .bloco form button {
         width: 50vw;
         height: 6vh;
         font-size: 1.2rem;
@@ -158,9 +148,5 @@ i {
 
     main .bloco .bloco_inputs {
         flex-direction: column;
-    }
-
-    i {
-        display: none;
     }
 }

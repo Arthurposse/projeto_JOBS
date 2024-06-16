@@ -1,4 +1,4 @@
-let button = document.getElementById('cadastro_user');
+let button = document.querySelector('button');
 
 button.onclick = async function (e) {
     e.preventDefault();
@@ -26,8 +26,7 @@ button.onclick = async function (e) {
 
     if (content.sucess) {
         alert ("Sucesso com o POST!!");
-        // window.location.reload();
-        //recarrega a página
+        window.location.href = '../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html'
 
     } else {
         console.error()

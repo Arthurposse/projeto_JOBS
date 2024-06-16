@@ -46,7 +46,22 @@ button.onclick = function(e) {
     else if(check_empresa.disabled === true) {
         window.location.href = '../Tela Cadastro - Usuario Jovem/index.html';
 
-    } else {
+    }
+
+    else if(check_jovem.disabled === true) {
         window.location.href = '../Tela Cadastro - Usuario Empresa/index.html';
+    }
+    
+    else {
+        check_empresa.checked  = false;
+        check_jovem.checked  = false;
+
+        Swal.fire({
+            title: "Selecione APENAS uma opção!!",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 2000,
+            width: 400
+          });
     }
 }
