@@ -24,30 +24,47 @@ button.onclick = async function (e) {
   console.log(content);
 
   if (content.sucess) {
-    alert("Sucesso com o POST!!");
-
-    let data = { email };
+    Swal.fire({
+      title: "Cadastro realizado com sucesso!!",
+      text: "Aguarde enquanto seu código de verificação é gerado.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2600,
+    });
 
     const response = await fetch("http://localhost:3008/api/testeEnviarEmail", {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ email }),
     });
 
     let content = await response.json();
     console.log(content);
 
-    if(content.success) {
-      alert("Código de verificação enviado com sucesso!!");
-      
-      localStorage.setItem('CodVerif', content.verificationCode);
+    if (content.success) {
+      Swal.fire({
+        title: "Código de verificação enviado com sucesso!!",
+        text: "Acesse seu email.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2100,
+      });
 
-      window.location.href = '../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html'
-    }
-    else {
-      alert("ERROR!! Código de verificação não enviado!!");
-    }
+      localStorage.setItem("CodVerif", content.verificationCode);
 
+      setTimeout(() => {
+        window.location.href =
+        "../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html";
+      }, 2100);
+    } else {
+      Swal.fire({
+        title: "Conta não encontrada!!",
+        text: "Tente novamente!! Ou crie uma conta!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    }
   } else {
     console.error();
     alert("Não deu o POST!!");

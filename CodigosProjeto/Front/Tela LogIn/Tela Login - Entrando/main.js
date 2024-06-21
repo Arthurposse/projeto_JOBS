@@ -28,6 +28,7 @@ button.onclick = async function (e) {
                     showConfirmButton: false,
                     timer: 2000
                 });
+                
                 setTimeout(() => {
                     if(content.data[i].origin === 'user_jovem') {
                         window.location.href = '../../Tela Home - Usuario Jovem/index.html';
