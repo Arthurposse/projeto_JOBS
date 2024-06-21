@@ -73,11 +73,11 @@ main section form div input {
     outline: 0;
 }
 
-main section form div button {
+main section form button {
     background-color: var(--cor-principal);
     width: 20vw;
     margin-top: 10%;
-    padding: 5%;
+    padding: 3%;
     border: 0;
     border-radius: 1vw;
     color: var(--cor-fonte);
@@ -111,7 +111,7 @@ main section form .texto {
         width: 60vw;
     }
 
-    main section form div button {
+    main section form button {
         width: 50vw;
         height: 7vh;
         font-size: 1.4rem;
@@ -138,7 +138,7 @@ main section form .texto {
         width: 65vw;
     }
 
-    main section form div button {
+    main section form button {
         width: 50vw;
         height: 6vh;
         font-size: 1.2rem;

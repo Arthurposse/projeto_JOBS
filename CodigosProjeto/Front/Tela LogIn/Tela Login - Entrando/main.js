@@ -29,7 +29,15 @@ button.onclick = async function (e) {
                     timer: 2000
                 });
                 setTimeout(() => {
-                    window.location.href = '../../Tela Home - Usuario Jovem/index.html';
+                    if(content.data[i].origin === 'user_jovem') {
+                        window.location.href = '../../Tela Home - Usuario Jovem/index.html';
+                    }
+                    else if(content.data[i].origin === 'user_empresa') {
+                        window.location.href = '../../Tela Home - Usuario Empresa/index.html';
+                    }
+                    else {
+                        alert("ERROR! Não foi possível direcionar vocÊ para a próxima página!!")
+                    }
                 }, 2000);
                 break
             }

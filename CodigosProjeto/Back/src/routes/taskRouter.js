@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
 
-// const { storeTask, getElements, deletarItens } = require('../controller/taskController');
 const { userJovem, userEmpresa, logIn, duvidaJovem, getUserJovem, uptadeUserJovem, getMetasJovem, uptadeMetasJovem, postMetasJovem, deleteMetasJovem, getModulos } = require('../controller/taskController');
 
 // POST

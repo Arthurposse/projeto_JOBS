@@ -1,16 +1,20 @@
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv').config();
 
 // Configurar as credenciais do email
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'enviarcodigo2024@gmail.com',
-    pass: 'tjvs vety dcnu bfzy'
+    user: process.env.ACESS_EMAIL,
+    pass: process.env.ACESS_PASS
   }
 });
 
 // Função para enviar o código de verificação para o email
-async function sendVerificationCode(email) {
+async function sendVerificationCode(req, res) {
+
+  const email = req.body.email;
+
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
   
   const mailOptions = {
@@ -22,20 +26,16 @@ async function sendVerificationCode(email) {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Código de verificação enviado para ${email}`);
+    res.status(200).json({ success: true, message: "Código de verificação enviado com sucesso.", verificationCode });
     return verificationCode;
 
   } catch (error) {
-    console.error(`Erro ao enviar código de verificação: ${error}`);
+    console.error(`Erro ao enviar código de verificação: ${error.message}`);
+    res.status(500).json({ success: false, message: "Erro ao enviar código de verificação.", error: error.message });
     return null;
   }
 }
 
-// Exemplo de uso
-const email = 'apossebonn@gmail.com';
-sendVerificationCode(email).then((code) => {
-  console.log(`Código de verificação: ${code}`);
-
-}).catch((error) => {
-  console.error(`Erro: ${error}`);
-});
+module.exports = {
+  sendVerificationCode
+}
