@@ -1,8 +1,8 @@
 .loader-1 {
     width: 48px;
     height: 48px;
-    border: 5px solid rgb(255 255 255 / 16%);
-    border-bottom-color: #8f44fd;
+    border: 5px solid #9DD4D1;
+    border-bottom-color: #19a7ce;
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
@@ -36,14 +36,14 @@
 
 .loader-5:before {
     animation: ball1 2s infinite;
-    background-color: rgb(255 255 255 / 16%);
+    background-color: #9DD4D1;
     box-shadow: 30px 0 0 #8f44fd;
     margin-bottom: 10px;
 }
 
 .loader-5:after {
     animation: ball2 2s infinite;
-    background-color: #8f44fd;
+    background-color: #19a7ce;
     box-shadow: 30px 0 0 rgb(255 255 255 / 16%);
 }
 
@@ -63,34 +63,34 @@
 
 @keyframes ball1 {
     0% {
-        box-shadow: 30px 0 0 #8f44fd;
+        box-shadow: 30px 0 0 #19a7ce;
     }
 
     50% {
-        box-shadow: 0 0 0 #8f44fd;
+        box-shadow: 0 0 0 #19a7ce;
         margin-bottom: 0;
         transform: translate(15px, 15px);
     }
 
     100% {
-        box-shadow: 30px 0 0 #8f44fd;
+        box-shadow: 30px 0 0 #19a7ce;
         margin-bottom: 10px;
     }
 }
 
 @keyframes ball2 {
     0% {
-        box-shadow: 30px 0 0 rgb(255 255 255 / 32%);
+        box-shadow: 30px 0 0 #9DD4D1;
     }
 
     50% {
-        box-shadow: 0 0 0 rgb(255 255 255 / 32%);
+        box-shadow: 0 0 0 #9DD4D1;
         margin-top: -20px;
         transform: translate(15px, 15px);
     }
 
     100% {
-        box-shadow: 30px 0 0 rgb(255 255 255 / 32%);
+        box-shadow: 30px 0 0 #9DD4D1;
         margin-top: 0;
     }
 }
