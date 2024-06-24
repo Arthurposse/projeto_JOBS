@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #19a7ce;
+    --cor-secundaria: #0e566a;
+    --cor-terciaria: #9dd4d1;
+    --cor-fonte: white;
+}
+
+body {
+    background-color: var(--cor-primaria);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.bloco_form {
+    background-color: var(--cor-primaria);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4vh;
+    padding: 3%;
+    border: 3px solid var(--cor-secundaria);
+    border-radius: 2vw;
+    box-shadow: 2px 2px 3px var(--cor-secundaria);
+}
+
+.bloco_form i {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    justify-content: center;
+    margin-top: -40%;
+    padding: 5%;
+    border-radius: 20vw;
+    font-size: 6rem;
+    color: var(--cor-secundaria);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+form input {
+    width: 15vw;
+    height: 4vh;
+    padding: 4%;
+    border-radius: 2vw;
+    border: 0;
+}
+
+form button {
+    background-color: var(--cor-secundaria);
+    width: 12vw;
+    height: 4vh;
+    border-radius: 2vw;
+    border: 0;
+    color: var(--cor-terciaria);
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    transition: all 0.4s ease;
+}
+
+.bloco_form p {
+    font-size: 1.4rem;
+    color: var(--cor-secundaria);
+    cursor: pointer;
+}
+
+.bloco_form p:hover {
+    color: var(--cor-terciaria);
+    transition: all 0.4s ease;
+}
+
+/* Media Querie - Tablet */
+
+@media screen and (min-width: 481px) and (max-width: 800px) {}
+
+/* Media Querie - Celular */
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .bloco_form {
+        width: 80vw;
+        height: 40vh;
+        border-radius: 8vw;
+    }
+
+    .bloco_form i {
+        margin-top: -28%;
+    }
+
+    form input {
+        width: 50vw;
+        height: 4vh;
+    }
+
+    form button {
+        width: 30vw;
+    }
+}
