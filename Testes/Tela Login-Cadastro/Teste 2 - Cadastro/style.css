@@ -37,6 +37,10 @@ form {
     color: var(--cor-primaria);
 }
 
+#icon_olho {
+    cursor: pointer;
+}
+
 .bloco_input div input {
     background: transparent;
     height: 3vh;
