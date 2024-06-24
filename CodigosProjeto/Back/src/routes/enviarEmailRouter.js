@@ -3,6 +3,6 @@ const router = Router();
 
 const { sendVerificationCode } = require('../controller/enviarEmailController')
 
-router.post("/testeEnviarEmail", sendVerificationCode);
+router.post("/enviarEmail", sendVerificationCode);
 
 module.exports = router;

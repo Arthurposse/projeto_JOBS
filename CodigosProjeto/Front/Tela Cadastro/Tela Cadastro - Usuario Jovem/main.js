@@ -34,7 +34,7 @@ button.onclick = async function (e) {
         timer: 2600,
       });
 
-      const response = await fetch("http://localhost:3008/api/testeEnviarEmail", {
+      const response = await fetch("http://localhost:3008/api/enviarEmail", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify({ email }),
