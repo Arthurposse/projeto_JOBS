@@ -5,6 +5,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Livvic", sans-serif;
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -29,7 +30,7 @@ main {
 }
 
 form {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     /* background-color: var(--cor-primaria); */
     display: flex;
     align-items: center;
@@ -67,7 +68,6 @@ form .container {
 
 label {
     margin-left: 6%;
-    font-weight: 500;
     color: var(--cor-fonte);
 }
 
@@ -87,7 +87,6 @@ label {
     height: 3vh;
     padding: 3%;
     border: 0;
-    font-weight: 400;
 }
 
 input:focus {
