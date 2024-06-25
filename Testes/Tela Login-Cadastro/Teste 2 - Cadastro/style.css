@@ -30,14 +30,14 @@ main {
 }
 
 form {
-    /* backdrop-filter: blur(10px); */
-    background-color: var(--cor-primaria);
+    backdrop-filter: blur(10px);
+    /* background-color: var(--cor-primaria); */
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 2vh;
-    width: 50vw;
-    padding: 1.4%;
+    width: 60vw;
+    padding: 1%;
     border-radius: 4vw;
 }
 
@@ -48,7 +48,7 @@ form img {
 form .container {
     display: flex;
     align-items: center;
-    gap: 5vw;
+    gap: 8vw;
 }
 
 .container_inputs {
@@ -62,13 +62,13 @@ form .container {
     align-items: center;
     margin-top: 2%;
     padding: 4%;
-    border: 2px solid var(--cor-secundaria);
+    border: 2px solid var(--cor-primaria);
     border-radius: 4vw;
 }
 
 .bloco_input div i {
     font-size: 1.5rem;
-    color: var(--cor-secundaria);
+    color: var(--cor-primaria);
 }
 
 #icon_olho {
