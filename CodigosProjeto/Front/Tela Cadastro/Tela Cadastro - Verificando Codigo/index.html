@@ -6,6 +6,7 @@
     <title> JOBS - Verificando </title>
     <link rel="shortcut icon" href="./Img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -17,9 +18,13 @@
                     <label for="name">Foi enviado para o seu email um código de verificação, insira abaixo para continuar.</label>
                 </div>
 
-                <div>
-                    <label for="name">Insira o código:</label>
-                    <input type="text" id="cod_verif" required>
+                <div class="bloco_input">
+                    <label for="name">Insira o código</label>
+    
+                    <div>
+                        <i class="bi bi-123"></i>
+                        <input type="text" placeholder="Insira o código" id="cod_verif" required>
+                    </div>
                 </div>
 
                 <button type="button">Verificar</button>
