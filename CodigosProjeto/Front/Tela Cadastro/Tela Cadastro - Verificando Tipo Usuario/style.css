@@ -8,8 +8,11 @@
     font-weight: 300;
     font-style: italic;
 }
+
 :root {
-    --cor-principal: #19A7CE;
+    --cor-primaria: #19a7ce;
+    --cor-secundaria: #0e566a;
+    --cor-terciaria: #9dd4d1;
     --cor-fonte: white;
 }
 
@@ -31,16 +34,13 @@ main {
 }
 
 main .bloco {
+    backdrop-filter: blur(20px);
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 50px;
-    backdrop-filter: blur(10px);
-    width: 50%;
-    height: 80vh;
+    gap: 7vh;
+    width: 40vw;
     padding: 5%;
-    box-shadow: 0 0 1px 1.5px white;
     border-radius: 4vw;
 }
 
@@ -53,11 +53,13 @@ main .bloco form {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 5vh;
 }
 
 main .bloco form .texto {
-    margin-bottom: 7%;
+    width: 70%;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 main .bloco form div {
@@ -71,20 +73,21 @@ main .bloco form div input {
     transform: scale(1.4);
 }
 
-main .bloco form button {
-    background-color: var(--cor-principal);
-    width: 20vw;
-    margin-top: 6%;
+button {
+    background-color: var(--cor-secundaria);
+    width: 15vw;
     padding: 3%;
     border: 0;
-    border-radius: 1vw;
-    color: var(--cor-fonte);
+    border-radius: 2vw;
+    font-size: 1rem;
+    color: var(--cor-terciaria);
+    cursor: pointer;
 }
 
-main .bloco form .texto {
-    width: 70%;
-    font-size: 1.3rem;
-    text-align: justify;
+button:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    transition: all .6s ease;
 }
 
 /* Medias Queries */
