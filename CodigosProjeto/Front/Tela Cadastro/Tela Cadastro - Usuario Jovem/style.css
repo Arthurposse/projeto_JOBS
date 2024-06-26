@@ -39,15 +39,15 @@ main section {
     border-radius: 4vw;
 }
 
+main section img {
+    width: 30%;
+}
+
 form {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 2vh;
-}
-
-form img {
-    width: 15vw;
 }
 
 form .container {
