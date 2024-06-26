@@ -6,57 +6,86 @@
     <title> JOBS - Cadastro </title>
     <link rel="shortcut icon" href="./Img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <main>
-        <section class="bloco">
-            <img src="./Img/Logo_JOBS.png" alt="">
-            
-            <form action="../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html" method="post">
-                <section class="bloco_inputs">
-                    <section class="bloco_inputs_1">
-                        <div>
-                            <label for="name">Nome completo:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
+        <form action="">
+            <img src="img/Logo_JOBS.png" alt="">
+
+            <div class="container">
+                <div class="container_inputs">
+                    <div class="bloco_input">
+                        <label for="">Nome</label>
         
                         <div>
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
+                            <i class="bi bi-person-fill"></i>
+                            <input type="text" placeholder="Nome" id="name" name="name" required>
                         </div>
+                    </div>
+        
+                    <div class="bloco_input">
+                        <label for="">Email</label>
         
                         <div>
-                            <label for="password">Cria senha:</label>
-                            <input type="password" id="password" name="password" required>
+                            <i class="bi bi-envelope-at-fill"></i>
+                            <input type="email" placeholder="Email" id="email" name="email" required>
                         </div>
+                    </div>
+        
+                    <div class="bloco_input">
+                        <label for="">Senha</label>
+
+                        <div>
+                            <i class="bi bi-key-fill"></i>
+                            <input type="password" placeholder="Senha" id="password">
+                            <i class="bi-eye-fill" id="icon_olho"></i>
+                        </div>
+                    </div>
+        
+                    <div class="bloco_input">
+                        <label for="">Confirmar senha</label>
         
                         <div>
-                            <label for="password">Confirmar senha:</label>
-                            <input type="password" id="confirm_password" name="password" required>
+                            <i class="bi bi-key-fill"></i>
+                            <input type="password" placeholder="Confirmar senha" id="confirm_password">
+                            <i class="bi-eye-fill" id="icon_olho"></i>
                         </div>
-                    </section>
-
-                    <section class="bloco_inputs_2">
+                    </div>
+                </div>
+    
+                <div class="container_inputs">
+                    <div class="bloco_input">
+                        <label for="">Data de nascimento</label>
+        
                         <div>
-                            <label for="name">Data de nascimento: </label>
-                            <input type="date" id="data_nascimento" name="data_nascimento" required>
+                            <i class="bi bi-calendar-check"></i>
+                            <input type="date" placeholder="Data de nascimento" id="data_nascimento" name="data_nascimento" required>
                         </div>
-
+                    </div>
+        
+                    <div class="bloco_input">
+                        <label for="">Telefone</label>
+        
                         <div>
-                            <label for="name">Telefone:</label>
-                            <input type="text" id="telefone" name="telefone" required>
+                            <i class="bi bi-telephone-fill"></i>
+                            <input type="tel" placeholder="Telefone" id="telefone" name="telefone" required>
                         </div>
-
+                    </div>
+        
+                    <div class="bloco_input">
+                        <label for="">Cidade</label>
+        
                         <div>
-                            <label for="name">Cidade:</label>
-                            <input type="text" id="cidade" name="cidade" required>
+                            <i class="bi bi-house-fill"></i>
+                            <input type="text" placeholder="Cidade" id="cidade" name="cidade" required>
                         </div>
-                    </section>
-                </section>
+                    </div>
+                </div>
+            </div>
 
-                <button type="submit">Cadastrar</button>
-            </form>
-        </section>
+            <button> Cadastrar </button>
+        </form>
     </main>
 
     <script src="./main.js"></script>
