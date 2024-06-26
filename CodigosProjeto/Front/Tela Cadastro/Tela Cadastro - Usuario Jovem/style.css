@@ -29,16 +29,21 @@ main {
     height: 100vh;
 }
 
-form {
+main section {
     backdrop-filter: blur(20px);
-    /* background-color: var(--cor-primaria); */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 60vw;
+    padding: 2%;
+    border-radius: 4vw;
+}
+
+form {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 2vh;
-    width: 60vw;
-    padding: 1%;
-    border-radius: 4vw;
 }
 
 form img {
