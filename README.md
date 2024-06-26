@@ -59,7 +59,6 @@
 - Tela Cadastro Empresa
 	- Ajustar responsividade.
 	- Ajustar o envio dos dados do usuário para o BD.
-	- Ajustar a visibilidade da fonte (esta um pouco complicado de ler).
   - Acrescentar alert personalizado, quando o usuário ser cadastrado com sucesso e quando der algum erro.
 
 <br>
@@ -67,15 +66,11 @@
 - Tela Cadastro Jovem
 	- Ajustar responsividade.
 	- Adicionar um limitador de idade, onde o usuário só poderá ser cadastrado se ele tiver entre 14/15 e 24 anos.
-	- Ajustar a visibilidade da fonte (esta um pouco complicado de ler).
-  - Acrescentar alert personalizado, quando o usuário ser cadastrado com sucesso e quando der algum erro.
 
 <br>
 
 - Tela Verificando Código
 	- Ajustar responsividade.
-  - Acrescentar função de enviar código e verificação do email.
-  - Após a verificação e tudo der certo, é preciso direcionar o usuário para a tela de Login.
 
 <br>
 
