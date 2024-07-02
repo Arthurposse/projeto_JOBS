@@ -16,11 +16,15 @@
     --cor-fonte: white;
 }
 
+/* Body */
+
 body {
     background: url('img/Background.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+/* Main */
 
 main {
     display: flex;

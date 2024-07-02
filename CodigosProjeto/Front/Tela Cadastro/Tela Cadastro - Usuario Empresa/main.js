@@ -7,11 +7,13 @@ button.onclick = async function (e) {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
+    let confirm_password = document.getElementById('confirm_password').value;
     let telefone = document.getElementById('telefone').value;
     let cidade = document.getElementById('cidade').value;
     let razao_social = document.getElementById('razao_social').value;
     let cnpj = document.getElementById('cnpj').value;
     let setor_atividade = document.getElementById('setor_atividade').value;
+
     let data = { name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade }
 
     // POST
