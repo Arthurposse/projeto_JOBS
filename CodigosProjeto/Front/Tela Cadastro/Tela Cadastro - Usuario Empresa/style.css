@@ -106,6 +106,12 @@ input::placeholder {
     color: rgba(0, 0, 0, 0.459);
 }
 
+/* O código abaixo serve para remover APENAS o icone do olho que aparece por padrão no Microsoft Edge */
+
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+
 button {
     background-color: var(--cor-secundaria);
     width: 15vw;

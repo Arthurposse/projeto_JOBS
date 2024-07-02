@@ -1,4 +1,5 @@
-// let input_senha = document.getElementById('input_senha');
+// Visualizar senha - Icon olho
+
 let icon_olho = document.querySelectorAll('#icon_olho');
 
 // Iterar sobre cada ícone de olho
