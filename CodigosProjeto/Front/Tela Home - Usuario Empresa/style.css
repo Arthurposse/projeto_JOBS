@@ -71,7 +71,6 @@ header .bloco_usuario h3 {
     font-size: 1rem;
 }
 
-
 header .header_meio {
     display: flex;
     flex-direction: column;
@@ -94,17 +93,64 @@ main {
     background-color: var(--cor-primaria);
 }
 
-main .duvidas_jovens, main .criar_vaga {
-    height: 60vh;
+main .duvidas_jovens,
+main .criar_vaga {
     padding: 2%;
 }
 
-main .duvidas_jovens h2, main .criar_vaga h2 {
+main .duvidas_jovens h2,
+main .criar_vaga h2 {
     color: var(--cor-secundaria);
 }
 
-main .duvidas_jovens hr, main .criar_vaga hr{
+main .duvidas_jovens hr,
+main .criar_vaga hr {
     width: 85%;
     border: 1px solid var(--cor-secundaria);
     margin-top: .5%;
+}
+
+/* Main - Dúvidas jovens */
+
+/* Main - Criar vagas */
+
+main .criar_vaga h3 {
+    padding: 2%;
+    color: var(--cor-secundaria);
+}
+
+main .botao_vaga {
+    background-color: var(--cor-secundaria);
+    width: 6vw;
+    margin-left: 2%;
+    margin-bottom: 3%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--cor-terciaria);
+}
+
+main .botao_vaga:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+}
+
+main .vagas_registradas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+}
+
+main .bloco_vaga {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 20vw;
+    height: 40vh;
+    padding: 1%;
+    border-radius: 1vw;
+    text-align: center;
+    cursor: pointer;
 }
