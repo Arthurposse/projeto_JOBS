@@ -46,6 +46,7 @@ header .bloco_usuario {
     gap: 25px;
     padding: 0.5%;
     border-radius: 2vw 0 0 2vw;
+    cursor: pointer;
 }
 
 header .img_user_nao_logado {

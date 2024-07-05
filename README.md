@@ -88,7 +88,6 @@
   - Ajustar responsividade.
   - Ajustar o footer.
   - Acrescentar carrossel mostrando algumas oportunidades de emprego (estágio/jovem aprendiz), mas com limite (após ser passado para o lado o carrossel X vezes, mostrar um alert falando "quer buscar outras oportunidades? Faça o cadastro agora mesmo!!" (algo assim, é apenas uma ideia)).
-  - Adicionar função ao clicar no botão de entrar no canto direito da página, para que o usuário seja direcionado para a página de Login.
 
 <br>
 
@@ -100,7 +99,13 @@
 <br>
 
 - Tela Home (Usuário Empresa)
-  - Planejar e desenvoler.
+  - Ajustar responsividade.
+  - Ajustar o footer.
+  - Desenvolver a parte da busca dos dados do usuário para serem impressos no Front-End.
+  - Verificar e ajustar as funções: Criação da conta do usuário empresa e a atualização de seus dados.
+  - Desenvolver o carrossel das dúvidas dos jovens.
+  - Desenvolver a função do botão para criar a vaga.
+  - Desenvolver a função para filtrar a partir da faixa etária e também a partir da área das vagas que estão registradas no BD.
 
 <br>
 
@@ -108,7 +113,6 @@
 	- Ajustar responsividade.
   - Planejar e desenvolver o sistema de chat.
   - Adicionar função que ao clicar em chat na página de home, ao entrar na tela chat, apareça o nome e a foto do usuário no canto direito da tela.
-  - Verificar navegação entre páginas.
   
 <br>
 
@@ -125,7 +129,7 @@
 - Tela Dicas/Sugestões (Visualizando Dúvida)
   - Ajustar responsividade.
   - Ajustar o footer.
-  - Adicionar a dúvida e as respostas dela na página (Será preciso buscar elas dentro do BD).
+  - Adicionar a dúvida e as respostas dela na página, buscando elas dentro do BD.
 
 <br>
 
