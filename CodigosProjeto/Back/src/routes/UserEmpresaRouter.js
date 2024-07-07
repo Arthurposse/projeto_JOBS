@@ -1,18 +1,17 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
 
-const { logIn, userEmpresa, uptadeUserEmpresa } = require('../controller/UserEmpresaController');
-
-// GET
-
-router.get('/verif/logIn', logIn);
+const {
+  userEmpresa,
+  uptadeUserEmpresa,
+} = require("../controller/UserEmpresaController");
 
 // POST
 
-router.post('/user/empresa', userEmpresa);
+router.post("/user/empresa", userEmpresa);
 
 // PUT
 
-router.put('/uptade/userEmpresa/:id', uptadeUserEmpresa);
+router.put("/uptade/userEmpresa/:id", uptadeUserEmpresa);
 
 module.exports = router;
