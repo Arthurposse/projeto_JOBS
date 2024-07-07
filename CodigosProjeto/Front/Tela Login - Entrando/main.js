@@ -34,10 +34,10 @@ button.onclick = async function (e) {
 
         setTimeout(() => {
           if (content.data[i].origin === "user_jovem") {
-            window.location.href = "../../Tela Home - Usuario Jovem/index.html";
+            window.location.href = "../Tela Home - Usuario Jovem/index.html";
           } else if (content.data[i].origin === "user_empresa") {
             window.location.href =
-              "../../Tela Home - Usuario Empresa/index.html";
+              "../Tela Home - Usuario Empresa/index.html";
           } else {
             alert(
               "ERROR! Não foi possível direcionar vocÊ para a próxima página!!"
