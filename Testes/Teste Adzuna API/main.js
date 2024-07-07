@@ -3,7 +3,7 @@ const url = "http://localhost:3000/api/jobs";
 
 const payload = {
   // Parâmetros de busca como keywords, location, etc.
-  keywords: "Desenvolvedor de software",
+  keywords: "Rh",
   location: "",
 };
 
@@ -25,12 +25,30 @@ fetch(url, {
   .then((data) => {
     console.log("Resposta da API Adzuna: ", data);
 
+    const jobsListElement = document.querySelector("section");
+
     for (let i = 0; i < data.results.length; i++) {
-      console.log(`Título Vaga: ${data.results[i].title}`);
-      console.log(`Descrição: ${data.results[i].description}`);
-      console.log(`Empresa: ${data.results[i].company.display_name}`);
-      console.log(`Localização: ${data.results[i].location.display_name}`);
-      console.log("");
+      const jobElement = document.createElement("div");
+      jobElement.classList.add("job-item");
+
+      const titleElement = document.createElement("h3");
+      titleElement.textContent = `Título Vaga: ${data.results[i].title}`;
+
+      const descriptionElement = document.createElement("p");
+      descriptionElement.textContent = `Descrição: ${data.results[i].description}`;
+
+      const companyElement = document.createElement("p");
+      companyElement.textContent = `Empresa: ${data.results[i].company.display_name}`;
+
+      const locationElement = document.createElement("p");
+      locationElement.textContent = `Localização: ${data.results[i].location.display_name}`;
+
+      jobElement.appendChild(titleElement);
+      jobElement.appendChild(descriptionElement);
+      jobElement.appendChild(companyElement);
+      jobElement.appendChild(locationElement);
+
+      jobsListElement.appendChild(jobElement);
     }
   })
   .catch((error) => {
