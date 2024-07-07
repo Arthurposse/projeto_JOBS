@@ -3,7 +3,7 @@ const url = "http://localhost:3000/api/jobs";
 
 const payload = {
   // Parâmetros de busca como keywords, location, etc.
-  keywords: "Rh",
+  keywords: "Empacotador",
   location: "",
 };
 
@@ -43,10 +43,15 @@ fetch(url, {
       const locationElement = document.createElement("p");
       locationElement.textContent = `Localização: ${data.results[i].location.display_name}`;
 
+      const linkElement = document.createElement('a');
+      linkElement.href = data.results[i].redirect_url; // Suponha que redirect_url seja o link detalhado da vaga
+      linkElement.textContent = "Detalhes da Vaga"; // Texto do link
+
       jobElement.appendChild(titleElement);
       jobElement.appendChild(descriptionElement);
       jobElement.appendChild(companyElement);
       jobElement.appendChild(locationElement);
+      jobElement.appendChild(linkElement);
 
       jobsListElement.appendChild(jobElement);
     }
