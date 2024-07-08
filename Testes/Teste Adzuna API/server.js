@@ -10,13 +10,13 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/api/jobs", async (req, res) => {
-  const apiUrl = "https://api.adzuna.com/v1/api/jobs/br/search/1"; // Endpoint para buscar vagas no Brasil
+  const baseUrl = "https://api.adzuna.com/v1/api/jobs/br/search";
   const appId = ""; // Seu app_id da Adzuna
   const appKey = ""; // Sua app_key da Adzuna
-  const { keywords, location } = req.body;
+  const { keywords, location, page } = req.body;
 
   try {
-    const url = `${apiUrl}?app_id=${appId}&app_key=${appKey}&what=${encodeURIComponent(
+    const url = `${baseUrl}/${page}?app_id=${appId}&app_key=${appKey}&what=${encodeURIComponent(
       keywords
     )}&where=${encodeURIComponent(location)}`;
     const response = await fetch(url);
