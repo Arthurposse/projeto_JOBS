@@ -89,8 +89,8 @@ button.onclick = async function (e) {
         }, 2100);
       } else {
         Swal.fire({
-          title: "Conta não encontrada!!",
-          text: "Tente novamente!! Ou crie uma conta!!",
+          title: "ERRO!!",
+          text: "Tente novamente!!",
           icon: "error",
           showConfirmButton: false,
           timer: 2300,
