@@ -4,7 +4,7 @@ use jobs;
 
 create table user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    -- ft_perfil JSON,
+    -- ft_perfil,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -15,13 +15,13 @@ create table user_jovem(
 
 create table user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    -- ft_perfil JSON,
+    -- ft_perfil,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     telefone VARCHAR(10) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
-    cnpj VARCHAR(14) NOT NULL,
+    cnpj VARCHAR(18) NOT NULL,
     razao_social VARCHAR(20) NOT NULL,
     setor_atividade VARCHAR(25) NOT NULL
 );
@@ -83,6 +83,8 @@ VALUES
 
 -- TESTE - Inserindo valores fictícios
 
+-- User Jovem
+
 INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) 
 VALUES
     (
@@ -93,3 +95,18 @@ VALUES
         "51996065708",
         "Sapucaia do Sul"
     );
+
+-- User Empresa
+
+INSERT INTO user_empresa(name, email, password, telefone, cidade, cnpj, razao_social, setor_atividade)
+VALUES 
+(
+    'Robson Silverado JR',
+    'robs@hotmail.com',
+    '123',
+    '519999999',
+    'São Leopoldo',
+    '01.123.456/7891-23',
+    '',
+    ''
+)
