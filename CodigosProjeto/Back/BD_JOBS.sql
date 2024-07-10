@@ -92,7 +92,7 @@ VALUES
         "aspossebon@gmail.com",
         "1234",
         "2006-12-03",
-        "51996065708",
+        "519999999",
         "Sapucaia do Sul"
     );
 
