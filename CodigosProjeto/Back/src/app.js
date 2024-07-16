@@ -7,6 +7,7 @@ const routerJovem = require("./routes/UserJovemRouter");
 const routerEmpresa = require("./routes/UserEmpresaRouter");
 const enviarEmailRouter = require("./routes/enviarEmailRouter");
 const LoginRouter = require("./routes/LoginRouter");
+const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 
 dotenv.config();
 
@@ -18,5 +19,6 @@ app.use("/api", routerJovem);
 app.use("/api", routerEmpresa);
 app.use("/api", enviarEmailRouter);
 app.use("/api", LoginRouter);
+app.use("/api", BuscarVagaRouter);
 
 module.exports = app;

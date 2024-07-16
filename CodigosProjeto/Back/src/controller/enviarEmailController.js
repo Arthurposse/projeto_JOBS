@@ -47,5 +47,5 @@ async function sendVerificationCode(req, res) {
 }
 
 module.exports = {
-  sendVerificationCode,
+  sendVerificationCode
 };
