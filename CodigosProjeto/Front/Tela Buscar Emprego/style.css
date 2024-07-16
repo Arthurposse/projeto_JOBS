@@ -95,9 +95,11 @@ main {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   padding: 4%;
+  padding-bottom: 15%;
 }
+
+/* Main - Barra de pesquisa */
 
 .bloco_barra_pesquisa {
   display: flex;
@@ -106,13 +108,13 @@ main {
 }
 
 .bloco_barra_pesquisa input {
-  background-color: var(--cor-terciaria);
+  background-color: var(--cor-secundaria);
   width: 25vw;
   height: 5vh;
   padding: 2%;
   border: 0;
   border-radius: 1vw;
-  color: var(--cor-secundaria);
+  color: var(--cor-terciaria);
 }
 
 input:focus {
@@ -124,7 +126,50 @@ input:focus {
   cursor: pointer;
 }
 
-main button {
+/* Main - Empregos encontrados */
+
+#empregos_encontrados {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5vh;
+  margin-top: 4%;
+}
+
+.bloco_vaga {
+  background-color: var(--cor-terciaria);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 60vw;
+  padding: 3%;
+  border-radius: 2vw;
+  gap: 3vh;
+  color: var(--cor-secundaria);
+}
+
+.bloco_vaga h3 {
+  font-weight: bold;
+}
+
+.bloco_vaga .infos_vaga {
+  width: 70%;
+}
+
+.bloco_vaga div {
+  display: flex;
+  gap: 4vw;
+}
+
+.bloco_vaga div p strong {
+  font-weight: bold;
+}
+
+.bloco_vaga a {
+  color: var(--cor-secundaria);
+}
+
+main #botao_mais {
   background-color: var(--cor-secundaria);
   width: 6vw;
   padding: 0.5%;
@@ -136,7 +181,7 @@ main button {
   cursor: pointer;
 }
 
-main button:hover {
+main #botao_mais:hover {
   background-color: var(--cor-terciaria);
   color: var(--cor-secundaria);
   font-weight: 400;

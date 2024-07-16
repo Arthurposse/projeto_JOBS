@@ -72,34 +72,41 @@ function buscarVagas() {
 // Função para criar elemento HTML para cada vaga
 function createJobElement(job) {
   const jobElement = document.createElement("div");
-  jobElement.classList.add("job-item");
+  jobElement.classList.add("bloco_vaga");
 
   const titleElement = document.createElement("h3");
-  titleElement.textContent = `Título Vaga: ${job.title}`;
+  titleElement.textContent = job.title;
 
   const descriptionElement = document.createElement("p");
-  descriptionElement.textContent = `Descrição: ${job.description}`;
+  descriptionElement.classList.add("infos_vaga");
+  descriptionElement.textContent = job.description;
 
-  const companyElement = document.createElement("p");
-  companyElement.textContent = `Empresa: ${job.company.display_name}`;
+  const detailsDiv = document.createElement("div");
 
+  const locationLabel = document.createElement("strong");
+  locationLabel.textContent = "Localização:";
   const locationElement = document.createElement("p");
-  locationElement.textContent = `Localização: ${job.location.display_name}`;
+  locationElement.appendChild(locationLabel);
+  locationElement.appendChild(document.createTextNode(` ${job.location.display_name}`));
 
+  const dataLabel = document.createElement("strong");
+  dataLabel.textContent = "Data de criação da vaga:";
   const dataElement = document.createElement("p");
   let data_criacao = job.created;
-  dataElement.textContent = `Data de criação da vaga: ${data_criacao.slice(8, 10)}/${data_criacao.slice(5, 7)}/${data_criacao.slice(0, 4)} as ${data_criacao.slice(11, 16)}`;
+  dataElement.appendChild(dataLabel);
+  dataElement.appendChild(document.createTextNode(` ${data_criacao.slice(8, 10)}/${data_criacao.slice(5, 7)}/${data_criacao.slice(0, 4)} as ${data_criacao.slice(11, 16)}`));
 
   const linkElement = document.createElement('a');
   linkElement.href = job.redirect_url;
   linkElement.textContent = "Detalhes da Vaga";
   linkElement.target = "_blank";
 
+  detailsDiv.appendChild(locationElement);
+  detailsDiv.appendChild(dataElement);
+
   jobElement.appendChild(titleElement);
   jobElement.appendChild(descriptionElement);
-  jobElement.appendChild(companyElement);
-  jobElement.appendChild(locationElement);
-  jobElement.appendChild(dataElement);
+  jobElement.appendChild(detailsDiv);
   jobElement.appendChild(linkElement);
 
   return jobElement;
