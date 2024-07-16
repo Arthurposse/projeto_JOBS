@@ -19,7 +19,7 @@
 /* Header */
 
 header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_header.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images//Background_header.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -43,14 +43,19 @@ header .bloco_usuario {
     background-color: rgba(25, 167, 206, 0.6);
     display: flex;
     align-items: center;
-    gap: 25px;
-    padding: 0.5%;
+    gap: 20px;
+    padding: 1%;
     border-radius: 2vw 0 0 2vw;
-}
-
-header .img_user_nao_logado {
-    width: 24%;
-}
+    width: 16%;
+  }
+  
+  header .bloco_usuario img {
+    width: 20%;
+  }
+  
+  header .bloco_usuario h3 {
+    font-size: 1rem;
+  }
 
 header .header_meio {
     display: flex;

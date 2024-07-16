@@ -19,7 +19,7 @@
 /* Body */
 
 body {
-    background-image: url('./Img/Background.png');
+    background-image: url('../images/Background.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -34,21 +34,20 @@ main {
 }
 
 main section {
+    backdrop-filter: blur(20px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 50px;
-    backdrop-filter: blur(10px);
     width: 50%;
     height: 80vh;
     padding: 5%;
-    box-shadow: 0 0 1px 1.5px white;
     border-radius: 4vw;
 }
 
 main section img {
-    width: 30%;
+    width: 38%;
 }
 
 main section form {
@@ -69,6 +68,7 @@ main section form .texto {
 .bloco_input div {
     display: flex;
     align-items: center;
+    width: 23vw;
     margin-top: 2%;
     padding: 4%;
     border: 3px solid var(--cor-primaria);

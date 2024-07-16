@@ -19,7 +19,7 @@
 /* Body */
 
 body {
-    background-image: url('./Img/Background.png');
+    background-image: url('../../images//Background.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -45,7 +45,7 @@ main .bloco {
 }
 
 main .bloco img {
-    width: 30%;
+    width: 45%;
 }
 
 main .bloco form {

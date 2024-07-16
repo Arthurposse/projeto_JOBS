@@ -19,7 +19,7 @@
 /* Header */
 
 header {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_header.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -92,9 +92,11 @@ header .forma {
 main {
   background-color: var(--cor-primaria);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   height: 100vh;
-  /* padding: 2%; */
+  padding: 4%;
 }
 
 .bloco_barra_pesquisa {
@@ -105,8 +107,8 @@ main {
 
 .bloco_barra_pesquisa input {
   background-color: var(--cor-terciaria);
-  width: 20vw;
-  height: 4.4vh;
+  width: 25vw;
+  height: 5vh;
   padding: 2%;
   border: 0;
   border-radius: 1vw;
@@ -120,6 +122,24 @@ input:focus {
 .bloco_barra_pesquisa i {
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+main button {
+  background-color: var(--cor-secundaria);
+  width: 6vw;
+  padding: 0.5%;
+  margin-top: 5%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1rem;
+  color: var(--cor-fonte);
+  cursor: pointer;
+}
+
+main button:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  font-weight: 400;
 }
 
 /* Footer */
@@ -188,7 +208,7 @@ footer .wave {
   left: 0;
   width: 100%;
   height: 100px;
-  background: url(./Img/wave.png);
+  background: url(../images/wave.png);
   background-size: 1000px 100px;
 }
 

@@ -19,7 +19,7 @@
 /* Header */
 
 header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_header.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -90,7 +90,7 @@ main .buscar_oportunidade hr {
 /* Main - Dúvidas frequentes dos jovens */
 
 main .duvidas_freq {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Img/Background_main.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_main.png');
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -268,7 +268,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100px;
-    background: url(./Img/wave.png);
+    background: url(../images/wave.png);
     background-size: 1000px 100px;
   }
   

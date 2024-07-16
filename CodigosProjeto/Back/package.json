@@ -1,5 +1,5 @@
 {
-  "name": "api_landingpage",
+  "name": "api_jobs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arthur_Possebon",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
