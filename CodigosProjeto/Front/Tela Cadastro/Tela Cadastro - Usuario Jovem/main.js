@@ -41,9 +41,27 @@ button.onclick = async function (e) {
   let telefone = document.getElementById("telefone").value;
   let cidade = document.getElementById("cidade").value;
 
+  // Para Verificar idade
+  let ano_user = Number(data_nascimento.slice(0, 4));
+
+  let mes_user = Number(data_nascimento.slice(5, 7));
+
+  let dia_user = Number(data_nascimento.slice(8, 10));
+
+  const data_var = new Date();
+  const ano = data_var.getFullYear();
+  const mes = data_var.getMonth() + 1;
+  const dia = data_var.getDate();
+
+  let userAge = ano - ano_user;
+
+  if (mes < mes_user || (mes === mes_user && dia < dia_user)) {
+    userAge--;
+  }
+
   let data = { name, email, password, data_nascimento, telefone, cidade };
 
-  if (password === confirm_password) {
+  if (password === confirm_password && userAge >= 14 && userAge <= 24) {
     // POST
     const response = await fetch("http://localhost:3008/api/user/jovem", {
       method: "POST",
@@ -97,17 +115,33 @@ button.onclick = async function (e) {
         });
       }
     } else {
-      console.error();
-      alert("Não deu o POST!!");
+      Swal.fire({
+        title: "ERRO NO POST!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
     }
   }
   else {
-    Swal.fire({
-      title: "As senhas não coincidem!!",
-      text: "Tente novamente!!",
-      icon: "error",
-      showConfirmButton: false,
-      timer: 2300,
-    });
+    if (password !== confirm_password) {
+      Swal.fire({
+        title: "As senhas não coincidem!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    }
+    else {
+      Swal.fire({
+        title: "Limite de idade!!",
+        text: "Não é possível realizar cadastrado no site!! Você deve possuir entre 14 a 24 anos!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    }
   }
-};
+}

@@ -19,7 +19,7 @@ botao.onclick = function () {
 
     setTimeout(() => {
       window.location.href =
-        "../../Tela LogIn/Tela Login - Entrando/index.html";
+        "../../Tela Login - Entrando/index.html";
     }, 2200);
   } else {
     Swal.fire({
