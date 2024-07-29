@@ -209,7 +209,31 @@ main .modulo_card i {
 
 /* Main - Estatísticas do Currículo do Jovem */
 
+.estatisca_curriculo canvas {
+  padding: 4%;
+}
 
+.estatisca_curriculo .botao_estatistica {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.estatisca_curriculo button {
+  background-color: var(--cor-secundaria);
+  width: 6vw;
+  margin-bottom: 3%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--cor-terciaria);
+}
+
+.estatisca_curriculo button:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+}
 
 /* Main - Perfil */
 

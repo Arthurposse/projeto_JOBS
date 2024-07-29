@@ -387,6 +387,50 @@ cards.forEach(card => {
     });
 });
 
+// Estatísticas do currículo do usuário
+
+let ctx = document.getElementById('grafico').getContext('2d');
+
+let data = {
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    datasets: [{
+        label: 'Visualização currículo',
+        backgroundColor: '#9DD4D1',
+        borderColor: '#0e566a',
+        borderWidth: 4,
+        data: [12, 19, 3, 5, 2, 3, 2, 6, 7, 9, 12, 15] // Dados apresentados
+    }]
+};
+
+// Configurando as opções do gráfico
+let options = {
+    scales: {
+        x: { // Configurações para o eixo x
+            ticks: {
+                color: '#9DD4D1', // Cor dos números no eixo X
+                font: {
+                    size: 16 // Tamanho da fonte dos números no eixo x
+                }
+            }
+        },
+        y: { // Configurações para o eixo y
+            ticks: {
+                color: '#0e566a', // Cor dos números no eixo Y
+                font: {
+                    size: 16 // Tamanho da fonte dos números no eixo x
+                }
+            }
+        }
+    }
+};
+
+// Criando o objeto de gráfico de linha
+let myChart = new Chart(ctx, {
+    type: 'line', // Tipo do gráfico
+    data: data,
+    options: options
+});
+
 // Coletando dados perfil (GET)
 
 let nome = document.getElementById('nome_user');

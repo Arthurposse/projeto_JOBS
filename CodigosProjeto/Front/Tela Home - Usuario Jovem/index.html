@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -40,10 +42,10 @@
       <h2> Planejamento de carreira </h2>
       <hr>
 
-      <!-- <h3> Plano a seguir </h3>
+      <h3> Plano a seguir </h3>
       <section class="planos_seguir">
         
-      </section> -->
+      </section>
 
       <h3> Metas </h3>
 
@@ -85,10 +87,17 @@
       </section>
     </section>
 
-    <!-- <section class="estatisca_curriculo">
+    <section class="estatisca_curriculo">
       <h2> Estatística da visualização do seu currículo </h2>
       <hr>
-    </section> -->
+
+      <canvas id="grafico" width="30" height="10"></canvas>
+
+      <section class="botao_estatistica">
+        <button> <i class="bi bi-plus-circle"></i> </button>
+        <button> <i class="bi bi-trash3"></i> </button>
+      </section>
+    </section>
 
     <section class="perfil">
       <h2> Seu perfil </h2>
