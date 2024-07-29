@@ -128,6 +128,16 @@ button:hover {
     transition: all .6s ease;
 }
 
+a {
+    text-decoration: none;
+    color: var(--cor-fonte);
+}
+
+a:hover {
+    transition: all .5s ease;
+    color: var(--cor-terciaria);
+}
+
 /* Medias Queries */
 
 /* Tablet */
