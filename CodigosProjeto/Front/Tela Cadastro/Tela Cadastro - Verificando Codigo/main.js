@@ -3,7 +3,9 @@ let codigoVerif = localStorage.getItem("CodVerif");
 
 const botao = document.querySelector("button");
 
-botao.onclick = function () {
+botao.onclick = function (e) {
+  e.preventDefault();
+
   const cod_verif = document.getElementById("cod_verif").value;
 
   if (codigoVerif === cod_verif) {
