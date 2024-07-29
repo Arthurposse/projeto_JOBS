@@ -57,12 +57,13 @@ create table questoes_modulos(
     questao_1 VARCHAR(255) NOT NULL,
     questao_2 VARCHAR(255) NOT NULL,
     questao_3 VARCHAR(255) NOT NULL,
-	res_correta VARCHAR(30) NOT NULL
+	res_correta VARCHAR(30) NOT NULL,
+    explicacao text NOT NULL
 );
 
 -- Perguntas e Respostas das questões dos módulos
 
-INSERT INTO questoes_modulos(tipo_modulo, pergunta, questao_1, questao_2, questao_3, res_correta) 
+INSERT INTO questoes_modulos(tipo_modulo, pergunta, questao_1, questao_2, questao_3, res_correta, explicacao) 
 VALUES 
 (
     "email",
@@ -70,7 +71,8 @@ VALUES
     "A) Não mencionar os anexos, para surpreender o destinatário.",
     "B) Enviar os anexos em um e-mail separado.",
     "C) Mencionar claramente os anexos e verificar se estão corretos.",
-    "C"
+    "C",
+    ""
 ),
 (
     "email",
@@ -78,7 +80,8 @@ VALUES
     "A) Não é importante, desde que a mensagem seja clara.",
     "B) Um tom profissional ajuda a transmitir respeito e credibilidade.",
     "C) Um tom informal é sempre mais bem recebido pelos destinatários.",
-    "B"
+    "B",
+    "Manter um tom profissional ao redigir um e-mail no ambiente de trabalho é fundamental por diversas razões. Primeiramente, um tom profissional ajuda a transmitir respeito e credibilidade aos destinatários. Isso é crucial para estabelecer e manter relações profissionais saudáveis, tanto dentro da própria organização quanto com clientes, parceiros e outras partes interessadas. Além disso, um e-mail profissional reflete a imagem da empresa, contribuindo para a construção de uma reputação sólida e confiável. Por último, mas não menos importante, a manutenção de um tom profissional pode ajudar a evitar mal-entendidos e conflitos, garantindo uma comunicação clara e eficaz. Em resumo, o uso de um tom profissional é essencial para criar e manter um ambiente de trabalho respeitoso, eficiente e profissional."
 );
 
 -- TESTE - Inserindo valores fictícios
@@ -87,14 +90,14 @@ VALUES
 
 INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) 
 VALUES
-    (
-        "Arthur de Souza Possebon",
-        "aspossebon@gmail.com",
-        "1234",
-        "2006-12-03",
-        "519999999",
-        "Sapucaia do Sul"
-    );
+(
+    "Arthur de Souza Possebon",
+    "aspossebon@gmail.com",
+    "1234",
+    "2006-12-03",
+    "519999999",
+    "Sapucaia do Sul"
+);
 
 -- User Empresa
 

@@ -99,7 +99,7 @@ botao_concluir.onclick = function () {
         Swal.fire({
           title: "Parábens, você acertou!!",
           text: "Bora ver quantas você acertou?",
-          imageUrl: "img/Img_final.svg",
+          imageUrl: "../images/Img_final.svg",
           imageHeight: 300,
         });
 
@@ -117,7 +117,7 @@ botao_concluir.onclick = function () {
           Swal.fire({
             title: "Parábens, você acertou!!",
             text: "Bora pra próxima!!",
-            imageUrl: "img/Img_final.svg",
+            imageUrl: "../images/Img_final.svg",
             imageHeight: 300,
           });
           // Exiba a próxima pergunta e suas opções de resposta
@@ -131,7 +131,7 @@ botao_concluir.onclick = function () {
         Swal.fire({
           title: "Infelizmente você errou.",
           text: "Mais sorte na próxima vez!!",
-          imageUrl: "img/Img_boneco_errou.svg",
+          imageUrl: "../images/Img_boneco_errou.svg",
           imageHeight: 300
         });
       }
