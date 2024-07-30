@@ -159,6 +159,7 @@ input:focus {
 .bloco_vaga div {
   display: flex;
   gap: 4vw;
+  text-align: center;
 }
 
 .bloco_vaga div p strong {
