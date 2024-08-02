@@ -1,3 +1,17 @@
+// Planejamento de carreira - Planos a seguir
+
+const botao_gb = document.getElementById('botao_gb');
+
+botao_gb.onclick = async function() {
+    try {
+        const response = await fetch('http://localhost:3008/api/apiGB');
+        const story = await response.text();
+        console.log(story)
+      } catch (error) {
+        console.error('Erro ao gerar a história:', error);
+      }
+}
+
 // Planejamento de carreira - Metas usuário
 
 let id_user = Number(localStorage.getItem('ID_user'));

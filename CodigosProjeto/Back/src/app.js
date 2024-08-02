@@ -8,6 +8,7 @@ const routerEmpresa = require("./routes/UserEmpresaRouter");
 const enviarEmailRouter = require("./routes/enviarEmailRouter");
 const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
+const ApiGbRouter = require("./routes/ApiGbRouter");
 
 dotenv.config();
 
@@ -20,5 +21,6 @@ app.use("/api", routerEmpresa);
 app.use("/api", enviarEmailRouter);
 app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
+app.use("/api", ApiGbRouter);
 
 module.exports = app;
