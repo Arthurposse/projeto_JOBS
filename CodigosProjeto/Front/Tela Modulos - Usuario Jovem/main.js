@@ -56,6 +56,7 @@ async function getModulos(buscar_modulo) {
   res_BD = content;
 
   let totalQuestoes = content.data.length;
+  localStorage.setItem('Total_questoes', totalQuestoes);
 
   let numerosUsados = [];
 
@@ -80,6 +81,8 @@ getModulos(buscar);
 
 // Adicionando infos no html
 const botao_concluir = document.querySelector("button");
+
+let cont_pontos = 0;
 
 botao_concluir.onclick = function () {
   const inputs = document.querySelectorAll('input[type="checkbox"]');
@@ -120,6 +123,9 @@ botao_concluir.onclick = function () {
             imageUrl: "../images/Img_final.svg",
             imageHeight: 300,
           });
+          
+          cont_pontos += 1;
+          
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
         } else {
@@ -139,6 +145,10 @@ botao_concluir.onclick = function () {
       alert("Selecione apenas UMA opção!!");
     }
   } else {
+    cont_pontos += 1; 
+
+    localStorage.setItem('Pontos', cont_pontos);
+
     window.location.href =
       "../Tela Explicacao Modulos - Usuario Jovem/index.html";
   }

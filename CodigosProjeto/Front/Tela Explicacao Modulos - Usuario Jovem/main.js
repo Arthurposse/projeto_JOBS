@@ -1,10 +1,10 @@
 const tipo_modulo_escolhido = localStorage.getItem("Modulo");
 const h2_quant_acertos = document.getElementById('quant_acertos');
 
-let acertos = 5;
-let erros = 10;
+let total_acertos = localStorage.getItem('Pontos');
+let total_questoes = localStorage.getItem('Total_questoes');
 
-h2_quant_acertos.textContent = `Você acertou ${acertos}/${erros}!!`
+h2_quant_acertos.textContent = `Você acertou ${total_acertos}/${total_questoes}!!`
 
 let explicacao = document.getElementById("explicacao");
 

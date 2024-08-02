@@ -7,14 +7,6 @@ async function BuscarVaga(req, res) {
     const appId = process.env.ADZUNA_ID;
     const appKey = process.env.ADZUNA_KEY;
 
-    // if (!appId || !appKey) {
-    //     return res.status(500).json({ error: "Credenciais não configuradas corretamente" });
-    // }
-
-    // if (!keywords || !page) {
-    //     return res.status(400).json({ error: "Parâmetros obrigatórios faltando" });
-    // }
-
     try {
         const fetch = await import('node-fetch').then(mod => mod.default); // Importação dinâmica
         const url = `${baseUrl}/${page}?app_id=${appId}&app_key=${appKey}&what=${encodeURIComponent(
