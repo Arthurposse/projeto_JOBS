@@ -3,6 +3,6 @@ const router = Router();
 
 const { apiGoogleBard } = require("../controller/ApiGbController");
 
-router.get("/apiGB", apiGoogleBard);
+router.post("/apiGB", apiGoogleBard);
 
 module.exports = router;

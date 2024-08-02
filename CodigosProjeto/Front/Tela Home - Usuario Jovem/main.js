@@ -3,10 +3,18 @@
 const botao_gb = document.getElementById('botao_gb');
 
 botao_gb.onclick = async function() {
+
+    const area_usuario = document.getElementById('area_usuario').value;
+    
     try {
-        const response = await fetch('http://localhost:3008/api/apiGB');
+        const response = await fetch(`http://localhost:3008/api/apiGB`, {
+            method: "POST",
+            headers: { "Content-type": "application/json;charset=UTF-8" },
+            body: JSON.stringify({area_usuario})
+        });
         const story = await response.text();
-        console.log(story)
+        console.log(story);
+
       } catch (error) {
         console.error('Erro ao gerar a história:', error);
       }
