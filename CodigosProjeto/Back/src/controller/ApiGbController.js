@@ -1,6 +1,7 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const api_key = process.env.GEMINI_KEY;
 
-const genAI = new GoogleGenerativeAI('AIzaSyAWo2kjRoj4FNV1pvm5416n3SgnvpuD6MI');
+const genAI = new GoogleGenerativeAI(api_key);
 
 async function apiGoogleBard(req, res) {
 
