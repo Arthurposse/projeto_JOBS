@@ -4,6 +4,7 @@ const botao_gb = document.getElementById('botao_gb');
 
 botao_gb.onclick = async function() {
 
+    const planos_seguir = document.querySelector('.planos_seguir');
     const area_usuario = document.getElementById('area_usuario').value;
     
     try {
@@ -13,7 +14,7 @@ botao_gb.onclick = async function() {
             body: JSON.stringify({area_usuario})
         });
         const story = await response.text();
-        console.log(story);
+        planos_seguir.innerHTML += story;
 
       } catch (error) {
         console.error('Erro ao gerar a história:', error);

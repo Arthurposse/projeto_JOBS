@@ -125,7 +125,6 @@ main .planejamento_carreira h3 {
 main .planos_seguir {
   background-color: var(--cor-terciaria);
   width: 80%;
-  height: 35vh;
   border-radius: 2vw;
 }
 
