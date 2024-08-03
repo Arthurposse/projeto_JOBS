@@ -169,12 +169,11 @@ main .planos_seguir .bloco_plano_area input::placeholder {
 
 main .planos_seguir .bloco_plano_area button {
   background-color: var(--cor-secundaria);
-  width: 6vw;
   margin-bottom: 2%;
-  padding: .6%;
+  padding: 1%;
   border: 0;
   border-radius: 1vw;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   cursor: pointer;
   color: var(--cor-terciaria);
 }
@@ -189,7 +188,8 @@ main .planos_seguir .plano_sugerido {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2vh;
+  gap: 4vh;
+  padding: 4%;
 }
 
 main .planos_seguir .plano_sugerido h1, .plano_sugerido h2{
@@ -208,6 +208,11 @@ main .planos_seguir .plano_sugerido p, .plano_sugerido li {
 }
 
 /* Main - Metas */
+
+main .bloco_botoes_metas {
+  display: flex;
+  gap: 1vw;
+}
 
 main .botao_meta {
   background-color: var(--cor-secundaria);

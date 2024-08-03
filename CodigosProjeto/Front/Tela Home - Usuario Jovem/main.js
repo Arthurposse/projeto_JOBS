@@ -14,8 +14,8 @@ botao_gb.onclick = async function() {
             body: JSON.stringify({area_usuario})
         });
         planos_sugerido.innerHTML = '';
-        const story = await response.text();
-        planos_sugerido.innerHTML += story;
+        const plano = await response.text();
+        planos_sugerido.innerHTML += plano;
 
       } catch (error) {
         console.error('Erro ao gerar a história:', error);
