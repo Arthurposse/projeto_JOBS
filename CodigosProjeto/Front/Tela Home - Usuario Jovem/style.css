@@ -115,17 +115,96 @@ main .estatisca_curriculo hr {
 
 /* Main - Planejamento de carreira */
 
+main .planejamento_carreira {
+  display: flex;
+  flex-direction: column;
+}
+
 main .planejamento_carreira h3 {
   padding: 2%;
   color: var(--cor-secundaria);
 }
 
-/* Metas - Planos a seguir */
+/* Main - Planos a seguir */
 
 main .planos_seguir {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+  gap: 2vh;
   background-color: var(--cor-terciaria);
   width: 80%;
+  padding: 4%;
   border-radius: 2vw;
+}
+
+main .planos_seguir .bloco_plano_area {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+main .planos_seguir .bloco_plano_area h4 {
+  color: var(--cor-secundaria);
+}
+
+main .planos_seguir .bloco_plano_area input {
+  width: 20vw;
+  padding: 2.5%;
+  border: 0;
+  border-radius: 2vw;
+  background-color: var(--cor-primaria);
+  color: white;
+}
+
+main .planos_seguir .bloco_plano_area input:focus {
+  outline: none;
+}
+
+main .planos_seguir .bloco_plano_area input::placeholder {
+  color: rgba(0, 0, 0, 0.459);
+}
+
+main .planos_seguir .bloco_plano_area button {
+  background-color: var(--cor-secundaria);
+  width: 6vw;
+  margin-bottom: 2%;
+  padding: .6%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--cor-terciaria);
+}
+
+main .planos_seguir .bloco_plano_area button:hover {
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+  transition: all .6s ease;
+}
+
+main .planos_seguir .plano_sugerido {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+main .planos_seguir .plano_sugerido h1, .plano_sugerido h2{
+  border-bottom: 2px solid var(--cor-secundaria);
+  color: var(--cor-secundaria);
+  font-size: 1.3rem;
+}
+
+main .planos_seguir .plano_sugerido h1 {
+  font-size: 1.6rem;
+  margin-bottom: 2%;
+}
+
+main .planos_seguir .plano_sugerido p, .plano_sugerido li {
+  color: var(--cor-secundaria);
 }
 
 /* Main - Metas */
@@ -144,6 +223,7 @@ main .botao_meta {
 main .botao_meta:hover {
   background-color: var(--cor-terciaria);
   color: var(--cor-secundaria);
+  transition: all .6s ease;
 }
 
 main .pc_metas {

@@ -4,7 +4,7 @@ const botao_gb = document.getElementById('botao_gb');
 
 botao_gb.onclick = async function() {
 
-    const planos_seguir = document.querySelector('.planos_seguir');
+    const planos_sugerido = document.querySelector('.plano_sugerido');
     const area_usuario = document.getElementById('area_usuario').value;
     
     try {
@@ -13,8 +13,9 @@ botao_gb.onclick = async function() {
             headers: { "Content-type": "application/json;charset=UTF-8" },
             body: JSON.stringify({area_usuario})
         });
+        planos_sugerido.innerHTML = '';
         const story = await response.text();
-        planos_seguir.innerHTML += story;
+        planos_sugerido.innerHTML += story;
 
       } catch (error) {
         console.error('Erro ao gerar a história:', error);
