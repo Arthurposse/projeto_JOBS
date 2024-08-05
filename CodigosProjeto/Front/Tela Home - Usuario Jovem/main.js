@@ -14,16 +14,16 @@ botao_gb.onclick = async function () {
     body: JSON.stringify({ area_usuario }),
   });
 
-  planos_sugerido.innerHTML = `<img src="../images/Logo_JOBS.png" alt="" class="img_logo_plano">`;
+  planos_sugerido.innerHTML = "";
   const plano = await response.text();
   planos_sugerido.innerHTML += plano;
 
-  img_logo.style.opacity = "1";
   botao_download.style.opacity = "1";
-//   planos_sugerido.style.marginBottom = "auto";
 };
 
 // Planejamento de carreira - Planos a seguir (Download do plano)
+
+// Função principal para gerar o PDF
 
 async function downloadPDF() {
   const { jsPDF } = window.jspdf;
@@ -47,8 +47,8 @@ async function downloadPDF() {
   // Calcula a largura e altura do PDF com base na escala do canvas e adiciona padding
   const imgWidth = canvas.width / 3;
   const imgHeight = canvas.height / 3;
-  const pdfWidth = imgWidth + padding * 2;
-  const pdfHeight = imgHeight + padding * 2;
+  const pdfWidth = imgWidth + padding * 3;
+  const pdfHeight = imgHeight + padding * 3;
 
   // Cria um novo documento PDF
   const pdf = new jsPDF({
