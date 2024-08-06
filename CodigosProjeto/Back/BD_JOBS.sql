@@ -26,6 +26,15 @@ create table user_empresa(
     setor_atividade VARCHAR(25) NOT NULL
 );
 
+create table vagas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    nome_empresa VARCHAR(50) NOT NULL,
+    area VARCHAR(50) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
+    descricao text NOT NULL
+);
+
 create table duvidas(
 	id_user INT NOT NULL,
     id_duvida INT PRIMARY KEY AUTO_INCREMENT,
@@ -112,4 +121,4 @@ VALUES
     '01.123.456/7891-23',
     '',
     ''
-)
+);
