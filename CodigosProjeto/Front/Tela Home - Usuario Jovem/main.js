@@ -47,8 +47,12 @@ async function downloadPDF() {
   // Calcula a largura e altura do PDF com base na escala do canvas e adiciona padding
   const imgWidth = canvas.width / 3;
   const imgHeight = canvas.height / 3;
-  const pdfWidth = imgWidth + padding * 3;
-  const pdfHeight = imgHeight + padding * 3;
+  const pdfWidth = imgWidth + padding * 2;
+  const pdfHeight = imgHeight + padding * 2;
+
+  // Calcula a posição para centralizar a imagem no PDF com padding
+  const xOffset = (pdfWidth - imgWidth) / 2;
+  const yOffset = (pdfHeight - imgHeight) / 2;
 
   // Cria um novo documento PDF
   const pdf = new jsPDF({
@@ -62,8 +66,8 @@ async function downloadPDF() {
   pdf.setFillColor("#19a7ce"); // Cor de fundo
   pdf.rect(0, 0, pdfWidth, pdfHeight, "F"); // Desenha um retângulo preenchido
 
-  // Adiciona a imagem capturada ao PDF com padding
-  pdf.addImage(imgData, "PNG", padding, padding, imgWidth, imgHeight);
+  // Adiciona a imagem capturada ao PDF com padding, centralizando-a
+  pdf.addImage(imgData, "PNG", xOffset, yOffset, imgWidth, imgHeight);
 
   // Salva o PDF
   pdf.save(`Plano ${area_usuario.value}.pdf`);
