@@ -20,7 +20,7 @@ create table user_empresa(
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
     telefone VARCHAR(10) NOT NULL,
-    cidade VARCHAR(30) NOT NULL,
+    nome_empresa VARCHAR(50) NOT NULL,
     cnpj VARCHAR(18) NOT NULL,
     razao_social VARCHAR(20) NOT NULL,
     setor_atividade VARCHAR(25) NOT NULL
