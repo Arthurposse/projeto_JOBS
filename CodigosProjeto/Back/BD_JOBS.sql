@@ -26,6 +26,10 @@ CREATE TABLE user_empresa(
     setor_atividade VARCHAR(25) NOT NULL
 );
 
+-- Índices para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
+CREATE INDEX idx_user_empresa_name ON user_empresa(name);
+CREATE INDEX idx_user_empresa_nome_empresa ON user_empresa(nome_empresa);
+
 CREATE TABLE vagas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     criador_vaga VARCHAR(50),
@@ -38,10 +42,6 @@ CREATE TABLE vagas (
     FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name),
     FOREIGN KEY (nome_empresa) REFERENCES user_empresa(nome_empresa)
 );
-
--- Índices para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
-CREATE INDEX idx_user_empresa_name ON user_empresa(name);
-CREATE INDEX idx_user_empresa_nome_empresa ON user_empresa(nome_empresa);
 
 CREATE TABLE duvidas(
 	id_user INT NOT NULL,
@@ -58,13 +58,18 @@ CREATE TABLE respostas(
     FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );
 
+-- Índice para que seja possível criar a tabela de metas com sua chave estrangeira
+CREATE INDEX idx_user_jovem_metas ON user_jovem(name);
+
 CREATE TABLE metas(
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(50) NOT NULL,
     titulo VARCHAR(20) NOT NULL,
     infos text NOT NULL,
     data_conclusao date NOT NULL, 
-    prioridade ENUM('red', 'yellow', 'green')
+    prioridade ENUM('red', 'yellow', 'green'),
+
+    FOREIGN KEY (user_name) REFERENCES user_jovem(name)
 );
 
 CREATE TABLE questoes_modulos(
