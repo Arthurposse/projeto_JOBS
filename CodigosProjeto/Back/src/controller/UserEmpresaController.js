@@ -15,8 +15,7 @@ async function cadastroEmpresa(request, response) {
     request.body.setor_atividade
   );
 
-  const query =
-    "INSERT INTO user_empresa(name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?)";
+  const query = "INSERT INTO user_empresa(name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -70,7 +69,6 @@ async function uptadeUserEmpresa(request, response) {
 }
 
 // Criando vaga (POST)
-
 async function criandoVaga(request, response) {
   const params = Array(
     request.body.User_name,
@@ -81,9 +79,30 @@ async function criandoVaga(request, response) {
   );
 
   const query =
-    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, descricao) VALUES(?,?,?,?,?)";
+    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, descricao) VALUES(?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas!",
+        data: err,
+      });
+    }
+  });
+}
+
+// Buscando vagas (GET)
+async function getVagas(request, response) {
+  const query = "SELECT * FROM vagas;";
+
+  connection.query(query, (err, results) => {
     if (results) {
       response.status(201).json({
         sucess: true,
@@ -103,5 +122,6 @@ async function criandoVaga(request, response) {
 module.exports = {
   cadastroEmpresa,
   uptadeUserEmpresa,
-  criandoVaga
+  criandoVaga,
+  getVagas
 };

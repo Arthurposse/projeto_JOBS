@@ -4,14 +4,19 @@ const router = Router();
 const {
   cadastroEmpresa,
   uptadeUserEmpresa,
-  criandoVaga
+  criandoVaga,
+  getVagas
 } = require("../controller/UserEmpresaController");
+
+// GET
+
+router.get("/vagas/getVagas", getVagas);
 
 // POST
 
 router.post("/cadastro/empresa", cadastroEmpresa);
 
-router.post("/criandoVaga", criandoVaga);
+router.post("/vagas/criandoVaga", criandoVaga);
 
 // PUT
 
