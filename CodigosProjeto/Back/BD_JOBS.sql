@@ -39,7 +39,7 @@ CREATE TABLE vagas (
     FOREIGN KEY (nome_empresa) REFERENCES user_empresa(nome_empresa)
 );
 
--- Indíces para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
+-- Índices para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
 CREATE INDEX idx_user_empresa_name ON user_empresa(name);
 CREATE INDEX idx_user_empresa_nome_empresa ON user_empresa(nome_empresa);
 
