@@ -17,15 +17,41 @@ async function getVagas(nome, ordem) {
   );
 
   let content = await response.json();
-  console.log(content)
+  console.log(content);
 
-  if(typeof(ordem) === Number) {
-    alert('É número!')
+  if(content.sucess) {
+    for(let i = 0; i < content.data.length; i++) {
+      let vagas_registradas = document.querySelector(".vagas_registradas");
+
+      // Cria o elemento section
+      const section = document.createElement("section");
+      section.className = "bloco_vaga";
+    
+      // Cria o elemento h2
+      const h2 = document.createElement("h2");
+      h2.textContent = content.data[i].titulo_vaga;
+      section.appendChild(h2);
+    
+      // Cria o parágrafo para a área da vaga
+      const areaVaga = document.createElement("p");
+      areaVaga.className = "area_vaga";
+      areaVaga.textContent = content.data[i].area;
+      section.appendChild(areaVaga);
+    
+      // Cria o parágrafo para a faixa etária da vaga
+      const faixaEtaria = document.createElement("p");
+      faixaEtaria.className = "faixa_etaria_vaga";
+      faixaEtaria.textContent = content.data[i].faixa_etaria + ' anos';
+      section.appendChild(faixaEtaria);
+    
+      // Adiciona a section ao corpo do documento ou em um elemento específico
+      vagas_registradas.appendChild(section);
+    }
   }
   else {
-    alert('Não é número!');
-    console.log(ordem);
-  } 
+    alert('ERROR!!');
+    console.error();
+  }
 }
 
 getVagas(User_name);
@@ -46,7 +72,7 @@ botao_criar_vagas.onclick = async function () {
       input: "select",
       inputOptions: {
         Area: {
-          enginer_software: "Engenheiro de Software",
+          'Engenheiro de Software': "Engenheiro de Software",
         },
       },
       inputPlaceholder: "Seleciona o nível",
@@ -65,12 +91,12 @@ botao_criar_vagas.onclick = async function () {
           title: "Selecione a faixa etária da vaga",
           input: "select",
           inputOptions: {
-            'Faixa Etária': {
-              '16-18': "16 a 18 anos",
-              '19-21': "19 a 21 anos",
-              '22-24': "22 a 24 anos",
-              '25-27': "25 a 27 anos",
-              '28-30': "28 a 30 anos",
+            "Faixa Etária": {
+              "16-18": "16 a 18 anos",
+              "19-21": "19 a 21 anos",
+              "22-24": "22 a 24 anos",
+              "25-27": "25 a 27 anos",
+              "28-30": "28 a 30 anos",
             },
           },
           inputPlaceholder: "Seleciona a faixa etária",
@@ -85,7 +111,14 @@ botao_criar_vagas.onclick = async function () {
           });
 
           if (descricao) {
-            let data = { User_name, titulo_vaga, area, cidade, faixaEtaria, descricao };
+            let data = {
+              User_name,
+              titulo_vaga,
+              area,
+              cidade,
+              faixaEtaria,
+              descricao,
+            };
 
             // POST
             const response = await fetch(
@@ -130,7 +163,7 @@ botao_filtrar_vagas.onclick = async function () {
         // area_vaga: "Área da vaga",
       },
     },
-    inputPlaceholder: "Seleciona o filtro",
+    inputPlaceholder: "Selecione o filtro",
     showCancelButton: true,
     confirmButtonColor: "#0e566a",
   });
@@ -140,12 +173,12 @@ botao_filtrar_vagas.onclick = async function () {
       title: "Selecione a faixa etária da vaga",
       input: "select",
       inputOptions: {
-        'Faixa Etária': {
-          '16-18': "16 a 18 anos",
-          '19-21': "19 a 21 anos",
-          '22-24': "22 a 24 anos",
-          '25-27': "25 a 27 anos",
-          '28-30': "28 a 30 anos",
+        "Faixa Etária": {
+          "16-18": "16 a 18 anos",
+          "19-21": "19 a 21 anos",
+          "22-24": "22 a 24 anos",
+          "25-27": "25 a 27 anos",
+          "28-30": "28 a 30 anos",
         },
       },
       inputPlaceholder: "Seleciona a faixa etária",
@@ -155,10 +188,9 @@ botao_filtrar_vagas.onclick = async function () {
     if (faixaEtaria) {
       getVagas(User_name, faixaEtaria);
     }
-  }
-  else if (result === "area_vaga") {
+  } else if (result === "area_vaga") {
     // Aparecer um alert em que, a partir de uma analise de todas as vagas que o usuário tiver no BD, seja listado as áreas para que o usuário consiga filtrar.
-    alert('Filtrando por área!')
+    alert("Filtrando por área!");
   }
 };
 
