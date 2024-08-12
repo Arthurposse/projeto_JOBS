@@ -5,7 +5,32 @@ let user_logado = document.getElementById("user_logado");
 
 user_logado.textContent = User_name;
 
-// Vagas - Criar
+// Vagas - GET
+
+async function getVagas(nome, ordem) {
+  const response = await fetch(
+    `http://localhost:3008/api/vagas/getVagas?User_name=${nome}`,
+    {
+      method: "GET",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+    }
+  );
+
+  let content = await response.json();
+  console.log(content)
+
+  if(typeof(ordem) === Number) {
+    alert('É número!')
+  }
+  else {
+    alert('Não é número!');
+    console.log(ordem);
+  } 
+}
+
+getVagas(User_name);
+
+// Vagas - POST
 const botao_criar_vagas = document.getElementById("criar_vaga");
 
 botao_criar_vagas.onclick = async function () {
@@ -36,28 +61,48 @@ botao_criar_vagas.onclick = async function () {
       });
 
       if (cidade) {
-        const { value: descricao } = await Swal.fire({
+        const { value: faixaEtaria } = await Swal.fire({
+          title: "Selecione a faixa etária da vaga",
+          input: "select",
+          inputOptions: {
+            'Faixa Etária': {
+              '16-18': "16 a 18 anos",
+              '19-21': "19 a 21 anos",
+              '22-24': "22 a 24 anos",
+              '25-27': "25 a 27 anos",
+              '28-30': "28 a 30 anos",
+            },
+          },
+          inputPlaceholder: "Seleciona a faixa etária",
+          showCancelButton: true,
+        });
+
+        if (faixaEtaria) {
+          const { value: descricao } = await Swal.fire({
             title: "Descrição da vaga",
             input: "text",
             inputPlaceholder: "Digite aqui",
           });
 
-          if(descricao) {
-            let data = { User_name, titulo_vaga, area, cidade, descricao };
+          if (descricao) {
+            let data = { User_name, titulo_vaga, area, cidade, faixaEtaria, descricao };
 
             // POST
-            const response = await fetch("http://localhost:3008/api/criandoVaga", {
-              method: "POST",
-              headers: { "Content-type": "application/json;charset=UTF-8" },
-              body: JSON.stringify(data),
-            });
-          
+            const response = await fetch(
+              "http://localhost:3008/api/vagas/criandoVaga",
+              {
+                method: "POST",
+                headers: { "Content-type": "application/json;charset=UTF-8" },
+                body: JSON.stringify(data),
+              }
+            );
+
             let content = await response.json();
             console.log(content);
-          
+
             if (content.sucess) {
               alert("Deu bom o POST!!");
-          
+
               window.location.reload();
               //recarrega a página
             } else {
@@ -65,6 +110,7 @@ botao_criar_vagas.onclick = async function () {
               console.error();
             }
           }
+        }
       }
     }
   }
@@ -81,7 +127,7 @@ botao_filtrar_vagas.onclick = async function () {
     inputOptions: {
       Opções: {
         faixa_etaria: "Faixa Etária",
-        area_vaga: "Área da vaga",
+        // area_vaga: "Área da vaga",
       },
     },
     inputPlaceholder: "Seleciona o filtro",
@@ -90,27 +136,29 @@ botao_filtrar_vagas.onclick = async function () {
   });
 
   if (result === "faixa_etaria") {
-    const { value: date } = await Swal.fire({
-      title: "Qual faixa etária você esta buscando?",
-      icon: "question",
-      input: "range",
-      inputLabel: "Selecione",
-      inputAttributes: {
-        min: "14",
-        max: "24",
-        step: "1",
+    const { value: faixaEtaria } = await Swal.fire({
+      title: "Selecione a faixa etária da vaga",
+      input: "select",
+      inputOptions: {
+        'Faixa Etária': {
+          '16-18': "16 a 18 anos",
+          '19-21': "19 a 21 anos",
+          '22-24': "22 a 24 anos",
+          '25-27': "25 a 27 anos",
+          '28-30': "28 a 30 anos",
+        },
       },
-      inputValue: 24,
-      confirmButtonColor: "#0e566a",
+      inputPlaceholder: "Seleciona a faixa etária",
+      showCancelButton: true,
     });
 
-    if (date) {
-      alert(date);
+    if (faixaEtaria) {
+      getVagas(User_name, faixaEtaria);
     }
   }
-
-  if (result === "area_vaga") {
+  else if (result === "area_vaga") {
     // Aparecer um alert em que, a partir de uma analise de todas as vagas que o usuário tiver no BD, seja listado as áreas para que o usuário consiga filtrar.
+    alert('Filtrando por área!')
   }
 };
 
