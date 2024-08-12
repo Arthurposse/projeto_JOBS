@@ -39,8 +39,7 @@ CREATE TABLE vagas (
     cidade VARCHAR(50) NOT NULL,
     descricao text NOT NULL,
 
-    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name),
-    FOREIGN KEY (nome_empresa) REFERENCES user_empresa(nome_empresa)
+    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name)
 );
 
 CREATE TABLE duvidas(
@@ -50,11 +49,14 @@ CREATE TABLE duvidas(
 );
 
 CREATE TABLE respostas(
-    id_user INT NOT NULL,
+    id_jovem INT,
+    id_empresa INT,
 	id_duvida INT,
     resposta TEXT NOT NULL,
     type_user VARCHAR(7) NOT NULL CHECK (type_user IN ('Jovem', 'Empresa')),
 
+    FOREIGN KEY (id_jovem) REFERENCES user_jovem(id),
+    FOREIGN KEY (id_empresa) REFERENCES user_empresa(id),
     FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );
 

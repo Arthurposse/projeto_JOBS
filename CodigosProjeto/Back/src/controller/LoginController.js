@@ -5,7 +5,7 @@ const dotenv = require("dotenv").config();
 
 async function logIn(request, response) {
   const query =
-    "SELECT id, name, email, password, 'user_empresa' as origin FROM jobs.user_empresa UNION SELECT id, name, email, password, 'user_jovem' as origin FROM jobs.user_jovem;";
+    "SELECT id, name, email, password, nome_empresa, 'user_empresa' AS origin FROM jobs.user_empresa UNION SELECT id, name, email, password, NULL AS nome_empresa, 'user_jovem' AS origin FROM jobs.user_jovem;";
 
   connection.query(query, (err, results) => {
     if (results) {
