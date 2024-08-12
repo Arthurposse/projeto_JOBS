@@ -7,6 +7,8 @@ user_logado.textContent = User_name;
 
 // Vagas - GET
 
+let vagas_registradas = document.querySelector(".vagas_registradas");
+
 async function getVagas(nome, ordem) {
   const response = await fetch(
     `http://localhost:3008/api/vagas/getVagas?User_name=${nome}`,
@@ -19,37 +21,61 @@ async function getVagas(nome, ordem) {
   let content = await response.json();
   console.log(content);
 
-  if(content.sucess) {
-    for(let i = 0; i < content.data.length; i++) {
-      let vagas_registradas = document.querySelector(".vagas_registradas");
+  if (content.sucess) {
+    for (let i = 0; i < content.data.length; i++) {
+      console.log(ordem)
+      if (ordem === content.data[i].faixa_etaria) {
+        // Cria o elemento section
+        const section = document.createElement("section");
+        section.className = "bloco_vaga";
 
-      // Cria o elemento section
-      const section = document.createElement("section");
-      section.className = "bloco_vaga";
-    
-      // Cria o elemento h2
-      const h2 = document.createElement("h2");
-      h2.textContent = content.data[i].titulo_vaga;
-      section.appendChild(h2);
-    
-      // Cria o parágrafo para a área da vaga
-      const areaVaga = document.createElement("p");
-      areaVaga.className = "area_vaga";
-      areaVaga.textContent = content.data[i].area;
-      section.appendChild(areaVaga);
-    
-      // Cria o parágrafo para a faixa etária da vaga
-      const faixaEtaria = document.createElement("p");
-      faixaEtaria.className = "faixa_etaria_vaga";
-      faixaEtaria.textContent = content.data[i].faixa_etaria + ' anos';
-      section.appendChild(faixaEtaria);
-    
-      // Adiciona a section ao corpo do documento ou em um elemento específico
-      vagas_registradas.appendChild(section);
+        // Cria o elemento h2
+        const h2 = document.createElement("h2");
+        h2.textContent = content.data[i].titulo_vaga;
+        section.appendChild(h2);
+
+        // Cria o parágrafo para a área da vaga
+        const areaVaga = document.createElement("p");
+        areaVaga.className = "area_vaga";
+        areaVaga.textContent = content.data[i].area;
+        section.appendChild(areaVaga);
+
+        // Cria o parágrafo para a faixa etária da vaga
+        const faixaEtaria = document.createElement("p");
+        faixaEtaria.className = "faixa_etaria_vaga";
+        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+        section.appendChild(faixaEtaria);
+
+        // Adiciona a section ao corpo do documento ou em um elemento específico
+        vagas_registradas.appendChild(section);
+      } else {
+        // Cria o elemento section
+        const section = document.createElement("section");
+        section.className = "bloco_vaga";
+
+        // Cria o elemento h2
+        const h2 = document.createElement("h2");
+        h2.textContent = content.data[i].titulo_vaga;
+        section.appendChild(h2);
+
+        // Cria o parágrafo para a área da vaga
+        const areaVaga = document.createElement("p");
+        areaVaga.className = "area_vaga";
+        areaVaga.textContent = content.data[i].area;
+        section.appendChild(areaVaga);
+
+        // Cria o parágrafo para a faixa etária da vaga
+        const faixaEtaria = document.createElement("p");
+        faixaEtaria.className = "faixa_etaria_vaga";
+        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+        section.appendChild(faixaEtaria);
+
+        // Adiciona a section ao corpo do documento ou em um elemento específico
+        vagas_registradas.appendChild(section);
+      }
     }
-  }
-  else {
-    alert('ERROR!!');
+  } else {
+    alert("ERROR!!");
     console.error();
   }
 }
@@ -72,7 +98,7 @@ botao_criar_vagas.onclick = async function () {
       input: "select",
       inputOptions: {
         Area: {
-          'Engenheiro de Software': "Engenheiro de Software",
+          "Engenheiro de Software": "Engenheiro de Software",
         },
       },
       inputPlaceholder: "Seleciona o nível",
@@ -186,6 +212,7 @@ botao_filtrar_vagas.onclick = async function () {
     });
 
     if (faixaEtaria) {
+      vagas_registradas.innerHTML = "";
       getVagas(User_name, faixaEtaria);
     }
   } else if (result === "area_vaga") {

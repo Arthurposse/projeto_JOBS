@@ -136,3 +136,24 @@ VALUES
     '',
     ''
 );
+
+-- Inserindo vagas fictícias
+
+INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, faixa_etaria, descricao)
+VALUES
+(
+    'Robson Silverado JR',
+    'Engenheiro de Software Junior',
+    'Engenharia de Software',
+    'São Paulo',
+    '19-21',
+    'TESTE DESCRIÇÃO'
+),
+(
+    'Robson Silverado JR',
+    'Jovem Aprendiz',
+    'Aprendiz',
+    'Sapucaia do Sul',
+    '16-18',
+    'TESTE DESCRIÇÃO 2'
+);
