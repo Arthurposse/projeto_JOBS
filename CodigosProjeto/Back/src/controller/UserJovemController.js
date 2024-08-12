@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 
 // Cadastrando Usuário (POST)
 
-async function userJovem(request, response) {
+async function cadastroJovem(request, response) {
   const params = Array(
     request.body.name,
     request.body.email,
@@ -251,7 +251,7 @@ async function getModulos(request, response) {
 }
 
 module.exports = {
-  userJovem,
+  cadastroJovem,
 
   duvidaJovem,
 

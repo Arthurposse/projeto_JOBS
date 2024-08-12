@@ -44,15 +44,17 @@ async function downloadPDF() {
   // Converte o canvas para uma imagem em base64
   const imgData = canvas.toDataURL("image/png");
 
-  // Calcula a largura e altura do PDF com base na escala do canvas e adiciona padding
+  // Calcula a largura e altura da imagem para o PDF
   const imgWidth = canvas.width / 3;
   const imgHeight = canvas.height / 3;
-  const pdfWidth = imgWidth + padding * 2;
+
+  // Define o tamanho do PDF com base na imagem e no padding
+  const pdfWidth = imgWidth + padding * 1.8;
   const pdfHeight = imgHeight + padding * 2;
 
   // Calcula a posição para centralizar a imagem no PDF com padding
-  const xOffset = (pdfWidth - imgWidth) / 2;
-  const yOffset = (pdfHeight - imgHeight) / 2;
+  const xOffset = padding;
+  const yOffset = padding;
 
   // Cria um novo documento PDF
   const pdf = new jsPDF({
@@ -73,6 +75,7 @@ async function downloadPDF() {
   pdf.save(`Plano ${area_usuario.value}.pdf`);
 }
 
+
 botao_download.addEventListener("click", downloadPDF);
 
 // Planejamento de carreira - Metas usuário
@@ -90,7 +93,7 @@ let titulos_metas = [];
 
 async function getMetas(nome, ordem) {
   const response = await fetch(
-    `http://localhost:3008/api/metaJovem?User_name=${nome}`,
+    `http://localhost:3008/api/metas/getMetas?User_name=${nome}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -121,7 +124,7 @@ async function getMetas(nome, ordem) {
 
       section_pc_metas.innerHTML = "";
 
-      // Adiciona os cards ordenados ao contêiner
+      // Adicionando os cards ordenados ao contêiner de acordo com a data
       eventosOrdenados.forEach((evento) => {
         const currentDate = evento.data;
         const eventoData = evento.evento;
@@ -169,6 +172,8 @@ async function getMetas(nome, ordem) {
         section_pc_metas.appendChild(bloco_meta);
       });
     }
+
+    // Adicionando os cards ordenados ao contêiner de acordo com a prioridade
   } else if (ordem === "red" || ordem === "yellow" || ordem === "green") {
     section_pc_metas.innerHTML = "";
 
@@ -225,6 +230,8 @@ async function getMetas(nome, ordem) {
     } else {
       section_pc_metas.innerHTML = "<h2> Nenhum foi encontrado!! </h2>";
     }
+
+    // Adicionando os cards ao carregar a página (não seguindo nenhuma ordem definida)
   } else {
     for (let i = 0; i < content.data.length; i++) {
       const titulo = content.data[i].titulo;
@@ -330,7 +337,7 @@ botao_criar_metas.onclick = async function () {
       }
     }
   }
-
+  
   let data = { User_name, titulo, infos, data_alterar, prioridade };
 
   // POST
@@ -529,7 +536,7 @@ let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
   const response = await fetch(
-    `http://localhost:3008/api//get/userJovem/${id_user}`,
+    `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },

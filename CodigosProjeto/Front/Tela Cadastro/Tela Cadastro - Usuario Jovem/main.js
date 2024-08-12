@@ -63,7 +63,7 @@ button.onclick = async function (e) {
 
   if (password === confirm_password && userAge >= 14 && userAge <= 24) {
     // POST
-    const response = await fetch("http://localhost:3008/api/user/jovem", {
+    const response = await fetch("http://localhost:3008/api/cadastro/jovem", {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
       body: JSON.stringify(data),

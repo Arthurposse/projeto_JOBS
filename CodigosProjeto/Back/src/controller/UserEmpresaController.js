@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 
 // Cadastrando Usuário (POST)
 
-async function userEmpresa(request, response) {
+async function cadastroEmpresa(request, response) {
   const params = Array(
     request.body.name,
     request.body.email,
@@ -69,7 +69,39 @@ async function uptadeUserEmpresa(request, response) {
   });
 }
 
+// Criando vaga (POST)
+
+async function criandoVaga(request, response) {
+  const params = Array(
+    request.body.User_name,
+    request.body.titulo_vaga,
+    request.body.area,
+    request.body.cidade,
+    request.body.descricao
+  );
+
+  const query =
+    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, descricao) VALUES(?,?,?,?,?)";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
-  userEmpresa,
+  cadastroEmpresa,
   uptadeUserEmpresa,
+  criandoVaga
 };

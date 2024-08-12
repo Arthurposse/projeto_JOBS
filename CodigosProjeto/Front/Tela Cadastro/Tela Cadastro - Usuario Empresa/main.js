@@ -46,7 +46,7 @@ button.onclick = async function (e) {
     let data = { name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade }
 
     // POST
-    const response = await fetch('http://localhost:3008/api/user/empresa', {
+    const response = await fetch('http://localhost:3008/api/cadastro/empresa', {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify(data)

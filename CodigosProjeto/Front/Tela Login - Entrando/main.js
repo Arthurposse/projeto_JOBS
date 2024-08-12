@@ -50,7 +50,6 @@ button.onclick = async function (e) {
       ) {
         localStorage.setItem("ID_user", content.data[i].id);
         localStorage.setItem("User_name", content.data[i].name);
-        localStorage.setItem("TabelaOrigem", content.data[i].origin);
 
         Swal.fire({
           title: "LogIn realizado com sucesso!!",

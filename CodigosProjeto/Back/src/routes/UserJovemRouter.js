@@ -5,7 +5,7 @@ const {
   getUserJovem,
   getMetasJovem,
   getModulos,
-  userJovem,
+  cadastroJovem,
   duvidaJovem,
   postMetasJovem,
   uptadeUserJovem,
@@ -17,13 +17,13 @@ const {
 
 router.get("/get/userJovem/:id", getUserJovem);
 
-router.get("/metaJovem", getMetasJovem);
+router.get("/metas/getMetas", getMetasJovem);
 
 router.get("/modulosJovem", getModulos);
 
 // POST
 
-router.post("/user/jovem", userJovem);
+router.post("/cadastro/jovem", cadastroJovem);
 
 router.post("/user/enviando_duvida", duvidaJovem);
 

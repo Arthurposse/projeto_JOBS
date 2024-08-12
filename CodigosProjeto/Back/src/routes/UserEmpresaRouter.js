@@ -2,13 +2,16 @@ const { Router } = require("express");
 const router = Router();
 
 const {
-  userEmpresa,
+  cadastroEmpresa,
   uptadeUserEmpresa,
+  criandoVaga
 } = require("../controller/UserEmpresaController");
 
 // POST
 
-router.post("/user/empresa", userEmpresa);
+router.post("/cadastro/empresa", cadastroEmpresa);
+
+router.post("/criandoVaga", criandoVaga);
 
 // PUT
 

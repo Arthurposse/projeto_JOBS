@@ -1,8 +1,8 @@
-create database jobs;
+CREATE DATABASE jobs;
 
-use jobs;
+USE jobs;
 
-create table user_jovem(
+CREATE TABLE user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     -- ft_perfil,
     name VARCHAR(100) NOT NULL,
@@ -13,7 +13,7 @@ create table user_jovem(
     cidade VARCHAR(30) NOT NULL
 );
 
-create table user_empresa(
+CREATE TABLE user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     -- ft_perfil,
     name VARCHAR(100) NOT NULL,
@@ -26,22 +26,30 @@ create table user_empresa(
     setor_atividade VARCHAR(25) NOT NULL
 );
 
-create table vagas (
+CREATE TABLE vagas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    nome_empresa VARCHAR(50) NOT NULL,
+    criador_vaga VARCHAR(50),
+    titulo_vaga VARCHAR(50) NOT NULL,
+    nome_empresa VARCHAR(50),
     area VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
-    descricao text NOT NULL
+    descricao text NOT NULL,
+
+    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name),
+    FOREIGN KEY (nome_empresa) REFERENCES user_empresa(nome_empresa)
 );
 
-create table duvidas(
+-- Indíces para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
+CREATE INDEX idx_user_empresa_name ON user_empresa(name);
+CREATE INDEX idx_user_empresa_nome_empresa ON user_empresa(nome_empresa);
+
+CREATE TABLE duvidas(
 	id_user INT NOT NULL,
     id_duvida INT PRIMARY KEY AUTO_INCREMENT,
     duvida TEXT NOT NULL
 );
 
-create table respostas(
+CREATE TABLE respostas(
     id_user INT NOT NULL,
 	id_duvida INT,
     resposta TEXT NOT NULL,
@@ -50,7 +58,7 @@ create table respostas(
     FOREIGN KEY (id_duvida) REFERENCES duvidas(id_duvida)
 );
 
-create table metas(
+CREATE TABLE metas(
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(50) NOT NULL,
     titulo VARCHAR(20) NOT NULL,
@@ -59,7 +67,7 @@ create table metas(
     prioridade ENUM('red', 'yellow', 'green')
 );
 
-create table questoes_modulos(
+CREATE TABLE questoes_modulos(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     tipo_modulo ENUM('email', 'entrevista', 'trabalho_equipe', 'res_problema'),
     pergunta VARCHAR(255) NOT NULL,
@@ -110,14 +118,14 @@ VALUES
 
 -- User Empresa
 
-INSERT INTO user_empresa(name, email, password, telefone, cidade, cnpj, razao_social, setor_atividade)
+INSERT INTO user_empresa(name, email, password, telefone, nome_empresa, cnpj, razao_social, setor_atividade)
 VALUES 
 (
     'Robson Silverado JR',
     'robs@hotmail.com',
     '123',
     '519999999',
-    'São Leopoldo',
+    'SKA',
     '01.123.456/7891-23',
     '',
     ''
