@@ -740,7 +740,7 @@ botao_editar.onclick = async function () {
       {
         method: "PUT",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       }
     );
 
@@ -761,7 +761,7 @@ botao_editar.onclick = async function () {
     } else {
       Swal.fire({
         title: "Não foi possível alterar seus dados!!",
-        icon: "success",
+        icon: "error",
         showConfirmButton: false,
         timer: 2000,
       });

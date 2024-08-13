@@ -282,7 +282,30 @@ let telefone = document.getElementById("telefone_user");
 let empresa = document.getElementById("empresa_user");
 let setor_atividade = document.getElementById("setor_atividade_user");
 
+async function getUserJovem(id_user) {
+  const response = await fetch(
+    `http://localhost:3008/api/buscandoDados/${id_user}`,
+    {
+      method: "GET",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+    }
+  );
 
+  content = await response.json();
+
+  if(content.sucess) {
+    nome.textContent = content.data[0].name;
+    email.textContent = content.data[0].email;
+    telefone.textContent = content.data[0].telefone;
+    empresa.textContent = content.data[0].nome_empresa;
+    setor_atividade.textContent = content.data[0].setor_atividade;
+  }
+  else {
+    alert('deu ruim');
+  }
+}
+
+getUserJovem(id_user);
 
 // Editando dados perfil (PUT)
 
@@ -424,7 +447,7 @@ botao_editar.onclick = async function () {
       {
         method: "PUT",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       }
     );
 
@@ -445,7 +468,7 @@ botao_editar.onclick = async function () {
     } else {
       Swal.fire({
         title: "Não foi possível alterar seus dados!!",
-        icon: "success",
+        icon: "error",
         showConfirmButton: false,
         timer: 2000,
       });

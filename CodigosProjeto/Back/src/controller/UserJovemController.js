@@ -85,7 +85,6 @@ async function getUserJovem(request, response) {
 }
 
 // Atualizando dados do usuário (PUT)
-
 async function uptadeUserJovem(request, response) {
   const params = Array(
     // request.body.ft_user,
@@ -108,13 +107,13 @@ async function uptadeUserJovem(request, response) {
     if (results) {
       response.status(201).json({
         sucess: true,
-        message: "Sucesso com PUT user jovem!!",
+        message: "Sucesso com PUT user empresa!!",
         data: results,
       });
     } else {
       response.status(400).json({
         sucess: false,
-        message: "Ops, deu problemas PUT user jovem!",
+        message: "Ops, deu problemas PUT user empresa!",
         data: err,
       });
     }

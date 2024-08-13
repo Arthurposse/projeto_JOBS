@@ -34,22 +34,44 @@ async function cadastroEmpresa(request, response) {
   });
 }
 
-// Atualizando dados do usuário (PUT)
+// Buscando dados usuário (GET)
+async function getDadosUser(request, response) {
+  const query = "SELECT * FROM user_empresa;";
 
+  connection.query(query, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas!",
+        data: err,
+      });
+    }
+  });
+}
+
+// let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
+
+// Atualizando dados do usuário (PUT)
 async function uptadeUserEmpresa(request, response) {
   const params = Array(
     // request.body.ft_user,
     request.body.name,
     request.body.email,
     request.body.telefone,
-    request.body.cidade,
+    request.body.empresa,
     request.body.setor_atividade,
     request.params.id
   );
 
   // SEM var ft_user
   const query =
-    "UPDATE `user_empresa` SET `name` = ?, `email` = ?, `telefone` = ?, `cidade` = ?, `setor_atividade` = ? WHERE `id` = ?;";
+    "UPDATE `user_empresa` SET `name` = ?, `email` = ?, `telefone` = ?, `nome_empresa` = ?, `setor_atividade` = ? WHERE `id` = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -145,6 +167,7 @@ async function deleteVagas(request, response) {
 
 module.exports = {
   cadastroEmpresa,
+  getDadosUser,
   uptadeUserEmpresa,
   criandoVaga,
   getVagas,
