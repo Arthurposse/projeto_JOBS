@@ -23,56 +23,30 @@ async function getVagas(nome, ordem) {
 
   if (content.sucess) {
     for (let i = 0; i < content.data.length; i++) {
-      console.log(ordem)
-      if (ordem === content.data[i].faixa_etaria) {
-        // Cria o elemento section
-        const section = document.createElement("section");
-        section.className = "bloco_vaga";
+      console.log(ordem);
+      // Cria o elemento section
+      const section = document.createElement("section");
+      section.className = "bloco_vaga";
 
-        // Cria o elemento h2
-        const h2 = document.createElement("h2");
-        h2.textContent = content.data[i].titulo_vaga;
-        section.appendChild(h2);
+      // Cria o elemento h2
+      const h2 = document.createElement("h2");
+      h2.textContent = content.data[i].titulo_vaga;
+      section.appendChild(h2);
 
-        // Cria o parágrafo para a área da vaga
-        const areaVaga = document.createElement("p");
-        areaVaga.className = "area_vaga";
-        areaVaga.textContent = content.data[i].area;
-        section.appendChild(areaVaga);
+      // Cria o parágrafo para a área da vaga
+      const areaVaga = document.createElement("p");
+      areaVaga.className = "area_vaga";
+      areaVaga.textContent = content.data[i].area;
+      section.appendChild(areaVaga);
 
-        // Cria o parágrafo para a faixa etária da vaga
-        const faixaEtaria = document.createElement("p");
-        faixaEtaria.className = "faixa_etaria_vaga";
-        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
-        section.appendChild(faixaEtaria);
+      // Cria o parágrafo para a faixa etária da vaga
+      const faixaEtaria = document.createElement("p");
+      faixaEtaria.className = "faixa_etaria_vaga";
+      faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+      section.appendChild(faixaEtaria);
 
-        // Adiciona a section ao corpo do documento ou em um elemento específico
-        vagas_registradas.appendChild(section);
-      } else {
-        // Cria o elemento section
-        const section = document.createElement("section");
-        section.className = "bloco_vaga";
-
-        // Cria o elemento h2
-        const h2 = document.createElement("h2");
-        h2.textContent = content.data[i].titulo_vaga;
-        section.appendChild(h2);
-
-        // Cria o parágrafo para a área da vaga
-        const areaVaga = document.createElement("p");
-        areaVaga.className = "area_vaga";
-        areaVaga.textContent = content.data[i].area;
-        section.appendChild(areaVaga);
-
-        // Cria o parágrafo para a faixa etária da vaga
-        const faixaEtaria = document.createElement("p");
-        faixaEtaria.className = "faixa_etaria_vaga";
-        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
-        section.appendChild(faixaEtaria);
-
-        // Adiciona a section ao corpo do documento ou em um elemento específico
-        vagas_registradas.appendChild(section);
-      }
+      // Adiciona a section ao corpo do documento ou em um elemento específico
+      vagas_registradas.appendChild(section);
     }
   } else {
     alert("ERROR!!");
@@ -117,7 +91,7 @@ botao_criar_vagas.onclick = async function () {
           title: "Selecione a faixa etária da vaga",
           input: "select",
           inputOptions: {
-            "Faixa Etária": {
+            "Faixa Etaria": {
               "16-18": "16 a 18 anos",
               "19-21": "19 a 21 anos",
               "22-24": "22 a 24 anos",
@@ -162,8 +136,8 @@ botao_criar_vagas.onclick = async function () {
             if (content.sucess) {
               alert("Deu bom o POST!!");
 
+              // Recarrega a página
               window.location.reload();
-              //recarrega a página
             } else {
               alert("Deu ruim o POST!!");
               console.error();

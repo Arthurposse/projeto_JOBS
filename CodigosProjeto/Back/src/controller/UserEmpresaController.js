@@ -75,11 +75,12 @@ async function criandoVaga(request, response) {
     request.body.titulo_vaga,
     request.body.area,
     request.body.cidade,
+    request.body.faixaEtaria,
     request.body.descricao
   );
 
   const query =
-    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, descricao) VALUES(?,?,?,?,?);";
+    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, faixa_etaria, descricao) VALUES(?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
