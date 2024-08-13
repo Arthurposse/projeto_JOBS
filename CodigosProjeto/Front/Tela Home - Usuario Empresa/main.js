@@ -19,34 +19,62 @@ async function getVagas(nome, ordem) {
   );
 
   let content = await response.json();
-  console.log(content);
 
   if (content.sucess) {
-    for (let i = 0; i < content.data.length; i++) {
-      console.log(ordem);
-      // Cria o elemento section
-      const section = document.createElement("section");
-      section.className = "bloco_vaga";
+    vagas_registradas.innerHTML = "";
 
-      // Cria o elemento h2
-      const h2 = document.createElement("h2");
-      h2.textContent = content.data[i].titulo_vaga;
-      section.appendChild(h2);
+    if (ordem !== undefined) {
+      for (let i = 0; i < content.data.length; i++) {
+        if (content.data[i].faixa_etaria === ordem) {
+          const section = document.createElement("section");
+          section.className = "bloco_vaga";
 
-      // Cria o parágrafo para a área da vaga
-      const areaVaga = document.createElement("p");
-      areaVaga.className = "area_vaga";
-      areaVaga.textContent = content.data[i].area;
-      section.appendChild(areaVaga);
+          // Cria o elemento h2
+          const h2 = document.createElement("h2");
+          h2.textContent = content.data[i].titulo_vaga;
+          section.appendChild(h2);
 
-      // Cria o parágrafo para a faixa etária da vaga
-      const faixaEtaria = document.createElement("p");
-      faixaEtaria.className = "faixa_etaria_vaga";
-      faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
-      section.appendChild(faixaEtaria);
+          // Cria o parágrafo para a área da vaga
+          const areaVaga = document.createElement("p");
+          areaVaga.className = "area_vaga";
+          areaVaga.textContent = content.data[i].area;
+          section.appendChild(areaVaga);
 
-      // Adiciona a section ao corpo do documento ou em um elemento específico
-      vagas_registradas.appendChild(section);
+          // Cria o parágrafo para a faixa etária da vaga
+          const faixaEtaria = document.createElement("p");
+          faixaEtaria.className = "faixa_etaria_vaga";
+          faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+          section.appendChild(faixaEtaria);
+
+          // Adiciona a section ao corpo do documento ou em um elemento específico
+          vagas_registradas.appendChild(section);
+        }
+      }
+    } else {
+      for (let i = 0; i < content.data.length; i++) {
+        const section = document.createElement("section");
+        section.className = "bloco_vaga";
+
+        // Cria o elemento h2
+        const h2 = document.createElement("h2");
+        h2.textContent = content.data[i].titulo_vaga;
+        section.appendChild(h2);
+
+        // Cria o parágrafo para a área da vaga
+        const areaVaga = document.createElement("p");
+        areaVaga.className = "area_vaga";
+        areaVaga.textContent = content.data[i].area;
+        section.appendChild(areaVaga);
+
+        // Cria o parágrafo para a faixa etária da vaga
+        const faixaEtaria = document.createElement("p");
+        faixaEtaria.className = "faixa_etaria_vaga";
+        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+        section.appendChild(faixaEtaria);
+
+        // Adiciona a section ao corpo do documento ou em um elemento específico
+        vagas_registradas.appendChild(section);
+      }
     }
   } else {
     alert("ERROR!!");
@@ -186,7 +214,6 @@ botao_filtrar_vagas.onclick = async function () {
     });
 
     if (faixaEtaria) {
-      vagas_registradas.innerHTML = "";
       getVagas(User_name, faixaEtaria);
     }
   } else if (result === "area_vaga") {
