@@ -5,7 +5,8 @@ const {
   cadastroEmpresa,
   uptadeUserEmpresa,
   criandoVaga,
-  getVagas
+  getVagas,
+  deleteVagas
 } = require("../controller/UserEmpresaController");
 
 // GET
@@ -21,5 +22,9 @@ router.post("/vagas/criandoVaga", criandoVaga);
 // PUT
 
 router.put("/uptade/userEmpresa/:id", uptadeUserEmpresa);
+
+// DELETE
+
+router.delete("/vagas/deletandoVaga", deleteVagas);
 
 module.exports = router;

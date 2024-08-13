@@ -120,9 +120,33 @@ async function getVagas(request, response) {
   });
 }
 
+// Deletando vaga (DELETE)
+async function deleteVagas(request, response) {
+  const params = Array(request.body.vagas_deletar);
+
+  const query = "DELETE FROM vagas WHERE `titulo_vaga` = ?";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso com DELETE vaga!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas com DELETE vaga!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroEmpresa,
   uptadeUserEmpresa,
   criandoVaga,
-  getVagas
+  getVagas,
+  deleteVagas
 };

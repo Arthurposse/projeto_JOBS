@@ -7,6 +7,8 @@ user_logado.textContent = User_name;
 
 // Vagas - GET
 
+let titulos_vagas = [];
+
 let vagas_registradas = document.querySelector(".vagas_registradas");
 
 async function getVagas(nome, ordem) {
@@ -52,6 +54,8 @@ async function getVagas(nome, ordem) {
       }
     } else {
       for (let i = 0; i < content.data.length; i++) {
+        titulos_vagas.push(content.data[i].titulo_vaga);
+
         const section = document.createElement("section");
         section.className = "bloco_vaga";
 
@@ -92,6 +96,7 @@ botao_criar_vagas.onclick = async function () {
     title: "Título vaga",
     input: "text",
     inputPlaceholder: "Digite aqui",
+    confirmButtonColor: "#0e566a"
   });
 
   if (titulo_vaga) {
@@ -105,6 +110,7 @@ botao_criar_vagas.onclick = async function () {
       },
       inputPlaceholder: "Seleciona o nível",
       showCancelButton: true,
+      confirmButtonColor: "#0e566a"
     });
 
     if (area) {
@@ -112,6 +118,7 @@ botao_criar_vagas.onclick = async function () {
         title: "Localidade da vaga",
         input: "text",
         inputPlaceholder: "Digite aqui",
+        confirmButtonColor: "#0e566a"
       });
 
       if (cidade) {
@@ -129,6 +136,7 @@ botao_criar_vagas.onclick = async function () {
           },
           inputPlaceholder: "Seleciona a faixa etária",
           showCancelButton: true,
+          confirmButtonColor: "#0e566a"
         });
 
         if (faixaEtaria) {
@@ -136,6 +144,7 @@ botao_criar_vagas.onclick = async function () {
             title: "Descrição da vaga",
             input: "text",
             inputPlaceholder: "Digite aqui",
+            confirmButtonColor: "#0e566a"
           });
 
           if (descricao) {
@@ -177,6 +186,48 @@ botao_criar_vagas.onclick = async function () {
   }
 };
 
+// Vagas - Deletar
+
+const botao_deletar_vaga = document.getElementById('deletar_vaga');
+
+botao_deletar_vaga.onclick = async function () {
+  const opcoes = {};
+
+  for (let i = 0; i < titulos_vagas.length; i++) {
+    opcoes[`${titulos_vagas[i]}`] = titulos_vagas[i];
+  };
+
+  const { value: vagas_deletar } = await Swal.fire({
+    title: "Deletar meta",
+    input: "select",
+    inputOptions: opcoes,
+    inputPlaceholder: "Selecionar aquele que deseja deletar",
+    showCancelButton: true
+  });
+  if (vagas_deletar) {
+    data = { vagas_deletar };
+  }
+
+  const response = await fetch("http://localhost:3008/api//vagas/deletandoVaga", {
+    method: "DELETE",
+    headers: { "Content-type": "application/json;charset=UTF-8" },
+    body: JSON.stringify(data)
+  });
+
+  let content = await response.json();
+  console.log(content);
+
+  if (content.sucess) {
+    alert("Deu bom o DELETE!!");
+
+    window.location.reload();
+    //recarrega a página
+  } else {
+    alert("Deu ruim o DELETE!!");
+    console.error();
+  }
+}
+
 // Vagas - Filtro
 
 const botao_filtrar_vagas = document.getElementById("filtrar_vaga");
@@ -193,7 +244,7 @@ botao_filtrar_vagas.onclick = async function () {
     },
     inputPlaceholder: "Selecione o filtro",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a",
+    confirmButtonColor: "#0e566a"
   });
 
   if (result === "faixa_etaria") {
@@ -211,6 +262,7 @@ botao_filtrar_vagas.onclick = async function () {
       },
       inputPlaceholder: "Seleciona a faixa etária",
       showCancelButton: true,
+      confirmButtonColor: "#0e566a"
     });
 
     if (faixaEtaria) {
@@ -227,7 +279,10 @@ botao_filtrar_vagas.onclick = async function () {
 let nome = document.getElementById("nome_user");
 let email = document.getElementById("email_user");
 let telefone = document.getElementById("telefone_user");
-let cidade = document.getElementById("cidade_user");
+let empresa = document.getElementById("empresa_user");
+let setor_atividade = document.getElementById("setor_atividade_user");
+
+
 
 // Editando dados perfil (PUT)
 
@@ -238,8 +293,8 @@ const lapis_ft_perfil = document.getElementById("lapis_ft_perfil");
 const lapis_nome = document.getElementById("lapis_nome");
 const lapis_email = document.getElementById("lapis_email");
 const lapis_telefone = document.getElementById("lapis_telefone");
-const lapis_cidade = document.getElementById("lapis_cidade");
-const lapis_idade = document.getElementById("lapis_idade");
+const lapis_empresa = document.getElementById("lapis_empresa");
+const lapis_setor_atividade = document.getElementById("lapis_setor_atividade");
 
 let editando = true;
 botao_editar.onclick = async function () {
@@ -247,7 +302,8 @@ botao_editar.onclick = async function () {
   let nome_user = nome.textContent;
   let email_user = email.textContent;
   let telefone_user = telefone.textContent;
-  let cidade_user = cidade.textContent;
+  let empresa_user = empresa.textContent;
+  let setor_atividade_user = setor_atividade.textContent;
 
   if (editando) {
     botao_editar.textContent = "Salvar";
@@ -319,16 +375,29 @@ botao_editar.onclick = async function () {
       }
     };
 
-    lapis_cidade.onclick = async function () {
-      const { value: city } = await Swal.fire({
-        title: "Altere sua cidade",
+    lapis_empresa.onclick = async function () {
+      const { value: empresa_ } = await Swal.fire({
+        title: "Altere o nome de sua empresa",
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
       });
-      if (city) {
-        cidade.textContent = city;
-        cidade_user = cidade.textContent;
+      if (empresa_) {
+        empresa.textContent = empresa_;
+        empresa_user = empresa.textContent;
+      }
+    };
+
+    lapis_setor_atividade.onclick = async function () {
+      const { value: setor_atividade_ } = await Swal.fire({
+        title: "Altere seu setor",
+        input: "text",
+        inputLabel: "Insira abaixo:",
+        inputPlaceholder: "Digite aqui para atualizar",
+      });
+      if (setor_atividade_) {
+        setor_atividade.textContent = setor_atividade_;
+        setor_atividade_user = setor_atividade.textContent;
       }
     };
 
@@ -346,7 +415,7 @@ botao_editar.onclick = async function () {
       iconeLapis.style.display = "none";
     });
 
-    let data = { nome_user, email_user, telefone_user, cidade_user };
+    let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
 
     // PUT
 

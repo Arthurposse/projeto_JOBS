@@ -408,7 +408,7 @@ botao_deletar_metas.onclick = async function () {
   const response = await fetch("http://localhost:3008/api/metas/deletando", {
     method: "DELETE",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   let content = await response.json();
