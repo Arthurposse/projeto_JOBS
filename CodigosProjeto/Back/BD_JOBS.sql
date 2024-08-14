@@ -38,7 +38,7 @@ CREATE TABLE vagas (
     faixa_etaria ENUM('16-18', '19-21', '22-24', '25-27', '28-30') NOT NULL,
     descricao text NOT NULL,
 
-    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name)
+    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name) ON UPDATE CASCADE
 );
 
 CREATE TABLE duvidas(

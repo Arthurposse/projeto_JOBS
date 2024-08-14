@@ -446,8 +446,6 @@ botao_editar.onclick = async function () {
 
     let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
 
-    console.log(data);
-
     // PUT
     const response = await fetch(
       `http://localhost:3008/api/uptade/userEmpresa/${id_user}`,
