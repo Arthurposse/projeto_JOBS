@@ -6,13 +6,15 @@
   Resumo
 </h3>
 
-<h4>
-  Atualmente os jovens enfrentam inúmeros problemas para se inserirem ao mercado de trabalho, por este motivo a escolha deste projeto. Este trabalho tem como objetivo auxiliar os jovens com seu ingresso ao mundo do trabalho, a resolver suas dúvidas e auxiliar em seu planejamento de carreira.
+<h4 style="text-align: justify">
+  Em fevereiro de 2023, foi iniciado este projeto com o objetivo de abordar as dificuldades enfrentadas por jovens ao tentar se inserir no mercado de trabalho. Com base em pesquisas bibliográficas realizadas por meio do Google Scholar e em um formulário disponibilizado em 2023, o projeto foi fundamentado. A proposta surgiu da necessidade de apoiar esses jovens, oferecendo para eles uma solução prática.
 </h4>
 
-<h4>
-  No site, irá ter 2 opções de usuário, o registrado como jovem e o empresa. Cada um possui suas funcionalidades no site. A seguir será apresetado cada funcionalidade de cada usuário.
+<h4 style="text-align: justify">
+  O projeto se concretiza no desenvolvimento de um site voltado para a juventude, em que cada usuário terá sua funcionalidade dentro do site. Segue abaixo:
 </h4>
+
+<br>
 
 <hr>
 
@@ -20,21 +22,22 @@
   Usuários
 </h3>
 
-
-  - Usuário Jovem
-    - Chat.
-    - Procurar emprego (com pesquisa personalizada).
-    - Postar seu currículo (em um hub).
-    - Postar suas dúvidas.
-    - Ideias de planejamento de carreira.
-    - Estabelecer suas próprias metas
+- Usuário Jovem
+  - Chat.
+  - Procurar emprego (com pesquisa personalizada).
+  - Postar seu currículo (em um hub).
+  - Postar suas dúvidas.
+  - Criar seu prórprio planejamento de carreira.
+  - Estabelecer suas próprias metas
 
 <br>
 
-  - Usuário Empresa
-      - Chat.
-      - Buscar currículos.
-      - Tirar dúvidas dos jovens.
+- Usuário Empresa
+  - Chat.
+  - Buscar currículos.
+  - Tirar dúvidas dos jovens.
+
+<br>
 
 <hr>
 
@@ -47,8 +50,9 @@
 - <b> Chat: </b> Procurar ainda.
 - <b> BD: </b> MySQL.
 - <b> Upload de arquivo: </b> Procurar ainda.
-- <b> Verificação de email: </b> Test.
-- <b> Buscar por empregos: </b> Procurar ainda.
+- <b> Buscar por empregos: </b> Adzuna.
+
+<br>
 
 <hr>
 
@@ -56,37 +60,13 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa
-	- Ajustar responsividade.
-	- Ajustar o envio dos dados do usuário para o BD.
-  - Acrescentar alert personalizado, quando o usuário ser cadastrado com sucesso e quando der algum erro.
-
-<br>
-
-- Tela Cadastro Jovem
-	- Ajustar responsividade.
-	- Adicionar um limitador de idade, onde o usuário só poderá ser cadastrado se ele tiver entre 14/15 e 24 anos.
-
-<br>
-
-- Tela Verificando Código
-	- Ajustar responsividade.
-
-<br>
-
-- Tela Verificando Tipo Usuário
-  - Ajustar responsividade.
-
-<br>
-
-- Tela Login (Entrando)
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário e Tela Login (Entrando)
   - Ajustar responsividade.
 
 <br>
 
 - Tela Home (Sem Usuário Logado)
   - Ajustar responsividade.
-  - Ajustar o footer.
   - Acrescentar carrossel mostrando algumas oportunidades de emprego (estágio/jovem aprendiz), mas com limite (após ser passado para o lado o carrossel X vezes, mostrar um alert falando "quer buscar outras oportunidades? Faça o cadastro agora mesmo!!" (algo assim, é apenas uma ideia)).
 
 <br>
@@ -94,31 +74,25 @@
 - Tela Home (Usuário Jovem)
   - Ajustar responsividade.
   - Ajustar o footer.
-  - Planejar e desenvolver as seções sobre o plano a seguir e as estatísticas da visualização do currículo do usuário.
+  - Planejar e desenvolver a seção sobre as estatísticas de visualização do currículo do usuário.
 
 <br>
 
 - Tela Home (Usuário Empresa)
   - Ajustar responsividade.
-  - Ajustar o footer.
-  - Desenvolver a parte da busca dos dados do usuário para serem impressos no Front-End.
-  - Verificar e ajustar as funções: Criação da conta do usuário empresa e a atualização de seus dados.
   - Desenvolver o carrossel das dúvidas dos jovens.
-  - Desenvolver a função do botão para criar a vaga.
-  - Desenvolver a função para filtrar a partir da faixa etária e também a partir da área das vagas que estão registradas no BD.
+  - Desenvolver a função para filtrar a partir da área das vagas.
 
 <br>
 
 - Tela Chat
-	- Ajustar responsividade.
+  - Ajustar responsividade.
   - Planejar e desenvolver o sistema de chat.
-  - Adicionar função que ao clicar em chat na página de home, ao entrar na tela chat, apareça o nome e a foto do usuário no canto direito da tela.
-  
+
 <br>
 
 - Tela Dicas/Sugestões
   - Ajustar responsividade.
-  - Ajustar o footer.
   - Desenvolver a tela das dicas/sugestões sugeridas.
   - Verificar a função para enviar a dúvida para o BD.
   - Verificar para puxar do BD as dúvidas dos outros jovens para serem mostradas na página.
@@ -145,7 +119,3 @@
   - Acrescentar função de acertos e erros, para mostrar o resultado para o usuário.
   - Acrescentar explicação geral a partir do módulo escolhido.
   - Acrescentar, dentro da seção "Explicação das questões" uma função que consiga buscar no BD as questões com base no módulo escolhido, para que seja possível mostrar o usuário as respostas corretas das questões e a explicação de cada questão.
-
-<br>
-
-- <p style="color: red;"> VERIFICAR PASTAS IMG PARA VER SE HÁ ALGUMA IMAGEM QUE NÃO PRECISE!! </p>

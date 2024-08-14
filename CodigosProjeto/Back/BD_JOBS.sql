@@ -23,7 +23,7 @@ CREATE TABLE user_empresa(
     nome_empresa VARCHAR(50) NOT NULL,
     cnpj VARCHAR(18) NOT NULL,
     razao_social VARCHAR(20) NOT NULL,
-    setor_atividade VARCHAR(25) NOT NULL
+    setor_atividade VARCHAR(50) NOT NULL
 );
 
 -- Índices para que seja possível criar a tabela de vagas com suas chaves estrangeiras 

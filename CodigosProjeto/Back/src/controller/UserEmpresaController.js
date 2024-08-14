@@ -35,7 +35,6 @@ async function cadastroEmpresa(request, response) {
 }
 
 // Buscando dados usuário (GET)
-
 async function getDadosUser(request, response) {
   const query = "SELECT * FROM user_empresa;";
 
