@@ -228,6 +228,27 @@ botao_deletar_vaga.onclick = async function () {
   }
 }
 
+// Vagas - PUT
+async function putVagas(nome, nome_antigo) {
+  let data = { nome, nome_antigo };
+
+  const response = await fetch(`http://localhost:3008/api/vagas/putVagas`, {
+    method: "PUT",
+    headers: { "Content-type": "application/json;charset=UTF-8" },
+    body: JSON.stringify(data),
+  });
+
+  let content = await response.json();
+  console.log(content);
+
+  if (content.sucess) {
+    alert("Deu bom o PUT VAGAS!!");
+  } else {
+    alert("Deu ruim o PUT VAGAS!!");
+    console.error();
+  }
+}
+
 // Vagas - Filtro
 
 const botao_filtrar_vagas = document.getElementById("filtrar_vaga");
@@ -320,8 +341,9 @@ const lapis_empresa = document.getElementById("lapis_empresa");
 const lapis_setor_atividade = document.getElementById("lapis_setor_atividade");
 
 let editando = true;
+let nome_user_anterior, email_user_anterior, telefone_user_anterior, empresa_user_anterior, setor_atividade_user_anterior;
+
 botao_editar.onclick = async function () {
-  let ft_user;
   let nome_user = nome.textContent;
   let email_user = email.textContent;
   let telefone_user = telefone.textContent;
@@ -329,35 +351,19 @@ botao_editar.onclick = async function () {
   let setor_atividade_user = setor_atividade.textContent;
 
   if (editando) {
+    // Armazena os valores antigos
+    nome_user_anterior = nome_user;
+    email_user_anterior = email_user;
+    telefone_user_anterior = telefone_user;
+    empresa_user_anterior = empresa_user;
+    setor_atividade_user_anterior = setor_atividade_user;
+
     botao_editar.textContent = "Salvar";
 
     iconesLapis.forEach((iconeLapis) => {
       iconeLapis.style.display = "flex";
       iconeLapis.style.animation = "all 1s ease";
     });
-
-    lapis_ft_perfil.onclick = async function () {
-      const { value: file } = await Swal.fire({
-        title: "Select image",
-        input: "file",
-        inputAttributes: {
-          accept: "image/*",
-          "aria-label": "Upload your profile picture",
-        },
-      });
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          Swal.fire({
-            title: "Your uploaded picture",
-            imageUrl: e.target.result,
-            imageAlt: "The uploaded picture",
-          });
-        };
-        ft_user = reader.readAsDataURL(file);
-        console.log(file);
-      }
-    };
 
     lapis_nome.onclick = async function () {
       const { value: name } = await Swal.fire({
@@ -424,24 +430,25 @@ botao_editar.onclick = async function () {
       }
     };
 
-    localStorage.setItem("User_name_antigo", nome.textContent);
-
     editando = false;
   } else {
-    // Acrescentar alteração do nome registrado em cada vaga dentro do BD (putVagas) e buscar vagas novamente para serem impressas (getVagas)
-
-    localStorage.setItem("User_name", nome_user);
-
     botao_editar.textContent = "Editar";
 
     iconesLapis.forEach((iconeLapis) => {
       iconeLapis.style.display = "none";
     });
 
+    nome_user = nome_user || nome_user_anterior;
+    email_user = email_user || email_user_anterior;
+    telefone_user = telefone_user || telefone_user_anterior;
+    empresa_user = empresa_user || empresa_user_anterior;
+    setor_atividade_user = setor_atividade_user || setor_atividade_user_anterior;
+
     let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
 
-    // PUT
+    console.log(data);
 
+    // PUT
     const response = await fetch(
       `http://localhost:3008/api/uptade/userEmpresa/${id_user}`,
       {
@@ -454,9 +461,10 @@ botao_editar.onclick = async function () {
     let content = await response.json();
     console.log(content);
 
-    if (content.sucess) {
+    if (content.success) {
+      putVagas(nome_user, nome_user_anterior);
       Swal.fire({
-        title: "Seus dados foram atualizados com sucesso!!",
+        title: "Seus dados foram atualizados com sucesso!",
         icon: "success",
         showConfirmButton: false,
         timer: 2000,
@@ -467,12 +475,13 @@ botao_editar.onclick = async function () {
       }, 2000);
     } else {
       Swal.fire({
-        title: "Não foi possível alterar seus dados!!",
+        title: "Não foi possível alterar seus dados!",
         icon: "error",
         showConfirmButton: false,
         timer: 2000,
       });
     }
+
     editando = true;
   }
 };

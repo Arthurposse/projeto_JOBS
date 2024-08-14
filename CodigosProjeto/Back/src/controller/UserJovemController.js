@@ -121,7 +121,6 @@ async function uptadeUserJovem(request, response) {
 }
 
 // Buscar metas Usuário Jovem (GET)
-
 async function getMetasJovem(request, response) {
   const params = Array(request.query.User_name);
 
@@ -145,8 +144,7 @@ async function getMetasJovem(request, response) {
   });
 }
 
-// Atualizando metas Usuário Jovem (PUT)
-
+// Atualizando metas Usuário Jovem (PUT
 async function uptadeMetasJovem(request, response) {
   const params = Array(request.body.nome, request.body.nome_antigo);
 
@@ -170,7 +168,6 @@ async function uptadeMetasJovem(request, response) {
 }
 
 // Criando meta Usuário Jovem (POST)
-
 async function postMetasJovem(request, response) {
   const params = Array(
     request.body.User_name,

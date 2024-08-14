@@ -134,7 +134,7 @@ VALUES
     'SKA',
     '01.123.456/7891-23',
     '',
-    ''
+    'teste'
 );
 
 -- Inserindo vagas fictícias
