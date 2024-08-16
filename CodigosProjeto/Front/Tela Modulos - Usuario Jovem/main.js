@@ -56,7 +56,7 @@ async function getModulos(buscar_modulo) {
   res_BD = content;
 
   let totalQuestoes = content.data.length;
-  localStorage.setItem('Total_questoes', totalQuestoes);
+  localStorage.setItem("Total_questoes", totalQuestoes);
 
   let numerosUsados = [];
 
@@ -123,9 +123,9 @@ botao_concluir.onclick = function () {
             imageUrl: "../images/Img_final.svg",
             imageHeight: 300,
           });
-          
+
           cont_pontos += 1;
-          
+
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
         } else {
@@ -138,16 +138,36 @@ botao_concluir.onclick = function () {
           title: "Infelizmente você errou.",
           text: "Mais sorte na próxima vez!!",
           imageUrl: "../images/Img_boneco_errou.svg",
-          imageHeight: 300
+          imageHeight: 300,
         });
+
+        console.log(ordem_questoes);
+
+        // Limpando lista com a resposta correta
+        while (questoes_corretas.length !== 0) {
+          questoes_corretas.shift();
+        }
+
+        // Remove a primeira pergunta da lista
+        ordem_questoes.shift();
+
+        if (ordem_questoes.length > 0) {
+          // Exiba a próxima pergunta e suas opções de resposta
+          exibirPergunta(res_BD);
+        } else {
+          localStorage.setItem("Pontos", cont_pontos);
+
+          window.location.href =
+            "../Tela Explicacao Modulos - Usuario Jovem/index.html";
+        }
       }
     } else {
       alert("Selecione apenas UMA opção!!");
     }
   } else {
-    cont_pontos += 1; 
+    cont_pontos += 1;
 
-    localStorage.setItem('Pontos', cont_pontos);
+    localStorage.setItem("Pontos", cont_pontos);
 
     window.location.href =
       "../Tela Explicacao Modulos - Usuario Jovem/index.html";
