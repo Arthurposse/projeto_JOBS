@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Livvic", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+:root {
+    --cor-primaria: #19a7ce;
+    --cor-secundaria: #0e566a;
+    --cor-terciaria: #9DD4D1;
+    --cor-fonte: white;
+}
+
+/* Para remover o fundo branco do CHROME */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--cor-fonte);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232300;
+}
+
+/* Header */
+
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 62vh;
+    color: var(--cor-fonte);
+}
+
+header .header_topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .Logo_JOBS {
+    width: 15%;
+    margin: 1.5%;
+}
+
+header .bloco_usuario {
+    background-color: rgba(25, 167, 206, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 1%;
+    border-radius: 2vw 0 0 2vw;
+    width: 16%;
+}
+
+header .bloco_usuario img {
+    width: 20%;
+}
+
+header .bloco_usuario h3 {
+    font-size: 1rem;
+}
+
+header .header_meio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4%;
+}
+
+header .forma {
+    background-color: rgba(25, 167, 206);
+    width: 4%;
+    height: 2vh;
+    border-radius: 2vw;
+}
+
+/* Main */
+
+main {
+    background-color: var(--cor-primaria);
+}
+
+main .infos_vaga {
+    padding: 2%;
+    height: 100vh;
+}
+
+main .infos_vaga h2 {
+    color: var(--cor-secundaria);
+}
+
+main .infos_vaga hr {
+    width: 85%;
+    border: 1px solid var(--cor-secundaria);
+    margin-top: .5%;
+}
+
+/* Main - Perfil */
+
+main .perfil {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_perfil.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 130vh;
+    padding: 5%;
+}
+
+main .perfil h2 {
+    font-size: 2rem;
+    color: var(--cor-secundaria);
+}
+
+main .perfil .secao_perfil {
+    display: flex;
+    gap: 3vw;
+    padding-top: 4%;
+    color: var(--cor-secundaria);
+}
+
+main .perfil .parte_esquerda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+main .perfil .parte_esquerda .ft_perfil {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vw;
+    padding: 30%;
+    border-radius: 1vw;
+    text-align: center;
+}
+
+main .perfil .parte_esquerda .ft_perfil #lapis_nome,
+#lapis_ft_perfil {
+    display: none;
+    cursor: pointer;
+}
+
+main .perfil .parte_esquerda .quant_pessoas {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    padding: 8%;
+    width: 14vw;
+    border-radius: 1vw;
+}
+
+main .perfil .parte_esquerda .quant_pessoas i {
+    font-size: 1.7rem;
+}
+
+main .perfil .parte_direita {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+main .perfil .parte_direita .bloco_pt_direita {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 28vw;
+    padding: 4%;
+    border-radius: 1vw;
+}
+
+main .perfil .parte_direita .bloco_pt_direita h3 {
+    font-weight: bold;
+}
+
+main .perfil .parte_direita .bloco_pt_direita i {
+    cursor: pointer;
+    display: none;
+}
+
+main .perfil button {
+    background-color: var(--cor-secundaria);
+    padding: 1%;
+    margin-top: 4%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    color: var(--cor-fonte);
+    cursor: pointer;
+}
+
+@keyframes all {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Footer */
+
+footer {
+    position: relative;
+    width: 100%;
+    background: var(--cor-secundaria);
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer .social_icon,
+footer .menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+footer .social_icon li,
+footer .menu li {
+    list-style: none;
+}
+
+footer .social_icon li a,
+footer .menu li a {
+    font-size: 2em;
+    color: var(--cor-fonte);
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+footer .menu li a {
+    font-size: 1.2em;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+footer .social_icon li a:hover {
+    transform: translateY(-10px);
+}
+
+footer .menu li a:hover {
+    opacity: 1;
+}
+
+footer p {
+    color: var(--cor-fonte);
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+}
+
+footer .wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(../images/wave.png);
+    background-size: 1000px 100px;
+}
+
+footer .wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWave1 4s linear infinite;
+}
+
+@keyframes animateWave1 {
+    0% {
+        background-position-x: 1000px;
+    }
+
+    100% {
+        background-position-x: 0px;
+    }
+}
+
+footer .wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animateWave2 4s linear infinite;
+}
+
+@keyframes animateWave2 {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: 1000px;
+    }
+}
+
+footer .wave#wave3 {
+    z-index: 1000;
+    opacity: 0.25;
+    bottom: 15px;
+    animation: animateWave3 3s linear infinite;
+}
+
+@keyframes animateWave3 {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: 1000px;
+    }
+}
+
+footer .wave#wave4 {
+    z-index: 999;
+    opacity: 0.75;
+    bottom: 20px;
+    animation: animateWave4 3s linear infinite;
+}
+
+@keyframes animateWave4 {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: 1000px;
+    }
+}
