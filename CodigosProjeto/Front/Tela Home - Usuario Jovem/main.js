@@ -38,7 +38,7 @@ async function downloadPDF() {
   const canvas = await html2canvas(element, {
     scale: 3, // Aumenta a escala para aumentar a qualidade da imagem
     useCORS: true, // Se estiver usando imagens de outros domínios, pode precisar disso
-    backgroundColor: "#19a7ce", // Define a cor de fundo do canvas
+    backgroundColor: "#9DD4D1", // Define a cor de fundo do canvas
   });
 
   // Converte o canvas para uma imagem em base64
@@ -65,7 +65,7 @@ async function downloadPDF() {
   });
 
   // Define a cor de fundo do PDF
-  pdf.setFillColor("#19a7ce"); // Cor de fundo
+  pdf.setFillColor("#9DD4D1"); // Cor de fundo
   pdf.rect(0, 0, pdfWidth, pdfHeight, "F"); // Desenha um retângulo preenchido
 
   // Adiciona a imagem capturada ao PDF com padding, centralizando-a
