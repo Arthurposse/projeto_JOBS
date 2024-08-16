@@ -47,6 +47,7 @@ img {
 #explicacao {
   text-align: justify;
   width: 50vw;
+  font-size: 1.4rem;
 }
 
 /* Meio - Explicação questão por questão */
