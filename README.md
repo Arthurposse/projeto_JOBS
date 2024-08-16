@@ -110,7 +110,7 @@
 - Tela Explicação Módulo
   - Ajustar responsividade.
   - Acrescentar o footer.
-  - Acrescentar, dentro da seção "Explicação das questões" uma função que consiga buscar no BD as questões com base no módulo escolhido, para que seja possível mostrar o usuário as respostas corretas das questões e a explicação de cada questão.
+  - Acrescentar, dentro da seção "Explicação das questões" a comparação sobre as questões que foram marcadas pelo usuário e as corretas, seguidas com suas explicações.
 
 <br>
 
