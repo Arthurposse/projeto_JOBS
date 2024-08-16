@@ -60,7 +60,7 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário e Tela Login (Entrando)
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando) e Tela Módulos
   - Ajustar responsividade.
 
 <br>
@@ -107,15 +107,13 @@
 
 <br>
 
-- Tela Módulos
-  - Ajustar problema que, ao errar a questão, não continua para a próxima questão.
-  - Acrescentar função com LocalStorage para armazenar as respostas corretas e as incorretas para ser calculado e mostrado para o usuário na página de explicação do módulo.
-
-<br>
-
 - Tela Explicação Módulo
   - Ajustar responsividade.
   - Acrescentar o footer.
-  - Acrescentar função de acertos e erros, para mostrar o resultado para o usuário.
-  - Acrescentar explicação geral a partir do módulo escolhido.
   - Acrescentar, dentro da seção "Explicação das questões" uma função que consiga buscar no BD as questões com base no módulo escolhido, para que seja possível mostrar o usuário as respostas corretas das questões e a explicação de cada questão.
+
+<br>
+
+- Tela Buscar Emprego
+  - Ajustar responsividade.
+  - Desenvolver o filtro (um dos filtros poderia ser por regiões).
