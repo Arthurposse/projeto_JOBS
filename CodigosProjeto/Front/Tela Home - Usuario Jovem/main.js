@@ -539,7 +539,7 @@ async function getUserJovem(id_user) {
     `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
+      headers: { "Content-type": "application/json;charset=UTF-8" }
     }
   );
 

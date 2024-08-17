@@ -50,9 +50,9 @@ img {
   font-size: 1.4rem;
 }
 
-/* Meio - Explicação questão por questão */
+/* Meio - Comparação de acertos/erros */
 
-.bloco_respostas {
+.bloco_comparacao {
   background-color: var(--cor-secundaria);
   display: flex;
   align-items: center;
@@ -64,34 +64,25 @@ img {
   color: var(--cor-terciaria);
 }
 
-.bloco_respostas h2 {
+.bloco_comparacao h2 {
   font-size: 2rem;
 }
 
-.bloco_res {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 3vh;
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 2.5%;
 }
 
-.bloco_res #bloco_res_pergunta, .bloco_res #bloco_res_resposta, .bloco_res #bloco_res_explicacao {
-  font-size: 1.4rem;
-  text-align: justify;
+th, td {
+  border: 1px solid var(--cor-terciaria);
+  padding: 8px;
 }
 
-.bloco_res #bloco_res_resposta,
-.bloco_res #bloco_res_explicacao {
-  /* visibility: hidden; */
-  display: none;
+th {
+  background-color: var(--cor-primaria);
 }
-
-.bloco_res:hover #bloco_res_resposta,
-.bloco_res:hover #bloco_res_explicacao {
-  /* visibility: visible; */
-  display: block;
-}
-
 
 /* Fim - Botão voltar ao início */
 

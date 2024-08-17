@@ -4,14 +4,19 @@ let res_BD;
 
 if (tipo_modulo_escolhido == "Enviar email") {
   buscar = "email";
+  localStorage.setItem('Modulo', buscar);
 } else if (tipo_modulo_escolhido == "Realizando entrevista") {
   buscar = "entrevista";
+  localStorage.setItem('Modulo', buscar);
 } else if (tipo_modulo_escolhido == "Trabalho em equipe") {
   buscar = "trabalho_equipe";
+  localStorage.setItem('Modulo', buscar);
 } else if (tipo_modulo_escolhido == "Resolução de problemas") {
   buscar = "res_problema";
+  localStorage.setItem('Modulo', buscar);
 }
 
+let respostas_marcadas = [];
 let ordem_questoes = [];
 let questoes_corretas = [];
 
@@ -99,6 +104,9 @@ botao_concluir.onclick = function () {
 
     if (marcados === 1) {
       if (res_marcada[0] == questoes_corretas[0]) {
+
+        respostas_marcadas.push(res_marcada[0]);
+
         Swal.fire({
           title: "Parábens, você acertou!!",
           text: "Bora ver quantas você acertou?",
@@ -134,6 +142,8 @@ botao_concluir.onclick = function () {
           // alert('Você respondeu todas as perguntas!');
         }
       } else {
+        respostas_marcadas.push(res_marcada[0]);
+
         Swal.fire({
           title: "Infelizmente você errou.",
           text: "Mais sorte na próxima vez!!",
@@ -157,8 +167,7 @@ botao_concluir.onclick = function () {
         } else {
           localStorage.setItem("Pontos", cont_pontos);
 
-          window.location.href =
-            "../Tela Explicacao Modulos - Usuario Jovem/index.html";
+          botao_concluir.textContent = "Concluir";
         }
       }
     } else {
@@ -168,6 +177,7 @@ botao_concluir.onclick = function () {
     cont_pontos += 1;
 
     localStorage.setItem("Pontos", cont_pontos);
+    localStorage.setItem("Res_user", JSON.stringify(respostas_marcadas))
 
     window.location.href =
       "../Tela Explicacao Modulos - Usuario Jovem/index.html";
