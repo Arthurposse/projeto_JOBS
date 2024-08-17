@@ -16,7 +16,7 @@ async function getVagas(nome, ordem) {
     `http://localhost:3008/api/vagas/getVagas?User_name=${nome}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
+      headers: { "Content-type": "application/json;charset=UTF-8" }
     }
   );
 
