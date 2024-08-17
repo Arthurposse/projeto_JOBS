@@ -88,6 +88,7 @@ botao_voltar_inicio.onclick = function () {
   localStorage.removeItem('Total_questoes');
   localStorage.removeItem('Pontos');
   localStorage.removeItem('Modulo');
-
+  localStorage.removeItem('Res_user');
+  
   window.location.href = "../Tela Home - Usuario Jovem/index.html";
 };
