@@ -107,7 +107,6 @@ botao_concluir.onclick = function () {
       respostas_marcadas.push(res_marcada[0]);
 
       if (res_marcada[0] == questoes_corretas[0]) {
-
         Swal.fire({
           title: "Parábens, você acertou!!",
           text: "Bora ver quantas você acertou?",
@@ -140,12 +139,13 @@ botao_concluir.onclick = function () {
           // Exiba a próxima pergunta e suas opções de resposta
           exibirPergunta(res_BD);
         } else {
+          cont_pontos += 1;
+
           botao_concluir.textContent = "Concluir";
 
           // alert('Você respondeu todas as perguntas!');
         }
       } else {
-
         Swal.fire({
           title: "Infelizmente você errou.",
           text: "Mais sorte na próxima vez!!",
@@ -175,8 +175,6 @@ botao_concluir.onclick = function () {
       alert("Selecione apenas UMA opção!!");
     }
   } else {
-    cont_pontos += 1;
-
     localStorage.setItem("Pontos", cont_pontos);
     localStorage.setItem("Res_user", JSON.stringify(respostas_marcadas))
 
