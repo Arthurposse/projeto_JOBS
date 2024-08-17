@@ -109,11 +109,10 @@
 
 - Tela Explicação Módulo
   - Ajustar responsividade.
-  - Acrescentar o footer.
-  - Acrescentar, dentro da seção "Explicação das questões" a comparação sobre as questões que foram marcadas pelo usuário e as corretas, seguidas com suas explicações.
+  - Acrescentar/ajustar o footer.
 
 <br>
 
 - Tela Buscar Emprego
   - Ajustar responsividade.
-  - Desenvolver o filtro (um dos filtros poderia ser por regiões).
+  - Desenvolver o filtro.
