@@ -168,7 +168,6 @@ botao_criar_vagas.onclick = async function () {
             );
 
             let content = await response.json();
-            console.log(content);
 
             if (content.sucess) {
               alert("Deu bom o POST!!");
@@ -215,7 +214,6 @@ botao_deletar_vaga.onclick = async function () {
   });
 
   let content = await response.json();
-  console.log(content);
 
   if (content.sucess) {
     alert("Deu bom o DELETE!!");
@@ -239,7 +237,6 @@ async function putVagas(nome, nome_antigo) {
   });
 
   let content = await response.json();
-  console.log(content);
 
   if (content.sucess) {
     alert("Deu bom o PUT VAGAS!!");
@@ -371,6 +368,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (name) {
         nome.textContent = name;
@@ -384,6 +382,7 @@ botao_editar.onclick = async function () {
         input: "email",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (emailValor) {
         email.textContent = emailValor;
@@ -397,6 +396,7 @@ botao_editar.onclick = async function () {
         input: "tel",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (tel) {
         telefone.textContent = tel;
@@ -410,6 +410,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (empresa_) {
         empresa.textContent = empresa_;
@@ -423,6 +424,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (setor_atividade_) {
         setor_atividade.textContent = setor_atividade_;
@@ -457,7 +459,6 @@ botao_editar.onclick = async function () {
     );
 
     let content = await response.json();
-    console.log(content);
 
     if (content.success) {
       putVagas(nome_user, nome_user_anterior);
@@ -465,21 +466,20 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 3000
       });
 
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 3000);
     } else {
       Swal.fire({
         title: "Não foi possível alterar seus dados!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 3000
       });
     }
-
     editando = true;
   }
 };

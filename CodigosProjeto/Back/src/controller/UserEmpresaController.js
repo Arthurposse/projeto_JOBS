@@ -57,38 +57,6 @@ async function getDadosUser(request, response) {
 
 // Atualizando dados do usuário (PUT)
 
-// async function uptadeUserEmpresa(request, response) {
-//   const params = Array(
-//     // request.body.ft_user,
-//     request.body.name,
-//     request.body.email,
-//     request.body.telefone,
-//     request.body.empresa,
-//     request.body.setor_atividade,
-//     request.params.id
-//   );
-
-//   // SEM var ft_user
-//   const query =
-//     "UPDATE `user_empresa` SET `name` = ?, `email` = ?, `telefone` = ?, `nome_empresa` = ?, `setor_atividade` = ? WHERE `id` = ?;";
-
-//   connection.query(query, params, (err, results) => {
-//     if (results) {
-//       response.status(201).json({
-//         sucess: true,
-//         message: "Sucesso com PUT user jovem!!",
-//         data: results,
-//       });
-//     } else {
-//       response.status(400).json({
-//         sucess: false,
-//         message: "Ops, deu problemas PUT user jovem!",
-//         data: err,
-//       });
-//     }
-//   });
-// }
-
 async function uptadeUserEmpresa(request, response) {
   const params = [
     request.body.nome_user,
