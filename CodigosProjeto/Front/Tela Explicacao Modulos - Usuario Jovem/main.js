@@ -34,12 +34,11 @@ async function addDadosTabela(buscar_modulo) {
 
   content = await response.json();
 
-  console.log(content)
-
   if (content.sucess) {
     for (let i = 0; i < content.data.length; i++) {
-      const respostas_marcadas = JSON.parse(localStorage.getItem('Res_user'));
-
+      const ordem_questoes = JSON.parse(localStorage.getItem('Ordem_questoes'));
+      let respostas_marcadas = JSON.parse(localStorage.getItem('Res_user'));
+      
       const table = document.querySelector('table');
 
       // Criar a linha
@@ -47,15 +46,15 @@ async function addDadosTabela(buscar_modulo) {
 
       // Criar as tags e adicionar suas infos
       const tdPergunta = document.createElement("td");
-      tdPergunta.textContent = content.data[i].pergunta;
+      tdPergunta.textContent = content.data[ordem_questoes[i]].pergunta;
       tr.appendChild(tdPergunta);
 
       const tdRespostaUser = document.createElement("td");
       tdRespostaUser.textContent = respostas_marcadas[i];
       tr.appendChild(tdRespostaUser);
-
+      
       const tdRespostaCorreta = document.createElement("td");
-      tdRespostaCorreta.textContent = content.data[i].res_correta;
+      tdRespostaCorreta.textContent = content.data[ordem_questoes[i]].res_correta;
       tr.appendChild(tdRespostaCorreta);
 
       if(tdRespostaUser.textContent === tdRespostaCorreta.textContent) {
@@ -66,7 +65,7 @@ async function addDadosTabela(buscar_modulo) {
       }
 
       const tdExplicacao = document.createElement("td");
-      tdExplicacao.textContent = content.data[i].explicacao;
+      tdExplicacao.textContent = content.data[ordem_questoes[i]].explicacao;
       tr.appendChild(tdExplicacao);
 
       // Adicionar a linha na tabela
@@ -74,7 +73,8 @@ async function addDadosTabela(buscar_modulo) {
     }
   }
   else {
-    alert('deu bolete');
+    alert('ERROR!!');
+    console.error();
   }
 };
 
@@ -89,6 +89,7 @@ botao_voltar_inicio.onclick = function () {
   localStorage.removeItem('Pontos');
   localStorage.removeItem('Modulo');
   localStorage.removeItem('Res_user');
+  localStorage.removeItem('Ordem_questoes');
   
   window.location.href = "../Tela Home - Usuario Jovem/index.html";
 };

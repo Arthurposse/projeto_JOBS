@@ -110,7 +110,6 @@
 - Tela Explicação Módulo
   - Ajustar responsividade.
   - Acrescentar/ajustar o footer.
-  - Arrumar ordem das questões dentro da tabela de comparações.
 
 <br>
 

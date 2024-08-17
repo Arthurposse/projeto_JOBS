@@ -73,9 +73,10 @@ async function getModulos(buscar_modulo) {
     ordem_questoes.push(num_aleatorio);
     numerosUsados.push(num_aleatorio); // Adiciona o número à lista de números usados
   }
-
+  
   // Verificação da estrutura de sucesso
   if (content.sucess) {
+    localStorage.setItem('Ordem_questoes', JSON.stringify(ordem_questoes));
     exibirPergunta(content);
   } else {
     alert("Deu ruim os MODULOS");
@@ -103,9 +104,9 @@ botao_concluir.onclick = function () {
     });
 
     if (marcados === 1) {
-      if (res_marcada[0] == questoes_corretas[0]) {
+      respostas_marcadas.push(res_marcada[0]);
 
-        respostas_marcadas.push(res_marcada[0]);
+      if (res_marcada[0] == questoes_corretas[0]) {
 
         Swal.fire({
           title: "Parábens, você acertou!!",
@@ -144,7 +145,6 @@ botao_concluir.onclick = function () {
           // alert('Você respondeu todas as perguntas!');
         }
       } else {
-        respostas_marcadas.push(res_marcada[0]);
 
         Swal.fire({
           title: "Infelizmente você errou.",
@@ -153,8 +153,6 @@ botao_concluir.onclick = function () {
           imageHeight: 300,
           confirmButtonColor: "#0e566a"
         });
-
-        console.log(ordem_questoes);
 
         // Limpando lista com a resposta correta
         while (questoes_corretas.length !== 0) {
@@ -182,7 +180,6 @@ botao_concluir.onclick = function () {
     localStorage.setItem("Pontos", cont_pontos);
     localStorage.setItem("Res_user", JSON.stringify(respostas_marcadas))
 
-    window.location.href =
-      "../Tela Explicacao Modulos - Usuario Jovem/index.html";
+    window.location.href = "../Tela Explicacao Modulos - Usuario Jovem/index.html";
   }
 };
