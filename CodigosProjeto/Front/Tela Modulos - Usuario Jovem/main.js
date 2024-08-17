@@ -53,7 +53,7 @@ async function getModulos(buscar_modulo) {
     `http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
+      headers: { "Content-type": "application/json;charset=UTF-8" }
     }
   );
 
