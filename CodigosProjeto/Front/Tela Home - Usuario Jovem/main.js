@@ -299,6 +299,7 @@ botao_criar_metas.onclick = async function () {
     title: "Título meta",
     input: "text",
     inputPlaceholder: "Digite aqui",
+    confirmButtonColor: "#0e566a"
   });
 
   if (titulo_criar) {
@@ -306,12 +307,14 @@ botao_criar_metas.onclick = async function () {
       title: "Detalhes meta",
       input: "text",
       inputPlaceholder: "Digite aqui",
+      confirmButtonColor: "#0e566a"
     });
 
     if (infos_criar) {
       const { value: data_criar } = await Swal.fire({
         title: "Data de conclusão da meta",
         input: "date",
+        confirmButtonColor: "#0e566a"
       });
 
       if (data_criar) {
@@ -327,6 +330,7 @@ botao_criar_metas.onclick = async function () {
           },
           inputPlaceholder: "Seleciona o nível",
           showCancelButton: true,
+          confirmButtonColor: "#0e566a"
         });
         if (prioridade_criar) {
           titulo = titulo_criar;
@@ -369,7 +373,7 @@ async function putMetas(nome, nome_antigo) {
   const response = await fetch(`http://localhost:3008/api/metas/atualizando`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   let content = await response.json();
@@ -400,6 +404,7 @@ botao_deletar_metas.onclick = async function () {
     inputOptions: opcoes,
     inputPlaceholder: "Selecionar aquele que deseja deletar",
     showCancelButton: true,
+    confirmButtonColor: "#0e566a"
   });
   if (metas_deletar) {
     data = { metas_deletar };
@@ -445,6 +450,7 @@ botao_filtrar_metas.onclick = async function () {
     },
     inputPlaceholder: "Seleciona o filtro",
     showCancelButton: true,
+    confirmButtonColor: "#0e566a"
   });
   if (result) {
     getMetas(User_name, result);
@@ -611,6 +617,7 @@ botao_editar.onclick = async function () {
           accept: "image/*",
           "aria-label": "Upload your profile picture",
         },
+        confirmButtonColor: "#0e566a"
       });
       if (file) {
         const reader = new FileReader();
@@ -619,6 +626,7 @@ botao_editar.onclick = async function () {
             title: "Your uploaded picture",
             imageUrl: e.target.result,
             imageAlt: "The uploaded picture",
+            confirmButtonColor: "#0e566a"
           });
         };
         ft_user = reader.readAsDataURL(file);
@@ -632,6 +640,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (name) {
         nome.textContent = name;
@@ -645,6 +654,7 @@ botao_editar.onclick = async function () {
         input: "email",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (emailValor) {
         email.textContent = emailValor;
@@ -658,6 +668,7 @@ botao_editar.onclick = async function () {
         input: "tel",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (tel) {
         telefone.textContent = tel;
@@ -671,6 +682,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
+        confirmButtonColor: "#0e566a"
       });
       if (city) {
         cidade.textContent = city;
@@ -682,6 +694,7 @@ botao_editar.onclick = async function () {
       const { value: date } = await Swal.fire({
         title: "Selecione a sua data de nascimento",
         input: "date",
+        confirmButtonColor: "#0e566a"
       });
       if (date) {
         let ano_user_alert = date.slice(0, 4);
@@ -752,7 +765,7 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2000
       });
 
       setTimeout(() => {
@@ -763,7 +776,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2000
       });
     }
     editando = true;

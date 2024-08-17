@@ -112,6 +112,7 @@ botao_concluir.onclick = function () {
           text: "Bora ver quantas você acertou?",
           imageUrl: "../images/Img_final.svg",
           imageHeight: 300,
+          confirmButtonColor: "#0e566a"
         });
 
         // Limpando lista com a resposta correta
@@ -130,6 +131,7 @@ botao_concluir.onclick = function () {
             text: "Bora pra próxima!!",
             imageUrl: "../images/Img_final.svg",
             imageHeight: 300,
+            confirmButtonColor: "#0e566a"
           });
 
           cont_pontos += 1;
@@ -149,6 +151,7 @@ botao_concluir.onclick = function () {
           text: "Mais sorte na próxima vez!!",
           imageUrl: "../images/Img_boneco_errou.svg",
           imageHeight: 300,
+          confirmButtonColor: "#0e566a"
         });
 
         console.log(ordem_questoes);
