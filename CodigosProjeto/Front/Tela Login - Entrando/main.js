@@ -34,55 +34,60 @@ button.onclick = async function (e) {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  // GET
+  data = { email, password };
+
+  // POST
   const response = await fetch("http://localhost:3008/api/verif/logIn", {
-    method: "GET",
+    method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
+    body: JSON.stringify(data)
   });
 
   let content = await response.json();
 
   if (content.sucess) {
-    for (let i = 0; i < content.data.length; i++) {
-      if (
-        content.data[i].email === email &&
-        content.data[i].password === password
-      ) {
-        localStorage.setItem("ID_user", content.data[i].id);
-        localStorage.setItem("User_name", content.data[i].name);
+    if (content.data.length !== 0) {
+      localStorage.setItem("ID_user", content.data[0].id);
+      localStorage.setItem("User_name", content.data[0].name);
 
-        Swal.fire({
-          title: "LogIn realizado com sucesso!!",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+      Swal.fire({
+        title: "LogIn realizado com sucesso!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000
+      });
 
-        setTimeout(() => {
-          if (content.data[i].origin === "user_jovem") {
-            window.location.href = "../Tela Home - Usuario Jovem/index.html";
-          } else if (content.data[i].origin === "user_empresa") {
-            window.location.href =
-              "../Tela Home - Usuario Empresa/index.html";
-          } else {
-            alert(
-              "ERROR! Não foi possível direcionar vocÊ para a próxima página!!"
-            );
-          }
-        }, 2000);
-        break;
-      } else {
-        Swal.fire({
-          title: "Conta não encontrada!!",
-          text: "Tente novamente!! Ou crie uma conta!!",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 2300,
-        });
-      }
+      setTimeout(() => {
+        if (content.data[0].origin === "user_jovem") {
+          window.location.href = "../Tela Home - Usuario Jovem/index.html";
+        } else if (content.data[0].origin === "user_empresa") {
+          window.location.href =
+            "../Tela Home - Usuario Empresa/index.html";
+        } else {
+          alert(
+            "ERROR! Não foi possível direcionar vocÊ para a próxima página!!"
+          );
+        }
+      }, 2000);
+    }
+    else {
+      Swal.fire({
+        title: "Conta não encontrada!!",
+        text: "Tente novamente!! Ou crie uma conta!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300
+      });
     }
   } else {
     console.error();
-    alert("Não deu o GET!!");
+
+    Swal.fire({
+      title: "ERROR!!",
+      text: "Tente novamente!! Ou crie uma conta!!",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2300
+    });
   }
 };

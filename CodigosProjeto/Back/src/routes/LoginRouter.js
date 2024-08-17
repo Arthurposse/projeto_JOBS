@@ -3,8 +3,8 @@ const router = Router();
 
 const { logIn } = require("../controller/LoginController");
 
-// GET
+// POST
 
-router.get("/verif/logIn", logIn);
+router.post("/verif/logIn", logIn);
 
 module.exports = router;

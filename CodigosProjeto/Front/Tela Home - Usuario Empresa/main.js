@@ -163,7 +163,7 @@ botao_criar_vagas.onclick = async function () {
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
-                body: JSON.stringify(data),
+                body: JSON.stringify(data)
               }
             );
 
@@ -235,7 +235,7 @@ async function putVagas(nome, nome_antigo) {
   const response = await fetch(`http://localhost:3008/api/vagas/putVagas`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   let content = await response.json();
