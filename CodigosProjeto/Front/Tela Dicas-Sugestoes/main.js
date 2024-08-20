@@ -31,7 +31,7 @@ botao_criar_duvida.addEventListener('click', function(){
                 let data = { userInput, id_user }
             
                 // POST
-                const response = await fetch('http://localhost:3008/api/user/enviando_duvida', {
+                const response = await fetch('http://localhost:3008/api/enviando_duvida', {
                     method: "POST",
                     headers: { "Content-type": "application/json;charset=UTF-8" },
                     body: JSON.stringify(data)

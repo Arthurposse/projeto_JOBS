@@ -1,15 +1,39 @@
 const connection = require("../config/db");
 const dotenv = require("dotenv").config();
 
-// LogIn / Buscar ID user (POST)
+// Enviando dúvida (Usuário Jovem)
+async function enviarDuvida(request, response) {
+  const params = Array(
+    request.params.id,
+    // request.body
+  );
 
-async function logIn(request, response) {
+  const query =
+    "INTERT INTO(id_user, duvida) VALUES (?, ?);";
 
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso com envio da dúvida!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas com envio da dúvida!!!!",
+        data: err,
+      });
+    }
+  });
+}
+
+// Respondendo dúvida (Usuário Jovem e Empresa)
+
+async function responderDuvida(request, response) {
   const params = Array(
     request.body.email,
     request.body.password,
-    request.body.email,
-    request.body.password
   );
 
   const query =
@@ -33,5 +57,6 @@ async function logIn(request, response) {
 }
 
 module.exports = {
-  logIn
-}
+  enviarDuvida,
+  responderDuvida
+};

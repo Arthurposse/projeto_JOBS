@@ -42,8 +42,8 @@ CREATE TABLE vagas (
 );
 
 CREATE TABLE duvidas(
-	id_user INT NOT NULL,
     id_duvida INT PRIMARY KEY AUTO_INCREMENT,
+	id_user INT NOT NULL,
     duvida TEXT NOT NULL
 );
 
