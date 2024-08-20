@@ -27,6 +27,8 @@ async function BuscarVaga(req, res) {
     }
 }
 
+
+
 module.exports = {
     BuscarVaga
 };
