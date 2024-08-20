@@ -96,6 +96,7 @@ label {
     height: 3vh;
     padding: 3%;
     border: 0;
+    color: var(--cor-fonte);
 }
 
 input:focus {
