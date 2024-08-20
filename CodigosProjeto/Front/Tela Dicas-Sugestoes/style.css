@@ -26,61 +26,66 @@ header {
     flex-direction: column;
     height: 62vh;
     color: var(--cor-fonte);
-}
-
-header .header_topo {
+  }
+  
+  header .header_topo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-header .Logo_JOBS {
+  }
+  
+  header .Logo_JOBS {
     width: 15%;
     margin: 1.5%;
-}
-
-header nav {
+  }
+  
+  header nav {
     display: flex;
     gap: 5vw;
-}
-
-header nav a {
+  }
+  
+  header nav a {
     color: var(--cor-terciaria);
     text-decoration: none;
-}
-
-header nav a:nth-child(3) {
+  }
+  
+  header nav a:nth-child(3) {
     text-decoration: underline;
-}
-
-header .bloco_usuario {
+  }
+  
+  header .bloco_usuario {
     background-color: rgba(25, 167, 206, 0.6);
     display: flex;
     align-items: center;
-    gap: 25px;
-    padding: 0.5%;
+    gap: 20px;
+    padding: 1%;
     border-radius: 2vw 0 0 2vw;
-}
-
-header .img_user_nao_logado {
-    width: 24%;
-}
-
-header .header_meio {
+    width: 16%;
+  }
+  
+  header .bloco_usuario img {
+    width: 20%;
+  }
+  
+  header .bloco_usuario h3 {
+    font-size: 1rem;
+  }
+  
+  header .header_meio {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: 4%;
-}
-
-header .forma {
+  }
+  
+  header .forma {
     background-color: rgba(25, 167, 206);
     width: 4%;
     height: 2vh;
     border-radius: 2vw;
-}
+  }
 
 /* Main */
 

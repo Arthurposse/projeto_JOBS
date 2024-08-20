@@ -1,6 +1,10 @@
-// Acessando ID do usuário
+// Buscando infos do usuário
 
-const user = Number(localStorage.getItem('ID_user'));
+let id_user = Number(localStorage.getItem("ID_user"));
+let User_name = localStorage.getItem("User_name");
+let user_logado = document.getElementById("user_logado");
+
+user_logado.textContent = User_name;
 
 // Compartilhamento da dúvida
 
@@ -26,7 +30,6 @@ botao_criar_duvida.addEventListener('click', function(){
             async function enviandoDuvida() {
 
                 let userInput = result.value;
-                let id_user = user;
                 
                 let data = { userInput, id_user }
             
