@@ -8,8 +8,7 @@ async function enviarDuvida(request, response) {
     // request.body
   );
 
-  const query =
-    "INTERT INTO(id_user, duvida) VALUES (?, ?);";
+  const query = "INTERT INTO(id_user, duvida) VALUES (?, ?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -36,20 +35,19 @@ async function responderDuvida(request, response) {
     request.body.password,
   );
 
-  const query =
-    "SELECT id, name, email, password, nome_empresa, 'user_empresa' AS origin FROM jobs.user_empresa WHERE email = ? AND password = ? UNION SELECT id, name, email, password, NULL AS nome_empresa, 'user_jovem' AS origin FROM jobs.user_jovem WHERE email = ? AND password = ?;";
+  const query = "";
 
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
         sucess: true,
-        message: "Sucesso com a busca do usuário!!",
+        message: "Sucesso com envio da resposta!!",
         data: results,
       });
     } else {
       response.status(400).json({
         sucess: false,
-        message: "Ops, deu problemas com a busca do usuário!!",
+        message: "Ops, deu problemas com envio da resposta!!",
         data: err,
       });
     }
