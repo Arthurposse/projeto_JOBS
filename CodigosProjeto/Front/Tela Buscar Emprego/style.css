@@ -180,6 +180,7 @@ main #botao_mais {
   font-size: 1rem;
   color: var(--cor-fonte);
   cursor: pointer;
+  opacity: 0;
 }
 
 main #botao_mais:hover {

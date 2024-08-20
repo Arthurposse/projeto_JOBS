@@ -69,6 +69,8 @@ function buscarVagas() {
             jobsListElement.appendChild(jobElement);
           }
         });
+
+        botao_mais.style.opacity = '1';
       }
     })
     .catch((error) => {
