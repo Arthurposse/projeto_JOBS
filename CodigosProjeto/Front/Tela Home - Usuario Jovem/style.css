@@ -193,6 +193,29 @@ main .planos_seguir .bloco_plano_area button:hover {
   transition: all .6s ease;
 }
 
+.loader {
+  display: none;
+  /* Cor fundo */
+  border: 16px solid #e0e0e0;
+  /* Cor barra */
+  border-top: 16px solid var(--cor-primaria);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.5s linear infinite;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
 main .planos_seguir .plano_sugerido {
   display: flex;
   align-items: center;

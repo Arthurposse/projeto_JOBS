@@ -5,19 +5,25 @@ const botao_download = document.getElementById("botao_download_plano");
 const img_logo = document.querySelector(".img_logo_plano");
 
 botao_gb.onclick = async function () {
+
+  const loader = document.querySelector('.loader');
+
+  loader.style.display = 'block';
+
   const planos_sugerido = document.querySelector(".plano_sugerido");
   const area_usuario = document.getElementById("area_usuario").value;
 
   const response = await fetch(`http://localhost:3008/api/apiGB`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify({ area_usuario }),
+    body: JSON.stringify({ area_usuario })
   });
 
   planos_sugerido.innerHTML = "";
   const plano = await response.text();
   planos_sugerido.innerHTML += plano;
 
+  loader.style.display = 'none';
   botao_download.style.opacity = "1";
 };
 
