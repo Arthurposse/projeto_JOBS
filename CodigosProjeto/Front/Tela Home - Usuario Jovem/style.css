@@ -196,7 +196,7 @@ main .planos_seguir .bloco_plano_area button:hover {
 .loader {
   display: none;
   /* Cor fundo */
-  border: 16px solid #e0e0e0;
+  border: 16px solid #d7d3d3;
   /* Cor barra */
   border-top: 16px solid var(--cor-primaria);
   border-radius: 50%;
