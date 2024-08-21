@@ -5,7 +5,7 @@ const dotenv = require("dotenv").config();
 async function enviarDuvida(request, response) {
   const params = Array(
     request.params.id,
-    // request.body
+    // request.body.
   );
 
   const query = "INTERT INTO(id_user, duvida) VALUES (?, ?);";
