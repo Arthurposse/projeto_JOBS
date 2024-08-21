@@ -4,24 +4,24 @@ const dotenv = require("dotenv").config();
 // Enviando dúvida (Usuário Jovem)
 async function enviarDuvida(request, response) {
   const params = Array(
-    request.params.id,
-    // request.body.
+    request.body.id_user,
+    request.body.duvida
   );
 
-  const query = "INTERT INTO(id_user, duvida) VALUES (?, ?);";
+  const query = "INSERT INTO duvidas(id_user, duvida) VALUES (?, ?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
         sucess: true,
         message: "Sucesso com envio da dúvida!!",
-        data: results,
+        data: results
       });
     } else {
       response.status(400).json({
         sucess: false,
-        message: "Ops, deu problemas com envio da dúvida!!!!",
-        data: err,
+        message: "Ops, deu problemas com envio da dúvida!!",
+        data: err
       });
     }
   });
@@ -32,7 +32,7 @@ async function enviarDuvida(request, response) {
 async function responderDuvida(request, response) {
   const params = Array(
     request.body.email,
-    request.body.password,
+    request.body.password
   );
 
   const query = "";
@@ -42,13 +42,13 @@ async function responderDuvida(request, response) {
       response.status(201).json({
         sucess: true,
         message: "Sucesso com envio da resposta!!",
-        data: results,
+        data: results
       });
     } else {
       response.status(400).json({
         sucess: false,
         message: "Ops, deu problemas com envio da resposta!!",
-        data: err,
+        data: err
       });
     }
   });
