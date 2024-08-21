@@ -75,7 +75,7 @@ async function getModulos(buscar_modulo) {
   }
   
   // Verificação da estrutura de sucesso
-  if (content.sucess) {
+  if (content.success) {
     localStorage.setItem('Ordem_questoes', JSON.stringify(ordem_questoes));
     exibirPergunta(content);
   } else {

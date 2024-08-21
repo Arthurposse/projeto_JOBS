@@ -55,7 +55,7 @@ button.onclick = async function (e) {
     let content = await response.json();
     console.log(content);
 
-    if (content.sucess) {
+    if (content.success) {
         alert ("Sucesso com o POST!!");
         window.location.href = '../../Tela Cadastro/Tela Cadastro - Verificando Codigo/index.html'
 

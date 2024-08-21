@@ -18,13 +18,13 @@ async function logIn(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com a busca do usuário!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com a busca do usuário!!",
         data: err,
       });

@@ -72,7 +72,7 @@ button.onclick = async function (e) {
     let content = await response.json();
     console.log(content);
 
-    if (content.sucess) {
+    if (content.success) {
       Swal.fire({
         title: "Cadastro realizado com sucesso!!",
         text: "Aguarde enquanto seu código de verificação é gerado.",

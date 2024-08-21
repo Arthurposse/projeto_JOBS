@@ -360,7 +360,7 @@ botao_criar_metas.onclick = async function () {
   let content = await response.json();
   console.log(content);
 
-  if (content.sucess) {
+  if (content.success) {
     alert("Deu bom o POST!!");
 
     window.location.reload();
@@ -385,7 +385,7 @@ async function putMetas(nome, nome_antigo) {
   let content = await response.json();
   console.log(content);
 
-  if (content.sucess) {
+  if (content.success) {
     alert("Deu bom o PUT METAS!!");
   } else {
     alert("Deu ruim o PUT METAS!!");
@@ -425,7 +425,7 @@ botao_deletar_metas.onclick = async function () {
   let content = await response.json();
   console.log(content);
 
-  if (content.sucess) {
+  if (content.success) {
     alert("Deu bom o DELETE!!");
 
     window.location.reload();
@@ -766,7 +766,7 @@ botao_editar.onclick = async function () {
     let content = await response.json();
     console.log(content);
 
-    if (content.sucess) {
+    if (content.success) {
       Swal.fire({
         title: "Seus dados foram atualizados com sucesso!!",
         icon: "success",

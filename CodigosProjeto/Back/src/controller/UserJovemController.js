@@ -19,13 +19,13 @@ async function cadastroJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas!",
         data: err,
       });
@@ -43,13 +43,13 @@ async function duvidaJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com POST dúvida!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com POST dúvida!",
         data: err,
       });
@@ -70,13 +70,13 @@ async function getUserJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com GET dados!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com GET dados!",
         data: err,
       });
@@ -106,13 +106,13 @@ async function uptadeUserJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com PUT user empresa!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas PUT user empresa!",
         data: err,
       });
@@ -130,13 +130,13 @@ async function getMetasJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com GET metas!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com GET metas!",
         data: err,
       });
@@ -153,13 +153,13 @@ async function uptadeMetasJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com PUT METAS!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com PUT METAS!",
         data: err,
       });
@@ -183,13 +183,13 @@ async function postMetasJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com POST meta!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com POST meta!",
         data: err,
       });
@@ -207,13 +207,13 @@ async function deleteMetasJovem(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com DELETE meta!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com DELETE meta!",
         data: err,
       });
@@ -232,13 +232,13 @@ async function getModulos(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com GET questoes modulos!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com GET questoes modulos!!",
         data: err,
       });

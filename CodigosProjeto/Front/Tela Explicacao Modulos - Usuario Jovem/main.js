@@ -34,7 +34,7 @@ async function addDadosTabela(buscar_modulo) {
 
   content = await response.json();
 
-  if (content.sucess) {
+  if (content.success) {
     for (let i = 0; i < content.data.length; i++) {
       const ordem_questoes = JSON.parse(localStorage.getItem('Ordem_questoes'));
       let respostas_marcadas = JSON.parse(localStorage.getItem('Res_user'));

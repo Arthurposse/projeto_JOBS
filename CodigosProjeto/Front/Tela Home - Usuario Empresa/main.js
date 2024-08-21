@@ -22,7 +22,7 @@ async function getVagas(nome, ordem) {
 
   let content = await response.json();
 
-  if (content.sucess) {
+  if (content.success) {
     vagas_registradas.innerHTML = "";
 
     if (ordem !== undefined) {
@@ -169,7 +169,7 @@ botao_criar_vagas.onclick = async function () {
 
             let content = await response.json();
 
-            if (content.sucess) {
+            if (content.success) {
               alert("Deu bom o POST!!");
 
               // Recarrega a página
@@ -215,7 +215,7 @@ botao_deletar_vaga.onclick = async function () {
 
   let content = await response.json();
 
-  if (content.sucess) {
+  if (content.success) {
     alert("Deu bom o DELETE!!");
 
     window.location.reload();
@@ -238,7 +238,7 @@ async function putVagas(nome, nome_antigo) {
 
   let content = await response.json();
 
-  if (content.sucess) {
+  if (content.success) {
     alert("Deu bom o PUT VAGAS!!");
   } else {
     alert("Deu ruim o PUT VAGAS!!");
@@ -311,7 +311,7 @@ async function getUserJovem(id_user) {
 
   content = await response.json();
 
-  if(content.sucess) {
+  if(content.success) {
     nome.textContent = content.data[0].name;
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;

@@ -20,13 +20,13 @@ async function cadastroEmpresa(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas!",
         data: err,
       });
@@ -41,13 +41,13 @@ async function getDadosUser(request, response) {
   connection.query(query, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas!",
         data: err,
       });
@@ -108,13 +108,13 @@ async function criandoVaga(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas!",
         data: err,
       });
@@ -130,13 +130,13 @@ async function getVagas(request, response) {
   connection.query(query, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas!",
         data: err,
       });
@@ -154,13 +154,13 @@ async function putVagas(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com PUT VAGAS!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com PUT VAGAS!",
         data: err,
       });
@@ -177,13 +177,13 @@ async function deleteVagas(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com DELETE vaga!!",
         data: results,
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com DELETE vaga!",
         data: err,
       });

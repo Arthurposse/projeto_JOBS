@@ -45,7 +45,7 @@ button.onclick = async function (e) {
 
   let content = await response.json();
 
-  if (content.sucess) {
+  if (content.success) {
     if (content.data.length !== 0) {
       localStorage.setItem("ID_user", content.data[0].id);
       localStorage.setItem("User_name", content.data[0].name);

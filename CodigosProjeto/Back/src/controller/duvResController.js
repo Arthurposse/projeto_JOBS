@@ -14,13 +14,13 @@ async function enviarDuvida(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com envio da dúvida!!",
         data: results
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com envio da dúvida!!",
         data: err
       });
@@ -41,13 +41,13 @@ async function responderDuvida(request, response) {
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com envio da resposta!!",
         data: results
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com envio da resposta!!",
         data: err
       });
@@ -58,23 +58,21 @@ async function responderDuvida(request, response) {
 // Carregando as dúvidas (Usuário Jovem e Empresa)
 
 async function carregarDuvidas(request, response) {
-  const params = Array(
-    request.body.id_user
-  );
+  const params = [request.body.id_user];
 
-  // const query = "SELECT id_user, duvida FROM duvidas WHERE id_user != ?";
-  const query = "SELECT id_user, nome_user, duvida FROM duvidas";
+  const query = "SELECT id_user, duvida FROM duvidas WHERE id_user != ?";
+  // const query = "SELECT id_user, nome_user, duvida FROM duvidas";
 
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
-        sucess: true,
+        success: true,
         message: "Sucesso com a busca das duvidas!!",
         data: results
       });
     } else {
       response.status(400).json({
-        sucess: false,
+        success: false,
         message: "Ops, deu problemas com a busca das duvidas!!",
         data: err
       });

@@ -21,7 +21,7 @@ async function carregarDuvidas() {
   let content = await response.json();
   console.log(content);
 
-  if (content.sucess) {
+  if (content.success) {
     for (let i = 0; i < content.data.length; i++) {
       if (content.data[i].id_user !== id_user) {
         // Criando o elemento <section> com a classe "card_duv_jovem"
