@@ -60,8 +60,7 @@ async function responderDuvida(request, response) {
 async function carregarDuvidas(request, response) {
   const params = [request.body.id_user];
 
-  const query = "SELECT id_user, duvida FROM duvidas WHERE id_user != ?";
-  // const query = "SELECT id_user, nome_user, duvida FROM duvidas";
+  const query = "SELECT id_user, nome_user, duvida FROM duvidas WHERE id_user != ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
