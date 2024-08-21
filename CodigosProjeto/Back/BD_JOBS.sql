@@ -170,7 +170,7 @@ VALUES
 (
     "Arthur de Souza Possebon",
     "aspossebon@gmail.com",
-    "1234",
+    "123",
     "2006-12-03",
     "519999999",
     "Sapucaia do Sul"

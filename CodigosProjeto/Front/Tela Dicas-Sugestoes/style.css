@@ -215,7 +215,7 @@ main .bloco_cards_duvidas_jovens .secao_cards {
 
 main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
     background-color: var(--cor-terciaria);
-    padding: 3%;
+    padding: 5%;
     border-radius: 1vw;
     color: var(--cor-secundaria);
     margin: 2%;
@@ -225,7 +225,7 @@ main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem .usuario_duvida {
     display: flex;
     align-items: center;
     gap: 10%;
-    width: 100%;
+    width: 24vw;
     font-size: 0.9rem;
     padding-bottom: 5%;
 }

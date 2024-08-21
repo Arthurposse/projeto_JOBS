@@ -5,10 +5,11 @@ const dotenv = require("dotenv").config();
 async function enviarDuvida(request, response) {
   const params = Array(
     request.body.id_user,
+    request.body.User_name,
     request.body.duvida
   );
 
-  const query = "INSERT INTO duvidas(id_user, duvida) VALUES (?, ?);";
+  const query = "INSERT INTO duvidas(id_user, nome_user, duvida) VALUES (?, ?, ?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -30,10 +31,10 @@ async function enviarDuvida(request, response) {
 // Respondendo dúvida (Usuário Jovem e Empresa)
 
 async function responderDuvida(request, response) {
-  const params = Array(
-    request.body.email,
-    request.body.password
-  );
+  // const params = Array(
+  //   request.body.email,
+  //   request.body.password
+  // );
 
   const query = "";
 
@@ -54,7 +55,35 @@ async function responderDuvida(request, response) {
   });
 }
 
+// Carregando as dúvidas (Usuário Jovem e Empresa)
+
+async function carregarDuvidas(request, response) {
+  const params = Array(
+    request.body.id_user
+  );
+
+  // const query = "SELECT id_user, duvida FROM duvidas WHERE id_user != ?";
+  const query = "SELECT id_user, nome_user, duvida FROM duvidas";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        sucess: true,
+        message: "Sucesso com a busca das duvidas!!",
+        data: results
+      });
+    } else {
+      response.status(400).json({
+        sucess: false,
+        message: "Ops, deu problemas com a busca das duvidas!!",
+        data: err
+      });
+    }
+  });
+}
+
 module.exports = {
   enviarDuvida,
-  responderDuvida
+  responderDuvida,
+  carregarDuvidas
 };
