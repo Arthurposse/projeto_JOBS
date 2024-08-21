@@ -57,9 +57,8 @@ async function carregarDuvidas() {
         document.querySelector(".secao_cards").appendChild(cardDuvida);
       }
     }
-  }
-  else {
-    alert('Deu erro!!');
+  } else {
+    alert("Deu erro!!");
   }
 }
 
@@ -72,16 +71,26 @@ const botao_criar_duvida = document.getElementById("criar_duvida");
 botao_criar_duvida.addEventListener("click", function () {
   Swal.fire({
     title: "Compartilhe sua dúvida!!",
-    input: "text",
+    input: "textarea",
     inputPlaceholder: "Digite sua pergunta",
+    inputAttributes: {
+      maxlength: 200, // Limite de caracteres
+    },
+    customClass: {
+      input: "alert_textarea", // Classe CSS personalizada para o textarea
+    },
     showCancelButton: true,
     confirmButtonText: "Postar",
-    confirmButtonColor: "#19a7ce",
+    confirmButtonColor: "#0e566a",
     cancelButtonText: "Cancelar",
     cancelButtonColor: "#d33",
     inputValidator: (value) => {
       if (!value) {
         return "Por favor, digite algo!!";
+      }
+      if (value.length > 200) {
+        // Verifica se o valor excede o limite
+        return "A dúvida deve ter no máximo 200 caracteres!!";
       }
     },
   }).then((result) => {

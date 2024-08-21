@@ -130,6 +130,7 @@ main .bloco_dicas_importantes .quadrado_dica {
     width: 15vw;
     padding: 2%;
     border-radius: 1vw;
+    cursor: pointer;
 }
 
 main .quadrado_dica {
@@ -219,6 +220,7 @@ main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
     border-radius: 1vw;
     color: var(--cor-secundaria);
     margin: 2%;
+    cursor: pointer;
 }
 
 main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem .usuario_duvida {
@@ -255,6 +257,10 @@ main .bloco_cards_duvidas_jovens button:hover {
     background-color: var(--cor-terciaria);
     color: var(--cor-secundaria);
     font-weight: 400;
+}
+
+.alert_textarea {
+    resize: none; /* Desabilita o redimensionamento */
 }
 
 /* Footer */
