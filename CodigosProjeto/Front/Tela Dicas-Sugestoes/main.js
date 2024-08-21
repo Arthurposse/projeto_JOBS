@@ -55,6 +55,11 @@ async function carregarDuvidas() {
 
         // Adicionando o card ao DOM (em algum elemento pai, como uma <div> existente)
         document.querySelector(".secao_cards").appendChild(cardDuvida);
+
+        // Adicionando o evento de clique ao card
+        cardDuvida.addEventListener("click", () => {
+          alert(duvidaTexto.textContent);
+        });
       }
     }
   } else {
