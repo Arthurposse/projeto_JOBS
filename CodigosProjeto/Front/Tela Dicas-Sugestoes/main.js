@@ -58,6 +58,9 @@ async function carregarDuvidas() {
       }
     }
   }
+  else {
+    alert('Deu erro!!');
+  }
 }
 
 carregarDuvidas();
