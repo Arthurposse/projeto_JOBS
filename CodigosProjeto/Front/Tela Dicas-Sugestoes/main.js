@@ -61,7 +61,7 @@ async function carregarDuvidas() {
         cardDuvida.addEventListener("click", () => {
           localStorage.setItem('id_duvida', content.data[i].id_duvida);
           localStorage.setItem('texto_duvida', content.data[i].duvida);
-          window.location.href = '../Tela Visualizando Duvida/index.html';
+          window.location.href = '../Tela Enviando Resposta da Duvida/index.html';
         });
       }
     }
