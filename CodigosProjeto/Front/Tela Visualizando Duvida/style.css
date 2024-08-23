@@ -20,11 +20,45 @@
 
 main {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: var(--cor-primaria);
-    height: 80vh;
+    height: 100vh;
     padding: 2%;
     color: var(--cor-secundaria);
+}
+
+main #nome_usuario_jovem {
+    margin-bottom: .8%;
+    color: var(--cor-terciaria);
+}
+
+main .botoes {
+    background-color: var(--cor-secundaria);
+    padding: 8%;
+    margin-top: 15%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--cor-terciaria);
+}
+
+main .botoes:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+    transition: all .6s ease;
+}
+
+main #botao_voltar {
+    margin: 0;
+    padding: .6%;
+    font-size: 1.4rem;
+    align-self: flex-start;
+}
+
+.alert_textarea {
+    resize: none; /* Desabilita o redimensionamento */
 }
 
 /* Footer */

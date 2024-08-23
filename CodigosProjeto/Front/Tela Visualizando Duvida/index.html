@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> JOBS - Respostas </title>
+  <title> JOBS - Dúvida Jovem </title>
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,14 +13,21 @@
 
 <body>
   <main>
-    <h2> Respostas de suas dúvidas </h2>
+    <button class="botoes" id="botao_voltar"> <i class="bi bi-arrow-left-circle"></i> </button>
 
-    <section class="respostas">
+    <h3 id="nome_usuario_jovem"> </h3>
+    <h2 id="duvida_jovem"> </h2>
+
+    <section class="bloco_respostas">
+      <button class="botoes" id="criar_resposta"> Responder </button>
       
+      <section class="respostas">
+
+      </section>
     </section>
   </main>
 
-  <footer>
+  <!-- <footer>
     <div class="waves">
       <div class="wave" id="wave1"></div>
       <div class="wave" id="wave2"></div>
@@ -51,7 +58,7 @@
     <p>
       &copy; 2024 JOBS
     </p>
-  </footer>
+  </footer> -->
 
   <script src="./main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

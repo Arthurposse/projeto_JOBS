@@ -25,6 +25,7 @@ async function carregarDuvidas() {
     for (let i = 0; i < content.data.length; i++) {
       if (content.data[i].id_user !== id_user) {
         // Criando o elemento <section> com a classe "card_duv_jovem"
+
         const cardDuvida = document.createElement("section");
         cardDuvida.className = "card_duv_jovem";
 
@@ -53,12 +54,14 @@ async function carregarDuvidas() {
         cardDuvida.appendChild(usuarioDuvida);
         cardDuvida.appendChild(duvidaTexto);
 
-        // Adicionando o card ao DOM (em algum elemento pai, como uma <div> existente)
+        // Adicionando o card dentro da tag HTML
         document.querySelector(".secao_cards").appendChild(cardDuvida);
 
         // Adicionando o evento de clique ao card
         cardDuvida.addEventListener("click", () => {
-          alert(duvidaTexto.textContent);
+          localStorage.setItem('id_duvida', content.data[i].id_duvida);
+          localStorage.setItem('texto_duvida', content.data[i].duvida);
+          window.location.href = '../Tela Visualizando Duvida/index.html';
         });
       }
     }
@@ -114,6 +117,24 @@ botao_criar_duvida.addEventListener("click", function () {
 
         let content = await response.json();
         console.log(content);
+
+        if (content.success) {
+          Swal.fire({
+            title: "Dúvida enviada com sucesso!!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
+        else {
+          Swal.fire({
+            title: "Erro ao enviar a dúvida!!",
+            text: "Tente novamente!!",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
       }
 
       enviandoDuvida();

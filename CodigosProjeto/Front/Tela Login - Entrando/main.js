@@ -44,6 +44,7 @@ button.onclick = async function (e) {
   });
 
   let content = await response.json();
+  console.log(content)
 
   if (content.success) {
     if (content.data.length !== 0) {
@@ -59,8 +60,10 @@ button.onclick = async function (e) {
 
       setTimeout(() => {
         if (content.data[0].origin === "user_jovem") {
+          localStorage.setItem('Tipo_user', "Jovem");
           window.location.href = "../Tela Home - Usuario Jovem/index.html";
         } else if (content.data[0].origin === "user_empresa") {
+          localStorage.setItem('Tipo_user', "Empresa");
           window.location.href =
             "../Tela Home - Usuario Empresa/index.html";
         } else {
