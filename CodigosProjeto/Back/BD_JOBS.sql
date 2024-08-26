@@ -49,6 +49,7 @@ CREATE TABLE duvidas(
 );
 
 CREATE TABLE respostas(
+	id INT PRIMARY KEY AUTO_INCREMENT,
     id_jovem INT,
     id_empresa INT,
 	id_duvida INT,
