@@ -440,12 +440,6 @@ botao_editar.onclick = async function () {
       iconeLapis.style.display = "none";
     });
 
-    nome_user = nome_user || nome_user_anterior;
-    email_user = email_user || email_user_anterior;
-    telefone_user = telefone_user || telefone_user_anterior;
-    empresa_user = empresa_user || empresa_user_anterior;
-    setor_atividade_user = setor_atividade_user || setor_atividade_user_anterior;
-
     let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
 
     // PUT
