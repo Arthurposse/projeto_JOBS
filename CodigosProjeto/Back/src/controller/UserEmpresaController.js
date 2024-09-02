@@ -9,13 +9,13 @@ async function cadastroEmpresa(request, response) {
     request.body.email,
     request.body.password,
     request.body.telefone,
-    request.body.cidade,
+    request.body.nome_empresa,
     request.body.razao_social,
     request.body.cnpj,
     request.body.setor_atividade
   );
 
-  const query = "INSERT INTO user_empresa(name, email, password, telefone, cidade, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?);";
+  const query = "INSERT INTO user_empresa(name, email, password, telefone, nome_empresa, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {

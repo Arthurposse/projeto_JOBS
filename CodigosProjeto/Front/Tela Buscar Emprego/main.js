@@ -54,10 +54,9 @@ function buscarVagas() {
       return response.json();
     })
     .then((data) => {
-      console.log("Resposta da API Adzuna: ", data);
-
       if (data.results.length === 0) {
         alert('Não foi encontrado nenhuma vaga!');
+
       } else {
         const jobsListElement = document.getElementById("empregos_encontrados");
 

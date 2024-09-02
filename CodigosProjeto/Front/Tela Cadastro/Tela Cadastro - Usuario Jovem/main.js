@@ -70,7 +70,6 @@ button.onclick = async function (e) {
     });
 
     let content = await response.json();
-    console.log(content);
 
     if (content.success) {
       Swal.fire({
@@ -81,14 +80,13 @@ button.onclick = async function (e) {
         timer: 2600,
       });
 
-      const response = await fetch("http://localhost:3008/api/enviarEmail", {
+      const response = await fetch("http:/localhost:3008/api/enviarEmail", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify({ email }),
       });
 
       let content = await response.json();
-      console.log(content);
 
       if (content.success) {
         Swal.fire({
@@ -96,7 +94,7 @@ button.onclick = async function (e) {
           text: "Acesse seu email.",
           icon: "success",
           showConfirmButton: false,
-          timer: 2100,
+          timer: 2100
         });
 
         localStorage.setItem("CodVerif", content.verificationCode);
@@ -111,7 +109,7 @@ button.onclick = async function (e) {
           text: "Tente novamente!!",
           icon: "error",
           showConfirmButton: false,
-          timer: 2300,
+          timer: 2300
         });
       }
     } else {
@@ -120,7 +118,7 @@ button.onclick = async function (e) {
         text: "Tente novamente!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2300,
+        timer: 2300
       });
     }
   }
@@ -131,7 +129,7 @@ button.onclick = async function (e) {
         text: "Tente novamente!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2300,
+        timer: 2300
       });
     }
     else {
