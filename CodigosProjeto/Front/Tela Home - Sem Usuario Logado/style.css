@@ -1,338 +1,372 @@
 @import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Livvic", sans-serif;
-    font-weight: 300;
-    font-style: italic;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Livvic", sans-serif;
+  font-weight: 300;
+  font-style: italic;
 }
 
 :root {
-    --cor-primaria: #19a7ce;
-    --cor-secundaria: #0e566a;
-    --cor-terciaria: #9DD4D1;
-    --cor-fonte: white;
+  --cor-primaria: #19a7ce;
+  --cor-secundaria: #0e566a;
+  --cor-terciaria: #9DD4D1;
+  --cor-fonte: white;
 }
 
 /* Header */
 
 header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    height: 62vh;
-    color: var(--cor-fonte);
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 62vh;
+  color: var(--cor-fonte);
 }
 
 header .header_topo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header .Logo_JOBS {
-    width: 15%;
-    margin: 1.5%;
+  width: 15%;
+  margin: 1.5%;
 }
 
 header .bloco_usuario {
-    background-color: rgba(25, 167, 206, 0.6);
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 0.5%;
-    border-radius: 2vw 0 0 2vw;
-    cursor: pointer;
+  background-color: rgba(25, 167, 206, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 0.5%;
+  border-radius: 2vw 0 0 2vw;
+  cursor: pointer;
 }
 
 header .img_user_nao_logado {
-    width: 24%;
+  width: 24%;
 }
 
 header .header_meio {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 4%;
-} 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4%;
+}
 
 header .forma {
-    background-color: rgba(25, 167, 206);
-    width: 4%;
-    height: 2vh;
-    border-radius: 2vw;
+  background-color: rgba(25, 167, 206);
+  width: 4%;
+  height: 2vh;
+  border-radius: 2vw;
 }
 
 /* Main - Busque sua oportunidade */
 
 main .buscar_oportunidade {
-    background-color: var(--cor-primaria);
-    height: 80vh;
-    padding: 2%;
+  background-color: var(--cor-primaria);
+  height: 90vh;
+  padding: 2%;
 }
 
 main .titulo_buscar {
-    color: var(--cor-secundaria);
+  color: var(--cor-secundaria);
 }
 
 main .buscar_oportunidade hr {
-    width: 85%;
-    border: 1px solid var(--cor-secundaria);
-    margin-top: .5%;
+  width: 85%;
+  border: 1px solid var(--cor-secundaria);
+  margin-top: .5%;
+}
+
+main .buscar_oportunidade .carrossel {
+  display: flex;
+  gap: 1vw;
+  margin-top: 4%;
+}
+
+main .buscar_oportunidade .carrossel .job {
+  background-color: var(--cor-terciaria);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 2%;
+  border-radius: 2vw;
+  text-align: center;
+}
+
+.carrossel .job h3 {
+  color: var(--cor-secundaria);
+}
+
+.carrossel .job a {
+  text-decoration: none;
+  color: var(--cor-secundaria);
 }
 
 /* Main - Dúvidas frequentes dos jovens */
 
 main .duvidas_freq {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_main.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    padding: 15%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_main.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 15%;
 }
 
 main .titulo_duvidas {
-    font-size: 2rem;
-    color: var(--cor-secundaria);
+  font-size: 2rem;
+  color: var(--cor-secundaria);
 }
 
 main .duvidas_jovens {
-    display: flex;
-    gap: 20px;
-    margin-top: 4%;
-    color: var(--cor-secundaria);
+  display: flex;
+  gap: 20px;
+  margin-top: 4%;
+  color: var(--cor-secundaria);
 }
 
 main .duvidas_jovens .bloco_duvida {
-    background-color: var(--cor-terciaria);
-    padding: 4%;
-    margin-top: 5%;
-    border-radius: 1vw;
+  background-color: var(--cor-terciaria);
+  padding: 4%;
+  margin-top: 5%;
+  border-radius: 1vw;
 }
 
 /* Main - Espaço de mais sobre */
 
 main .buscar_mais_sobre {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 5%;
-    color: var(--cor-fonte);
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5%;
+  color: var(--cor-fonte);
+  text-align: center;
 }
 
 main .buscar_mais_sobre button {
-    background-color: var(--cor-secundaria);
-    padding: 1%;
-    border: 0;
-    border-radius: 1vw;
-    font-size: 1rem;
-    color: var(--cor-fonte);
-    cursor: pointer;
+  background-color: var(--cor-secundaria);
+  padding: 1%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1rem;
+  color: var(--cor-fonte);
+  cursor: pointer;
 }
 
 main .buscar_mais_sobre #botao_duvidas {
-    padding: 1%;
-    width: 13%;
+  padding: 1%;
+  width: 13%;
 }
 
 /* Main - Sobre o JOBS */
 
 main .sobre_JOBS {
-    background-color: var(--cor-primaria);
-    /* height: 80vh; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    padding: 2%;
-    padding-bottom: 15%;
+  background-color: var(--cor-primaria);
+  /* height: 80vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  padding: 2%;
+  padding-bottom: 15%;
 }
 
 main .Logo_JOBS_sobre {
-    width: 18%;
-    /* padding-bottom: 1%; */
+  width: 18%;
+  /* padding-bottom: 1%; */
 }
 
 main .sobre_JOBS h2 {
-    font-size: 2rem;
-    /* padding-bottom: 2%; */
-    color: var(--cor-secundaria);
+  font-size: 2rem;
+  /* padding-bottom: 2%; */
+  color: var(--cor-secundaria);
 }
 
 main .sobre_JOBS p {
-    width: 80%;
-    color: var(--cor-fonte);
+  width: 80%;
+  color: var(--cor-fonte);
 }
 
 main .bloco_user {
-    background-color: var(--cor-secundaria);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    height: 42vh;
-    border-radius: 1vw;
-    padding: 5%;
+  background-color: var(--cor-secundaria);
+  display: flex;
+  align-items: center;
+  gap: 5.2vw;
+  width: 80%;
+  height: 42vh;
+  border-radius: 1vw;
+  padding: 5%;
 }
 
 main .bloco_user img {
-    width: 12%;
+  width: 12%;
 }
 
 main .bloco_user hr {
-    height: 32vh;
-    border: 2px solid var(--cor-terciaria);
-    border-radius: 2vw;
+  height: 32vh;
+  border: 2px solid var(--cor-terciaria);
+  border-radius: 2vw;
+}
+
+main .bloco_user h2 {
+  color: var(--cor-terciaria);
 }
 
 main .bloco_user p {
-    text-align: justify;
+  text-align: justify;
 }
 
 /* Footer */
 
 footer {
-    position: relative;
-    width: 100%;
-    background: var(--cor-secundaria);
-    min-height: 100px;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  position: relative;
+  width: 100%;
+  background: var(--cor-secundaria);
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+footer .social_icon,
+footer .menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+footer .social_icon li,
+footer .menu li {
+  list-style: none;
+}
+
+footer .social_icon li a,
+footer .menu li a {
+  font-size: 2em;
+  color: var(--cor-fonte);
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+footer .menu li a {
+  font-size: 1.2em;
+  text-decoration: none;
+  opacity: 0.75;
+}
+
+footer .social_icon li a:hover {
+  transform: translateY(-10px);
+}
+
+footer .menu li a:hover {
+  opacity: 1;
+}
+
+footer p {
+  color: var(--cor-fonte);
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+}
+
+footer .wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url(../images/wave.png);
+  background-size: 1000px 100px;
+}
+
+footer .wave#wave1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWave1 4s linear infinite;
+}
+
+@keyframes animateWave1 {
+  0% {
+    background-position-x: 1000px;
   }
-  
-  footer .social_icon,
-  footer .menu {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-    flex-wrap: wrap;
+
+  100% {
+    background-position-x: 0px;
   }
-  
-  footer .social_icon li,
-  footer .menu li {
-    list-style: none;
+}
+
+footer .wave#wave2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animateWave2 4s linear infinite;
+}
+
+@keyframes animateWave2 {
+  0% {
+    background-position-x: 0px;
   }
-  
-  footer .social_icon li a,
-  footer .menu li a {
-    font-size: 2em;
-    color: var(--cor-fonte);
-    margin: 0 10px;
-    display: inline-block;
-    transition: 0.5s;
+
+  100% {
+    background-position-x: 1000px;
   }
-  
-  footer .menu li a {
-    font-size: 1.2em;
-    text-decoration: none;
-    opacity: 0.75;
+}
+
+footer .wave#wave3 {
+  z-index: 1000;
+  opacity: 0.25;
+  bottom: 15px;
+  animation: animateWave3 3s linear infinite;
+}
+
+@keyframes animateWave3 {
+  0% {
+    background-position-x: 0px;
   }
-  
-  footer .social_icon li a:hover {
-    transform: translateY(-10px);
+
+  100% {
+    background-position-x: 1000px;
   }
-  
-  footer .menu li a:hover {
-    opacity: 1;
+}
+
+footer .wave#wave4 {
+  z-index: 999;
+  opacity: 0.75;
+  bottom: 20px;
+  animation: animateWave4 3s linear infinite;
+}
+
+@keyframes animateWave4 {
+  0% {
+    background-position-x: 0px;
   }
-  
-  footer p {
-    color: var(--cor-fonte);
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-size: 0.75rem;
+
+  100% {
+    background-position-x: 1000px;
   }
-  
-  footer .wave {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: url(../images/wave.png);
-    background-size: 1000px 100px;
-  }
-  
-  footer .wave#wave1 {
-    z-index: 1000;
-    opacity: 1;
-    bottom: 0;
-    animation: animateWave1 4s linear infinite;
-  }
-  
-  @keyframes animateWave1 {
-    0% {
-      background-position-x: 1000px;
-    }
-    100% {
-      background-position-x: 0px;
-    }
-  }
-  
-  footer .wave#wave2 {
-    z-index: 999;
-    opacity: 0.5;
-    bottom: 10px;
-    animation: animateWave2 4s linear infinite;
-  }
-  
-  @keyframes animateWave2 {
-    0% {
-      background-position-x: 0px;
-    }
-    100% {
-      background-position-x: 1000px;
-    }
-  }
-  
-  footer .wave#wave3 {
-    z-index: 1000;
-    opacity: 0.25;
-    bottom: 15px;
-    animation: animateWave3 3s linear infinite;
-  }
-  
-  @keyframes animateWave3 {
-    0% {
-      background-position-x: 0px;
-    }
-    100% {
-      background-position-x: 1000px;
-    }
-  }
-  
-  footer .wave#wave4 {
-    z-index: 999;
-    opacity: 0.75;
-    bottom: 20px;
-    animation: animateWave4 3s linear infinite;
-  }
-  
-  @keyframes animateWave4 {
-    0% {
-      background-position-x: 0px;
-    }
-    100% {
-      background-position-x: 1000px;
-    }
-  }
-  
+}

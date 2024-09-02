@@ -25,16 +25,16 @@
 - Usuário Jovem
   - Chat.
   - Procurar emprego (com pesquisa personalizada).
-  - Postar seu currículo (em um hub).
+  - Postar seu currículo.
   - Postar suas dúvidas.
   - Criar seu prórprio planejamento de carreira.
-  - Estabelecer suas próprias metas
+  - Estabelecer suas próprias metas.
 
 <br>
 
 - Usuário Empresa
   - Chat.
-  - Buscar currículos.
+  - Buscar currículos (em um hub).
   - Tirar dúvidas dos jovens.
 
 <br>
@@ -94,16 +94,12 @@
 - Tela Dicas/Sugestões
   - Ajustar responsividade.
   - Desenvolver a tela das dicas/sugestões sugeridas.
-  - Verificar a função para enviar a dúvida para o BD.
-  - Verificar para puxar do BD as dúvidas dos outros jovens para serem mostradas na página.
-  - Adicionar botão para responder a dúvida (ou nem precise, só clicar no quadrado da dúvida já poderia redirecionar para outra página com a dúvida e as suas respostas).
 
 <br>
 
 - Tela Dicas/Sugestões (Visualizando Dúvida)
   - Ajustar responsividade.
   - Ajustar o footer.
-  - Adicionar a dúvida e as respostas dela na página, buscando elas dentro do BD.
 
 <br>
 
