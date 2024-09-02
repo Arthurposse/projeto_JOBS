@@ -122,10 +122,10 @@ async function uptadeUserJovem(request, response) {
 
 // Buscar metas Usuário Jovem (GET)
 async function getMetasJovem(request, response) {
-  const params = Array(request.query.User_name);
+  const params = request.query.User_name;
 
   const query =
-    "SELECT `user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade` FROM jobs.metas WHERE user_name = ?;";
+    "SELECT `user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade` FROM metas WHERE user_name = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {

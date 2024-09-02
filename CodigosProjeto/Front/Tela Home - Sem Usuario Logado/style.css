@@ -89,8 +89,32 @@ main .buscar_oportunidade hr {
 
 main .buscar_oportunidade .carrossel {
   display: flex;
+  justify-content: center;
   gap: 1vw;
   margin-top: 4%;
+}
+
+main .buscar_oportunidade .loader {
+  display: none;
+  /* Cor fundo */
+  border: 16px solid #d7d3d3;
+  /* Cor barra */
+  border-top: 16px solid var(--cor-secundaria);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.5s linear infinite;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 main .buscar_oportunidade .carrossel .job {

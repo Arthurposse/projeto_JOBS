@@ -208,11 +208,11 @@ main .planos_seguir .bloco_plano_area button:hover {
 
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -222,7 +222,6 @@ main .planos_seguir .plano_sugerido {
   flex-direction: column;
   gap: 4vh;
   width: 85%;
-  /* margin-bottom: -14%; */
 }
 
 main .planos_seguir .plano_sugerido .img_logo_plano {

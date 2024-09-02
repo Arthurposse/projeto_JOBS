@@ -17,7 +17,7 @@
 const bloco_usuario = document.querySelector('.bloco_usuario');
 
 bloco_usuario.onclick = function () {
-    window.location.href = '../Tela LogIn/Tela Login - Entrando/index.html';
+  window.location.href = '../Tela LogIn/Tela Login - Entrando/index.html';
 }
 
 // Acrescentando vagas 
@@ -28,6 +28,10 @@ let allJobs = new Set(); // Conjunto para armazenar os IDs das vagas exibidas
 
 // Função para buscar vagas
 function buscarVagas(aleatorio = false) {
+  const loader = document.querySelector('.loader');
+
+  loader.style.display = 'block';
+
   const input = aleatorio ? "" : document.querySelector('input').value;
 
   const payload = {
@@ -67,6 +71,8 @@ function buscarVagas(aleatorio = false) {
             const jobElement = createJobElement(job);
             jobsListElement.appendChild(jobElement);
             jobCount++; // Incrementa o contador
+            
+            loader.style.display = 'none';
           }
         });
 

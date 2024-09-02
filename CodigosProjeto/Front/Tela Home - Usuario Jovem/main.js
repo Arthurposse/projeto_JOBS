@@ -102,11 +102,12 @@ async function getMetas(nome, ordem) {
     `http://localhost:3008/api/metas/getMetas?User_name=${nome}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
+      headers: { "Content-type": "application/json;charset=UTF-8" }
     }
   );
 
   let content = await response.json();
+  console.log(content);
 
   if (ordem === "date") {
     for (let i = 0; i < content.data.length; i++) {
