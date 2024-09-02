@@ -60,21 +60,14 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando) e Tela Módulos
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos e Tela Home (Sem Usuário Logado)
   - Ajustar responsividade.
-
-<br>
-
-- Tela Home (Sem Usuário Logado)
-  - Ajustar responsividade.
-  - Acrescentar carrossel mostrando algumas oportunidades de emprego (estágio/jovem aprendiz), mas com limite (após ser passado para o lado o carrossel X vezes, mostrar um alert falando "quer buscar outras oportunidades? Faça o cadastro agora mesmo!!" (algo assim, é apenas uma ideia)).
 
 <br>
 
 - Tela Home (Usuário Jovem)
   - Ajustar responsividade.
   - Ajustar o footer.
-  - Planejar e desenvolver a seção sobre as estatísticas de visualização do currículo do usuário.
 
 <br>
 
@@ -82,12 +75,7 @@
   - Ajustar responsividade.
   - Desenvolver o carrossel das dúvidas dos jovens.
   - Desenvolver a função para filtrar a partir da área das vagas.
-
-<br>
-
-- Tela Chat
-  - Ajustar responsividade.
-  - Planejar e desenvolver o sistema de chat.
+  - Desenvolver a tela de hub de currículos dos jovens.
 
 <br>
 
@@ -112,3 +100,16 @@
 - Tela Buscar Emprego
   - Ajustar responsividade.
   - Desenvolver o filtro.
+
+<h3 style="color: #9DD4D1;">
+  Se der tempo:
+</h3>
+
+- Tela Chat
+  - Ajustar responsividade.
+  - Planejar e desenvolver o sistema de chat.
+
+<br>
+
+- Tela Home (Usuário Jovem)
+  - Planejar e desenvolver a seção sobre as estatísticas de visualização do currículo do usuário.
