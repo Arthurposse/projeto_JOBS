@@ -23,7 +23,7 @@ main {
     align-items: center;
     flex-direction: column;
     background-color: var(--cor-primaria);
-    height: 100vh;
+    min-height: 120vh;
     padding: 2%;
     color: var(--cor-secundaria);
 }
@@ -35,8 +35,8 @@ main #nome_usuario_jovem {
 
 main .botoes {
     background-color: var(--cor-secundaria);
-    padding: 8%;
-    margin-top: 15%;
+    padding: 2%;
+    margin-top: 3%;
     border: 0;
     border-radius: 1vw;
     font-size: 1rem;
@@ -59,6 +59,37 @@ main #botao_voltar {
 
 .alert_textarea {
     resize: none; /* Desabilita o redimensionamento */
+}
+
+main .bloco_respostas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .respostas {
+    margin-top: 5%;
+}
+
+main .bloco_resposta_user {
+    background-color: var(--cor-terciaria);
+    width: 70vw;
+    padding: 5%;
+    border-radius: 2vw;
+}
+
+main .bloco_resposta_user .bloco_resposta_perfil {
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+main .bloco_resposta_user .bloco_resposta_perfil img {
+    width: 8%;
+}
+
+main .bloco_resposta_user p {
+    margin-top: 4%;
 }
 
 /* Footer */
