@@ -21,7 +21,6 @@ async function carregarInfosDuvida() {
     });
 
     let content = await response.json();
-    console.log(content);
 
     if (content.success) {
         let nome_usuario_jovem = document.getElementById('nome_usuario_jovem');
@@ -36,6 +35,30 @@ async function carregarInfosDuvida() {
 
 carregarInfosDuvida();
 
+// Carregando as respostas
+
+async function carregarRespostas() {
+    // POST
+    const response = await fetch("http://localhost:3008/api/carregarRespostas", {
+        method: "POST",
+        headers: { "Content-type": "application/json;charset=UTF-8" },
+        body: JSON.stringify({id_duvida})
+    });
+
+    let content = await response.json();
+
+    if (content.success) {
+        for(let i = 0; i < content.data.length; i++){
+            console.log(content.data[i])
+        }
+
+    } else {
+        alert("Deu erro!!");
+    }
+}
+
+carregarRespostas();
+
 // Respondendo a dúvida
 
 document.getElementById('criar_resposta').onclick = async function () {
@@ -45,10 +68,10 @@ document.getElementById('criar_resposta').onclick = async function () {
         input: "textarea",
         inputPlaceholder: "Digite sua pergunta",
         inputAttributes: {
-            maxlength: 200, // Limite de caracteres
+            maxlength: 200 // Limite de caracteres
         },
         customClass: {
-            input: "alert_textarea", // Classe CSS personalizada para o textarea
+            input: "alert_textarea" // Classe CSS personalizada para o textarea
         },
         showCancelButton: true,
         confirmButtonText: "Postar",
@@ -89,6 +112,10 @@ document.getElementById('criar_resposta').onclick = async function () {
                         showConfirmButton: false,
                         timer: 2000
                     });
+
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
                 }
                 else {
                     Swal.fire({

@@ -60,7 +60,7 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos e Tela Home (Sem Usuário Logado)
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo e Tela Home (Sem Usuário Logado)
   - Ajustar responsividade.
 
 <br>
@@ -85,15 +85,8 @@
 
 <br>
 
-- Tela Dicas/Sugestões (Visualizando Dúvida)
+- Tela En
   - Ajustar responsividade.
-  - Ajustar o footer.
-
-<br>
-
-- Tela Explicação Módulo
-  - Ajustar responsividade.
-  - Acrescentar/ajustar o footer.
 
 <br>
 

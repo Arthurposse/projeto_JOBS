@@ -91,6 +91,30 @@ async function carregarDuvidas(request, response) {
   });
 }
 
+// Carregando as respostas da dúvida (Usuário Jovem e Empresa)
+
+async function carregarRespostas(request, response) {
+  const params = [request.body.id_duvida];
+
+  const query = "SELECT * FROM respostas WHERE id_duvida = ?";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso com a busca das respostas!!",
+        data: results
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas com a busca das respostas!!",
+        data: err
+      });
+    }
+  });
+}
+
 // Carregando as informações das dúvidas da tela para responder a dúvida (Usuário Jovem e Empresa)
 
 async function carregarInfosDuvida(request, response) {
@@ -122,5 +146,6 @@ module.exports = {
   enviarDuvida,
   responderDuvida,
   carregarDuvidas,
+  carregarRespostas,
   carregarInfosDuvida
 };

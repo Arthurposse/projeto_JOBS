@@ -5,6 +5,7 @@ const {
   enviarDuvida,
   responderDuvida,
   carregarDuvidas,
+  carregarRespostas,
   carregarInfosDuvida
 } = require("../controller/duvResController");
 
@@ -12,6 +13,7 @@ const {
 router.post("/enviarDuvida", enviarDuvida);
 router.post("/responderDuvida", responderDuvida);
 router.post("/carregarDuvidas", carregarDuvidas);
+router.post("/carregarRespostas", carregarRespostas);
 router.post("/carregarInfosDuvida", carregarInfosDuvida);
 
 module.exports = router;
