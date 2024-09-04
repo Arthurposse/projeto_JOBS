@@ -361,12 +361,24 @@ botao_criar_metas.onclick = async function () {
   console.log(content);
 
   if (content.success) {
-    alert("Deu bom o POST!!");
+    Swal.fire({
+      title: "Meta criada com sucesso!!",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000
+    });
 
-    window.location.reload();
-    //recarrega a página
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   } else {
-    alert("Deu ruim o POST!!");
+    Swal.fire({
+      title: "Erro ao criar a meta!!",
+      text: "Tente novamente!!",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000
+    });
     console.error();
   }
 };
@@ -426,12 +438,24 @@ botao_deletar_metas.onclick = async function () {
   console.log(content);
 
   if (content.success) {
-    alert("Deu bom o DELETE!!");
+    Swal.fire({
+      title: "Meta excluída com sucesso!!",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000
+    });
 
-    window.location.reload();
-    //recarrega a página
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   } else {
-    alert("Deu ruim o DELETE!!");
+    Swal.fire({
+      title: "Erro ao tentar excluir a meta!!",
+      text: "Tente novamente!!",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000
+    });
     console.error();
   }
 };
