@@ -42,14 +42,46 @@ async function carregarRespostas() {
     const response = await fetch("http://localhost:3008/api/carregarRespostas", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify({id_duvida})
+        body: JSON.stringify({ id_duvida })
     });
 
     let content = await response.json();
+    const bloco_respostas = document.querySelector('.bloco_respostas');
 
     if (content.success) {
-        for(let i = 0; i < content.data.length; i++){
-            console.log(content.data[i])
+        for (let i = 0; i < content.data.length; i++) {
+            // Criando os elementos
+            const section = document.createElement('section');
+            section.className = 'respostas';
+
+            const divRespostaUser = document.createElement('div');
+            divRespostaUser.className = 'bloco_resposta_user';
+
+            const divPerfil = document.createElement('div');
+            divPerfil.className = 'bloco_resposta_perfil';
+
+            const img = document.createElement('img');
+            img.src = '../images/Usuario_nao_logado.png';
+            img.alt = '';
+
+            const h2 = document.createElement('h2');
+            h2.className = 'bloco_resposta_nome_user';
+            h2.textContent = 'Teste';
+
+            const p = document.createElement('p');
+            p.textContent = content.data[i].resposta;
+
+            // Estruturando os elementos
+            divPerfil.appendChild(img);
+            divPerfil.appendChild(h2);
+
+            divRespostaUser.appendChild(divPerfil);
+            divRespostaUser.appendChild(p);
+
+            section.appendChild(divRespostaUser);
+
+            // Adicionando a estrutura no body ou em outro elemento do DOM
+            bloco_respostas.appendChild(section);
         }
 
     } else {
@@ -90,7 +122,7 @@ document.getElementById('criar_resposta').onclick = async function () {
     }).then((result) => {
         if (result.isConfirmed) {
             async function enviandoDuvida() {
-                
+
                 let resposta = result.value;
 
                 let data = { id_user, id_duvida, resposta, tipo_usuario };
@@ -135,17 +167,17 @@ document.getElementById('criar_resposta').onclick = async function () {
 
 // Botao para voltar para a página
 
-document.getElementById('botao_voltar').onclick = function() {
+document.getElementById('botao_voltar').onclick = function () {
 
     localStorage.removeItem('id_duvida');
     localStorage.removeItem('texto_duvida');
 
-    if(tipo_usuario === 'Jovem') {
+    if (tipo_usuario === 'Jovem') {
         window.location.href = '../Tela Dicas-Sugestoes/index.html';
     }
     else if (tipo_usuario === 'Empresa') {
         window.location.href = '';
-        
+
     }
     else {
         alert('ERROR!!');

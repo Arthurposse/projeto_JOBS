@@ -25,6 +25,7 @@ main {
     background-color: var(--cor-primaria);
     min-height: 120vh;
     padding: 2%;
+    padding-bottom: 15%;
     color: var(--cor-secundaria);
 }
 
