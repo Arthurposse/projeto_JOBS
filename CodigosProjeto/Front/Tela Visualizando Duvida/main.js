@@ -68,6 +68,13 @@ async function carregarRespostas() {
             h2.className = 'bloco_resposta_nome_user';
             h2.textContent = 'Teste';
 
+            if(content.data[i].id_jovem === null) {
+                h2.textContent += ' - Usuário Empresa'
+            }
+            else if(content.data[i].id_empresa === null) {
+                h2.textContent += ' - Usuário Jovem'
+            }
+
             const p = document.createElement('p');
             p.textContent = content.data[i].resposta;
 
