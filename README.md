@@ -45,12 +45,11 @@
   Tecnologias que serão utilizadas
 </h3>
 
-- <b> Sistema de Login/cadastro: </b> Realtime js (ajuda na comunicação entre cliente e servidor).
-- <b> Gráfico: </b> Charts js (biblioteca de gráficos).
+- <b> Sistema de Login/cadastro: </b> Realtime js (ajuda na comunicação entre cliente e servidor) (Não foi inserido).
 - <b> Chat: </b> Procurar ainda.
-- <b> BD: </b> MySQL.
+- <b> BD: </b> MySQL (Inserido).
 - <b> Upload de arquivo: </b> Procurar ainda.
-- <b> Buscar por empregos: </b> Adzuna.
+- <b> Buscar por empregos: </b> Adzuna (Inserido).
 
 <br>
 
@@ -82,11 +81,6 @@
 - Tela Dicas/Sugestões
   - Ajustar responsividade.
   - Desenvolver a tela das dicas/sugestões sugeridas.
-
-<br>
-
-- Tela En
-  - Ajustar responsividade.
 
 <br>
 
