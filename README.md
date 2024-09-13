@@ -45,7 +45,6 @@
   Tecnologias que serão utilizadas
 </h3>
 
-- <b> Sistema de Login/cadastro: </b> Realtime js (ajuda na comunicação entre cliente e servidor) (Não foi inserido).
 - <b> Chat: </b> Procurar ainda.
 - <b> BD: </b> MySQL (Inserido).
 - <b> Upload de arquivo: </b> Procurar ainda.
