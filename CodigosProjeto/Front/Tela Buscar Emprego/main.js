@@ -59,7 +59,8 @@ function buscarVagas() {
 
       } else {
         const jobsListElement = document.getElementById("empregos_encontrados");
-
+        empregos_encontrados.textContent = '';
+        
         data.results.forEach(job => {
           if (!allJobs.has(job.id)) { // Verifica se a vaga já foi exibida
             allJobs.add(job.id); // Adiciona o ID da vaga ao conjunto

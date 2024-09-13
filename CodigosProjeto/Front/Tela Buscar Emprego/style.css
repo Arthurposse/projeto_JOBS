@@ -136,6 +136,11 @@ input:focus {
   margin-top: 4%;
 }
 
+#empregos_encontrados h2 {
+  margin-top: 5%;
+  color: var(--cor-secundaria);
+}
+
 .bloco_vaga {
   background-color: var(--cor-terciaria);
   display: flex;
