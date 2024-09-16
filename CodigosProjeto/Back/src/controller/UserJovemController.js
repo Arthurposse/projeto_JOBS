@@ -1,5 +1,14 @@
 const connection = require("../config/db");
 const dotenv = require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
+
+const uploadPath = path.join(__dirname, '..', 'uploads');
+
+// Irá criar a pasta uploads se ela já não existir
+if(!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath);
+}
 
 // Cadastrando Usuário (POST)
 
@@ -13,8 +22,7 @@ async function cadastroJovem(request, response) {
     request.body.cidade
   );
 
-  const query =
-    "INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES(?,?,?,?,?,?)";
+  const query = "INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES(?,?,?,?,?,?)";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -64,8 +72,7 @@ async function duvidaJovem(request, response) {
 async function getUserJovem(request, response) {
   const params = Array(request.params.id);
 
-  const query =
-    "SELECT name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+  const query = "SELECT name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -86,6 +93,16 @@ async function getUserJovem(request, response) {
 
 // Atualizando dados do usuário (PUT)
 async function uptadeUserJovem(request, response) {
+
+  if(!request.files) {
+    return response.status(400).json({
+      success: false,
+      message: "Você não enviou o arquivo de foto."
+    })
+  }
+
+  // const imagem = request.files.;
+
   const params = Array(
     // request.body.ft_user,
     request.body.nome_user,
@@ -100,8 +117,7 @@ async function uptadeUserJovem(request, response) {
   // const query = "UPDATE `user_jovem` SET `ft_perfil` = ?, `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
 
   // SEM var ft_user
-  const query =
-    "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
+  const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {

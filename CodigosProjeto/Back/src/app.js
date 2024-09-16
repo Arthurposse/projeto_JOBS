@@ -1,7 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const app = express();
+const path = require("path");
+const fs = require('fs');
+const fileUpload = require("express-fileupload");
 
 const routerJovem = require("./routes/UserJovemRouter");
 const routerEmpresa = require("./routes/UserEmpresaRouter");
@@ -13,9 +15,11 @@ const duvResRouter = require("./routes/duvResRouter");
 
 dotenv.config();
 
+const app = express();
 app.set("port", process.env.PORT || 3010);
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
 
 app.use("/api", routerJovem);
 app.use("/api", routerEmpresa);
