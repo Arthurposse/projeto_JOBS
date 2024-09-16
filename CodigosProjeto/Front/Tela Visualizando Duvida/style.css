@@ -40,7 +40,6 @@ main #duvida_jovem {
 
 main .botoes {
     background-color: var(--cor-secundaria);
-    padding: 2%;
     margin-top: 3%;
     border: 0;
     border-radius: 1vw;
