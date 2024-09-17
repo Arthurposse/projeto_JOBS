@@ -396,9 +396,9 @@ async function putMetas(nome, nome_antigo) {
   console.log(content);
 
   if (content.success) {
-    alert("Deu bom o PUT METAS!!");
+    // alert("Deu bom o PUT METAS!!");
   } else {
-    alert("Deu ruim o PUT METAS!!");
+    // alert("Deu ruim o PUT METAS!!");
     console.error();
   }
 }
@@ -726,14 +726,6 @@ botao_editar.onclick = async function () {
     if (ft_user) {
       console.log("Arquivo de imagem selecionado:", ft_user);
       formData.append("ft_user", ft_user);
-    } else {
-      Swal.fire({
-        title: "A foto não foi enviada!!",
-        text: "Tente novamente!!",
-        icon: "error",
-        showConfirmButton: false,
-        timer: 2000,
-      });
     }
 
     // PUT
@@ -764,7 +756,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2000
       });
     }
     editando = true;
