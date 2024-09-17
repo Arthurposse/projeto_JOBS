@@ -4,7 +4,7 @@ USE jobs;
 
 CREATE TABLE user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    -- ft_perfil,
+    ft_perfil VARCHAR(255),
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE user_jovem(
 
 CREATE TABLE user_empresa(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    -- ft_perfil,
+    ft_perfil VARCHAR(255),
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,

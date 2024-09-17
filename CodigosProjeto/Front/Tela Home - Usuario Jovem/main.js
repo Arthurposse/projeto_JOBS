@@ -5,10 +5,9 @@ const botao_download = document.getElementById("botao_download_plano");
 const img_logo = document.querySelector(".img_logo_plano");
 
 botao_gb.onclick = async function () {
+  const loader = document.querySelector(".loader");
 
-  const loader = document.querySelector('.loader');
-
-  loader.style.display = 'block';
+  loader.style.display = "block";
 
   const planos_sugerido = document.querySelector(".plano_sugerido");
   const area_usuario = document.getElementById("area_usuario").value;
@@ -16,14 +15,14 @@ botao_gb.onclick = async function () {
   const response = await fetch(`http://localhost:3008/api/apiGB`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify({ area_usuario })
+    body: JSON.stringify({ area_usuario }),
   });
 
   planos_sugerido.innerHTML = "";
   const plano = await response.text();
   planos_sugerido.innerHTML += plano;
 
-  loader.style.display = 'none';
+  loader.style.display = "none";
   botao_download.style.opacity = "1";
 };
 
@@ -81,7 +80,6 @@ async function downloadPDF() {
   pdf.save(`Plano ${area_usuario.value}.pdf`);
 }
 
-
 botao_download.addEventListener("click", downloadPDF);
 
 // Planejamento de carreira - Metas usuário
@@ -102,7 +100,7 @@ async function getMetas(nome, ordem) {
     `http://localhost:3008/api/metas/getMetas?User_name=${nome}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { "Content-type": "application/json;charset=UTF-8" },
     }
   );
 
@@ -305,7 +303,7 @@ botao_criar_metas.onclick = async function () {
     title: "Título meta",
     input: "text",
     inputPlaceholder: "Digite aqui",
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
 
   if (titulo_criar) {
@@ -313,14 +311,14 @@ botao_criar_metas.onclick = async function () {
       title: "Detalhes meta",
       input: "text",
       inputPlaceholder: "Digite aqui",
-      confirmButtonColor: "#0e566a"
+      confirmButtonColor: "#0e566a",
     });
 
     if (infos_criar) {
       const { value: data_criar } = await Swal.fire({
         title: "Data de conclusão da meta",
         input: "date",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
 
       if (data_criar) {
@@ -336,7 +334,7 @@ botao_criar_metas.onclick = async function () {
           },
           inputPlaceholder: "Seleciona o nível",
           showCancelButton: true,
-          confirmButtonColor: "#0e566a"
+          confirmButtonColor: "#0e566a",
         });
         if (prioridade_criar) {
           titulo = titulo_criar;
@@ -347,14 +345,14 @@ botao_criar_metas.onclick = async function () {
       }
     }
   }
-  
+
   let data = { User_name, titulo, infos, data_alterar, prioridade };
 
   // POST
   const response = await fetch("http://localhost:3008/api/metas/criando", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   let content = await response.json();
@@ -365,7 +363,7 @@ botao_criar_metas.onclick = async function () {
       title: "Meta criada com sucesso!!",
       icon: "success",
       showConfirmButton: false,
-      timer: 2000
+      timer: 2000,
     });
 
     setTimeout(() => {
@@ -377,7 +375,7 @@ botao_criar_metas.onclick = async function () {
       text: "Tente novamente!!",
       icon: "error",
       showConfirmButton: false,
-      timer: 2000
+      timer: 2000,
     });
     console.error();
   }
@@ -391,7 +389,7 @@ async function putMetas(nome, nome_antigo) {
   const response = await fetch(`http://localhost:3008/api/metas/atualizando`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   let content = await response.json();
@@ -422,7 +420,7 @@ botao_deletar_metas.onclick = async function () {
     inputOptions: opcoes,
     inputPlaceholder: "Selecionar aquele que deseja deletar",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
   if (metas_deletar) {
     data = { metas_deletar };
@@ -431,7 +429,7 @@ botao_deletar_metas.onclick = async function () {
   const response = await fetch("http://localhost:3008/api/metas/deletando", {
     method: "DELETE",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   let content = await response.json();
@@ -442,7 +440,7 @@ botao_deletar_metas.onclick = async function () {
       title: "Meta excluída com sucesso!!",
       icon: "success",
       showConfirmButton: false,
-      timer: 2000
+      timer: 2000,
     });
 
     setTimeout(() => {
@@ -454,7 +452,7 @@ botao_deletar_metas.onclick = async function () {
       text: "Tente novamente!!",
       icon: "error",
       showConfirmButton: false,
-      timer: 2000
+      timer: 2000,
     });
     console.error();
   }
@@ -480,7 +478,7 @@ botao_filtrar_metas.onclick = async function () {
     },
     inputPlaceholder: "Seleciona o filtro",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
   if (result) {
     getMetas(User_name, result);
@@ -501,6 +499,9 @@ cards.forEach((card) => {
 
 // Coletando dados perfil (GET)
 
+let ft_user = null;
+
+let ft_perfil_user = document.getElementById("ft_perfil_user");
 let nome = document.getElementById("nome_user");
 let email = document.getElementById("email_user");
 let telefone = document.getElementById("telefone_user");
@@ -514,11 +515,19 @@ async function getUserJovem(id_user) {
     `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { "Content-type": "application/json;charset=UTF-8" },
     }
   );
 
   content = await response.json();
+  console.log(content);
+  
+  if(ft_user === undefined || content.data[0].ft_perfil === null) {
+    ft_perfil_user.src = "../images/Usuario_nao_logado.png"
+  } 
+  else {
+    ft_perfil_user.src = `http:localhost:3008/uploads/${content.data[0].ft_perfil}`;
+  }
 
   nome.textContent = content.data[0].name;
   email.textContent = content.data[0].email;
@@ -563,7 +572,6 @@ const lapis_idade = document.getElementById("lapis_idade");
 
 let editando = true;
 botao_editar.onclick = async function () {
-  let ft_user;
   let nome_user = nome.textContent;
   let email_user = email.textContent;
   let telefone_user = telefone.textContent;
@@ -586,7 +594,7 @@ botao_editar.onclick = async function () {
           accept: "image/*",
           "aria-label": "Upload your profile picture",
         },
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (file) {
         const reader = new FileReader();
@@ -595,11 +603,10 @@ botao_editar.onclick = async function () {
             title: "Your uploaded picture",
             imageUrl: e.target.result,
             imageAlt: "The uploaded picture",
-            confirmButtonColor: "#0e566a"
+            confirmButtonColor: "#0e566a",
           });
         };
-        ft_user = reader.readAsDataURL(file);
-        console.log(file);
+        ft_user = file;
       }
     };
 
@@ -609,7 +616,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (name) {
         nome.textContent = name;
@@ -623,7 +630,7 @@ botao_editar.onclick = async function () {
         input: "email",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (emailValor) {
         email.textContent = emailValor;
@@ -637,7 +644,7 @@ botao_editar.onclick = async function () {
         input: "tel",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (tel) {
         telefone.textContent = tel;
@@ -651,7 +658,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (city) {
         cidade.textContent = city;
@@ -663,7 +670,7 @@ botao_editar.onclick = async function () {
       const { value: date } = await Swal.fire({
         title: "Selecione a sua data de nascimento",
         input: "date",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (date) {
         let ano_user_alert = date.slice(0, 4);
@@ -707,22 +714,32 @@ botao_editar.onclick = async function () {
       iconeLapis.style.display = "none";
     });
 
-    let data = {
-      nome_user,
-      email_user,
-      telefone_user,
-      cidade_user,
-      idade_user,
-    };
+    let formData = new FormData();
+    formData.append("nome_user", nome_user);
+    formData.append("email_user", email_user);
+    formData.append("telefone_user", telefone_user);
+    formData.append("cidade_user", cidade_user);
+    formData.append("idade_user", idade_user);
+
+    if (ft_user) {
+      console.log("Arquivo de imagem selecionado:", ft_user);
+      formData.append("ft_user", ft_user);
+    } else {
+      Swal.fire({
+        title: "A foto não foi enviada!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
 
     // PUT
-
     const response = await fetch(
       `http://localhost:3008/api/uptade/userJovem/${id_user}`,
       {
         method: "PUT",
-        headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data)
+        body: formData // Enviando todos os dados e a imagem juntos
       }
     );
 
@@ -734,7 +751,7 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
 
       setTimeout(() => {
@@ -745,7 +762,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
     editando = true;

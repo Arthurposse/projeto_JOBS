@@ -3,10 +3,10 @@ const dotenv = require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
-const uploadPath = path.join(__dirname, '..', 'uploads');
+const uploadPath = path.join(__dirname, "..", "uploads");
 
 // Irá criar a pasta uploads se ela já não existir
-if(!fs.existsSync(uploadPath)) {
+if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath);
 }
 
@@ -22,7 +22,8 @@ async function cadastroJovem(request, response) {
     request.body.cidade
   );
 
-  const query = "INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES(?,?,?,?,?,?)";
+  const query =
+    "INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) VALUES(?,?,?,?,?,?)";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -72,7 +73,8 @@ async function duvidaJovem(request, response) {
 async function getUserJovem(request, response) {
   const params = Array(request.params.id);
 
-  const query = "SELECT name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+  const query =
+    "SELECT ft_perfil, name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -93,47 +95,58 @@ async function getUserJovem(request, response) {
 
 // Atualizando dados do usuário (PUT)
 async function uptadeUserJovem(request, response) {
-
-  if(!request.files) {
+  if (!request.files) {
     return response.status(400).json({
       success: false,
       message: "Você não enviou o arquivo de foto."
-    })
+    });
   }
 
-  // const imagem = request.files.;
+  const imagem = request.files.ft_user;
+  const imagemNome = Date.now() + path.extname(imagem.name);
 
-  const params = Array(
-    // request.body.ft_user,
-    request.body.nome_user,
-    request.body.idade_user,
-    request.body.email_user,
-    request.body.telefone_user,
-    request.body.cidade_user,
-    request.params.id
-  );
-
-  // COM var ft_user
-  // const query = "UPDATE `user_jovem` SET `ft_perfil` = ?, `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
-
-  // SEM var ft_user
-  const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
-
-  connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Sucesso com PUT user empresa!!",
-        data: results,
+  imagem.mv(path.join(uploadPath, imagemNome), (erro) => {
+    if (erro) {
+      return response.status(400).json({
+        success: false,
+        message: "Erro ao mover o arquivo.",
       });
     } else {
-      response.status(400).json({
-        success: false,
-        message: "Ops, deu problemas PUT user empresa!",
-        data: err,
+      const params = Array(
+        imagemNome,
+        request.body.nome_user,
+        request.body.idade_user,
+        request.body.email_user,
+        request.body.telefone_user,
+        request.body.cidade_user,
+        request.params.id
+      );
+
+      const query =
+        "UPDATE `user_jovem` SET `ft_perfil` = ?, `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
+
+      connection.query(query, params, (err, results) => {
+        if (results) {
+          response.status(201).json({
+            success: true,
+            message: "Sucesso com PUT user empresa!!",
+            data: results,
+          });
+        } else {
+          response.status(400).json({
+            success: false,
+            message: "Ops, deu problemas PUT user empresa!",
+            data: err,
+          });
+        }
       });
     }
   });
+
+  // COM var ft_user
+
+  // SEM var ft_user
+  // const query = "UPDATE `user_jovem` SET `name` = ?, `data_nascimento` = ?, `email` = ?, `telefone` = ?, `cidade` = ? WHERE `id` = ?;";
 }
 
 // Buscar metas Usuário Jovem (GET)

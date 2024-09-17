@@ -394,6 +394,12 @@ main .perfil .parte_esquerda .ft_perfil {
   text-align: center;
 }
 
+#ft_perfil_user {
+  width: 100%;
+  height: 14vh;
+  border-radius: 30vw;
+}
+
 main .perfil .parte_esquerda .ft_perfil #lapis_nome,
 #lapis_ft_perfil {
   display: none;
