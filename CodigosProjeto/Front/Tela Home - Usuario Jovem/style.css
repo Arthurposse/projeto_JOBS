@@ -74,7 +74,9 @@ header .bloco_usuario {
 }
 
 header .bloco_usuario img {
-  width: 20%;
+  width: 17%;
+  height: 5vh;
+  border-radius: 2vw;
 }
 
 header .bloco_usuario h3 {
