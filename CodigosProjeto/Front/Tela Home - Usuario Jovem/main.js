@@ -497,6 +497,14 @@ cards.forEach((card) => {
   });
 });
 
+// Envio de currículo
+
+const botao_envio_curriculo = document.getElementById('enviar_curriculo');
+
+botao_envio_curriculo.onclick = function(){
+  
+};
+
 // Coletando dados perfil (GET)
 
 let ft_user = null;
