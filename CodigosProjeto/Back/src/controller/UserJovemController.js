@@ -10,6 +10,20 @@ if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath);
 }
 
+// Caminhos para as subpastas curriculos e img_perfil
+const curriculosPath = path.join(uploadPath, "curriculos");
+const imgPerfilPath = path.join(uploadPath, "img_perfil");
+
+// Irá criar a pasta curriculos se ela já não existir
+if (!fs.existsSync(curriculosPath)) {
+  fs.mkdirSync(curriculosPath);
+}
+
+// Irá criar a pasta img_perfil se ela já não existir
+if (!fs.existsSync(imgPerfilPath)) {
+  fs.mkdirSync(imgPerfilPath);
+}
+
 // Cadastrando Usuário (POST)
 
 async function cadastroJovem(request, response) {
@@ -114,13 +128,13 @@ async function uptadeUserJovem(request, response) {
       if (results) {
         response.status(201).json({
           success: true,
-          message: "Sucesso com PUT user empresa!!",
+          message: "Sucesso com PUT user jovem!!",
           data: results,
         });
       } else {
         response.status(400).json({
           success: false,
-          message: "Ops, deu problemas PUT user empresa!",
+          message: "Ops, deu problemas PUT user jovem!",
           data: err,
         });
       }
@@ -130,7 +144,9 @@ async function uptadeUserJovem(request, response) {
     const imagem = request.files.ft_user;
     const imagemNome = Date.now() + path.extname(imagem.name);
 
-    imagem.mv(path.join(uploadPath, imagemNome), (erro) => {
+    const imgPerfilPath = path.join(__dirname, "..", "uploads", "img_perfil");
+
+    imagem.mv(path.join(imgPerfilPath, imagemNome), (erro) => {
       if (erro) {
         return response.status(400).json({
           success: false,
@@ -160,7 +176,7 @@ async function uptadeUserJovem(request, response) {
           } else {
             response.status(400).json({
               success: false,
-              message: "Ops, deu problemas PUT user empresa!",
+              message: "Ops, deu problemas com o envio da foto!!",
               data: err,
             });
           }
@@ -194,7 +210,7 @@ async function getMetasJovem(request, response) {
   });
 }
 
-// Atualizando metas Usuário Jovem (PUT
+// Atualizando metas Usuário Jovem (PUT)
 async function uptadeMetasJovem(request, response) {
   const params = Array(request.body.nome, request.body.nome_antigo);
 
@@ -296,6 +312,45 @@ async function getModulos(request, response) {
   });
 }
 
+async function envioCurriculo(request, response) {
+  const imagem = request.files.curriculo_jovem;
+  const curriculoNome = Date.now() + path.extname(imagem.name);
+
+  const imgPerfilPath = path.join(__dirname, "..", "uploads", "curriculos");
+
+  imagem.mv(path.join(imgPerfilPath, curriculoNome), (erro) => {
+    if (erro) {
+      return response.status(400).json({
+        success: false,
+        message: "Erro ao mover o arquivo.",
+      });
+    } else {
+      const params = Array(
+        curriculoNome,
+        request.params.id
+      );
+
+      const query = "UPDATE `user_jovem` SET `curriculo` = ? WHERE `id` = ?;";
+
+      connection.query(query, params, (err, results) => {
+        if (results) {
+          response.status(201).json({
+            success: true,
+            message: "Sucesso com o envio do currículo!!",
+            data: results
+          });
+        } else {
+          response.status(400).json({
+            success: false,
+            message: "Ops, deu problemas com o envio do currículo!!",
+            data: err
+          });
+        }
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroJovem,
 
@@ -310,4 +365,6 @@ module.exports = {
   deleteMetasJovem,
 
   getModulos,
+
+  envioCurriculo
 };

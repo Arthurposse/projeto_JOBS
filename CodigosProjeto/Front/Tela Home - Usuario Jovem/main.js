@@ -499,10 +499,21 @@ cards.forEach((card) => {
 
 // Envio de currículo
 
-const botao_envio_curriculo = document.getElementById('enviar_curriculo');
+const botao_envio_curriculo = document.getElementById("enviar_curriculo");
+const curriculo_jovem = document.getElementById('curriculo_jovem');
 
-botao_envio_curriculo.onclick = function(){
-  
+botao_envio_curriculo.onclick = function () {
+  const input_area_jovem = document.getElementById("area_jovem").value;
+
+  // if (input_area_jovem === "" && !curriculo_jovem) {
+  //   alert("Insira o que é solicitado!!");
+
+  // } else if (input_area_jovem === "") {
+  //   alert("É necessário inserir a área!!");
+    
+  // } else if (!curriculo_jovem) {
+  //   alert("É necessário anexar o arquivo do seu currículo!!");
+  // }
 };
 
 // Coletando dados perfil (GET)
@@ -529,14 +540,13 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
-  
-  if(ft_user === undefined || content.data[0].ft_perfil === null) {
+
+  if (ft_user === undefined || content.data[0].ft_perfil === null) {
     ft_perfil_user.src = "../images/Usuario_nao_logado.png";
     ft_perfil_user_2.src = "../images/Usuario_nao_logado.png";
-  } 
-  else {
-    ft_perfil_user.src = `http:localhost:3008/uploads/${content.data[0].ft_perfil}`;
-    ft_perfil_user_2.src = `http:localhost:3008/uploads/${content.data[0].ft_perfil}`;
+  } else {
+    ft_perfil_user.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+    ft_perfil_user_2.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
   }
 
   nome.textContent = content.data[0].name;
@@ -741,7 +751,7 @@ botao_editar.onclick = async function () {
       `http://localhost:3008/api/uptade/userJovem/${id_user}`,
       {
         method: "PUT",
-        body: formData // Enviando todos os dados e a imagem juntos
+        body: formData, // Enviando todos os dados e a imagem juntos
       }
     );
 
@@ -764,7 +774,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
     editando = true;
