@@ -11,6 +11,7 @@ const {
   uptadeUserJovem,
   uptadeMetasJovem,
   deleteMetasJovem,
+  envioCurriculo,
 } = require("../controller/UserJovemController");
 
 // GET
@@ -34,6 +35,8 @@ router.post("/metas/criando", postMetasJovem);
 router.put("/uptade/userJovem/:id", uptadeUserJovem);
 
 router.put("/metas/atualizando", uptadeMetasJovem);
+
+router.put("/enviandoCurriculo/:id", envioCurriculo);
 
 // DELETE
 

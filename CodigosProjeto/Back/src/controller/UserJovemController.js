@@ -313,16 +313,18 @@ async function getModulos(request, response) {
 }
 
 async function envioCurriculo(request, response) {
-  const imagem = request.files.curriculo_jovem;
-  const curriculoNome = Date.now() + path.extname(imagem.name);
+  console.log(request.files)
+
+  const curriculo = request.files.curriculo_jovem;
+  const curriculoNome = Date.now() + path.extname(curriculo.name);
 
   const imgPerfilPath = path.join(__dirname, "..", "uploads", "curriculos");
 
-  imagem.mv(path.join(imgPerfilPath, curriculoNome), (erro) => {
+  curriculo.mv(path.join(imgPerfilPath, curriculoNome), (erro) => {
     if (erro) {
       return response.status(400).json({
         success: false,
-        message: "Erro ao mover o arquivo.",
+        message: "Erro ao mover o arquivo."
       });
     } else {
       const params = Array(

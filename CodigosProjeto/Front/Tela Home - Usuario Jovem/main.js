@@ -501,9 +501,9 @@ cards.forEach((card) => {
 
 const botao_envio_curriculo = document.getElementById("enviar_curriculo");
 const curriculo_jovem = document.getElementById('curriculo_jovem');
+const input_area_jovem = document.getElementById("area_jovem").value;
 
-botao_envio_curriculo.onclick = function () {
-  const input_area_jovem = document.getElementById("area_jovem").value;
+botao_envio_curriculo.onclick = async function () {
 
   // if (input_area_jovem === "" && !curriculo_jovem) {
   //   alert("Insira o que é solicitado!!");
@@ -514,6 +514,29 @@ botao_envio_curriculo.onclick = function () {
   // } else if (!curriculo_jovem) {
   //   alert("É necessário anexar o arquivo do seu currículo!!");
   // }
+
+  console.log("Arquivo de imagem selecionado:", curriculo_jovem.files[0]);
+  
+  let formDataCurriculo = new FormData();
+  formDataCurriculo.append("curriculo_jovem", curriculo_jovem.files[0]);
+
+  const response = await fetch(
+    `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
+    {
+      method: "PUT",
+      body: formDataCurriculo
+    }
+  );
+
+  content = await response.json();
+  console.log(content);
+
+  if(content.success) {
+    alert('DEU BOM CURRICULO')
+  } 
+  else {
+    alert('VISH, DEU BOLETE')
+  }
 };
 
 // Coletando dados perfil (GET)
@@ -535,7 +558,7 @@ async function getUserJovem(id_user) {
     `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
+      headers: { "Content-type": "application/json;charset=UTF-8" }
     }
   );
 
@@ -751,7 +774,7 @@ botao_editar.onclick = async function () {
       `http://localhost:3008/api/uptade/userJovem/${id_user}`,
       {
         method: "PUT",
-        body: formData, // Enviando todos os dados e a imagem juntos
+        body: formData // Enviando todos os dados e a imagem juntos
       }
     );
 
@@ -763,7 +786,7 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2000
       });
 
       setTimeout(() => {

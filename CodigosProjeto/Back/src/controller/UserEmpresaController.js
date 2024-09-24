@@ -191,6 +191,27 @@ async function deleteVagas(request, response) {
   });
 }
 
+// Buscando currículos dos usuários
+async function buscaCurriculos(request, response) {
+  const query = "SELECT ft_perfil, curriculo, name, email, telefone, cidade FROM user_jovem WHERE curriculo IS NOT NULL";
+
+  connection.query(query, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso com busca de currículos!!",
+        data: results
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas busca de currículos!!",
+        data: err
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroEmpresa,
   getDadosUser,
@@ -198,5 +219,6 @@ module.exports = {
   criandoVaga,
   getVagas,
   putVagas,
-  deleteVagas
+  deleteVagas,
+  buscaCurriculos
 };
