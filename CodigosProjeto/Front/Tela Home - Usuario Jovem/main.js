@@ -499,12 +499,40 @@ cards.forEach((card) => {
 
 // Envio de currículo
 
+const botao_selecionar_area = document.getElementById("selecionar_area");
+
+botao_selecionar_area.onclick = async function(){
+  const { value: areaFiltro } = await Swal.fire({
+    title: "Selecione a área!!",
+    input: "select",
+    inputOptions: {
+      "Áreas": {
+        "Tecnologia": "Tecnologia",
+        "Saúde": "Saúde",
+        "Ciências Humanas": "Ciências Humanas",
+        "Ciências Exatas": "Ciências Exatas",
+        "Ciências Biológicas": "Ciências Biológicas",
+        "Direito e Ciências Jurídicas": "Direito e Ciências Jurídicas",
+        "Engenharia e Indústria": "Engenharia e Indústria",
+        "Artes e Design": "Artes e Design",
+        "Comunicação e Marketing": "Comunicação e Marketing",
+        "Gestão e Negócios": "Gestão e Negócios"
+      },
+    },
+    inputPlaceholder: "Escolha a que mais se encaixe com seu perfil!!",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a"
+  });
+
+  if (areaFiltro) {
+    botao_selecionar_area.textContent = areaFiltro;
+  }
+};
+
 const botao_envio_curriculo = document.getElementById("enviar_curriculo");
 const curriculo_jovem = document.getElementById('curriculo_jovem');
-const input_area_jovem = document.getElementById("area_jovem").value;
 
 botao_envio_curriculo.onclick = async function () {
-
   // if (input_area_jovem === "" && !curriculo_jovem) {
   //   alert("Insira o que é solicitado!!");
 
@@ -797,7 +825,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2000
       });
     }
     editando = true;

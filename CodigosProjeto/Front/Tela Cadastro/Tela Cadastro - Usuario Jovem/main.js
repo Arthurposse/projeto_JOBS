@@ -1,22 +1,22 @@
 // Visualizar senha - Icon olho
 
-let icon_olho = document.querySelectorAll('#icon_olho');
+let icon_olho = document.querySelectorAll("#icon_olho");
 
 // Iterar sobre cada ícone de olho
 icon_olho.forEach(function (iconOlho) {
   iconOlho.onclick = function () {
     let inputSenha = iconOlho.previousElementSibling; // Selecionar o input anterior ao ícone de olho
 
-    if (iconOlho.classList.contains('bi-eye-fill')) {
-      iconOlho.classList.remove('bi-eye-fill');
-      iconOlho.classList.add('bi-eye-slash-fill');
-      inputSenha.type = 'text';
+    if (iconOlho.classList.contains("bi-eye-fill")) {
+      iconOlho.classList.remove("bi-eye-fill");
+      iconOlho.classList.add("bi-eye-slash-fill");
+      inputSenha.type = "text";
     } else {
-      iconOlho.classList.remove('bi-eye-slash-fill');
-      iconOlho.classList.add('bi-eye-fill');
+      iconOlho.classList.remove("bi-eye-slash-fill");
+      iconOlho.classList.add("bi-eye-fill");
 
-      let novoInput = document.createElement('input');
-      novoInput.type = 'password';
+      let novoInput = document.createElement("input");
+      novoInput.type = "password";
       novoInput.value = inputSenha.value;
       novoInput.placeholder = inputSenha.placeholder;
 
@@ -66,7 +66,7 @@ button.onclick = async function (e) {
     const response = await fetch("http://localhost:3008/api/cadastro/jovem", {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
     let content = await response.json();
@@ -77,13 +77,13 @@ button.onclick = async function (e) {
         text: "Aguarde enquanto seu código de verificação é gerado.",
         icon: "success",
         showConfirmButton: false,
-        timer: 2600,
+        timer: 2600
       });
 
       const response = await fetch("http:/localhost:3008/api/enviarEmail", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email })
       });
 
       let content = await response.json();
@@ -121,8 +121,7 @@ button.onclick = async function (e) {
         timer: 2300
       });
     }
-  }
-  else {
+  } else {
     if (password !== confirm_password) {
       Swal.fire({
         title: "As senhas não coincidem!!",
@@ -131,15 +130,14 @@ button.onclick = async function (e) {
         showConfirmButton: false,
         timer: 2300
       });
-    }
-    else {
+    } else {
       Swal.fire({
         title: "Limite de idade!!",
         text: "Não é possível realizar cadastrado no site!! Você deve possuir entre 14 a 24 anos!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2500,
+        timer: 2500
       });
     }
   }
-}
+};

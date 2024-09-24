@@ -1,3 +1,5 @@
+// Buscando currículos dos jovens
+
 async function buscandoCurriculos() {
   const response = await fetch(
     `http://localhost:3008/api/buscandoCurriculos`, // Use GET aqui
@@ -60,3 +62,35 @@ async function buscandoCurriculos() {
 }
 
 buscandoCurriculos();
+
+// Filtro
+
+const botao_filtro = document.getElementById("botao_filtro");
+
+botao_filtro.onclick = async function () {
+  const { value: areaFiltro } = await Swal.fire({
+    title: "Selecione a área!!",
+    input: "select",
+    inputOptions: {
+      "Áreas": {
+        "Tecnologia": "Tecnologia",
+        "Saúde": "Saúde",
+        "Ciências Humanas": "Ciências Humanas",
+        "Ciências Exatas": "Ciências Exatas",
+        "Ciências Biológicas": "Ciências Biológicas",
+        "Direito e Ciências Jurídicas": "Direito e Ciências Jurídicas",
+        "Engenharia e Indústria": "Engenharia e Indústria",
+        "Artes e Design": "Artes e Design",
+        "Comunicação e Marketing": "Comunicação e Marketing",
+        "Gestão e Negócios": "Gestão e Negócios"
+      },
+    },
+    inputPlaceholder: "Escolha a que mais se encaixe com seu perfil!!",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a"
+  });
+
+  if (areaFiltro) {
+    console.log(areaFiltro)
+  }
+};

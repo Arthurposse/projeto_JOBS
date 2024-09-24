@@ -372,7 +372,7 @@ main .enviando_curriculo {
   color: var(--cor-secundaria);
 }
 
-main .enviando_curriculo input {
+main .enviando_curriculo input, #selecionar_area {
   width: 20vw;
   padding: 1%;
   border: 0;
