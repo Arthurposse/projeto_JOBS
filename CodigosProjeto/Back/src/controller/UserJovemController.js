@@ -313,8 +313,6 @@ async function getModulos(request, response) {
 }
 
 async function envioCurriculo(request, response) {
-  console.log(request.files)
-
   const curriculo = request.files.curriculo_jovem;
   const curriculoNome = Date.now() + path.extname(curriculo.name);
 
@@ -329,10 +327,11 @@ async function envioCurriculo(request, response) {
     } else {
       const params = Array(
         curriculoNome,
+        request.body.area_escolhida,
         request.params.id
       );
 
-      const query = "UPDATE `user_jovem` SET `curriculo` = ? WHERE `id` = ?;";
+      const query = "UPDATE `user_jovem` SET `curriculo` = ?, `area_curriculo` = ? WHERE `id` = ?;";
 
       connection.query(query, params, (err, results) => {
         if (results) {

@@ -15,7 +15,8 @@ async function cadastroEmpresa(request, response) {
     request.body.setor_atividade
   );
 
-  const query = "INSERT INTO user_empresa(name, email, password, telefone, nome_empresa, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?);";
+  const query =
+    "INSERT INTO user_empresa(name, email, password, telefone, nome_empresa, razao_social, cnpj, setor_atividade) VALUES(?,?,?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -64,7 +65,7 @@ async function uptadeUserEmpresa(request, response) {
     request.body.telefone_user,
     request.body.empresa_user,
     request.body.setor_atividade_user,
-    request.params.id
+    request.params.id,
   ];
 
   const query = `
@@ -149,7 +150,8 @@ async function getVagas(request, response) {
 async function putVagas(request, response) {
   const params = Array(request.body.nome, request.body.nome_antigo);
 
-  const query = "UPDATE `vagas` SET `criador_vaga` = ? WHERE `criador_vaga` = ?;";
+  const query =
+    "UPDATE `vagas` SET `criador_vaga` = ? WHERE `criador_vaga` = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -193,20 +195,30 @@ async function deleteVagas(request, response) {
 
 // Buscando currículos dos usuários
 async function buscaCurriculos(request, response) {
-  const query = "SELECT ft_perfil, curriculo, name, email, telefone, cidade FROM user_jovem WHERE curriculo IS NOT NULL";
+  const params = Array(request.body.area);
 
-  connection.query(query, (err, results) => {
+  let query;
+
+  if (!request.body.area || request.body.area === "Todas") {
+    query =
+      "SELECT ft_perfil, curriculo, area_curriculo, name, email, telefone, cidade FROM user_jovem WHERE curriculo IS NOT NULL";
+  } else {
+    query =
+      "SELECT ft_perfil, curriculo, area_curriculo, name, email, telefone, cidade FROM user_jovem WHERE curriculo IS NOT NULL AND area_curriculo = ?";
+  }
+
+  connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
         success: true,
         message: "Sucesso com busca de currículos!!",
-        data: results
+        data: results,
       });
     } else {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas busca de currículos!!",
-        data: err
+        data: err,
       });
     }
   });
@@ -220,5 +232,5 @@ module.exports = {
   getVagas,
   putVagas,
   deleteVagas,
-  buscaCurriculos
+  buscaCurriculos,
 };

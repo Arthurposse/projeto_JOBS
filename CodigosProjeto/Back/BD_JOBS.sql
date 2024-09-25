@@ -6,6 +6,7 @@ CREATE TABLE user_jovem(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     ft_perfil VARCHAR(255),
     curriculo VARCHAR (255),
+    area_curriculo VARCHAR(255),
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,

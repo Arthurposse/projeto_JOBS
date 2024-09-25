@@ -501,14 +501,15 @@ cards.forEach((card) => {
 
 const botao_selecionar_area = document.getElementById("selecionar_area");
 
-botao_selecionar_area.onclick = async function(){
+let area_escolhida;
+botao_selecionar_area.onclick = async function () {
   const { value: areaFiltro } = await Swal.fire({
     title: "Selecione a área!!",
     input: "select",
     inputOptions: {
-      "Áreas": {
-        "Tecnologia": "Tecnologia",
-        "Saúde": "Saúde",
+      Áreas: {
+        Tecnologia: "Tecnologia",
+        Saúde: "Saúde",
         "Ciências Humanas": "Ciências Humanas",
         "Ciências Exatas": "Ciências Exatas",
         "Ciências Biológicas": "Ciências Biológicas",
@@ -516,54 +517,51 @@ botao_selecionar_area.onclick = async function(){
         "Engenharia e Indústria": "Engenharia e Indústria",
         "Artes e Design": "Artes e Design",
         "Comunicação e Marketing": "Comunicação e Marketing",
-        "Gestão e Negócios": "Gestão e Negócios"
+        "Gestão e Negócios": "Gestão e Negócios",
       },
     },
     inputPlaceholder: "Escolha a que mais se encaixe com seu perfil!!",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
 
   if (areaFiltro) {
     botao_selecionar_area.textContent = areaFiltro;
+    area_escolhida = areaFiltro;
   }
 };
 
 const botao_envio_curriculo = document.getElementById("enviar_curriculo");
-const curriculo_jovem = document.getElementById('curriculo_jovem');
+const curriculo_jovem = document.getElementById("curriculo_jovem");
 
 botao_envio_curriculo.onclick = async function () {
-  // if (input_area_jovem === "" && !curriculo_jovem) {
-  //   alert("Insira o que é solicitado!!");
+  if (area_escolhida === undefined && curriculo_jovem.files[0] === undefined) {
+    alert("Insira os dados necessários!!");
+  } else if (area_escolhida === undefined) {
+    alert("Selecione uma área!!");
+  } else if (curriculo_jovem.files[0] === undefined) {
+    alert("Insira o arquivo pdf do seu currículo!!");
+  } else {
+    let formDataCurriculo = new FormData();
+    formDataCurriculo.append("curriculo_jovem", curriculo_jovem.files[0]);
+    formDataCurriculo.append("area_escolhida", area_escolhida);
 
-  // } else if (input_area_jovem === "") {
-  //   alert("É necessário inserir a área!!");
-    
-  // } else if (!curriculo_jovem) {
-  //   alert("É necessário anexar o arquivo do seu currículo!!");
-  // }
+    const response = await fetch(
+      `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
+      {
+        method: "PUT",
+        body: formDataCurriculo
+      }
+    );
 
-  console.log("Arquivo de imagem selecionado:", curriculo_jovem.files[0]);
-  
-  let formDataCurriculo = new FormData();
-  formDataCurriculo.append("curriculo_jovem", curriculo_jovem.files[0]);
+    content = await response.json();
+    console.log(content);
 
-  const response = await fetch(
-    `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
-    {
-      method: "PUT",
-      body: formDataCurriculo
+    if (content.success) {
+      alert("DEU BOM CURRICULO");
+    } else {
+      alert("VISH, DEU BOLETE");
     }
-  );
-
-  content = await response.json();
-  console.log(content);
-
-  if(content.success) {
-    alert('DEU BOM CURRICULO')
-  } 
-  else {
-    alert('VISH, DEU BOLETE')
   }
 };
 
@@ -586,7 +584,7 @@ async function getUserJovem(id_user) {
     `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { "Content-type": "application/json;charset=UTF-8" },
     }
   );
 
@@ -802,7 +800,7 @@ botao_editar.onclick = async function () {
       `http://localhost:3008/api/uptade/userJovem/${id_user}`,
       {
         method: "PUT",
-        body: formData // Enviando todos os dados e a imagem juntos
+        body: formData, // Enviando todos os dados e a imagem juntos
       }
     );
 
@@ -814,7 +812,7 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
 
       setTimeout(() => {
@@ -825,7 +823,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
     }
     editando = true;

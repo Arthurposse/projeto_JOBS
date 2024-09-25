@@ -17,12 +17,12 @@ router.get("/vagas/getVagas", getVagas);
 
 router.get("/buscandoDados/:id", getDadosUser);
 
-router.get("/buscandoCurriculos", buscaCurriculos);
-
 // POST
 router.post("/cadastro/empresa", cadastroEmpresa);
 
 router.post("/vagas/criandoVaga", criandoVaga);
+
+router.post("/buscandoCurriculos", buscaCurriculos);
 
 // PUT
 router.put("/uptade/userEmpresa/:id", uptadeUserEmpresa);
