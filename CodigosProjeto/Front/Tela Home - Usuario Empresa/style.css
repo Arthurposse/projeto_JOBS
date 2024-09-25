@@ -112,6 +112,47 @@ main .criar_vaga hr {
 
 /* Main - Dúvidas jovens */
 
+main .secao_duvidas_jovens {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 3%;
+}
+
+main .secao_duvidas_jovens button {
+    background-color: var(--cor-secundaria);
+    width: 6vw;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--cor-terciaria);
+}
+
+main .secao_duvidas_jovens button:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
+}
+
+main .container_duvidas {
+    display: flex;
+    gap: 2vw;
+}
+
+main .bloco_duvida {
+    background-color: var(--cor-terciaria);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 5%;
+    width: 22vw;
+    text-align: center;
+    border-radius: 2vw;
+    cursor: pointer;
+}
+
 /* Main - Criar vagas */
 
 main .criar_vaga {

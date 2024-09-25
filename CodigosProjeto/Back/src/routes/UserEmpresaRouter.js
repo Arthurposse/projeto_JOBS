@@ -9,13 +9,16 @@ const {
   getVagas,
   putVagas,
   deleteVagas,
-  buscaCurriculos
+  buscaCurriculos,
+  sorteandoDuvida
 } = require("../controller/UserEmpresaController");
 
 // GET
 router.get("/vagas/getVagas", getVagas);
 
 router.get("/buscandoDados/:id", getDadosUser);
+
+router.get("/duvidasSorteadas", sorteandoDuvida);
 
 // POST
 router.post("/cadastro/empresa", cadastroEmpresa);

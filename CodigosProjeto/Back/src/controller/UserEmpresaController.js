@@ -224,6 +224,27 @@ async function buscaCurriculos(request, response) {
   });
 }
 
+// Buscando dúvidas sorteadas
+async function sorteandoDuvida(request, response) {
+  const query = "SELECT * FROM duvidas WHERE id_duvida IS NOT NULL ORDER BY RAND() LIMIT 3;";
+
+  connection.query(query, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso com busca das 3 dúvidas!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas busca das 3 dúvidas!!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroEmpresa,
   getDadosUser,
@@ -233,4 +254,5 @@ module.exports = {
   putVagas,
   deleteVagas,
   buscaCurriculos,
+  sorteandoDuvida
 };

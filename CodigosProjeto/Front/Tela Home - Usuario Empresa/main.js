@@ -5,6 +5,57 @@ let user_logado = document.getElementById("user_logado");
 
 user_logado.textContent = User_name;
 
+// Dúvidas dos jovens - GET
+
+const container_duvidas = document.querySelector('.container_duvidas');
+
+async function sorteandoDuvidas() {
+  const response = await fetch(
+    "http://localhost:3008/api/duvidasSorteadas",
+    {
+      method: "GET",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+    }
+  );
+
+  let content = await response.json();
+
+  if(content.success) {
+    for(let i = 0; i < content.data.length; i++) {
+      let bloco_duvida = document.createElement("div");
+      bloco_duvida.className = 'bloco_duvida';
+
+      let h2 = document.createElement("h2");
+      h2.textContent = content.data[i].nome_user;
+  
+      let p = document.createElement("p");
+      p.textContent = content.data[i].duvida;
+      
+      bloco_duvida.appendChild(h2)
+      bloco_duvida.appendChild(p)
+  
+      container_duvidas.appendChild(bloco_duvida);
+
+      bloco_duvida.addEventListener("click", () => {
+        localStorage.setItem('tipo_usuario', 'Empresa');
+        localStorage.setItem('id_duvida', content.data[i].id_duvida);
+        localStorage.setItem('texto_duvida', content.data[i].duvida);
+        window.location.href = '../Tela Visualizando Duvida/index.html';
+      });
+    }
+  }
+}
+
+sorteandoDuvidas();
+
+const buscar_duvidas = document.getElementById("buscar_duvidas");
+
+buscar_duvidas.onclick = function() {
+  container_duvidas.innerHTML = '';
+
+  sorteandoDuvidas();
+}
+
 // Vagas - GET
 
 let titulos_vagas = [];
@@ -16,7 +67,7 @@ async function getVagas(nome, ordem) {
     `http://localhost:3008/api/vagas/getVagas?User_name=${nome}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { "Content-type": "application/json;charset=UTF-8" },
     }
   );
 
@@ -96,7 +147,7 @@ botao_criar_vagas.onclick = async function () {
     title: "Título vaga",
     input: "text",
     inputPlaceholder: "Digite aqui",
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
 
   if (titulo_vaga) {
@@ -110,7 +161,7 @@ botao_criar_vagas.onclick = async function () {
       },
       inputPlaceholder: "Seleciona o nível",
       showCancelButton: true,
-      confirmButtonColor: "#0e566a"
+      confirmButtonColor: "#0e566a",
     });
 
     if (area) {
@@ -118,7 +169,7 @@ botao_criar_vagas.onclick = async function () {
         title: "Localidade da vaga",
         input: "text",
         inputPlaceholder: "Digite aqui",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
 
       if (cidade) {
@@ -136,7 +187,7 @@ botao_criar_vagas.onclick = async function () {
           },
           inputPlaceholder: "Seleciona a faixa etária",
           showCancelButton: true,
-          confirmButtonColor: "#0e566a"
+          confirmButtonColor: "#0e566a",
         });
 
         if (faixaEtaria) {
@@ -144,7 +195,7 @@ botao_criar_vagas.onclick = async function () {
             title: "Descrição da vaga",
             input: "text",
             inputPlaceholder: "Digite aqui",
-            confirmButtonColor: "#0e566a"
+            confirmButtonColor: "#0e566a",
           });
 
           if (descricao) {
@@ -163,7 +214,7 @@ botao_criar_vagas.onclick = async function () {
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
               }
             );
 
@@ -187,31 +238,34 @@ botao_criar_vagas.onclick = async function () {
 
 // Vagas - Deletar
 
-const botao_deletar_vaga = document.getElementById('deletar_vaga');
+const botao_deletar_vaga = document.getElementById("deletar_vaga");
 
 botao_deletar_vaga.onclick = async function () {
   const opcoes = {};
 
   for (let i = 0; i < titulos_vagas.length; i++) {
     opcoes[`${titulos_vagas[i]}`] = titulos_vagas[i];
-  };
+  }
 
   const { value: vagas_deletar } = await Swal.fire({
     title: "Deletar meta",
     input: "select",
     inputOptions: opcoes,
     inputPlaceholder: "Selecionar aquele que deseja deletar",
-    showCancelButton: true
+    showCancelButton: true,
   });
   if (vagas_deletar) {
     data = { vagas_deletar };
   }
 
-  const response = await fetch("http://localhost:3008/api//vagas/deletandoVaga", {
-    method: "DELETE",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
-  });
+  const response = await fetch(
+    "http://localhost:3008/api//vagas/deletandoVaga",
+    {
+      method: "DELETE",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(data),
+    }
+  );
 
   let content = await response.json();
 
@@ -224,7 +278,7 @@ botao_deletar_vaga.onclick = async function () {
     alert("Deu ruim o DELETE!!");
     console.error();
   }
-}
+};
 
 // Vagas - PUT
 async function putVagas(nome, nome_antigo) {
@@ -233,7 +287,7 @@ async function putVagas(nome, nome_antigo) {
   const response = await fetch(`http://localhost:3008/api/vagas/putVagas`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   let content = await response.json();
@@ -262,7 +316,7 @@ botao_filtrar_vagas.onclick = async function () {
     },
     inputPlaceholder: "Selecione o filtro",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
 
   if (result === "faixa_etaria") {
@@ -280,7 +334,7 @@ botao_filtrar_vagas.onclick = async function () {
       },
       inputPlaceholder: "Seleciona a faixa etária",
       showCancelButton: true,
-      confirmButtonColor: "#0e566a"
+      confirmButtonColor: "#0e566a",
     });
 
     if (faixaEtaria) {
@@ -311,15 +365,14 @@ async function getUserJovem(id_user) {
 
   content = await response.json();
 
-  if(content.success) {
+  if (content.success) {
     nome.textContent = content.data[0].name;
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     empresa.textContent = content.data[0].nome_empresa;
     setor_atividade.textContent = content.data[0].setor_atividade;
-  }
-  else {
-    alert('deu ruim');
+  } else {
+    alert("deu ruim");
   }
 }
 
@@ -338,7 +391,11 @@ const lapis_empresa = document.getElementById("lapis_empresa");
 const lapis_setor_atividade = document.getElementById("lapis_setor_atividade");
 
 let editando = true;
-let nome_user_anterior, email_user_anterior, telefone_user_anterior, empresa_user_anterior, setor_atividade_user_anterior;
+let nome_user_anterior,
+  email_user_anterior,
+  telefone_user_anterior,
+  empresa_user_anterior,
+  setor_atividade_user_anterior;
 
 botao_editar.onclick = async function () {
   let nome_user = nome.textContent;
@@ -368,7 +425,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (name) {
         nome.textContent = name;
@@ -382,7 +439,7 @@ botao_editar.onclick = async function () {
         input: "email",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (emailValor) {
         email.textContent = emailValor;
@@ -396,7 +453,7 @@ botao_editar.onclick = async function () {
         input: "tel",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (tel) {
         telefone.textContent = tel;
@@ -410,7 +467,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (empresa_) {
         empresa.textContent = empresa_;
@@ -424,7 +481,7 @@ botao_editar.onclick = async function () {
         input: "text",
         inputLabel: "Insira abaixo:",
         inputPlaceholder: "Digite aqui para atualizar",
-        confirmButtonColor: "#0e566a"
+        confirmButtonColor: "#0e566a",
       });
       if (setor_atividade_) {
         setor_atividade.textContent = setor_atividade_;
@@ -440,7 +497,13 @@ botao_editar.onclick = async function () {
       iconeLapis.style.display = "none";
     });
 
-    let data = { nome_user, email_user, telefone_user, empresa_user, setor_atividade_user };
+    let data = {
+      nome_user,
+      email_user,
+      telefone_user,
+      empresa_user,
+      setor_atividade_user,
+    };
 
     // PUT
     const response = await fetch(
@@ -448,7 +511,7 @@ botao_editar.onclick = async function () {
       {
         method: "PUT",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       }
     );
 
@@ -460,7 +523,7 @@ botao_editar.onclick = async function () {
         title: "Seus dados foram atualizados com sucesso!",
         icon: "success",
         showConfirmButton: false,
-        timer: 3000
+        timer: 3000,
       });
 
       setTimeout(() => {
@@ -471,7 +534,7 @@ botao_editar.onclick = async function () {
         title: "Não foi possível alterar seus dados!",
         icon: "error",
         showConfirmButton: false,
-        timer: 3000
+        timer: 3000,
       });
     }
     editando = true;

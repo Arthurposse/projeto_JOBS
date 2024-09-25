@@ -183,7 +183,7 @@ document.getElementById('botao_voltar').onclick = function () {
         window.location.href = '../Tela Dicas-Sugestoes/index.html';
     }
     else if (tipo_usuario === 'Empresa') {
-        window.location.href = '';
+        window.location.href = '../Tela Home - Usuario Empresa/index.html';
 
     }
     else {

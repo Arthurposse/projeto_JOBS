@@ -59,6 +59,7 @@ async function carregarDuvidas() {
 
         // Adicionando o evento de clique ao card
         cardDuvida.addEventListener("click", () => {
+          localStorage.setItem('tipo_usuario', 'Jovem');
           localStorage.setItem('id_duvida', content.data[i].id_duvida);
           localStorage.setItem('texto_duvida', content.data[i].duvida);
           window.location.href = '../Tela Visualizando Duvida/index.html';

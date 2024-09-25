@@ -1,157 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOBS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> JOBS </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-</head>
-
-<body>
+  <body>
     <header>
-        <section class="header_topo">
-            <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="">
+      <section class="header_topo">
+        <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="" />
 
-            <nav>
-                <a href="#"> Início </a>
-                <a href="../Tela Curriculos Jovens/index.html"> Currículos dos jovens </a>
-                <a href="../Tela Chat/index.html"> Chat </a>
-            </nav>
+        <nav>
+          <a href="#"> Início </a>
+          <a href="../Tela Curriculos Jovens/index.html">
+            Currículos dos jovens
+          </a>
+          <a href="../Tela Chat/index.html"> Chat </a>
+        </nav>
 
-            <section class="bloco_usuario">
-                <img src="../images/Usuario_nao_logado.png" alt="">
+        <section class="bloco_usuario">
+          <img src="../images/Usuario_nao_logado.png" alt="" />
 
-                <h3 id="user_logado"> </h3>
-            </section>
+          <h3 id="user_logado"></h3>
         </section>
+      </section>
 
-        <section class="header_meio">
-            <h1> Auxilie os jovens em seu caminho para o mundo do trabalho </h1>
-            <div class="forma"></div>
-        </section>
+      <section class="header_meio">
+        <h1>Auxilie os jovens em seu caminho para o mundo do trabalho</h1>
+        <div class="forma"></div>
+      </section>
     </header>
 
     <main>
-        <section class="duvidas_jovens">
-            <h2> Tire as dúvidas dos jovens </h2>
-            <hr>
+      <section class="duvidas_jovens">
+        <h2>Tire as dúvidas dos jovens</h2>
+        <hr />
 
-            <h1 style="display: flex; justify-content: center; font-weight: bold; color: red; padding: 12%;">
-                ADICIONAR O CARROSSEL AQUI !! </h1>
-        </section>
+        <div class="secao_duvidas_jovens">
+          <div class="container_duvidas"></div>
 
-        <section class="criar_vaga">
-            <h2> Criar vaga </h2>
-            <hr>
+          <button id="buscar_duvidas"><i class="bi bi-arrow-clockwise"></i></button>
+        </div>
+      </section>
 
-            <h3> Suas vagas </h3>
+      <section class="criar_vaga">
+        <h2>Criar vaga</h2>
+        <hr />
 
-            <button class="botao_vaga" id="criar_vaga"> <i class="bi bi-plus-circle"></i> </button>
+        <h3>Suas vagas</h3>
 
-            <button class="botao_vaga" id="deletar_vaga"> <i class="bi bi-trash3"></i> </button>
+        <button class="botao_vaga" id="criar_vaga">
+          <i class="bi bi-plus-circle"></i>
+        </button>
 
-            <button class="botao_vaga" id="filtrar_vaga"> <i class="bi bi-filter-square"></i> </button>
+        <button class="botao_vaga" id="deletar_vaga">
+          <i class="bi bi-trash3"></i>
+        </button>
 
-            <section class="vagas_registradas">              
-            </section>
-        </section>
+        <button class="botao_vaga" id="filtrar_vaga">
+          <i class="bi bi-filter-square"></i>
+        </button>
 
-        <section class="perfil">
-            <h2> Seu perfil </h2>
+        <section class="vagas_registradas"></section>
+      </section>
 
-            <section class="secao_perfil">
-                <section class="parte_esquerda">
-                    <section class="ft_perfil">
-                        <img src="../images/Usuario_nao_logado.png" alt="">
-                        <i class="bi bi-pencil-square" id="lapis_ft_perfil"></i>
-                        <h3 id="nome_user"> </h3>
-                        <i class="bi bi-pencil-square" id="lapis_nome"></i>
-                    </section>
+      <section class="perfil">
+        <h2>Seu perfil</h2>
 
-                    <section class="quant_pessoas">
-                        <i class="bi bi-eye"></i>
-                        <h3> X pessoas </h3>
-                    </section>
-                </section>
-
-                <section class="parte_direita">
-                    <section class="bloco_pt_direita">
-                        <h3> Email: </h3>
-                        <p id="email_user"> </p>
-                        <i class="bi bi-pencil-square" id="lapis_email"></i>
-                    </section>
-
-                    <section class="bloco_pt_direita">
-                        <h3> Telefone: </h3>
-                        <p id="telefone_user"> </p>
-                        <i class="bi bi-pencil-square" id="lapis_telefone"></i>
-                    </section>
-
-                    <section class="bloco_pt_direita">
-                        <h3> Empresa: </h3>
-                        <p id="empresa_user"> </p>
-                        <i class="bi bi-pencil-square" id="lapis_empresa"></i>
-                    </section>
-
-                    <section class="bloco_pt_direita">
-                        <h3> Setor de atividade: </h3>
-                        <p id="setor_atividade_user"> </p>
-                        <i class="bi bi-pencil-square" id="lapis_setor_atividade"></i>
-                    </section>
-                </section>
+        <section class="secao_perfil">
+          <section class="parte_esquerda">
+            <section class="ft_perfil">
+              <img src="../images/Usuario_nao_logado.png" alt="" />
+              <i class="bi bi-pencil-square" id="lapis_ft_perfil"></i>
+              <h3 id="nome_user"></h3>
+              <i class="bi bi-pencil-square" id="lapis_nome"></i>
             </section>
 
-            <button id="editar_perfil"> Editar </button>
+            <section class="quant_pessoas">
+              <i class="bi bi-eye"></i>
+              <h3>X pessoas</h3>
+            </section>
+          </section>
 
+          <section class="parte_direita">
+            <section class="bloco_pt_direita">
+              <h3>Email:</h3>
+              <p id="email_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_email"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Telefone:</h3>
+              <p id="telefone_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_telefone"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Empresa:</h3>
+              <p id="empresa_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_empresa"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Setor de atividade:</h3>
+              <p id="setor_atividade_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_setor_atividade"></i>
+            </section>
+          </section>
         </section>
+
+        <button id="editar_perfil">Editar</button>
+      </section>
     </main>
 
     <footer>
-        <div class="waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-            <div class="wave" id="wave3"></div>
-            <div class="wave" id="wave4"></div>
-        </div>
-        <ul class="social_icon">
-            <li>
-                <a href="#">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="logo-twitter"></ion-icon>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="logo-linkedin"></ion-icon>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                </a>
-            </li>
-        </ul>
-        <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <p>
-            &copy; 2024 JOBS
-        </p>
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+      </div>
+      <ul class="social_icon">
+        <li>
+          <a href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p>&copy; 2024 JOBS</p>
     </footer>
 
     <script src="./main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+  </body>
 </html>
