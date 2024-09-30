@@ -1,3 +1,9 @@
+// Buscando infos do usuário
+let User_name = localStorage.getItem("User_name");
+let user_logado = document.getElementById("user_logado");
+
+user_logado.textContent = User_name;
+
 // Buscando currículos dos jovens
 
 async function buscandoCurriculos(area) {
