@@ -14,7 +14,7 @@ cards.forEach((card) => {
   card.addEventListener("click", function () {
     const texto_card = this.querySelector("h3").textContent;
     localStorage.setItem("tema_escolhido", texto_card);
-    window.location.href = "./Tela Dicas/index.html";
+    window.location.href = "./Telas Dicas/index.html";
   });
 });
 
