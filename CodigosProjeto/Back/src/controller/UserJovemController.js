@@ -312,6 +312,8 @@ async function getModulos(request, response) {
   });
 }
 
+// Enviando currículo 
+
 async function envioCurriculo(request, response) {
   const curriculo = request.files.curriculo_jovem;
   const curriculoNome = Date.now() + path.extname(curriculo.name);

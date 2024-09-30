@@ -8,6 +8,7 @@ user_logado.textContent = User_name;
 // Dúvidas dos jovens - GET
 
 const container_duvidas = document.querySelector('.container_duvidas');
+const buscar_duvidas = document.getElementById("buscar_duvidas");
 
 async function sorteandoDuvidas() {
   const response = await fetch(
@@ -20,37 +21,41 @@ async function sorteandoDuvidas() {
 
   let content = await response.json();
 
-  if(content.success) {
-    for(let i = 0; i < content.data.length; i++) {
-      let bloco_duvida = document.createElement("div");
-      bloco_duvida.className = 'bloco_duvida';
+  if (content.success) {
+    if (content.data.length > 0) {
+      for (let i = 0; i < content.data.length; i++) {
+        let bloco_duvida = document.createElement("div");
+        bloco_duvida.className = 'bloco_duvida';
 
-      let h2 = document.createElement("h2");
-      h2.textContent = content.data[i].nome_user;
-  
-      let p = document.createElement("p");
-      p.textContent = content.data[i].duvida;
-      
-      bloco_duvida.appendChild(h2)
-      bloco_duvida.appendChild(p)
-  
-      container_duvidas.appendChild(bloco_duvida);
+        let h2 = document.createElement("h2");
+        h2.textContent = content.data[i].nome_user;
 
-      bloco_duvida.addEventListener("click", () => {
-        localStorage.setItem('tipo_usuario', 'Empresa');
-        localStorage.setItem('id_duvida', content.data[i].id_duvida);
-        localStorage.setItem('texto_duvida', content.data[i].duvida);
-        window.location.href = '../Tela Visualizando Duvida/index.html';
-      });
+        let p = document.createElement("p");
+        p.textContent = content.data[i].duvida;
+
+        bloco_duvida.appendChild(h2)
+        bloco_duvida.appendChild(p)
+
+        container_duvidas.appendChild(bloco_duvida);
+
+        bloco_duvida.addEventListener("click", () => {
+          localStorage.setItem('tipo_usuario', 'Empresa');
+          localStorage.setItem('id_duvida', content.data[i].id_duvida);
+          localStorage.setItem('texto_duvida', content.data[i].duvida);
+          window.location.href = '../Tela Visualizando Duvida/index.html';
+        });
+      }
+    }
+    else {
+      container_duvidas.innerHTML = `<h3 style="color: #0e566a;"> Nenhum dúvida encontrada!! </h3>`;
+      buscar_duvidas.style.visibility = "hidden";
     }
   }
 }
 
 sorteandoDuvidas();
 
-const buscar_duvidas = document.getElementById("buscar_duvidas");
-
-buscar_duvidas.onclick = function() {
+buscar_duvidas.onclick = function () {
   container_duvidas.innerHTML = '';
 
   sorteandoDuvidas();
@@ -76,9 +81,38 @@ async function getVagas(nome, ordem) {
   if (content.success) {
     vagas_registradas.innerHTML = "";
 
-    if (ordem !== undefined) {
-      for (let i = 0; i < content.data.length; i++) {
-        if (content.data[i].faixa_etaria === ordem) {
+    if (content.data.length > 0) {
+      if (ordem !== undefined) {
+        for (let i = 0; i < content.data.length; i++) {
+          if (content.data[i].faixa_etaria === ordem) {
+            const section = document.createElement("section");
+            section.className = "bloco_vaga";
+
+            // Cria o elemento h2
+            const h2 = document.createElement("h2");
+            h2.textContent = content.data[i].titulo_vaga;
+            section.appendChild(h2);
+
+            // Cria o parágrafo para a área da vaga
+            const areaVaga = document.createElement("p");
+            areaVaga.className = "area_vaga";
+            areaVaga.textContent = content.data[i].area;
+            section.appendChild(areaVaga);
+
+            // Cria o parágrafo para a faixa etária da vaga
+            const faixaEtaria = document.createElement("p");
+            faixaEtaria.className = "faixa_etaria_vaga";
+            faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
+            section.appendChild(faixaEtaria);
+
+            // Adiciona a section ao corpo do documento ou em um elemento específico
+            vagas_registradas.appendChild(section);
+          }
+        }
+      } else {
+        for (let i = 0; i < content.data.length; i++) {
+          titulos_vagas.push(content.data[i].titulo_vaga);
+
           const section = document.createElement("section");
           section.className = "bloco_vaga";
 
@@ -103,33 +137,9 @@ async function getVagas(nome, ordem) {
           vagas_registradas.appendChild(section);
         }
       }
-    } else {
-      for (let i = 0; i < content.data.length; i++) {
-        titulos_vagas.push(content.data[i].titulo_vaga);
-
-        const section = document.createElement("section");
-        section.className = "bloco_vaga";
-
-        // Cria o elemento h2
-        const h2 = document.createElement("h2");
-        h2.textContent = content.data[i].titulo_vaga;
-        section.appendChild(h2);
-
-        // Cria o parágrafo para a área da vaga
-        const areaVaga = document.createElement("p");
-        areaVaga.className = "area_vaga";
-        areaVaga.textContent = content.data[i].area;
-        section.appendChild(areaVaga);
-
-        // Cria o parágrafo para a faixa etária da vaga
-        const faixaEtaria = document.createElement("p");
-        faixaEtaria.className = "faixa_etaria_vaga";
-        faixaEtaria.textContent = content.data[i].faixa_etaria + " anos";
-        section.appendChild(faixaEtaria);
-
-        // Adiciona a section ao corpo do documento ou em um elemento específico
-        vagas_registradas.appendChild(section);
-      }
+    }
+    else {
+      vagas_registradas.innerHTML = `<h3 style="color: #0e566a;"> Nenhuma vaga foi criada ainda!! </h3>`;
     }
   } else {
     alert("ERROR!!");
@@ -155,8 +165,17 @@ botao_criar_vagas.onclick = async function () {
       title: "Selecione a área da vaga",
       input: "select",
       inputOptions: {
-        Area: {
-          "Engenheiro de Software": "Engenheiro de Software",
+        "Áreas": {
+          "Tecnologia": "Tecnologia",
+          "Saúde": "Saúde",
+          "Ciências Humanas": "Ciências Humanas",
+          "Ciências Exatas": "Ciências Exatas",
+          "Ciências Biológicas": "Ciências Biológicas",
+          "Direito e Ciências Jurídicas": "Direito e Ciências Jurídicas",
+          "Engenharia e Indústria": "Engenharia e Indústria",
+          "Artes e Design": "Artes e Design",
+          "Comunicação e Marketing": "Comunicação e Marketing",
+          "Gestão e Negócios": "Gestão e Negócios"
         },
       },
       inputPlaceholder: "Seleciona o nível",
@@ -253,13 +272,14 @@ botao_deletar_vaga.onclick = async function () {
     inputOptions: opcoes,
     inputPlaceholder: "Selecionar aquele que deseja deletar",
     showCancelButton: true,
+    confirmButtonColor: "#0e566a",
   });
   if (vagas_deletar) {
     data = { vagas_deletar };
   }
 
   const response = await fetch(
-    "http://localhost:3008/api//vagas/deletandoVaga",
+    "http://localhost:3008/api/vagas/deletandoVaga",
     {
       method: "DELETE",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -348,11 +368,17 @@ botao_filtrar_vagas.onclick = async function () {
 
 // Coletando dados perfil (GET)
 
+let ft_user = null;
+
+let ft_perfil_user = document.getElementById("ft_perfil_user");
+let ft_perfil_user_2 = document.getElementById("ft_perfil_user_2");
 let nome = document.getElementById("nome_user");
 let email = document.getElementById("email_user");
 let telefone = document.getElementById("telefone_user");
 let empresa = document.getElementById("empresa_user");
 let setor_atividade = document.getElementById("setor_atividade_user");
+
+let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
   const response = await fetch(
@@ -364,15 +390,24 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
+  console.log(content)
 
   if (content.success) {
+    if (ft_user === undefined || content.data[0].ft_perfil === null) {
+      ft_perfil_user.src = "../images/Usuario_nao_logado.png";
+      ft_perfil_user_2.src = "../images/Usuario_nao_logado.png";
+    } else {
+      ft_perfil_user.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+      ft_perfil_user_2.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+    }
+
     nome.textContent = content.data[0].name;
     email.textContent = content.data[0].email;
     telefone.textContent = content.data[0].telefone;
     empresa.textContent = content.data[0].nome_empresa;
     setor_atividade.textContent = content.data[0].setor_atividade;
   } else {
-    alert("deu ruim");
+    alert("Deu ruim");
   }
 }
 
@@ -387,16 +422,16 @@ const lapis_ft_perfil = document.getElementById("lapis_ft_perfil");
 const lapis_nome = document.getElementById("lapis_nome");
 const lapis_email = document.getElementById("lapis_email");
 const lapis_telefone = document.getElementById("lapis_telefone");
-const lapis_empresa = document.getElementById("lapis_empresa");
-const lapis_setor_atividade = document.getElementById("lapis_setor_atividade");
+const lapis_cidade = document.getElementById("lapis_cidade");
+const lapis_idade = document.getElementById("lapis_idade");
 
-let editando = true;
 let nome_user_anterior,
   email_user_anterior,
   telefone_user_anterior,
   empresa_user_anterior,
   setor_atividade_user_anterior;
 
+let editando = true;
 botao_editar.onclick = async function () {
   let nome_user = nome.textContent;
   let email_user = email.textContent;
@@ -405,19 +440,36 @@ botao_editar.onclick = async function () {
   let setor_atividade_user = setor_atividade.textContent;
 
   if (editando) {
-    // Armazena os valores antigos
-    nome_user_anterior = nome_user;
-    email_user_anterior = email_user;
-    telefone_user_anterior = telefone_user;
-    empresa_user_anterior = empresa_user;
-    setor_atividade_user_anterior = setor_atividade_user;
-
     botao_editar.textContent = "Salvar";
 
     iconesLapis.forEach((iconeLapis) => {
       iconeLapis.style.display = "flex";
       iconeLapis.style.animation = "all 1s ease";
     });
+
+    lapis_ft_perfil.onclick = async function () {
+      const { value: file } = await Swal.fire({
+        title: "Select image",
+        input: "file",
+        inputAttributes: {
+          accept: "image/*",
+          "aria-label": "Upload your profile picture",
+        },
+        confirmButtonColor: "#0e566a",
+      });
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          Swal.fire({
+            title: "Your uploaded picture",
+            imageUrl: e.target.result,
+            imageAlt: "The uploaded picture",
+            confirmButtonColor: "#0e566a",
+          });
+        };
+        ft_user = file;
+      }
+    };
 
     lapis_nome.onclick = async function () {
       const { value: name } = await Swal.fire({
@@ -505,13 +557,24 @@ botao_editar.onclick = async function () {
       setor_atividade_user,
     };
 
+    let formData = new FormData();
+    formData.append("nome_user", nome_user);
+    formData.append("email_user", email_user);
+    formData.append("telefone_user", telefone_user);
+    formData.append("empresa_user", empresa_user);
+    formData.append("setor_atividade_user", setor_atividade_user);
+
+    if (ft_user) {
+      console.log("Arquivo de imagem selecionado:", ft_user);
+      formData.append("ft_user", ft_user);
+    }
+
     // PUT
     const response = await fetch(
       `http://localhost:3008/api/uptade/userEmpresa/${id_user}`,
       {
         method: "PUT",
-        headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify(data),
+        body: formData,
       }
     );
 

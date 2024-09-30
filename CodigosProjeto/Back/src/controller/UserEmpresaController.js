@@ -1,5 +1,7 @@
 const connection = require("../config/db");
 const dotenv = require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 
 // Cadastrando Usuário (POST)
 
@@ -59,36 +61,81 @@ async function getDadosUser(request, response) {
 // Atualizando dados do usuário (PUT)
 
 async function uptadeUserEmpresa(request, response) {
-  const params = [
-    request.body.nome_user,
-    request.body.email_user,
-    request.body.telefone_user,
-    request.body.empresa_user,
-    request.body.setor_atividade_user,
-    request.params.id,
-  ];
+  // Verifique se há arquivos no request
+  if (!request.files || !request.files.ft_user) {
+    // Se não houver arquivos, execute o bloco de código sem imagem
+    const params = Array(
+      request.body.nome_user,
+      request.body.email_user,
+      request.body.telefone_user,
+      request.body.empresa_user,
+      request.body.setor_atividade_user,
+      request.params.id,
+    );
 
-  const query = `
-    UPDATE user_empresa 
-    SET name = ?, email = ?, telefone = ?, nome_empresa = ?, setor_atividade = ? 
-    WHERE id = ?;
-  `;
+    const query =
+      "UPDATE `user_empresa` SET `name` = ?, `email` = ?, `telefone` = ?, `nome_empresa` = ?, `setor_atividade` = ? WHERE `id` = ?;";
 
-  connection.query(query, params, (err, results) => {
-    if (err) {
-      return response.status(400).json({
-        success: false,
-        message: "Erro ao atualizar os dados!",
-        data: err,
-      });
-    }
-
-    response.status(201).json({
-      success: true,
-      message: "Dados atualizados com sucesso!",
-      data: results,
+    connection.query(query, params, (err, results) => {
+      if (results) {
+        response.status(201).json({
+          success: true,
+          message: "Sucesso com PUT user empresa!!",
+          data: results,
+        });
+      } else {
+        response.status(400).json({
+          success: false,
+          message: "Ops, deu problemas PUT user empresa!",
+          data: err,
+        });
+      }
     });
-  });
+  } else {
+    // Se houver um arquivo de imagem, processe o upload
+    const imagem = request.files.ft_user;
+    const imagemNome = Date.now() + path.extname(imagem.name);
+
+    const imgPerfilPath = path.join(__dirname, "..", "uploads", "img_perfil");
+
+    imagem.mv(path.join(imgPerfilPath, imagemNome), (erro) => {
+      if (erro) {
+        return response.status(400).json({
+          success: false,
+          message: "Erro ao mover o arquivo.",
+        });
+      } else {
+        const params = Array(
+          imagemNome,
+          request.body.nome_user,
+          request.body.email_user,
+          request.body.telefone_user,
+          request.body.empresa_user,
+          request.body.setor_atividade_user,
+          request.params.id,
+        );
+
+        const query =
+          "UPDATE `user_empresa` SET `ft_perfil` = ?, `name` = ?, `email` = ?, `telefone` = ?, `nome_empresa` = ?, `setor_atividade` = ? WHERE `id` = ?;";
+
+        connection.query(query, params, (err, results) => {
+          if (results) {
+            response.status(201).json({
+              success: true,
+              message: "Sucesso com PUT user empresa!!",
+              data: results,
+            });
+          } else {
+            response.status(400).json({
+              success: false,
+              message: "Ops, deu problemas com o envio da foto!!",
+              data: err,
+            });
+          }
+        });
+      }
+    });
+  }
 }
 
 // Criando vaga (POST)
