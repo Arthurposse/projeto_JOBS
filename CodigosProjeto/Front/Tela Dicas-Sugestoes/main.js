@@ -6,6 +6,18 @@ let user_logado = document.getElementById("user_logado");
 
 user_logado.textContent = User_name;
 
+// Direcionamento telas dicas
+
+const cards = document.querySelectorAll(".quadrado_dica");
+
+cards.forEach((card) => {
+  card.addEventListener("click", function () {
+    const texto_card = this.querySelector("h3").textContent;
+    localStorage.setItem("tema_escolhido", texto_card);
+    window.location.href = "./Tela Dicas/index.html";
+  });
+});
+
 // Carregando as dúvidas
 
 async function carregarDuvidas() {
