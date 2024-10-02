@@ -12,7 +12,7 @@ botao_gb.onclick = async function () {
   const planos_sugerido = document.querySelector(".plano_sugerido");
   const area_usuario = document.getElementById("area_usuario").value;
 
-  const response = await fetch(`http://localhost:3008/api/apiGB`, {
+  const response = await fetch(`http://localhost:3008/api/apiGB_planejamento`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify({ area_usuario }),
