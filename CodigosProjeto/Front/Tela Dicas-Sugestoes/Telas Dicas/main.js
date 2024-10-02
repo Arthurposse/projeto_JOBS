@@ -25,7 +25,7 @@ else if (tema_escolhido == 'Entrevista') {
     img_dica.src = "../../images/img_entrevista.svg";
 }
 else if (tema_escolhido == 'Planejamento de carreira') {
-    titulo_header.textContent = "";
+    titulo_header.textContent = "Como elaborar o melhor trajeto para sua vida?";
     titulo_main.textContent = "Planejamento de Carreira";
     img_dica.src = "../../images/img_planejamento.svg";
 }

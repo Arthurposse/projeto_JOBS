@@ -78,7 +78,7 @@ header .forma {
 main {
     background-color: var(--cor-primaria);
     min-height: 100vh;
-    height: auto;
+    height: 100%;
 }
 
 main section {
