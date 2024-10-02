@@ -34,7 +34,7 @@ async function api_gb_dicas(req, res) {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     // Cria um prompt para a API gerar o plano de carreira baseado na área de interesse do usuário
-    const prompt = `ESCREVA UMA ESTRUTURA USANDO A LINGUAGEM DE MARCAÇÃO HTML EM QUE DEVERÁ CONTER (Não precisa acrescentar o CSS. Não precisa também acrescentar as tags: html, body, meta. Retire os textos que estão fora de alguma tag, quero apenas os conteudos que estão dentro das tags. Se for gerado alguma lista, ajuste os tabs (acrescentando um style dentro do próprio elemento)): Deve conter dicas referente ${tema_escolhido}. Traga pontos importantes dos quais um jovem entre 14 a 24 anos deve-se saber e dominar para o mercado de trabalho. Traga exemplos!!`;
+    const prompt = `ESCREVA UMA ESTRUTURA USANDO A LINGUAGEM DE MARCAÇÃO HTML EM QUE DEVERÁ CONTER (Não precisa acrescentar o CSS. Não precisa também acrescentar as tags: html, body, meta. Retire os textos que estão fora de alguma tag, quero apenas os conteudos que estão dentro das tags. Se for gerado alguma lista, ajuste os tabs (acrescentando um style dentro do próprio elemento): Deve conter dicas referente ${tema_escolhido}. Traga pontos importantes dos quais um jovem entre 14 a 24 anos deve-se saber e dominar para o mercado de trabalho. Traga exemplos!!`;
 
     // Envia o prompt para o modelo generativo da Google
     const result = await model.generateContent(prompt);

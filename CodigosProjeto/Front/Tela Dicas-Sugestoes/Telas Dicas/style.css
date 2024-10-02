@@ -77,7 +77,8 @@ header .forma {
 
 main {
     background-color: var(--cor-primaria);
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
 }
 
 main section {
@@ -94,6 +95,30 @@ main section hr {
     width: 85%;
     border: 1px solid var(--cor-secundaria);
     margin-top: .5%;
+}
+
+main .container_dica {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 4%;
+}
+
+main .container_dica h1 {
+    font-size: 2rem;
+}
+
+main .container_dica ul {
+    font-size: 1.5rem;
+}
+
+main .container_dica ul li {
+    font-size: 1.3rem;
+}
+
+main .container_dica #img_dica {
+    width: 15%;
 }
 
 /* Footer */
