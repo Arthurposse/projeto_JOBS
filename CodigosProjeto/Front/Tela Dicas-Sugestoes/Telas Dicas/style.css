@@ -80,6 +80,22 @@ main {
     height: 100vh;
 }
 
+main section {
+    background-color: var(--cor-primaria);
+    height: 80vh;
+    padding: 2%;
+}
+
+main section h2 {
+    color: var(--cor-secundaria);
+}
+
+main section hr {
+    width: 85%;
+    border: 1px solid var(--cor-secundaria);
+    margin-top: .5%;
+}
+
 /* Footer */
 
 footer {
