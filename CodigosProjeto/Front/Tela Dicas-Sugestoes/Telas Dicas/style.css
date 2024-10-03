@@ -16,6 +16,18 @@
     --cor-fonte: white;
 }
 
+/* Fundo escuro */
+
+.fundo_escuro {
+    position: absolute; /* Para sobrepor todo o conteúdo */
+    background-color: rgba(0, 0, 0, 0.96); /* Cor preta com 70% de opacidade */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+}
+
 /* Header */
 
 header {
@@ -76,22 +88,27 @@ header .forma {
 /* Main */
 
 main {
+    position: relative;
     background-color: var(--cor-primaria);
+    padding: 2%;
+    padding-bottom: 4%;
     min-height: 100vh;
-    height: 100%;
+    z-index: 0;
 }
 
 main section {
-    background-color: var(--cor-primaria);
-    height: 80vh;
-    padding: 2%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 main section h2 {
     color: var(--cor-secundaria);
+    align-self: flex-start;
 }
 
 main section hr {
+    align-self: flex-start;
     width: 85%;
     border: 1px solid var(--cor-secundaria);
     margin-top: .5%;
@@ -101,24 +118,63 @@ main .container_dica {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 5vh;
     padding: 4%;
+    height: auto;
+}
+
+main .container_dica h1, .container_dica h2, .container_dica h3 {
+    align-self: center;
+    text-align: center;
+    padding-top: 2%;
+    margin: 1.5%;
+    font-weight: bold;
+    list-style-type: none;
 }
 
 main .container_dica h1 {
     font-size: 2rem;
 }
 
+main .container_dica h2 {
+    font-size: 1.8rem;
+}
+
+main .container_dica h3 {
+    font-size: 1.5rem;
+}
+
 main .container_dica ul {
     font-size: 1.5rem;
 }
 
-main .container_dica ul li {
+main .container_dica ul li, .container_dica p {
     font-size: 1.3rem;
+    margin-top: 2%;
+}
+
+::marker {
+    list-style: none;
 }
 
 main .container_dica #img_dica {
     width: 15%;
+}
+
+main #botao_voltar {
+    background-color: var(--cor-secundaria);
+    width: 6vw;
+    padding: 1.2%;
+    margin-bottom: 4%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--cor-terciaria);
+}
+
+main #botao_voltar:hover {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-secundaria);
 }
 
 /* Footer */
