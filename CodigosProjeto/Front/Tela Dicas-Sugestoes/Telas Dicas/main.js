@@ -80,16 +80,40 @@ async function gerarDica() {
 
     container_dica.innerHTML += "";
     const dica = await response.text();
+
+    if(dica.includes('#')) {
+        Swal.fire({
+            title: "Erro ao criar a dica!!",
+            text: "Tente novamente!!",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000
+          });
+
+          setTimeout(() => {
+            window.location.href = "../index.html";
+          }, 2000);
+    }
+    else {
+        container_dica.innerHTML += dica;
     
-    container_dica.innerHTML += dica;
+        Swal.fire({
+            title: "Sucesso ao criar a dica!!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000
+          });
 
-    // Faz com que o fundo escuro desapareça
-    fundo_escuro.style.display = "none";
-
-    // Desbloquando a rolagem
-    document.body.style.overflow = 'auto';
-
-    Swal.close();
+        setTimeout(() => {
+            // Faz com que o fundo escuro desapareça
+            fundo_escuro.style.display = "none";
+    
+            // Desbloquando a rolagem
+            document.body.style.overflow = 'auto';
+    
+            Swal.close();
+        }, 2000);
+    }
 };
 
 // Foi acrescentado o setTimeout para que o HTML seja carregado primeiramente
