@@ -8,6 +8,7 @@ const {
   criandoVaga,
   getVagas,
   putVagas,
+  putDadosVagas,
   deleteVagas,
   buscaCurriculos,
   sorteandoDuvida
@@ -31,6 +32,8 @@ router.post("/buscandoCurriculos", buscaCurriculos);
 router.put("/uptade/userEmpresa/:id", uptadeUserEmpresa);
 
 router.put("/vagas/putVagas", putVagas);
+
+router.put("/vagas/putDadosVaga", putDadosVagas);
 
 // DELETE
 router.delete("/vagas/deletandoVaga", deleteVagas);

@@ -219,13 +219,18 @@ async function putVagas(request, response) {
 
 // Atualizando dados da vaga (PUT)
 
-async function putVagas(request, response) {
+async function putDadosVagas(request, response) {
   const params = Array(
-    // Adicionar ainda
+    request.body.vaga_titulo,
+    request.body.vaga_area,
+    request.body.vaga_faixa_etaria,
+    request.body.vaga_cidade,
+    request.body.vaga_descricao,
+    request.body.id_vaga
   );
 
   const query =
-    "UPDATE `vagas` SET `criador_vaga` = ? WHERE `criador_vaga` = ?;"; // Reescrever a query
+    "UPDATE `vagas` SET `titulo_vaga` = ?, `area` = ?, `faixa_etaria` = ?, `cidade` = ?, `descricao` = ? WHERE `id` = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -332,6 +337,7 @@ module.exports = {
   criandoVaga,
   getVagas,
   putVagas,
+  putDadosVagas,
   deleteVagas,
 
   buscaCurriculos,

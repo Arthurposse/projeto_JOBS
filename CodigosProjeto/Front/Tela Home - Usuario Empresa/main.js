@@ -145,7 +145,7 @@ async function getVagas(nome, ordem) {
               title: "Informações da Vaga",
               html: `
                 <div style="display: flex; flex-direction: column; gap: 2vh;">
-                  <input type="text" id="nome_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
+                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
                   <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
                   <input type="text" id="faixa_etaria_vaga" class="inputs_alert_vaga" placeholder="Faixa Etária" value="${vagaSelecionada.faixa_etaria}">
                   <input type="text" id="cidade_vaga" class="inputs_alert_vaga" placeholder="Cidade" value="${vagaSelecionada.cidade}">
@@ -156,14 +156,17 @@ async function getVagas(nome, ordem) {
               confirmButtonColor: "#0e566a",
               preConfirm: () => {
                 // Capturando os valores dos inputs
-                const nome_vaga = document.getElementById("nome_vaga").value;
+                const titulo_vaga = document.getElementById("titulo_vaga").value;
                 const area_vaga = document.getElementById("area_vaga").value;
-                const faixa_etaria_vaga = document.getElementById("faixa_etaria_vaga").value;
-                const cidade_vaga = document.getElementById("cidade_vaga").value;
-                const descricao_vaga = document.getElementById("descricao_vaga").value;
-                
+                const faixa_etaria_vaga =
+                  document.getElementById("faixa_etaria_vaga").value;
+                const cidade_vaga =
+                  document.getElementById("cidade_vaga").value;
+                const descricao_vaga =
+                  document.getElementById("descricao_vaga").value;
+
                 return {
-                  nome_vaga,
+                  titulo_vaga,
                   area_vaga,
                   faixa_etaria_vaga,
                   cidade_vaga,
@@ -172,8 +175,72 @@ async function getVagas(nome, ordem) {
               },
             });
 
-            if(vagas_infos) {
-              // Adicionar rota para que seja possível alterar os dados da vaga
+            if (vagas_infos) {
+
+              const id_vaga = vagaSelecionada.id;
+
+              const vaga_titulo = vagas_infos.titulo_vaga;
+              const vaga_area = vagas_infos.area_vaga;
+              const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga;
+              const vaga_cidade = vagas_infos.cidade_vaga;
+              const vaga_descricao = vagas_infos.descricao_vaga;
+
+              let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
+
+              if(vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') {
+                const response = await fetch(
+                  "http://localhost:3008/api/vagas/putDadosVaga",
+                  {
+                    method: "PUT",
+                    headers: { "Content-type": "application/json;charset=UTF-8" },
+                    body: JSON.stringify(data),
+                  }
+                );
+  
+                let content = await response.json();
+  
+                if (content.success) {
+                  Swal.fire({
+                    title: "Dados da vaga atualizados!!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 2000,
+                  });
+
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 2000);
+  
+                } else {
+                  Swal.fire({
+                    title: "Erro ao alterar dados da vaga!!",
+                    text: "Tente novamente!!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 2000,
+                  });
+                  console.error();
+                }
+              }
+              else {
+                Swal.fire({
+                  title: "A idade inserida está fora do padrão!!",
+                  html: `
+                    <p> Insira uma das opções abaixo: </p>
+
+                    <ul style="margin-top: 2%; list-style: none;">
+                      <li> '16-18' </li>
+                      <li> '19-21' </li>
+                      <li> '22-24' </li>
+                      <li> '25-27' </li>
+                      <li> '28-30' </li>
+                    <ul>
+                  `,
+                  icon: "error",
+                  confirmButtonColor: '#0e566a'
+                });
+              }
+
             }
           });
         }
@@ -430,7 +497,6 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
-  console.log(content);
 
   if (content.success) {
     if (ft_user === undefined || content.data[0].ft_perfil === null) {
