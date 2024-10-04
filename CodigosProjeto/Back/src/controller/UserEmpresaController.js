@@ -217,7 +217,35 @@ async function putVagas(request, response) {
   });
 }
 
+// Atualizando dados da vaga (PUT)
+
+async function putVagas(request, response) {
+  const params = Array(
+    // Adicionar ainda
+  );
+
+  const query =
+    "UPDATE `vagas` SET `criador_vaga` = ? WHERE `criador_vaga` = ?;"; // Reescrever a query
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso com PUT VAGAS!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas com PUT VAGAS!",
+        data: err,
+      });
+    }
+  });
+}
+
 // Deletando vaga (DELETE)
+
 async function deleteVagas(request, response) {
   const params = Array(request.body.vagas_deletar);
 
@@ -241,6 +269,7 @@ async function deleteVagas(request, response) {
 }
 
 // Buscando currículos dos usuários
+
 async function buscaCurriculos(request, response) {
   const params = Array(request.body.area);
 
@@ -272,6 +301,7 @@ async function buscaCurriculos(request, response) {
 }
 
 // Buscando dúvidas sorteadas
+
 async function sorteandoDuvida(request, response) {
   const query = "SELECT * FROM duvidas WHERE id_duvida IS NOT NULL ORDER BY RAND() LIMIT 3;";
 
@@ -294,12 +324,17 @@ async function sorteandoDuvida(request, response) {
 
 module.exports = {
   cadastroEmpresa,
+
   getDadosUser,
+
   uptadeUserEmpresa,
+
   criandoVaga,
   getVagas,
   putVagas,
   deleteVagas,
+
   buscaCurriculos,
+
   sorteandoDuvida
 };

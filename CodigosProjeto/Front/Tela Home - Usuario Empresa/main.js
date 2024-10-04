@@ -7,17 +7,14 @@ user_logado.textContent = User_name;
 
 // Dúvidas dos jovens - GET
 
-const container_duvidas = document.querySelector('.container_duvidas');
+const container_duvidas = document.querySelector(".container_duvidas");
 const buscar_duvidas = document.getElementById("buscar_duvidas");
 
 async function sorteandoDuvidas() {
-  const response = await fetch(
-    "http://localhost:3008/api/duvidasSorteadas",
-    {
-      method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
-    }
-  );
+  const response = await fetch("http://localhost:3008/api/duvidasSorteadas", {
+    method: "GET",
+    headers: { "Content-type": "application/json;charset=UTF-8" },
+  });
 
   let content = await response.json();
 
@@ -25,7 +22,7 @@ async function sorteandoDuvidas() {
     if (content.data.length > 0) {
       for (let i = 0; i < content.data.length; i++) {
         let bloco_duvida = document.createElement("div");
-        bloco_duvida.className = 'bloco_duvida';
+        bloco_duvida.className = "bloco_duvida";
 
         let h2 = document.createElement("h2");
         h2.textContent = content.data[i].nome_user;
@@ -33,20 +30,19 @@ async function sorteandoDuvidas() {
         let p = document.createElement("p");
         p.textContent = content.data[i].duvida;
 
-        bloco_duvida.appendChild(h2)
-        bloco_duvida.appendChild(p)
+        bloco_duvida.appendChild(h2);
+        bloco_duvida.appendChild(p);
 
         container_duvidas.appendChild(bloco_duvida);
 
         bloco_duvida.addEventListener("click", () => {
-          localStorage.setItem('tipo_usuario', 'Empresa');
-          localStorage.setItem('id_duvida', content.data[i].id_duvida);
-          localStorage.setItem('texto_duvida', content.data[i].duvida);
-          window.location.href = '../Tela Visualizando Duvida/index.html';
+          localStorage.setItem("tipo_usuario", "Empresa");
+          localStorage.setItem("id_duvida", content.data[i].id_duvida);
+          localStorage.setItem("texto_duvida", content.data[i].duvida);
+          window.location.href = "../Tela Visualizando Duvida/index.html";
         });
       }
-    }
-    else {
+    } else {
       container_duvidas.innerHTML = `<h3 style="color: #0e566a;"> Nenhum dúvida encontrada!! </h3>`;
       buscar_duvidas.style.visibility = "hidden";
     }
@@ -56,10 +52,10 @@ async function sorteandoDuvidas() {
 sorteandoDuvidas();
 
 buscar_duvidas.onclick = function () {
-  container_duvidas.innerHTML = '';
+  container_duvidas.innerHTML = "";
 
   sorteandoDuvidas();
-}
+};
 
 // Vagas - GET
 
@@ -107,6 +103,11 @@ async function getVagas(nome, ordem) {
 
             // Adiciona a section ao corpo do documento ou em um elemento específico
             vagas_registradas.appendChild(section);
+
+            // Adicionando o evento de clique ao card da vaga
+            section.addEventListener("click", () => {
+              alert(content.data[i].id);
+            });
           }
         }
       } else {
@@ -135,10 +136,40 @@ async function getVagas(nome, ordem) {
 
           // Adiciona a section ao corpo do documento ou em um elemento específico
           vagas_registradas.appendChild(section);
+
+          // Adicionando o evento de clique ao card da vaga
+          section.addEventListener("click", async function () {
+            const { value: vagas_infos } = await Swal.fire({
+              title: "Informações da Vaga",
+              html: `
+                <div style="display: flex; flex-direction: column; gap: 2vh;">
+                  <input type="text" id="nome_vaga" placeholder="Nome">
+                  <input type="text" id="area_vaga" placeholder="Área">
+                  <input type="text" id="faixa_etaria_vaga" placeholder="Faixa Etária">
+                  <input type="text" id="cidade_vaga" placeholder="Cidade">
+                  <textarea id="descricao_vaga" placeholder="Descrição" rows="4" style="width: 100%; resize: none;"></textarea>
+                </div>
+              `,
+              focusConfirm: false,
+              confirmButtonColor: "#0e566a",
+              preConfirm: () => {
+                return {
+                  nome_vaga: document.getElementById("nome_vaga").value,
+                  area_vaga: document.getElementById("area_vaga").value,
+                  faixa_etaria_vaga: document.getElementById("faixa_etaria_vaga").value,
+                  cidade_vaga: document.getElementById("cidade_vaga").value,
+                  descricao_vaga: document.getElementById("descricao_vaga").value,
+                };
+              },
+            });
+
+            if(vagas_infos) {
+              alert(vagas_infos.nome_vaga);
+            }
+          });
         }
       }
-    }
-    else {
+    } else {
       vagas_registradas.innerHTML = `<h3 style="color: #0e566a;"> Nenhuma vaga foi criada ainda!! </h3>`;
     }
   } else {
@@ -165,9 +196,9 @@ botao_criar_vagas.onclick = async function () {
       title: "Selecione a área da vaga",
       input: "select",
       inputOptions: {
-        "Áreas": {
-          "Tecnologia": "Tecnologia",
-          "Saúde": "Saúde",
+        Áreas: {
+          Tecnologia: "Tecnologia",
+          Saúde: "Saúde",
           "Ciências Humanas": "Ciências Humanas",
           "Ciências Exatas": "Ciências Exatas",
           "Ciências Biológicas": "Ciências Biológicas",
@@ -175,7 +206,7 @@ botao_criar_vagas.onclick = async function () {
           "Engenharia e Indústria": "Engenharia e Indústria",
           "Artes e Design": "Artes e Design",
           "Comunicação e Marketing": "Comunicação e Marketing",
-          "Gestão e Negócios": "Gestão e Negócios"
+          "Gestão e Negócios": "Gestão e Negócios",
         },
       },
       inputPlaceholder: "Seleciona o nível",
@@ -390,7 +421,7 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
-  console.log(content)
+  console.log(content);
 
   if (content.success) {
     if (ft_user === undefined || content.data[0].ft_perfil === null) {
