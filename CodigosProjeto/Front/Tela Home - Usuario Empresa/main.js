@@ -139,32 +139,41 @@ async function getVagas(nome, ordem) {
 
           // Adicionando o evento de clique ao card da vaga
           section.addEventListener("click", async function () {
+            const vagaSelecionada = content.data[i];
+
             const { value: vagas_infos } = await Swal.fire({
               title: "Informações da Vaga",
               html: `
                 <div style="display: flex; flex-direction: column; gap: 2vh;">
-                  <input type="text" id="nome_vaga" placeholder="Nome">
-                  <input type="text" id="area_vaga" placeholder="Área">
-                  <input type="text" id="faixa_etaria_vaga" placeholder="Faixa Etária">
-                  <input type="text" id="cidade_vaga" placeholder="Cidade">
-                  <textarea id="descricao_vaga" placeholder="Descrição" rows="4" style="width: 100%; resize: none;"></textarea>
+                  <input type="text" id="nome_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
+                  <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
+                  <input type="text" id="faixa_etaria_vaga" class="inputs_alert_vaga" placeholder="Faixa Etária" value="${vagaSelecionada.faixa_etaria}">
+                  <input type="text" id="cidade_vaga" class="inputs_alert_vaga" placeholder="Cidade" value="${vagaSelecionada.cidade}">
+                  <textarea style="width: 100%; padding: 2%; border-radius: .5vw; resize: none;" id="descricao_vaga" class="inputs_alert_vaga" placeholder="Descrição" rows="4"> ${vagaSelecionada.descricao} </textarea>
                 </div>
               `,
               focusConfirm: false,
               confirmButtonColor: "#0e566a",
               preConfirm: () => {
+                // Capturando os valores dos inputs
+                const nome_vaga = document.getElementById("nome_vaga").value;
+                const area_vaga = document.getElementById("area_vaga").value;
+                const faixa_etaria_vaga = document.getElementById("faixa_etaria_vaga").value;
+                const cidade_vaga = document.getElementById("cidade_vaga").value;
+                const descricao_vaga = document.getElementById("descricao_vaga").value;
+                
                 return {
-                  nome_vaga: document.getElementById("nome_vaga").value,
-                  area_vaga: document.getElementById("area_vaga").value,
-                  faixa_etaria_vaga: document.getElementById("faixa_etaria_vaga").value,
-                  cidade_vaga: document.getElementById("cidade_vaga").value,
-                  descricao_vaga: document.getElementById("descricao_vaga").value,
+                  nome_vaga,
+                  area_vaga,
+                  faixa_etaria_vaga,
+                  cidade_vaga,
+                  descricao_vaga,
                 };
               },
             });
 
             if(vagas_infos) {
-              alert(vagas_infos.nome_vaga);
+              // Adicionar rota para que seja possível alterar os dados da vaga
             }
           });
         }

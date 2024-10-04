@@ -157,6 +157,18 @@ main .bloco_duvida {
 
 /* Main - Criar vagas */
 
+.inputs_alert_vaga {
+    padding: 2%; 
+    border: 2px solid #0e566a; 
+    border-radius: .5vw;
+    font-size: 1.2rem;
+}
+
+.inputs_alert_vaga:focus {
+    box-shadow: none;
+    outline: none;
+}
+
 main .criar_vaga {
     margin-bottom: 5%;
 }
