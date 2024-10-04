@@ -179,11 +179,11 @@ async function getVagas(nome, ordem) {
 
               const id_vaga = vagaSelecionada.id;
 
-              const vaga_titulo = vagas_infos.titulo_vaga;
-              const vaga_area = vagas_infos.area_vaga;
-              const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga;
-              const vaga_cidade = vagas_infos.cidade_vaga;
-              const vaga_descricao = vagas_infos.descricao_vaga;
+              const vaga_titulo = vagas_infos.titulo_vaga.trim();
+              const vaga_area = vagas_infos.area_vaga.trim();
+              const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga.trim();
+              const vaga_cidade = vagas_infos.cidade_vaga.trim();
+              const vaga_descricao = vagas_infos.descricao_vaga.trim();
 
               let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
 
