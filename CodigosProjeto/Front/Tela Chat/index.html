@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> JOBS - Chat </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOBS - Chat</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <script src="/socket.io/socket.io.js"></script> <!-- Carregando Socket.IO -->
 </head>
 <body>
     <header>
         <section class="header_topo">
-          <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="">
-    
-          <nav>
-            <a href="../Tela Home - Usuario Jovem/index.html"> Início </a>
-            <a href="../Tela Buscar Emprego/index.html"> Procurar emprego </a>
-            <a href="../Tela Dicas-Sugestoes/index.html"> Dicas/Sugestões </a>
-            <a href="#"> Chat </a>
-          </nav>
-    
-          <section class="bloco_usuario">
-            <img src="../images/Usuario_nao_logado.png" alt="">
-    
-            <h3 id="user_logado"> </h3>
-          </section>
+            <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="" />
+
+            <nav>
+                <a href="../Tela Home - Usuario Jovem/index.html"> Início </a>
+                <a href="../Tela Buscar Emprego/index.html"> Procurar emprego </a>
+                <a href="../Tela Dicas-Sugestoes/index.html"> Dicas/Sugestões </a>
+                <a href="#"> Chat </a>
+            </nav>
+
+            <section class="bloco_usuario">
+                <img src="../images/Usuario_nao_logado.png" alt="" />
+                <h3 id="user_logado"></h3>
+            </section>
         </section>
-    
+
         <section class="header_meio">
-          <h1> Oportunidades de carreira começam com uma conversa </h1>
-          <div class="forma"></div>
+            <h1>Oportunidades de carreira começam com uma conversa</h1>
+            <div class="forma"></div>
         </section>
-      </header>
+    </header>
 
     <main>
         <section class="bloco_conversas">
             <section class="barra_pesquisa">
-                <input type="text" placeholder="Buscar">
+                <input type="text" placeholder="Buscar" />
                 <i class="bi bi-search"></i>
             </section>
 
             <section class="conversas_favoritas">
-                <h2> Favoritos </h2>
-
-                <section>
-
-                </section>
+                <h2>Favoritos</h2>
+                <section></section>
             </section>
 
-            <hr>
+            <hr />
 
             <section class="lista_conversas">
-                <h2> Suas mensagens </h2>
+                <h2>Suas mensagens</h2>
+                <div id="messages"></div> <!-- Área onde as mensagens serão exibidas -->
             </section>
         </section>
 
         <section class="bloco_mensagem">
             <i class="bi bi-chat-dots-fill"></i>
             <h1> Inicie uma conversa!! </h1>
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+            <button id="sendButton">Enviar</button> <!-- Botão para enviar a mensagem -->
         </section>
     </main>
 
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>

@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
-const fs = require('fs');
 const fileUpload = require("express-fileupload");
 
 const routerJovem = require("./routes/UserJovemRouter");
@@ -11,7 +10,9 @@ const enviarEmailRouter = require("./routes/enviarEmailRouter");
 const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
+
 const duvResRouter = require("./routes/duvResRouter");
+const chatRouter = require("./routes/chatRouter"); // Importa o roteador de chat
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(fileUpload());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Rotas da API
 app.use("/api", routerJovem);
 app.use("/api", routerEmpresa);
 app.use("/api", enviarEmailRouter);
@@ -30,5 +32,6 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
+app.use('/chat', chatRouter); // Adiciona o roteador de chat
 
 module.exports = app;

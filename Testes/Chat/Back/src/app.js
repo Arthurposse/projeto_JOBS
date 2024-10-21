@@ -1,13 +1,14 @@
 const express = require('express');
 const path = require('path');
-const chatRouter = require('./router/chatRouter');
 
 const app = express();
 
-// Servindo os arquivos do front-end
-app.use(express.static(path.join(__dirname, '../../front')));
+// Servir arquivos estáticos da pasta correta
+app.use(express.static(path.join(__dirname, '../../Front')));
 
-// Rotas
-app.use('/chat', chatRouter);
+// Servir o index.html quando acessar a rota "/"
+app.get('/chat', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../Front/index.html'));
+});
 
 module.exports = app;
