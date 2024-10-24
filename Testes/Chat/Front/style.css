@@ -13,6 +13,26 @@
     padding: 5px;
 }
 
+/* Mensagens enviadas pelo próprio usuário (alinhadas à direita e com fundo diferente) */
+.sent-message {
+    text-align: right;
+    background-color: #d1f7c4; /* Cor de fundo para mensagens enviadas */
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Mensagens recebidas de outro usuário (alinhadas à esquerda e com fundo diferente) */
+.received-message {
+    text-align: left;
+    background-color: #c4e3f7; /* Cor de fundo para mensagens recebidas */
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 #message-input {
     width: 80%;
 }

@@ -4,15 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos básicos do chat */
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .message.sent {
+            background-color: #c1e1c1;
+            text-align: right;
+        }
+        .message.received {
+            background-color: #f1c1c1;
+        }
+        select, button {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="chat-container">
-        <div id="messages"></div>
-        <input type="text" id="message-input" placeholder="Digite sua mensagem">
-        <button id="send-button">Enviar</button>
+    <h2>Chat</h2>
+
+    <label for="userDropdown">Escolha com quem conversar:</label>
+    <select id="userDropdown">
+        <option value="">Selecione um usuário</option>
+    </select>
+
+    <div id="messages">
+        <!-- As mensagens aparecerão aqui -->
     </div>
+
+    <input id="messageInput" type="text" placeholder="Digite sua mensagem">
+    <button id="sendMessageButton">Enviar</button>
+
     <script src="/socket.io/socket.io.js"></script>
-    <script src="main.js"></script>
+    <script>
+        const socket = io();
+        let currentUser = prompt('Digite seu nome:'); // Nome do usuário atual
+        let selectedUser = ''; // Usuário escolhido para conversar
+
+        socket.emit('addUser', currentUser);
+
+        // Atualiza a lista de usuários conectados em tempo real
+        socket.on('userList', (users) => {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.innerHTML = '<option value="">Selecione um usuário</option>'; // Limpa o dropdown
+            users.forEach(user => {
+                if (user !== currentUser) { // Evita adicionar o próprio usuário na lista
+                    const option = document.createElement('option');
+                    option.value = user;
+                    option.textContent = user;
+                    dropdown.appendChild(option);
+                }
+            });
+        });
+
+        // Selecionar o usuário para a conversa
+        const userDropdown = document.getElementById('userDropdown');
+        userDropdown.addEventListener('change', (event) => {
+            selectedUser = event.target.value;
+            if (selectedUser) {
+                socket.emit('joinRoom', { currentUser, selectedUser });
+            }
+        });
+
+        // Enviar mensagem
+        const sendMessageButton = document.getElementById('sendMessageButton');
+        sendMessageButton.addEventListener('click', () => {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            if (message && selectedUser) {
+                socket.emit('sendMessage', { user: currentUser, to: selectedUser, content: message });
+                displayMessage(message, 'sent'); // Exibe a mensagem no front-end como enviada
+                messageInput.value = ''; // Limpa o campo de entrada
+            }
+        });
+
+        // Receber mensagem
+        socket.on('receiveMessage', (message) => {
+            if (message.user !== currentUser) {
+                displayMessage(message.content, 'received'); // Exibe a mensagem no front-end como recebida
+            }
+        });
+
+        // Função para exibir mensagens no front-end
+        function displayMessage(content, type) {
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', type);
+            messageElement.textContent = content;
+            messagesDiv.appendChild(messageElement);
+        }
+    </script>
 </body>
 </html>

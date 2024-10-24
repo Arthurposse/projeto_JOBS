@@ -3,6 +3,11 @@ const path = require('path');
 
 const app = express();
 
+const messageRouter = require('./router/chatRouter');
+
+app.use(express.json()); // Para lidar com JSON no body das requisições
+app.use('/api', messageRouter);
+
 // Servir arquivos estáticos da pasta correta
 app.use(express.static(path.join(__dirname, '../../Front')));
 
