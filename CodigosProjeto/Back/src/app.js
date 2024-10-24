@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
 const fileUpload = require("express-fileupload");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 
 const routerJovem = require("./routes/UserJovemRouter");
 const routerEmpresa = require("./routes/UserEmpresaRouter");
@@ -12,7 +14,20 @@ const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
 
 const duvResRouter = require("./routes/duvResRouter");
-const chatRouter = require("./routes/chatRouter"); // Importa o roteador de chat
+// const chatRouter = require("./routes/chatRouter");
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: "3.0.0",
+        info: {
+            title: "API de Tarefas",
+            version: "1.0.0",
+            description: "API CRUD para gerenciar tarefas",
+        },
+        servers: [{url: "http://localhost:3003"}]
+    },
+    apis: [`${__dirname}/routes/*.js`], // Caminho para as rotas
+};
 
 dotenv.config();
 
@@ -32,6 +47,9 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
-app.use('/chat', chatRouter); // Adiciona o roteador de chat
+// app.use('/chat', chatRouter);
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 module.exports = app;
