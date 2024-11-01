@@ -50,7 +50,7 @@ async function cadastroJovem(request, response) {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas!",
-        data: err,
+        errorDetails: err.message
       });
     }
   });

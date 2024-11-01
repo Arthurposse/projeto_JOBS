@@ -46,9 +46,8 @@
 </h3>
 
 - <b> Chat: </b> Procurar ainda.
-- <b> BD: </b> MySQL (Inserido).
-- <b> Upload de arquivo: </b> Procurar ainda.
-- <b> Buscar por empregos: </b> Adzuna (Inserido).
+- <b> BD: </b> Está sendo utilizado o Clever Cloud para hospedar o banco e o projeto esta utilizando a linguagem MySQL.
+- <b> Buscar por empregos: </b> Adzuna.
 
 <br>
 
@@ -58,28 +57,8 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo e Tela Home (Sem Usuário Logado)
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem), Tela Home (Usuário Empresa) e Tela Dicas/Sugestões 
   - Ajustar responsividade.
-
-<br>
-
-- Tela Home (Usuário Jovem)
-  - Ajustar responsividade.
-  - Ajustar o footer.
-
-<br>
-
-- Tela Home (Usuário Empresa)
-  - Ajustar responsividade.
-  - Desenvolver o carrossel das dúvidas dos jovens.
-  - Desenvolver a função para filtrar a partir da área das vagas.
-  - Desenvolver a tela de hub de currículos dos jovens.
-
-<br>
-
-- Tela Dicas/Sugestões
-  - Ajustar responsividade.
-  - Desenvolver a tela das dicas/sugestões sugeridas.
 
 <br>
 

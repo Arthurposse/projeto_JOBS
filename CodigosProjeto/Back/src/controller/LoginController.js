@@ -13,7 +13,7 @@ async function logIn(request, response) {
   );
 
   const query =
-    "SELECT id, name, email, password, nome_empresa, 'user_empresa' AS origin FROM jobs.user_empresa WHERE email = ? AND password = ? UNION SELECT id, name, email, password, NULL AS nome_empresa, 'user_jovem' AS origin FROM jobs.user_jovem WHERE email = ? AND password = ?;";
+    "SELECT id, name, email, password, nome_empresa, 'user_empresa' AS origin FROM user_empresa WHERE email = ? AND password = ? UNION SELECT id, name, email, password, NULL AS nome_empresa, 'user_jovem' AS origin FROM user_jovem WHERE email = ? AND password = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
