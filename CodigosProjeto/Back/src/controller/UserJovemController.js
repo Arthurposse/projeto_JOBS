@@ -389,7 +389,7 @@ async function apagarCurriculo(request, response) {
       }
 
       // Após excluir o arquivo, atualiza o banco para remover a referência
-      const deleteCurriculoQuery = "UPDATE user_jovem SET curriculo = NULL WHERE id = ?;";
+      const deleteCurriculoQuery = "UPDATE user_jovem SET curriculo = NULL, download_curriculo = 0 WHERE id = ?;";
       connection.query(
         deleteCurriculoQuery,
         [userId],
