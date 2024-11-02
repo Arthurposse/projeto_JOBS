@@ -22,6 +22,18 @@ lupa.onclick = function (e) {
   buscarVagas();
 }
 
+const input_ = document.querySelector('input');
+
+input_.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    page = 1; // Reinicia a página ao buscar novas vagas
+    allJobs.clear(); // Limpa o conjunto de vagas exibidas anteriormente
+    document.getElementById("empregos_encontrados").innerHTML = ""; // Limpa o conteúdo da seção de vagas
+    buscarVagas();
+  }
+});
+
 botao_mais.onclick = function (e) {
   e.preventDefault();
   page++;
