@@ -88,7 +88,7 @@ async function getUserJovem(request, response) {
   const params = Array(request.params.id);
 
   const query =
-    "SELECT ft_perfil, name, email, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+    "SELECT ft_perfil, name, email, curriculo, download_curriculo, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -358,6 +358,30 @@ async function envioCurriculo(request, response) {
   });
 }
 
+// Deletando currículo 
+
+async function apagarCurriculo(request, response) {
+  const params = Array(request.params.id);
+
+  const query = "UPDATE user_jovem SET curriculo = NULL WHERE id = ?;";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Curriculo apagado com sucesso!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas ao apagar o curriculo!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroJovem,
 
@@ -373,5 +397,6 @@ module.exports = {
 
   getModulos,
 
-  envioCurriculo
+  envioCurriculo,
+  apagarCurriculo
 };

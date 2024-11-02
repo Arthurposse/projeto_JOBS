@@ -406,6 +406,35 @@ main .enviando_curriculo button:hover {
   transition: all .6s ease;
 }
 
+main .enviando_curriculo div {
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+main .enviando_curriculo div h4 {
+  display: flex;
+  gap: .5vw;
+}
+
+main .enviando_curriculo div i {
+  background-color: var(--cor-secundaria);
+  padding: 5%;
+  margin-bottom: 3%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--cor-terciaria);
+}
+
+main .enviando_curriculo div i:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  transition: all .6s ease;
+}
+
 /* Main - Perfil */
 
 main .perfil {

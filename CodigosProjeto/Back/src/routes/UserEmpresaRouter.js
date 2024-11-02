@@ -195,7 +195,7 @@ router.put("/vagas/putDadosVaga", putDadosVagas);
 
 /**
  * @swagger
- * /vagas/putDadosVaga:
+ * /curriculo/quant_downloads/:id:
  *  put:
  *    summary: Atualiza os dados da vaga registrada no nome do usuário empresa
  *    responses:

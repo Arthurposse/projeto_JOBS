@@ -550,7 +550,7 @@ botao_envio_curriculo.onclick = async function () {
       `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
       {
         method: "PUT",
-        body: formDataCurriculo
+        body: formDataCurriculo,
       }
     );
 
@@ -558,11 +558,75 @@ botao_envio_curriculo.onclick = async function () {
     console.log(content);
 
     if (content.success) {
-      alert("DEU BOM CURRICULO");
+      Swal.fire({
+        title: "Currículo enviado!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } else {
-      alert("VISH, DEU BOLETE");
+      Swal.fire({
+        title: "Currículo não enviado!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   }
+};
+
+// Deletando currículo
+
+let deletar_curriculo = document.getElementById("deletar_curriculo");
+
+deletar_curriculo.onclick = async function () {
+  Swal.fire({
+    title: "Deseja mesmo deletar seu currículo?",
+    text: "Os usuário recrutadores não irão poder visualizar seu curríclo. Porém, se você enviar outro, será possível visualizar este último enviado.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Deletar",
+  }).then(async function (result) {
+    if (result.isConfirmed) {
+      const response = await fetch(
+        `http://localhost:3008/api/curriculo/apagando/${id_user}`,
+        {
+          method: "PUT",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+        }
+      );
+
+      content = await response.json();
+
+      if (content.success) {
+        Swal.fire({
+          title: "Currículo deletado!!",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        Swal.fire({
+          title: "Não foi possível deletar seu currículo!!",
+          text: "Tente novamente!!",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    }
+  });
 };
 
 // Coletando dados perfil (GET)
@@ -577,6 +641,9 @@ let telefone = document.getElementById("telefone_user");
 let cidade = document.getElementById("cidade_user");
 let idade = document.getElementById("idade_user");
 
+let quant_deletar_curriculo = document.querySelector(".quant_deletar_curriculo");
+let quant_donwloads = document.getElementById("quant_donwloads");
+
 let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
@@ -589,6 +656,7 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
+  console.log(content);
 
   if (ft_user === undefined || content.data[0].ft_perfil === null) {
     ft_perfil_user.src = "../images/Usuario_nao_logado.png";
@@ -596,6 +664,11 @@ async function getUserJovem(id_user) {
   } else {
     ft_perfil_user.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
     ft_perfil_user_2.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+  }
+
+  if (content.data[0].curriculo !== null) {
+    quant_donwloads.textContent = content.data[0].download_curriculo;
+    quant_deletar_curriculo.style.display = "flex";
   }
 
   nome.textContent = content.data[0].name;

@@ -80,10 +80,21 @@ async function buscandoCurriculos(area) {
         container.appendChild(div); // Adicionar o link ao container
       }
     } else {
-      container.innerHTML = `<p> Não foi possível encontrar nenhuma vaga com esta área </p>`;
+      if(content.data.length === 0) {
+        container.innerHTML = `<p> Não há currículos para visualizar ainda!! </p>`;        
+      }
+      else {
+        container.innerHTML = `<p> Não foi possível encontrar nenhuma vaga com esta área </p>`;
+      }
     }
   } else {
-    alert("VISH, DEU BOLETE");
+    Swal.fire({
+      title: "ERROR!!",
+      text: "Tente novamente!!",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2300,
+    });
   }
 }
 
@@ -99,9 +110,9 @@ botao_filtro.onclick = async function () {
     input: "select",
     inputOptions: {
       Áreas: {
-        Todas: "Todas",
-        Tecnologia: "Tecnologia",
-        Saúde: "Saúde",
+        "Todas": "Todas",
+        "Tecnologia": "Tecnologia",
+        "Saúde": "Saúde",
         "Ciências Humanas": "Ciências Humanas",
         "Ciências Exatas": "Ciências Exatas",
         "Ciências Biológicas": "Ciências Biológicas",

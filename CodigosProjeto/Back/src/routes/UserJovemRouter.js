@@ -12,6 +12,7 @@ const {
   uptadeMetasJovem,
   deleteMetasJovem,
   envioCurriculo,
+  apagarCurriculo
 } = require("../controller/UserJovemController");
 
 // GET
@@ -190,6 +191,25 @@ router.put("/metas/atualizando", uptadeMetasJovem);
  *                  example: 
  */
 router.put("/enviandoCurriculo/:id", envioCurriculo);
+
+/**
+ * @swagger
+ * /curriculo/apagando/:id:
+ *  put:
+ *    summary: Apaga o currículo dentro do BD
+ *    responses:
+ *      200:
+ *        description: Sucesso!!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: 
+ */
+router.put("/curriculo/apagando/:id", apagarCurriculo);
 
 // DELETE
 

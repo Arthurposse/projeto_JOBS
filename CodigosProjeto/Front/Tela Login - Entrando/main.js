@@ -69,7 +69,7 @@ button.onclick = async function (e) {
           Swal.fire({
             title: "ERRO!!",
             text: "Tente novamente!!",
-            icon: "success",
+            icon: "error",
             showConfirmButton: false,
             timer: 2000,
           });
