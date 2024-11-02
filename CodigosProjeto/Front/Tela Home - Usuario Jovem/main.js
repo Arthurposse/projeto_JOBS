@@ -978,7 +978,7 @@ botao_excluir_conta.onclick = function () {
     confirmButtonText: "Excluir",
   }).then( async function (result) {
     if (result.isConfirmed) {
-      const response = await fetch(`http://localhost:3008/api/usuario/jovem/deletando/${id_user}`, {
+      const response = await fetch(`http://localhost:3008/api/usuario/empresa/deletando/${id_user}`, {
         method: "DELETE",
         headers: { "Content-type": "application/json;charset=UTF-8" }
       });

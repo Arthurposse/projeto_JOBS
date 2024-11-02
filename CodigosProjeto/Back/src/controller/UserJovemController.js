@@ -274,13 +274,13 @@ async function deleteMetasJovem(request, response) {
     if (results) {
       response.status(201).json({
         success: true,
-        message: "Sucesso com DELETE meta!!",
+        message: "Sucesso ao deletar a conta!!",
         data: results,
       });
     } else {
       response.status(400).json({
         success: false,
-        message: "Ops, deu problemas com DELETE meta!",
+        message: "Ops, deu problemas ao deletar a conta!",
         data: err,
       });
     }

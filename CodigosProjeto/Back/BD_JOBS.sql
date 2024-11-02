@@ -30,18 +30,18 @@ CREATE TABLE user_empresa(
 );
 
 -- Índices para que seja possível criar a tabela de vagas com suas chaves estrangeiras 
-CREATE INDEX idx_user_empresa_name ON user_empresa(name);
+CREATE INDEX idx_user_empresa_id ON user_empresa(id);
 
 CREATE TABLE vagas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    criador_vaga VARCHAR(50),
+    id_criador int,
     titulo_vaga VARCHAR(50) NOT NULL,
     area VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
     faixa_etaria ENUM('16-18', '19-21', '22-24', '25-27', '28-30') NOT NULL,
     descricao text NOT NULL,
 
-    FOREIGN KEY (criador_vaga) REFERENCES user_empresa(name) ON UPDATE CASCADE
+    FOREIGN KEY (id_criador) REFERENCES user_empresa(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE duvidas(
@@ -194,25 +194,4 @@ VALUES
     '01.123.456/7891-23',
     '',
     'teste'
-);
-
--- Inserindo vagas fictícias
-
-INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, faixa_etaria, descricao)
-VALUES
-(
-    'Robson Silverado JR',
-    'Engenheiro de Software Junior',
-    'Engenharia de Software',
-    'São Paulo',
-    '19-21',
-    'TESTE DESCRIÇÃO'
-),
-(
-    'Robson Silverado JR',
-    'Jovem Aprendiz',
-    'Aprendiz',
-    'Sapucaia do Sul',
-    '16-18',
-    'TESTE DESCRIÇÃO 2'
 );

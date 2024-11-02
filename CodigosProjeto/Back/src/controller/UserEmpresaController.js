@@ -151,7 +151,7 @@ async function criandoVaga(request, response) {
   );
 
   const query =
-    "INSERT INTO vagas(criador_vaga, titulo_vaga, area, cidade, faixa_etaria, descricao) VALUES(?,?,?,?,?,?);";
+    "INSERT INTO vagas(id_criador, titulo_vaga, area, cidade, faixa_etaria, descricao) VALUES(?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -352,8 +352,33 @@ async function sorteandoDuvida(request, response) {
   });
 }
 
+// Deletando Usuário Empresa (DELETE)
+
+async function deleteUsuarioEmpresa(request, response) {
+  const params = Array(request.params.id);
+
+  const query = "DELETE FROM user_empresa WHERE `id` = ?";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso ao deletar a conta!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas ao deletar a conta!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroEmpresa,
+  deleteUsuarioEmpresa,
 
   getDadosUser,
 

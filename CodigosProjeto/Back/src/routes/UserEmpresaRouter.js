@@ -3,6 +3,7 @@ const router = Router();
 
 const {
   cadastroEmpresa,
+  deleteUsuarioEmpresa,
   getDadosUser,
   uptadeUserEmpresa,
   criandoVaga,
@@ -232,5 +233,24 @@ router.put("/curriculo/quant_downloads/:id", quantDownloadsCurriculo);
  *                  example: 
  */
 router.delete("/vagas/deletandoVaga", deleteVagas);
+
+/**
+ * @swagger
+ * /usuario/empresa/deletando/:id:
+ *  delete:
+ *    summary: Deleta a meta registrada no nome do usuário jovem
+ *    responses:
+ *      200:
+ *        description: Sucesso!!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: 
+ */
+router.delete("/usuario/empresa/deletando/:id", deleteUsuarioEmpresa);
 
 module.exports = router;
