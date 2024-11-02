@@ -59,14 +59,21 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem), Tela Home (Usuário Empresa) e Tela Dicas/Sugestões 
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa) 
   - Ajustar responsividade.
 
 <br>
 
+- Tela Dicas/Sugestões
+  - Desenvolver tela para visualizar as dúvidas criadas pelo usuário, para assim, ele ver as respostas de cada dúvida
+  - Desenvolver a lógica do botão mais
+  - Ajustar responsividade
+
+<br>
+
 - Tela Buscar Emprego
-  - Ajustar responsividade.
   - Desenvolver o filtro.
+  - Ajustar responsividade.
 
 <h3 style="color: #9DD4D1;">
   Se der tempo:
