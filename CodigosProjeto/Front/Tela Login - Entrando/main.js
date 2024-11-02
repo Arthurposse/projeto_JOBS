@@ -1,22 +1,22 @@
 // Visualizar senha - Icon olho
 
-let icon_olho = document.querySelectorAll('#icon_olho');
+let icon_olho = document.querySelectorAll("#icon_olho");
 
 // Iterar sobre cada ícone de olho
 icon_olho.forEach(function (iconOlho) {
   iconOlho.onclick = function () {
     let inputSenha = iconOlho.previousElementSibling; // Selecionar o input anterior ao ícone de olho
 
-    if (iconOlho.classList.contains('bi-eye-fill')) {
-      iconOlho.classList.remove('bi-eye-fill');
-      iconOlho.classList.add('bi-eye-slash-fill');
-      inputSenha.type = 'text';
+    if (iconOlho.classList.contains("bi-eye-fill")) {
+      iconOlho.classList.remove("bi-eye-fill");
+      iconOlho.classList.add("bi-eye-slash-fill");
+      inputSenha.type = "text";
     } else {
-      iconOlho.classList.remove('bi-eye-slash-fill');
-      iconOlho.classList.add('bi-eye-fill');
+      iconOlho.classList.remove("bi-eye-slash-fill");
+      iconOlho.classList.add("bi-eye-fill");
 
-      let novoInput = document.createElement('input');
-      novoInput.type = 'password';
+      let novoInput = document.createElement("input");
+      novoInput.type = "password";
       novoInput.value = inputSenha.value;
       novoInput.placeholder = inputSenha.placeholder;
 
@@ -40,11 +40,11 @@ button.onclick = async function (e) {
   const response = await fetch("http://localhost:3008/api/verif/logIn", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
 
   let content = await response.json();
-  console.log(content)
+  console.log(content);
 
   if (content.success) {
     if (content.data.length !== 0) {
@@ -55,31 +55,33 @@ button.onclick = async function (e) {
         title: "LogIn realizado com sucesso!!",
         icon: "success",
         showConfirmButton: false,
-        timer: 2000
+        timer: 2000,
       });
 
       setTimeout(() => {
         if (content.data[0].origin === "user_jovem") {
-          localStorage.setItem('Tipo_user', "Jovem");
+          localStorage.setItem("Tipo_user", "Jovem");
           window.location.href = "../Tela Home - Usuario Jovem/index.html";
         } else if (content.data[0].origin === "user_empresa") {
-          localStorage.setItem('Tipo_user', "Empresa");
-          window.location.href =
-            "../Tela Home - Usuario Empresa/index.html";
+          localStorage.setItem("Tipo_user", "Empresa");
+          window.location.href = "../Tela Home - Usuario Empresa/index.html";
         } else {
-          alert(
-            "ERROR! Não foi possível direcionar vocÊ para a próxima página!!"
-          );
+          Swal.fire({
+            title: "ERRO!!",
+            text: "Tente novamente!!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000,
+          });
         }
       }, 2000);
-    }
-    else {
+    } else {
       Swal.fire({
         title: "Conta não encontrada!!",
         text: "Tente novamente!! Ou crie uma conta!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2300
+        timer: 2300,
       });
     }
   } else {
@@ -90,7 +92,7 @@ button.onclick = async function (e) {
       text: "Tente novamente!! Ou crie uma conta!!",
       icon: "error",
       showConfirmButton: false,
-      timer: 2300
+      timer: 2300,
     });
   }
 };

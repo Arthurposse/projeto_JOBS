@@ -8,11 +8,11 @@ user_logado.textContent = User_name;
 
 async function buscandoCurriculos(area) {
   const response = await fetch(
-    `http://localhost:3008/api/buscandoCurriculos`, // Use GET aqui
+    `http://localhost:3008/api/curriculo/buscando`,
     {
-      method: "POST", // GET para buscar os currículos
+      method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify({ area })
+      body: JSON.stringify({ area }),
     }
   );
 
@@ -21,53 +21,66 @@ async function buscandoCurriculos(area) {
   if (content.success) {
     const container = document.getElementById("curriculos-container");
 
-    container.innerHTML = '';
+    container.innerHTML = "";
 
-    if(content.data.length !== 0 || area === "Todas") {
+    if (content.data.length !== 0 || area === "Todas") {
       // Iterar pelos currículos e criar links de download
       for (let i = 0; i < content.data.length; i++) {
         let div = document.createElement("div");
         div.className = "bloco_user_jovem";
-  
+
         let img = document.createElement("img");
         let h2 = document.createElement("h2");
         let h4 = document.createElement("h4");
         let a = document.createElement("a");
-  
+
         let fileName = content.data[i].curriculo;
-  
+
         // Realizar fetch do arquivo
         const response = await fetch(
           `http://localhost:3008/uploads/curriculos/${fileName}`
         );
         const fileBlob = await response.blob(); // Transformar o arquivo em um Blob
-  
+
         // Criar um URL temporário para download
         const fileUrl = window.URL.createObjectURL(fileBlob);
-  
+
         a.href = fileUrl;
         a.innerText = "Baixar currículo";
         a.download = `Currículo de ${content.data[i].name}.pdf`; // Forçar download com o nome correto do arquivo
         a.style.display = "block"; // Para cada link ser uma nova linha
-  
+
+        // Adiciona o evento de clique para a tag A de donwload do currículo
+        a.addEventListener("click", async function () {
+          // Quantidade de downloads currículo jovem
+          const downloadResponse  = await fetch(
+            `http://localhost:3008/api/curriculo/quant_downloads/${content.data[i].curriculo.split("_")[0]}`,
+            {
+              method: "PUT",
+              headers: { "Content-type": "application/json;charset=UTF-8" }
+            }
+          );
+
+          const downloadContent  = await downloadResponse.json();
+        });
+
         if (content.data[i].ft_perfil !== null) {
           img.src = `http:localhost:3008/uploads/img_perfil/${content.data[i].ft_perfil}`;
         } else {
           img.src = "../images/Usuario_nao_logado.png";
         }
-  
+
         h2.textContent = content.data[i].name;
         h4.textContent = content.data[i].area_curriculo;
-  
+
         div.appendChild(img); // Adicionando a ft de perfil do usuário jovem
         div.appendChild(h2);
         div.appendChild(h4);
         div.appendChild(a);
         container.appendChild(div); // Adicionar o link ao container
       }
-    }
-    else {
-      container.innerHTML = `<p> Não foi possível encontrar nenhuma vaga com esta área </p>`
+    } else {
+      container.innerHTML = `<p> Não foi possível encontrar nenhuma vaga com esta área </p>`;
     }
   } else {
     alert("VISH, DEU BOLETE");
@@ -85,10 +98,10 @@ botao_filtro.onclick = async function () {
     title: "Selecione a área!!",
     input: "select",
     inputOptions: {
-      "Áreas": {
-        "Todas": "Todas",
-        "Tecnologia": "Tecnologia",
-        "Saúde": "Saúde",
+      Áreas: {
+        Todas: "Todas",
+        Tecnologia: "Tecnologia",
+        Saúde: "Saúde",
         "Ciências Humanas": "Ciências Humanas",
         "Ciências Exatas": "Ciências Exatas",
         "Ciências Biológicas": "Ciências Biológicas",
@@ -96,12 +109,12 @@ botao_filtro.onclick = async function () {
         "Engenharia e Indústria": "Engenharia e Indústria",
         "Artes e Design": "Artes e Design",
         "Comunicação e Marketing": "Comunicação e Marketing",
-        "Gestão e Negócios": "Gestão e Negócios"
+        "Gestão e Negócios": "Gestão e Negócios",
       },
     },
     inputPlaceholder: "Escolha a que mais se encaixe com seu perfil!!",
     showCancelButton: true,
-    confirmButtonColor: "#0e566a"
+    confirmButtonColor: "#0e566a",
   });
 
   if (areaFiltro) {

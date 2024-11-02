@@ -11,7 +11,8 @@ const {
   putDadosVagas,
   deleteVagas,
   buscaCurriculos,
-  sorteandoDuvida
+  sorteandoDuvida,
+  quantDownloadsCurriculo
 } = require("../controller/UserEmpresaController");
 
 // GET
@@ -131,7 +132,7 @@ router.post("/vagas/criandoVaga", criandoVaga);
  *                  type: string
  *                  example: 
  */
-router.post("/buscandoCurriculos", buscaCurriculos);
+router.post("/curriculo/buscando", buscaCurriculos);
 
 // PUT
 
@@ -191,6 +192,25 @@ router.put("/vagas/putVagas", putVagas);
  *                  example: 
  */
 router.put("/vagas/putDadosVaga", putDadosVagas);
+
+/**
+ * @swagger
+ * /vagas/putDadosVaga:
+ *  put:
+ *    summary: Atualiza os dados da vaga registrada no nome do usuário empresa
+ *    responses:
+ *      200:
+ *        description: Sucesso!!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: 
+ */
+router.put("/curriculo/quant_downloads/:id", quantDownloadsCurriculo);
 
 // DELETE
 

@@ -315,8 +315,12 @@ async function getModulos(request, response) {
 // Enviando currículo 
 
 async function envioCurriculo(request, response) {
+  const id_user = request.params.id;
+
   const curriculo = request.files.curriculo_jovem;
-  const curriculoNome = Date.now() + path.extname(curriculo.name);
+  const curriculoNome = id_user + "_" + Date.now() + path.extname(curriculo.name);
+
+  console.log(path.extname(curriculo.name));
 
   const imgPerfilPath = path.join(__dirname, "..", "uploads", "curriculos");
 
@@ -330,7 +334,7 @@ async function envioCurriculo(request, response) {
       const params = Array(
         curriculoNome,
         request.body.area_escolhida,
-        request.params.id
+        id_user
       );
 
       const query = "UPDATE `user_jovem` SET `curriculo` = ?, `area_curriculo` = ? WHERE `id` = ?;";

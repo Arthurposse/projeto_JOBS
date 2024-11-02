@@ -1,3 +1,4 @@
+// Importação das bibliotecas utilizadas no projeto
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -6,16 +7,16 @@ const fileUpload = require("express-fileupload");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 
+// Importação dos arquivos das rotas do projeto
 const routerJovem = require("./routes/UserJovemRouter");
 const routerEmpresa = require("./routes/UserEmpresaRouter");
 const enviarEmailRouter = require("./routes/enviarEmailRouter");
 const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
-
 const duvResRouter = require("./routes/duvResRouter");
-// const chatRouter = require("./routes/chatRouter");
 
+// Configuração do Swegger
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: "3.0.0",
@@ -26,7 +27,7 @@ const swaggerOptions = {
         },
         servers: [{url: "http://localhost:3003"}]
     },
-    apis: [`${__dirname}/routes/*.js`], // Caminho para as rotas
+    apis: [`${__dirname}/routes/*.js`],
 };
 
 dotenv.config();
@@ -47,8 +48,8 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
-// app.use('/chat', chatRouter);
 
+// Rota Swagger (Documentação)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

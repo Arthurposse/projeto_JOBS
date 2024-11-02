@@ -7,6 +7,7 @@ CREATE TABLE user_jovem(
     ft_perfil VARCHAR(255),
     curriculo VARCHAR (255),
     area_curriculo VARCHAR(255),
+    download_curriculo INT DEFAULT 0,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(50) NOT NULL,

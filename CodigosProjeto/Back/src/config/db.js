@@ -1,4 +1,4 @@
-// Arquivo responsável pela configuração e conexão com o banco de dados
+// Arquivo responsável pela configuração e conexão com o BD
 
 // Importar o pacote do mysql
 const mysql = require("mysql2");
@@ -6,7 +6,7 @@ const mysql = require("mysql2");
 // Importar o pacote de acesso aos de variáveis de ambiente
 const dotenv = require("dotenv").config();
 
-// Estabelece a criação da conexão com banco
+// Estabelece a criação da conexão com BD
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
   database: process.env.DB_DATABASE
 });
 
-// Testa se o banco esta conectado
+// Verificando a conexão com o BD
 connection.connect((err) => {
   if (err) {
     throw err;

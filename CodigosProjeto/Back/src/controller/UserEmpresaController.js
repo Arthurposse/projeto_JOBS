@@ -31,7 +31,7 @@ async function cadastroEmpresa(request, response) {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas!",
-        data: err,
+        errorDetails: err.message
       });
     }
   });
@@ -305,6 +305,31 @@ async function buscaCurriculos(request, response) {
   });
 }
 
+// Quantidade de download currículo jovem
+
+async function quantDownloadsCurriculo(request, response) {
+
+  const params = Array(request.params.id);
+
+  const query = "UPDATE user_jovem SET download_curriculo = download_curriculo + 1 WHERE id = ?;";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso quantidade downloads!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas na quantidade downloads!!",
+        data: err,
+      });
+    }
+  });
+}
+
 // Buscando dúvidas sorteadas
 
 async function sorteandoDuvida(request, response) {
@@ -341,6 +366,7 @@ module.exports = {
   deleteVagas,
 
   buscaCurriculos,
+  quantDownloadsCurriculo,
 
   sorteandoDuvida
 };

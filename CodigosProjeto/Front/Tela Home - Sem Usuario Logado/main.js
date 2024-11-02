@@ -10,7 +10,7 @@ setTimeout(() => {
         confirmButtonColor: "#0e566a",
         confirmButtonText: "Fazer mais tarde"
     });
-}, 4000);
+}, 7000);
 
 // Direcionamento da página ao clicar em entrar no canto superior direito
 

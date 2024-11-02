@@ -70,7 +70,6 @@ button.onclick = async function (e) {
     });
 
     let content = await response.json();
-    console.log(content)
 
     if (content.success) {
       Swal.fire({
@@ -78,13 +77,13 @@ button.onclick = async function (e) {
         text: "Aguarde enquanto seu código de verificação é gerado.",
         icon: "success",
         showConfirmButton: false,
-        timer: 2600
+        timer: 2600,
       });
 
       const response = await fetch("http:/localhost:3008/api/enviarEmail", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email }),
       });
 
       let content = await response.json();
@@ -95,7 +94,7 @@ button.onclick = async function (e) {
           text: "Acesse seu email.",
           icon: "success",
           showConfirmButton: false,
-          timer: 2100
+          timer: 2100,
         });
 
         localStorage.setItem("CodVerif", content.verificationCode);
@@ -110,16 +109,24 @@ button.onclick = async function (e) {
           text: "Tente novamente!!",
           icon: "error",
           showConfirmButton: false,
-          timer: 2300
+          timer: 2300,
         });
       }
+    } else if (content.errorDetails.includes("Duplicate")) {
+      Swal.fire({
+        title: "Conta já existente!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
     } else {
       Swal.fire({
         title: "ERRO NO POST!!",
         text: "Tente novamente!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2300
+        timer: 2300,
       });
     }
   } else {
@@ -129,7 +136,7 @@ button.onclick = async function (e) {
         text: "Tente novamente!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2300
+        timer: 2300,
       });
     } else {
       Swal.fire({
@@ -137,7 +144,7 @@ button.onclick = async function (e) {
         text: "Não é possível realizar cadastrado no site!! Você deve possuir entre 14 a 24 anos!!",
         icon: "error",
         showConfirmButton: false,
-        timer: 2500
+        timer: 2500,
       });
     }
   }

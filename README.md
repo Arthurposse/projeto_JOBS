@@ -46,7 +46,9 @@
 </h3>
 
 - <b> Chat: </b> Procurar ainda.
-- <b> BD: </b> Está sendo utilizado o Clever Cloud para hospedar o banco e o projeto esta utilizando a linguagem MySQL.
+- <b> BD: </b> 
+  - <b> Hospedagem: </b> Clever Cloud.
+  - <b> Linguagem: </b> MySQL.
 - <b> Buscar por empregos: </b> Adzuna.
 
 <br>
