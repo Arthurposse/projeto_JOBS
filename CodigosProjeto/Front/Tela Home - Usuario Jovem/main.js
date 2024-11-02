@@ -615,8 +615,8 @@ let deletar_curriculo = document.getElementById("deletar_curriculo");
 deletar_curriculo.onclick = async function () {
   Swal.fire({
     title: "Deseja mesmo deletar seu currículo?",
-    text: "Os usuários recrutadores não irão poder visualizar seu curríclo. Porém, se você enviar outro, será possível visualizar este último enviado.",
-    icon: "warning",
+    text: "Os recrutadores não irão poder visualizar seu curríclo. Porém, se você enviar outro, será possível visualizar este último enviado.",
+    icon: "question",
     showCancelButton: true,
     confirmButtonColor: "#0e566a",
     cancelButtonColor: "#d33",
