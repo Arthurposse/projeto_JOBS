@@ -508,8 +508,8 @@ botao_selecionar_area.onclick = async function () {
     input: "select",
     inputOptions: {
       Áreas: {
-        Tecnologia: "Tecnologia",
-        Saúde: "Saúde",
+        "Tecnologia": "Tecnologia",
+        "Saúde": "Saúde",
         "Ciências Humanas": "Ciências Humanas",
         "Ciências Exatas": "Ciências Exatas",
         "Ciências Biológicas": "Ciências Biológicas",
@@ -535,47 +535,75 @@ const botao_envio_curriculo = document.getElementById("enviar_curriculo");
 const curriculo_jovem = document.getElementById("curriculo_jovem");
 
 botao_envio_curriculo.onclick = async function () {
-  if (area_escolhida === undefined && curriculo_jovem.files[0] === undefined) {
-    alert("Insira os dados necessários!!");
-  } else if (area_escolhida === undefined) {
-    alert("Selecione uma área!!");
-  } else if (curriculo_jovem.files[0] === undefined) {
-    alert("Insira o arquivo pdf do seu currículo!!");
+  if (possui_curriculo) {
+    Swal.fire({
+      title: "Você já enviou um currículo!!",
+      icon: "warning",
+      showConfirmButton: false,
+      confirmButtonColor: "#0e566a",
+      timer: 2000,
+    });
   } else {
-    let formDataCurriculo = new FormData();
-    formDataCurriculo.append("curriculo_jovem", curriculo_jovem.files[0]);
-    formDataCurriculo.append("area_escolhida", area_escolhida);
-
-    const response = await fetch(
-      `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
-      {
-        method: "PUT",
-        body: formDataCurriculo,
-      }
-    );
-
-    content = await response.json();
-    console.log(content);
-
-    if (content.success) {
+    if (
+      area_escolhida === undefined &&
+      curriculo_jovem.files[0] === undefined
+    ) {
       Swal.fire({
-        title: "Currículo enviado!!",
-        icon: "success",
+        title: "Insira os dados necessários!!",
+        icon: "warning",
         showConfirmButton: false,
         timer: 2000,
       });
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+    } else if (area_escolhida === undefined) {
+      Swal.fire({
+        title: "Selecione uma área!!",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    } else if (curriculo_jovem.files[0] === undefined) {
+      Swal.fire({
+        title: "Insira o arquivo PDF!!",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } else {
-      Swal.fire({
-        title: "Currículo não enviado!!",
-        text: "Tente novamente!!",
-        icon: "error",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      let formDataCurriculo = new FormData();
+      formDataCurriculo.append("curriculo_jovem", curriculo_jovem.files[0]);
+      formDataCurriculo.append("area_escolhida", area_escolhida);
+
+      const response = await fetch(
+        `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
+        {
+          method: "PUT",
+          body: formDataCurriculo,
+        }
+      );
+
+      content = await response.json();
+      console.log(content);
+
+      if (content.success) {
+        Swal.fire({
+          title: "Currículo enviado!!",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        Swal.fire({
+          title: "Currículo não enviado!!",
+          text: "Tente novamente!!",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
     }
   }
 };
@@ -644,6 +672,7 @@ let idade = document.getElementById("idade_user");
 let quant_deletar_curriculo = document.querySelector(".quant_deletar_curriculo");
 let quant_donwloads = document.getElementById("quant_donwloads");
 
+let possui_curriculo = false;
 let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
@@ -668,6 +697,7 @@ async function getUserJovem(id_user) {
 
   if (content.data[0].curriculo !== null) {
     quant_donwloads.textContent = content.data[0].download_curriculo;
+    possui_curriculo = true;
     quant_deletar_curriculo.style.display = "flex";
   }
 
