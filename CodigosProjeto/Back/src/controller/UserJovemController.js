@@ -413,8 +413,33 @@ async function apagarCurriculo(request, response) {
   });
 }
 
+// Deletando Usuário Jovem (DELETE)
+
+async function deleteUsuarioJovem(request, response) {
+  const params = Array(request.params.id);
+
+  const query = "DELETE FROM user_jovem WHERE `id` = ?";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso com DELETE meta!!",
+        data: results,
+      });
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas com DELETE meta!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   cadastroJovem,
+  deleteUsuarioJovem,
 
   duvidaJovem,
 

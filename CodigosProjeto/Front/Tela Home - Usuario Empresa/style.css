@@ -16,6 +16,29 @@
     --cor-fonte: white;
 }
 
+/* Fundo escuro */
+
+.fundo_escuro {
+    display: none;
+    position: fixed;
+    /* Alterado para fixed */
+    background-color: rgba(0, 0, 0, 0.96);
+    /* Preto com alta opacidade */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+/* Classe para exibir o fundo */
+.fundo_escuro.active {
+    display: block;
+    opacity: 1;
+}
+
 /* Header */
 
 header {
@@ -158,8 +181,8 @@ main .bloco_duvida {
 /* Main - Criar vagas */
 
 .inputs_alert_vaga {
-    padding: 2%; 
-    border: 2px solid #0e566a; 
+    padding: 2%;
+    border: 2px solid #0e566a;
     border-radius: .5vw;
     font-size: 1.2rem;
 }
@@ -320,6 +343,39 @@ main .perfil button {
     font-size: 1rem;
     color: var(--cor-fonte);
     cursor: pointer;
+}
+
+main .perfil div {
+    display: flex;
+    gap: 2vw;
+    margin-top: 4%;
+}
+
+main .perfil div button {
+    background-color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+    width: 12vw;
+    padding: 3%;
+    margin-top: 2%;
+    border: 0;
+    border-radius: 1vw;
+    font-size: 1rem;
+    color: var(--cor-fonte);
+    cursor: pointer;
+}
+
+main .perfil div button i {
+    font-size: 1.5rem;
+}
+
+main .perfil button:hover,
+main .perfil div button i:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+    transition: all .6s ease;
 }
 
 @keyframes all {

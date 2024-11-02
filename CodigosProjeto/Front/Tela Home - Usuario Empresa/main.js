@@ -1,3 +1,32 @@
+// Verificando se o usuário esta logado
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fundoEscuro = document.querySelector('.fundo_escuro');
+  const footer = document.querySelector('footer');
+
+  if (!localStorage.getItem("ID_user")) {
+    // Adiciona a classe 'active' para exibir o fundo
+    fundoEscuro.classList.add('active');
+    footer.style.display = 'none';
+
+    // Usa requestAnimationFrame para garantir que o fundo seja renderizado antes do SweetAlert
+    requestAnimationFrame(() => {
+      Swal.fire({
+        title: "É necessário realizar o LogIn!!",
+        text: "Se ainda não possui, realize o cadastro!!",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 2400,
+        willClose: () => {
+          // Remove o fundo após o SweetAlert fechar
+          fundoEscuro.classList.remove('active');
+          window.location.href = '../Tela Home - Sem Usuario Logado/index.html';
+        }
+      });
+    });
+  }
+});
+
 // Buscando infos do usuário
 let id_user = Number(localStorage.getItem("ID_user"));
 let User_name = localStorage.getItem("User_name");
@@ -708,4 +737,78 @@ botao_editar.onclick = async function () {
     }
     editando = true;
   }
+};
+
+// Deletando perfil (DELETE)
+
+const botao_excluir_conta = document.getElementById('botao_excluir_conta');
+
+botao_excluir_conta.onclick = function () {
+  Swal.fire({
+    title: "Deseja mesmo excluir sua conta?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Excluir",
+  }).then( async function (result) {
+    if (result.isConfirmed) {
+      const response = await fetch(`http://localhost:3008/api/usuario/jovem/deletando/${id_user}`, {
+        method: "DELETE",
+        headers: { "Content-type": "application/json;charset=UTF-8" }
+      });
+    
+      let content = await response.json();
+      console.log(content);
+
+      if(content.success) {
+        Swal.fire({
+          title: "Conta excluída com sucesso!!",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setTimeout(() => {
+          localStorage.removeItem("ID_user");
+          localStorage.removeItem("Tipo_user");
+          localStorage.removeItem("User_name");
+          
+          window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+        }, 2000);
+      }
+      else {
+        Swal.fire({
+          title: "Erro ao deletar sua conta!!",
+          text: "Tente novamente!!",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    }
+  });
+}
+
+// Desconectando usuario
+
+const botao_desconectar = document.getElementById("botao_desconectar");
+
+botao_desconectar.onclick = function () {
+  Swal.fire({
+    title: "Deseja mesmo se desconetar?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Desconectar",
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      localStorage.removeItem("ID_user");
+      localStorage.removeItem("Tipo_user");
+      localStorage.removeItem("User_name");
+
+      window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+    }
+  });
 };

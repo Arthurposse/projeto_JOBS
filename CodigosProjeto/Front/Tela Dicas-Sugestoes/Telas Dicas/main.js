@@ -108,7 +108,7 @@ async function gerarDica() {
             // Faz com que o fundo escuro desapareça
             fundo_escuro.style.display = "none";
     
-            // Desbloquando a rolagem
+            // Desbloqueando a rolagem
             document.body.style.overflow = 'auto';
     
             Swal.close();

@@ -6,6 +6,7 @@ const {
   getMetasJovem,
   getModulos,
   cadastroJovem,
+  deleteUsuarioJovem,
   duvidaJovem,
   postMetasJovem,
   uptadeUserJovem,
@@ -231,5 +232,24 @@ router.put("/curriculo/apagando/:id", apagarCurriculo);
  *                  example: 
  */
 router.delete("/metas/deletando", deleteMetasJovem);
+
+/**
+ * @swagger
+ * /usuario/jovem/deletando/:id:
+ *  delete:
+ *    summary: Deleta a meta registrada no nome do usuário jovem
+ *    responses:
+ *      200:
+ *        description: Sucesso!!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: 
+ */
+router.delete("/usuario/jovem/deletando/:id", deleteUsuarioJovem);
 
 module.exports = router;
