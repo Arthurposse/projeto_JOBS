@@ -50,7 +50,7 @@ async function cadastroJovem(request, response) {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas!",
-        errorDetails: err.message
+        errorDetails: err.message,
       });
     }
   });
@@ -312,7 +312,7 @@ async function getModulos(request, response) {
   });
 }
 
-// Enviando currículo 
+// Enviando currículo
 
 async function envioCurriculo(request, response) {
   const id_user = request.params.id;
@@ -320,22 +320,16 @@ async function envioCurriculo(request, response) {
   const curriculo = request.files.curriculo_jovem;
   const curriculoNome = id_user + "_" + Date.now() + path.extname(curriculo.name);
 
-  console.log(path.extname(curriculo.name));
-
   const imgPerfilPath = path.join(__dirname, "..", "uploads", "curriculos");
 
   curriculo.mv(path.join(imgPerfilPath, curriculoNome), (erro) => {
     if (erro) {
       return response.status(400).json({
         success: false,
-        message: "Erro ao mover o arquivo."
+        message: "Erro ao mover o arquivo.",
       });
     } else {
-      const params = Array(
-        curriculoNome,
-        request.body.area_escolhida,
-        id_user
-      );
+      const params = Array(curriculoNome, request.body.area_escolhida, id_user);
 
       const query = "UPDATE `user_jovem` SET `curriculo` = ?, `area_curriculo` = ? WHERE `id` = ?;";
 
@@ -344,13 +338,13 @@ async function envioCurriculo(request, response) {
           response.status(201).json({
             success: true,
             message: "Sucesso com o envio do currículo!!",
-            data: results
+            data: results,
           });
         } else {
           response.status(400).json({
             success: false,
             message: "Ops, deu problemas com o envio do currículo!!",
-            data: err
+            data: err,
           });
         }
       });
@@ -358,27 +352,64 @@ async function envioCurriculo(request, response) {
   });
 }
 
-// Deletando currículo 
+// Deletando currículo
 
 async function apagarCurriculo(request, response) {
-  const params = Array(request.params.id);
+  const userId = request.params.id;
 
-  const query = "UPDATE user_jovem SET curriculo = NULL WHERE id = ?;";
-
-  connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Curriculo apagado com sucesso!!",
-        data: results,
-      });
-    } else {
-      response.status(400).json({
+  // Primeiro, vamos buscar o nome do currículo associado ao ID do usuário
+  const getCurriculoQuery = "SELECT curriculo FROM user_jovem WHERE id = ?;";
+  connection.query(getCurriculoQuery, [userId], (err, results) => {
+    if (err) {
+      return response.status(500).json({
         success: false,
-        message: "Ops, deu problemas ao apagar o curriculo!",
-        data: err,
+        message: "Erro ao buscar o currículo.",
+        error: err,
       });
     }
+
+    if (results.length === 0 || !results[0].curriculo) {
+      return response.status(404).json({
+        success: false,
+        message: "Nenhum currículo encontrado para o usuário especificado.",
+      });
+    }
+
+    const curriculoNome = results[0].curriculo;
+    const curriculoPath = path.join(curriculosPath, curriculoNome);
+
+    // Exclui o arquivo do sistema de arquivos
+    fs.unlink(curriculoPath, (unlinkErr) => {
+      if (unlinkErr) {
+        return response.status(500).json({
+          success: false,
+          message: "Erro ao deletar o arquivo de currículo.",
+          error: unlinkErr,
+        });
+      }
+
+      // Após excluir o arquivo, atualiza o banco para remover a referência
+      const deleteCurriculoQuery = "UPDATE user_jovem SET curriculo = NULL WHERE id = ?;";
+      connection.query(
+        deleteCurriculoQuery,
+        [userId],
+        (updateErr, updateResults) => {
+          if (updateErr) {
+            return response.status(500).json({
+              success: false,
+              message: "Erro ao atualizar o banco de dados.",
+              error: updateErr,
+            });
+          }
+
+          response.status(200).json({
+            success: true,
+            message: "Currículo deletado com sucesso.",
+            data: updateResults,
+          });
+        }
+      );
+    });
   });
 }
 
@@ -398,5 +429,5 @@ module.exports = {
   getModulos,
 
   envioCurriculo,
-  apagarCurriculo
+  apagarCurriculo,
 };
