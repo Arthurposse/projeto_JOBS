@@ -142,7 +142,7 @@ async function uptadeUserEmpresa(request, response) {
 
 async function criandoVaga(request, response) {
   const params = Array(
-    request.body.User_name,
+    request.params.id,
     request.body.titulo_vaga,
     request.body.area,
     request.body.cidade,
@@ -173,9 +173,11 @@ async function criandoVaga(request, response) {
 // Buscando vagas (GET)
 
 async function getVagas(request, response) {
-  const query = "SELECT * FROM vagas;";
+  const params = request.params.id;
 
-  connection.query(query, (err, results) => {
+  const query = "SELECT * FROM vagas WHERE id = ?;";
+
+  connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
         success: true,
@@ -186,31 +188,6 @@ async function getVagas(request, response) {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas!",
-        data: err,
-      });
-    }
-  });
-}
-
-// Atualizando usuário relacionado a vaga (PUT)
-
-async function putVagas(request, response) {
-  const params = Array(request.body.nome, request.body.nome_antigo);
-
-  const query =
-    "UPDATE `vagas` SET `criador_vaga` = ? WHERE `criador_vaga` = ?;";
-
-  connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Sucesso com PUT VAGAS!!",
-        data: results,
-      });
-    } else {
-      response.status(400).json({
-        success: false,
-        message: "Ops, deu problemas com PUT VAGAS!",
         data: err,
       });
     }
@@ -386,7 +363,6 @@ module.exports = {
 
   criandoVaga,
   getVagas,
-  putVagas,
   putDadosVagas,
   deleteVagas,
 

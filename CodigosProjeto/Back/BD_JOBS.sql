@@ -34,12 +34,12 @@ CREATE INDEX idx_user_empresa_id ON user_empresa(id);
 
 CREATE TABLE vagas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    id_criador int,
+    id_criador INT NOT NULL,
     titulo_vaga VARCHAR(50) NOT NULL,
     area VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
     faixa_etaria ENUM('16-18', '19-21', '22-24', '25-27', '28-30') NOT NULL,
-    descricao text NOT NULL,
+    descricao TEXT NOT NULL,
 
     FOREIGN KEY (id_criador) REFERENCES user_empresa(id) ON UPDATE CASCADE
 );
@@ -55,7 +55,7 @@ CREATE TABLE respostas(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     id_jovem INT,
     id_empresa INT,
-	id_duvida INT,
+	id_duvida INT NOT NULL,
     resposta TEXT NOT NULL,
     type_user VARCHAR(7) NOT NULL CHECK (type_user IN ('Jovem', 'Empresa')),
 
@@ -71,8 +71,8 @@ CREATE TABLE metas(
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_name VARCHAR(50) NOT NULL,
     titulo VARCHAR(20) NOT NULL,
-    infos text NOT NULL,
-    data_conclusao date NOT NULL, 
+    infos TEXT NOT NULL,
+    data_conclusao DATE NOT NULL, 
     prioridade ENUM('red', 'yellow', 'green') NOT NULL,
 
     FOREIGN KEY (user_name) REFERENCES user_jovem(name)

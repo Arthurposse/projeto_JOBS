@@ -94,7 +94,7 @@ let vagas_registradas = document.querySelector(".vagas_registradas");
 
 async function getVagas(nome, ordem) {
   const response = await fetch(
-    `http://localhost:3008/api/vagas/getVagas?User_name=${nome}`,
+    `http://localhost:3008/api/vagas/getVagas/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -133,10 +133,112 @@ async function getVagas(nome, ordem) {
             // Adiciona a section ao corpo do documento ou em um elemento específico
             vagas_registradas.appendChild(section);
 
-            // Adicionando o evento de clique ao card da vaga
-            section.addEventListener("click", () => {
-              alert(content.data[i].id);
+          // Adicionando o evento de clique ao card da vaga
+          section.addEventListener("click", async function () {
+            const vagaSelecionada = content.data[i];
+
+            const { value: vagas_infos } = await Swal.fire({
+              title: "Informações da Vaga",
+              html: `
+                <div style="display: flex; flex-direction: column; gap: 2vh;">
+                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
+                  <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
+                  <input type="text" id="faixa_etaria_vaga" class="inputs_alert_vaga" placeholder="Faixa Etária" value="${vagaSelecionada.faixa_etaria}">
+                  <input type="text" id="cidade_vaga" class="inputs_alert_vaga" placeholder="Cidade" value="${vagaSelecionada.cidade}">
+                  <textarea style="width: 100%; padding: 2%; border-radius: .5vw; resize: none;" id="descricao_vaga" class="inputs_alert_vaga" placeholder="Descrição" rows="4"> ${vagaSelecionada.descricao} </textarea>
+                </div>
+              `,
+              focusConfirm: false,
+              confirmButtonColor: "#0e566a",
+              preConfirm: () => {
+                // Capturando os valores dos inputs
+                const titulo_vaga = document.getElementById("titulo_vaga").value;
+                const area_vaga = document.getElementById("area_vaga").value;
+                const faixa_etaria_vaga =
+                  document.getElementById("faixa_etaria_vaga").value;
+                const cidade_vaga =
+                  document.getElementById("cidade_vaga").value;
+                const descricao_vaga =
+                  document.getElementById("descricao_vaga").value;
+
+                return {
+                  titulo_vaga,
+                  area_vaga,
+                  faixa_etaria_vaga,
+                  cidade_vaga,
+                  descricao_vaga,
+                };
+              },
             });
+
+            if (vagas_infos) {
+
+              const id_vaga = vagaSelecionada.id;
+
+              const vaga_titulo = vagas_infos.titulo_vaga.trim();
+              const vaga_area = vagas_infos.area_vaga.trim();
+              const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga.trim();
+              const vaga_cidade = vagas_infos.cidade_vaga.trim();
+              const vaga_descricao = vagas_infos.descricao_vaga.trim();
+
+              let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
+
+              if((vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') && (vaga_area === 'Tecnologia' || vaga_area === 'Saúde' || vaga_area === 'Ciências Humanas' || vaga_area === 'Ciências Exatas' || vaga_area === 'Ciências Biológicas' || vaga_area === 'Direito e Ciências Jurídicas' || vaga_area === 'Artes e Design' || vaga_area === 'Comunicação e Marketing' || vaga_area === 'Gestão e Negócios')) {
+                const response = await fetch(
+                  "http://localhost:3008/api/vagas/putDadosVaga",
+                  {
+                    method: "PUT",
+                    headers: { "Content-type": "application/json;charset=UTF-8" },
+                    body: JSON.stringify(data),
+                  }
+                );
+  
+                let content = await response.json();
+  
+                if (content.success) {
+                  Swal.fire({
+                    title: "Dados da vaga atualizados!!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 2000,
+                  });
+
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 2000);
+  
+                } else {
+                  Swal.fire({
+                    title: "Erro ao alterar dados da vaga!!",
+                    text: "Tente novamente!!",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 2000,
+                  });
+                  console.error();
+                }
+              }
+              else {
+                Swal.fire({
+                  title: "A idade inserida está fora do padrão!!",
+                  html: `
+                    <p> Insira uma das opções abaixo: </p>
+
+                    <ul style="margin-top: 2%; list-style: none;">
+                      <li> '16-18' </li>
+                      <li> '19-21' </li>
+                      <li> '22-24' </li>
+                      <li> '25-27' </li>
+                      <li> '28-30' </li>
+                    <ul>
+                  `,
+                  icon: "error",
+                  confirmButtonColor: '#0e566a'
+                });
+              }
+
+            }
+          });
           }
         }
       } else {
@@ -216,7 +318,7 @@ async function getVagas(nome, ordem) {
 
               let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
 
-              if(vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') {
+              if((vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') && (vaga_area === 'Tecnologia' || vaga_area === 'Saúde' || vaga_area === 'Ciências Humanas' || vaga_area === 'Ciências Exatas' || vaga_area === 'Ciências Biológicas' || vaga_area === 'Direito e Ciências Jurídicas' || vaga_area === 'Artes e Design' || vaga_area === 'Comunicação e Marketing' || vaga_area === 'Gestão e Negócios')) {
                 const response = await fetch(
                   "http://localhost:3008/api/vagas/putDadosVaga",
                   {
@@ -252,22 +354,47 @@ async function getVagas(nome, ordem) {
                 }
               }
               else {
-                Swal.fire({
-                  title: "A idade inserida está fora do padrão!!",
-                  html: `
-                    <p> Insira uma das opções abaixo: </p>
-
-                    <ul style="margin-top: 2%; list-style: none;">
-                      <li> '16-18' </li>
-                      <li> '19-21' </li>
-                      <li> '22-24' </li>
-                      <li> '25-27' </li>
-                      <li> '28-30' </li>
-                    <ul>
-                  `,
-                  icon: "error",
-                  confirmButtonColor: '#0e566a'
-                });
+                if(vaga_faixa_etaria !== '16-18' && vaga_faixa_etaria !== '19-21' && vaga_faixa_etaria !== '22-24' && vaga_faixa_etaria !== '25-27' && vaga_faixa_etaria !== '28-30') {
+                  Swal.fire({
+                    title: "A idade inserida está fora do padrão!!",
+                    html: `
+                      <p> Insira uma das opções abaixo: </p>
+  
+                      <ul style="margin-top: 2%; list-style: none;">
+                        <li> '16-18' </li>
+                        <li> '19-21' </li>
+                        <li> '22-24' </li>
+                        <li> '25-27' </li>
+                        <li> '28-30' </li>
+                      <ul>
+                    `,
+                    icon: "error",
+                    confirmButtonColor: '#0e566a'
+                  });
+                }
+                else {
+                  Swal.fire({
+                    title: "A área inserida está fora do padrão!!",
+                    html: `
+                      <p> Insira uma das opções abaixo: </p>
+  
+                      <ul style="margin-top: 2%; list-style: none;">
+                        <li> 'Tecnologia' </li>
+                        <li> 'Saúde' </li>
+                        <li> 'Ciências Humanas' </li>
+                        <li> 'Ciências Exatas' </li>
+                        <li> 'Ciências Biológicas' </li>
+                        <li> 'Direito e Ciências Jurídicas' </li>
+                        <li> 'Engenharia e Indústria' </li>
+                        <li> 'Artes e Design' </li>
+                        <li> 'Comunicação e Marketing' </li>
+                        <li> 'Gestão e Negócios' </li>
+                      <ul>
+                    `,
+                    icon: "error",
+                    confirmButtonColor: '#0e566a'
+                  });
+                }
               }
 
             }
@@ -302,8 +429,8 @@ botao_criar_vagas.onclick = async function () {
       input: "select",
       inputOptions: {
         Áreas: {
-          Tecnologia: "Tecnologia",
-          Saúde: "Saúde",
+          "Tecnologia": "Tecnologia",
+          "Saúde": "Saúde",
           "Ciências Humanas": "Ciências Humanas",
           "Ciências Exatas": "Ciências Exatas",
           "Ciências Biológicas": "Ciências Biológicas",
@@ -367,7 +494,7 @@ botao_criar_vagas.onclick = async function () {
 
             // POST
             const response = await fetch(
-              "http://localhost:3008/api/vagas/criandoVaga",
+              `http://localhost:3008/api/vagas/criandoVaga/${id_user}`,
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -438,26 +565,6 @@ botao_deletar_vaga.onclick = async function () {
     console.error();
   }
 };
-
-// Vagas - PUT
-async function putVagas(nome, nome_antigo) {
-  let data = { nome, nome_antigo };
-
-  const response = await fetch(`http://localhost:3008/api/vagas/putVagas`, {
-    method: "PUT",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
-  });
-
-  let content = await response.json();
-
-  if (content.success) {
-    alert("Deu bom o PUT VAGAS!!");
-  } else {
-    alert("Deu ruim o PUT VAGAS!!");
-    console.error();
-  }
-}
 
 // Vagas - Filtro
 
@@ -719,7 +826,6 @@ botao_editar.onclick = async function () {
     let content = await response.json();
 
     if (content.success) {
-      putVagas(nome_user, nome_user_anterior);
       Swal.fire({
         title: "Seus dados foram atualizados com sucesso!",
         icon: "success",

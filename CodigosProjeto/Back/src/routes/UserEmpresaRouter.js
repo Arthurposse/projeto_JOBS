@@ -8,7 +8,6 @@ const {
   uptadeUserEmpresa,
   criandoVaga,
   getVagas,
-  putVagas,
   putDadosVagas,
   deleteVagas,
   buscaCurriculos,
@@ -35,7 +34,7 @@ const {
  *                  type: string
  *                  example: 
  */
-router.get("/vagas/getVagas", getVagas);
+router.get("/vagas/getVagas/:id", getVagas);
 
 
 /**
@@ -114,7 +113,7 @@ router.post("/cadastro/empresa", cadastroEmpresa);
  *                  type: string
  *                  example: 
  */
-router.post("/vagas/criandoVaga", criandoVaga);
+router.post("/vagas/criandoVaga/:id", criandoVaga);
 
 /**
  * @swagger
@@ -155,25 +154,6 @@ router.post("/curriculo/buscando", buscaCurriculos);
  *                  example: 
  */
 router.put("/uptade/userEmpresa/:id", uptadeUserEmpresa);
-
-/**
- * @swagger
- * /vagas/putVagas:
- *  put:
- *    summary: Altera o nome do criador (usuário empresa) que esta registrado na meta
- *    responses:
- *      200:
- *        description: Sucesso!!
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                message:
- *                  type: string
- *                  example: 
- */
-router.put("/vagas/putVagas", putVagas);
 
 /**
  * @swagger
