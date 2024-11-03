@@ -143,7 +143,7 @@ async function uptadeUserEmpresa(request, response) {
 async function criandoVaga(request, response) {
   const params = Array(
     request.params.id,
-    request.body.titulo_vaga,
+    request.body.titulo,
     request.body.area,
     request.body.cidade,
     request.body.faixaEtaria,
@@ -229,9 +229,12 @@ async function putDadosVagas(request, response) {
 // Deletando vaga (DELETE)
 
 async function deleteVagas(request, response) {
-  const params = Array(request.body.vagas_deletar);
+  const params = Array(
+    request.body.vagas_deletar,
+    request.params.id
+  );
 
-  const query = "DELETE FROM vagas WHERE `titulo_vaga` = ?";
+  const query = "DELETE FROM vagas v INNER JOIN user_empresa u ON v.id_criador = u.id WHERE v.titulo = ? AND u.id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {

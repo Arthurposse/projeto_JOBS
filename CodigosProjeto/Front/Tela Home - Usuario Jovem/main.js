@@ -126,7 +126,7 @@ let titulos_metas = [];
 
 async function getMetas(nome, ordem) {
   const response = await fetch(
-    `http://localhost:3008/api/metas/getMetas?User_name=${nome}`,
+    `http://localhost:3008/api/metas/getMetas/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -375,10 +375,10 @@ botao_criar_metas.onclick = async function () {
     }
   }
 
-  let data = { User_name, titulo, infos, data_alterar, prioridade };
+  let data = { titulo, infos, data_alterar, prioridade };
 
   // POST
-  const response = await fetch("http://localhost:3008/api/metas/criando", {
+  const response = await fetch(`http://localhost:3008/api/metas/criando/${id_user}`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify(data),
@@ -455,7 +455,7 @@ botao_deletar_metas.onclick = async function () {
     data = { metas_deletar };
   }
 
-  const response = await fetch("http://localhost:3008/api/metas/deletando", {
+  const response = await fetch(`http://localhost:3008/api/metas/deletando/${id_user}`, {
     method: "DELETE",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify(data),

@@ -35,7 +35,7 @@ CREATE INDEX idx_user_empresa_id ON user_empresa(id);
 CREATE TABLE vagas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_criador INT NOT NULL,
-    titulo_vaga VARCHAR(50) NOT NULL,
+    titulo VARCHAR(50) NOT NULL,
     area VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
     faixa_etaria ENUM('16-18', '19-21', '22-24', '25-27', '28-30') NOT NULL,
@@ -65,17 +65,17 @@ CREATE TABLE respostas(
 );
 
 -- Índice para que seja possível criar a tabela de metas com sua chave estrangeira
-CREATE INDEX idx_user_jovem_metas ON user_jovem(name);
+CREATE INDEX idx_user_jovem_metas ON user_jovem(id);
 
 CREATE TABLE metas(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    user_name VARCHAR(50) NOT NULL,
+    id_criador INT NOT NULL,
     titulo VARCHAR(20) NOT NULL,
     infos TEXT NOT NULL,
     data_conclusao DATE NOT NULL, 
     prioridade ENUM('red', 'yellow', 'green') NOT NULL,
 
-    FOREIGN KEY (user_name) REFERENCES user_jovem(name)
+    FOREIGN KEY (id_criador) REFERENCES user_jovem(id)
 );
 
 CREATE TABLE questoes_modulos(

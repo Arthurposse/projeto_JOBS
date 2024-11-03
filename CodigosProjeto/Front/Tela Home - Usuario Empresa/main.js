@@ -115,7 +115,7 @@ async function getVagas(nome, ordem) {
 
             // Cria o elemento h2
             const h2 = document.createElement("h2");
-            h2.textContent = content.data[i].titulo_vaga;
+            h2.textContent = content.data[i].titulo;
             section.appendChild(h2);
 
             // Cria o parágrafo para a área da vaga
@@ -141,7 +141,7 @@ async function getVagas(nome, ordem) {
               title: "Informações da Vaga",
               html: `
                 <div style="display: flex; flex-direction: column; gap: 2vh;">
-                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
+                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo}">
                   <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
                   <input type="text" id="faixa_etaria_vaga" class="inputs_alert_vaga" placeholder="Faixa Etária" value="${vagaSelecionada.faixa_etaria}">
                   <input type="text" id="cidade_vaga" class="inputs_alert_vaga" placeholder="Cidade" value="${vagaSelecionada.cidade}">
@@ -243,14 +243,14 @@ async function getVagas(nome, ordem) {
         }
       } else {
         for (let i = 0; i < content.data.length; i++) {
-          titulos_vagas.push(content.data[i].titulo_vaga);
+          titulos_vagas.push(content.data[i].titulo);
 
           const section = document.createElement("section");
           section.className = "bloco_vaga";
 
           // Cria o elemento h2
           const h2 = document.createElement("h2");
-          h2.textContent = content.data[i].titulo_vaga;
+          h2.textContent = content.data[i].titulo;
           section.appendChild(h2);
 
           // Cria o parágrafo para a área da vaga
@@ -276,7 +276,7 @@ async function getVagas(nome, ordem) {
               title: "Informações da Vaga",
               html: `
                 <div style="display: flex; flex-direction: column; gap: 2vh;">
-                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo_vaga}">
+                  <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo}">
                   <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
                   <input type="text" id="faixa_etaria_vaga" class="inputs_alert_vaga" placeholder="Faixa Etária" value="${vagaSelecionada.faixa_etaria}">
                   <input type="text" id="cidade_vaga" class="inputs_alert_vaga" placeholder="Cidade" value="${vagaSelecionada.cidade}">
@@ -545,7 +545,7 @@ botao_deletar_vaga.onclick = async function () {
   }
 
   const response = await fetch(
-    "http://localhost:3008/api/vagas/deletandoVaga",
+    `http://localhost:3008/api/vagas/deletandoVaga/${id_user}`,
     {
       method: "DELETE",
       headers: { "Content-type": "application/json;charset=UTF-8" },

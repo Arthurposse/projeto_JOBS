@@ -19,7 +19,7 @@ const {
 
 /**
  * @swagger
- * /vagas/getVagas:
+ * /vagas/getVagas/:id:
  *  get:
  *    summary: Busca as vagas cadastradas ao usuário empresa
  *    responses:
@@ -98,7 +98,7 @@ router.post("/cadastro/empresa", cadastroEmpresa);
 
 /**
  * @swagger
- * /vagas/criandoVaga:
+ * /vagas/criandoVaga/:id:
  *  post:
  *    summary: Realiza a criação da vaga
  *    responses:
@@ -212,7 +212,7 @@ router.put("/curriculo/quant_downloads/:id", quantDownloadsCurriculo);
  *                  type: string
  *                  example: 
  */
-router.delete("/vagas/deletandoVaga", deleteVagas);
+router.delete("/vagas/deletandoVaga/:id", deleteVagas);
 
 /**
  * @swagger

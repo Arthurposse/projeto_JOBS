@@ -188,10 +188,9 @@ async function uptadeUserJovem(request, response) {
 
 // Buscar metas Usuário Jovem (GET)
 async function getMetasJovem(request, response) {
-  const params = request.query.User_name;
+  const params = request.params.id;
 
-  const query =
-    "SELECT `user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade` FROM metas WHERE user_name = ?;";
+  const query = "SELECT metas.id, titulo, infos, data_conclusao, prioridade FROM metas INNER JOIN user_jovem ON metas.id_criador = user_jovem.id WHERE user_jovem.id = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -236,7 +235,7 @@ async function uptadeMetasJovem(request, response) {
 // Criando meta Usuário Jovem (POST)
 async function postMetasJovem(request, response) {
   const params = Array(
-    request.body.User_name,
+    request.params.id,
     request.body.titulo,
     request.body.infos,
     request.body.data_alterar,
@@ -244,7 +243,7 @@ async function postMetasJovem(request, response) {
   );
 
   const query =
-    "INSERT INTO metas(`user_name`, `titulo`, `infos`, `data_conclusao`, `prioridade`) VALUES(?, ?, ?, ?, ?)";
+    "INSERT INTO metas(`id_criador`, `titulo`, `infos`, `data_conclusao`, `prioridade`) VALUES(?, ?, ?, ?, ?)";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -266,9 +265,12 @@ async function postMetasJovem(request, response) {
 // Deletando meta Usuário Jovem (DELETE)
 
 async function deleteMetasJovem(request, response) {
-  const params = Array(request.body.metas_deletar);
+  const params = Array(
+    request.body.metas_deletar,
+    request.params.id
+  );
 
-  const query = "DELETE FROM metas WHERE `titulo` = ?";
+  const query = "DELETE FROM metas m INNER JOIN user_jovem u ON m.id_criador = u.id WHERE m.titulo = ? AND u.id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {

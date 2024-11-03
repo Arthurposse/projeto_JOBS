@@ -39,7 +39,7 @@ router.get("/get/userJovem/:id", getUserJovem);
 
 /**
  * @swagger
- * /metas/getMetas:
+ * /metas/getMetas/:id:
  *  get:
  *    summary: Busca as metas cadastradas ao usuário jovem
  *    responses:
@@ -54,7 +54,7 @@ router.get("/get/userJovem/:id", getUserJovem);
  *                  type: string
  *                  example: 
  */
-router.get("/metas/getMetas", getMetasJovem);
+router.get("/metas/getMetas/:id", getMetasJovem);
 
 /**
  * @swagger
@@ -132,7 +132,7 @@ router.post("/user/enviando_duvida", duvidaJovem);
  *                  type: string
  *                  example: 
  */
-router.post("/metas/criando", postMetasJovem);
+router.post("/metas/criando/:id", postMetasJovem);
 
 // PUT
 
@@ -231,7 +231,7 @@ router.put("/curriculo/apagando/:id", apagarCurriculo);
  *                  type: string
  *                  example: 
  */
-router.delete("/metas/deletando", deleteMetasJovem);
+router.delete("/metas/deletando/:id", deleteMetasJovem);
 
 /**
  * @swagger
