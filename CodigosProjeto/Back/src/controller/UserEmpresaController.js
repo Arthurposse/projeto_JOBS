@@ -175,7 +175,7 @@ async function criandoVaga(request, response) {
 async function getVagas(request, response) {
   const params = request.params.id;
 
-  const query = "SELECT * FROM vagas WHERE id = ?;";
+  const query = "SELECT vagas.id, titulo_vaga, area, cidade, faixa_etaria, descricao FROM vagas INNER JOIN user_empresa ON vagas.id_criador = user_empresa.id WHERE user_empresa.id = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
