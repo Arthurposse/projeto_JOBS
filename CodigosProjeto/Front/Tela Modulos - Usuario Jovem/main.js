@@ -1,19 +1,47 @@
+// Verificando se o usuário esta logado
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fundoEscuro = document.querySelector(".fundo_escuro");
+  const footer = document.querySelector("footer");
+
+  if (!localStorage.getItem("ID_user")) {
+    // Adiciona a classe 'active' para exibir o fundo
+    fundoEscuro.classList.add("active");
+
+    // Usa requestAnimationFrame para garantir que o fundo seja renderizado antes do SweetAlert
+    requestAnimationFrame(() => {
+      Swal.fire({
+        title: "É necessário realizar o LogIn!!",
+        text: "Se ainda não possui, realize o cadastro!!",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 2400,
+        willClose: () => {
+          // Remove o fundo após o SweetAlert fechar
+          fundoEscuro.classList.remove("active");
+          window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+        },
+      });
+    });
+  }
+});
+
 const tipo_modulo_escolhido = localStorage.getItem("Modulo");
 let buscar = null;
 let res_BD;
 
 if (tipo_modulo_escolhido == "Enviar email") {
   buscar = "email";
-  localStorage.setItem('Modulo', buscar);
+  localStorage.setItem("Modulo", buscar);
 } else if (tipo_modulo_escolhido == "Realizando entrevista") {
   buscar = "entrevista";
-  localStorage.setItem('Modulo', buscar);
+  localStorage.setItem("Modulo", buscar);
 } else if (tipo_modulo_escolhido == "Trabalho em equipe") {
   buscar = "trabalho_equipe";
-  localStorage.setItem('Modulo', buscar);
+  localStorage.setItem("Modulo", buscar);
 } else if (tipo_modulo_escolhido == "Resolução de problemas") {
   buscar = "res_problema";
-  localStorage.setItem('Modulo', buscar);
+  localStorage.setItem("Modulo", buscar);
 }
 
 let respostas_marcadas = [];
@@ -53,7 +81,7 @@ async function getModulos(buscar_modulo) {
     `http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
     {
       method: "GET",
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { "Content-type": "application/json;charset=UTF-8" },
     }
   );
 
@@ -73,10 +101,10 @@ async function getModulos(buscar_modulo) {
     ordem_questoes.push(num_aleatorio);
     numerosUsados.push(num_aleatorio); // Adiciona o número à lista de números usados
   }
-  
+
   // Verificação da estrutura de sucesso
   if (content.success) {
-    localStorage.setItem('Ordem_questoes', JSON.stringify(ordem_questoes));
+    localStorage.setItem("Ordem_questoes", JSON.stringify(ordem_questoes));
     exibirPergunta(content);
   } else {
     alert("Deu ruim os MODULOS");
@@ -112,7 +140,7 @@ botao_concluir.onclick = function () {
           text: "Bora ver quantas você acertou?",
           imageUrl: "../images/Img_final.svg",
           imageHeight: 300,
-          confirmButtonColor: "#0e566a"
+          confirmButtonColor: "#0e566a",
         });
 
         // Limpando lista com a resposta correta
@@ -131,7 +159,7 @@ botao_concluir.onclick = function () {
             text: "Bora pra próxima!!",
             imageUrl: "../images/Img_final.svg",
             imageHeight: 300,
-            confirmButtonColor: "#0e566a"
+            confirmButtonColor: "#0e566a",
           });
 
           cont_pontos += 1;
@@ -151,7 +179,7 @@ botao_concluir.onclick = function () {
           text: "Mais sorte na próxima vez!!",
           imageUrl: "../images/Img_boneco_errou.svg",
           imageHeight: 300,
-          confirmButtonColor: "#0e566a"
+          confirmButtonColor: "#0e566a",
         });
 
         // Limpando lista com a resposta correta
@@ -176,8 +204,9 @@ botao_concluir.onclick = function () {
     }
   } else {
     localStorage.setItem("Pontos", cont_pontos);
-    localStorage.setItem("Res_user", JSON.stringify(respostas_marcadas))
+    localStorage.setItem("Res_user", JSON.stringify(respostas_marcadas));
 
-    window.location.href = "../Tela Explicacao Modulos - Usuario Jovem/index.html";
+    window.location.href =
+      "../Tela Explicacao Modulos - Usuario Jovem/index.html";
   }
 };

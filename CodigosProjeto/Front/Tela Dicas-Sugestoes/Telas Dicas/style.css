@@ -19,13 +19,24 @@
 /* Fundo escuro */
 
 .fundo_escuro {
-    position: absolute; /* Para sobrepor todo o conteúdo */
-    background-color: rgba(0, 0, 0, 0.96); /* Cor preta com 70% de opacidade */
+    display: none;
+    position: fixed;
+    /* Alterado para fixed */
+    background-color: rgba(0, 0, 0, 0.96);
+    /* Preto com alta opacidade */
     top: 0;
     left: 0;
     height: 100vh;
     width: 100%;
     z-index: 1;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+/* Classe para exibir o fundo */
+.fundo_escuro.active {
+    display: block;
+    opacity: 1;
 }
 
 /* Header */
@@ -122,7 +133,9 @@ main .container_dica {
     height: auto;
 }
 
-main .container_dica h1, .container_dica h2, .container_dica h3 {
+main .container_dica h1,
+.container_dica h2,
+.container_dica h3 {
     align-self: center;
     text-align: center;
     padding-top: 2%;
@@ -147,7 +160,8 @@ main .container_dica ul {
     font-size: 1.5rem;
 }
 
-main .container_dica ul li, .container_dica p {
+main .container_dica ul li,
+.container_dica p {
     font-size: 1.3rem;
     margin-top: 2%;
 }

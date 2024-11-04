@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOBS - Dúvida Jovem</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> JOBS - Dúvida Jovem </title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <body>
+    <div class="fundo_escuro"></div>
 
-</head>
+    <main>
+      <button class="botoes" id="botao_voltar">
+        <i class="bi bi-arrow-left-circle"></i>
+      </button>
 
-<body>
-  <main>
-    <button class="botoes" id="botao_voltar"> <i class="bi bi-arrow-left-circle"></i> </button>
+      <h3 id="nome_usuario_jovem"></h3>
+      <h2 id="duvida_jovem"></h2>
 
-    <h3 id="nome_usuario_jovem"> </h3>
-    <h2 id="duvida_jovem"> </h2>
+      <section class="bloco_respostas">
+        <button class="botoes" id="criar_resposta">Responder</button>
+      </section>
+    </main>
 
-    <section class="bloco_respostas">
-      <button class="botoes" id="criar_resposta"> Responder </button>
-    </section>
-  </main>
+    <footer>
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+      </div>
+      <ul class="social_icon">
+        <li>
+          <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+        </li>
+        <li>
+          <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+        </li>
+        <li>
+          <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+        </li>
+        <li>
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p>&copy; 2024 JOBS</p>
+    </footer>
 
-  <footer>
-    <div class="waves">
-      <div class="wave" id="wave1"></div>
-      <div class="wave" id="wave2"></div>
-      <div class="wave" id="wave3"></div>
-      <div class="wave" id="wave4"></div>
-    </div>
-    <ul class="social_icon">
-      <li>
-        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-      </li>
-      <li>
-        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-      </li>
-      <li>
-        <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
-      </li>
-      <li>
-        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-      </li>
-    </ul>
-    <ul class="menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Team</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <p>
-      &copy; 2024 JOBS
-    </p>
-  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script src="./main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-</body>
+    <script src="./main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+  </body>
 </html>

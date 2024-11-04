@@ -1,231 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOBS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> JOBS </title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <body>
+    <div class="fundo_escuro"></div>
 
-</head>
+    <header>
+      <section class="header_topo">
+        <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="" />
 
-<body>
-  <div class="fundo_escuro"></div>
+        <nav>
+          <a href="#"> Início </a>
+          <a href="../Tela Buscar Emprego/index.html"> Procurar emprego </a>
+          <a href="../Tela Dicas-Sugestoes/index.html"> Dicas/Sugestões </a>
+          <a href="../Tela Chat/index.html"> Chat </a>
+        </nav>
 
-  <header>
-    <section class="header_topo">
-      <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="">
+        <section class="bloco_usuario">
+          <img src="" alt="" id="ft_perfil_user_2" />
 
-      <nav>
-        <a href="#"> Início </a>
-        <a href="../Tela Buscar Emprego/index.html"> Procurar emprego </a>
-        <a href="../Tela Dicas-Sugestoes/index.html"> Dicas/Sugestões </a>
-        <a href="../Tela Chat/index.html"> Chat </a>
-      </nav>
-
-      <section class="bloco_usuario">
-        <img src="" alt="" id="ft_perfil_user_2">
-
-        <h3 id="user_logado"> </h3>
-      </section>
-    </section>
-
-    <section class="header_meio">
-      <h1> Sua oportunidade pode estar aqui </h1>
-      <div class="forma"></div>
-    </section>
-  </header>
-
-  <main>
-    <section class="planejamento_carreira">
-      <h2> Planejamento de carreira </h2>
-      <hr>
-
-      <h3> Plano a seguir </h3>
-      <section class="planos_seguir">
-        <div class="bloco_plano_area">
-          <h2> Desenvolvendo seu planejamento de carreira: </h2>
-          <h4> Insira abaixo a área que deseja seguir profissionalmente no futuro: </h4>
-          <input type="text" placeholder="Insira sua vaga dos sonhos" id="area_usuario">
-          <button id="botao_gb"> Planejar </button>
-        </div>
-
-        <div class="loader"></div>
-
-        <div class="plano_sugerido">
-        </div>
-
-        <button id="botao_download_plano"> <i class="bi bi-download"></i> </button>
-      </section>
-
-      <h3> Metas </h3>
-      <section class="metas">
-        <div class="bloco_botoes_metas">
-          <button class="botao_meta" id="criar_meta"> <i class="bi bi-plus-circle"></i> </button>
-    
-          <button class="botao_meta" id="deletar_meta"> <i class="bi bi-trash3"></i> </button>
-    
-          <button class="botao_meta" id="filtrar_meta"> <i class="bi bi-filter-square"></i> </button>
-        </div>
-  
-        <section class="pc_metas">
-  
+          <h3 id="user_logado"></h3>
         </section>
       </section>
-    </section>
 
-    <section class="modulos">
-      <h2> Módulos </h2>
-      <hr>
+      <section class="header_meio">
+        <h1>Sua oportunidade pode estar aqui</h1>
+        <div class="forma"></div>
+      </section>
+    </header>
 
-      <section class="bloco_modulos">
-        <section class="modulo_card">
-          <i class="bi bi-envelope-at-fill"></i>
-          <h3>Enviar email</h3>
+    <main>
+      <section class="planejamento_carreira">
+        <h2>Planejamento de carreira</h2>
+        <hr />
+
+        <h3>Plano a seguir</h3>
+        <section class="planos_seguir">
+          <div class="bloco_plano_area">
+            <h2>Desenvolvendo seu planejamento de carreira:</h2>
+            <h4>
+              Insira abaixo a área que deseja seguir profissionalmente no
+              futuro:
+            </h4>
+            <input
+              type="text"
+              placeholder="Insira sua vaga dos sonhos"
+              id="area_usuario"
+            />
+            <button id="botao_gb">Planejar</button>
+          </div>
+
+          <div class="loader"></div>
+
+          <div class="plano_sugerido"></div>
+
+          <button id="botao_download_plano">
+            <i class="bi bi-download"></i>
+          </button>
         </section>
 
-        <section class="modulo_card">
-          <i class="bi bi-person-workspace"></i>
-          <h3>Realizando entrevista</h3>
-        </section>
+        <h3>Metas</h3>
+        <section class="metas">
+          <div class="bloco_botoes_metas">
+            <button class="botao_meta" id="criar_meta">
+              <i class="bi bi-plus-circle"></i>
+            </button>
 
-        <section class="modulo_card">
-          <i class="bi bi-people-fill"></i>
-          <h3>Trabalho em equipe</h3>
-        </section>
+            <button class="botao_meta" id="deletar_meta">
+              <i class="bi bi-trash3"></i>
+            </button>
 
-        <section class="modulo_card">
-          <i class="bi bi-lightbulb-fill"></i>
-          <h3>Resolução de problemas</h3>
+            <button class="botao_meta" id="filtrar_meta">
+              <i class="bi bi-filter-square"></i>
+            </button>
+          </div>
+
+          <section class="pc_metas"></section>
         </section>
       </section>
-    </section>
 
-    <section class="bloco_curriculo">
-      <h2> Currículo </h2>
-      <hr>
+      <section class="modulos">
+        <h2>Módulos</h2>
+        <hr />
 
-      <section class="enviando_curriculo">
-        <h3> Compartilhe seu currículo para que você conheça sua nova oportunidade!! </h3>
-
-        <button id="selecionar_area"> Selecione a área </button>
-
-        <input type="file" placeholder="Envie o currículo" accept=".pdf" id="curriculo_jovem" name="curriculo_jovem">
-
-        <button id="enviar_curriculo"> Enviar </button>
-
-        <div class="quant_deletar_curriculo">
-          <h4> Quantidade de downloads: <p id="quant_donwloads"> 2 </p> </h4>
-          <i class="bi bi-trash3" id="deletar_curriculo"></i>
-        </div>
-      </section>
-
-    </section>
-
-    <section class="perfil">
-      <h2> Seu perfil </h2>
-
-      <section class="secao_perfil">
-        <section class="parte_esquerda">
-          <section class="ft_perfil">
-            <img src="" alt="" id="ft_perfil_user">
-            <i class="bi bi-pencil-square" id="lapis_ft_perfil"></i>
-            <h3 id="nome_user"> </h3>
-            <i class="bi bi-pencil-square" id="lapis_nome"></i>
+        <section class="bloco_modulos">
+          <section class="modulo_card">
+            <i class="bi bi-envelope-at-fill"></i>
+            <h3>Enviar email</h3>
           </section>
 
-          <!-- <section class="quant_pessoas">
+          <section class="modulo_card">
+            <i class="bi bi-person-workspace"></i>
+            <h3>Realizando entrevista</h3>
+          </section>
+
+          <section class="modulo_card">
+            <i class="bi bi-people-fill"></i>
+            <h3>Trabalho em equipe</h3>
+          </section>
+
+          <section class="modulo_card">
+            <i class="bi bi-lightbulb-fill"></i>
+            <h3>Resolução de problemas</h3>
+          </section>
+        </section>
+      </section>
+
+      <section class="bloco_curriculo">
+        <h2>Currículo</h2>
+        <hr />
+
+        <section class="enviando_curriculo">
+          <h3>
+            Compartilhe seu currículo para que você conheça sua nova
+            oportunidade!!
+          </h3>
+
+          <button id="selecionar_area">Selecione a área</button>
+
+          <input
+            type="file"
+            placeholder="Envie o currículo"
+            accept=".pdf"
+            id="curriculo_jovem"
+            name="curriculo_jovem"
+          />
+
+          <button id="enviar_curriculo">Enviar</button>
+
+          <div class="quant_deletar_curriculo">
+            <h4>
+              Quantidade de downloads:
+              <p id="quant_donwloads">2</p>
+            </h4>
+            <i class="bi bi-trash3" id="deletar_curriculo"></i>
+          </div>
+        </section>
+      </section>
+
+      <section class="perfil">
+        <h2>Seu perfil</h2>
+
+        <section class="secao_perfil">
+          <section class="parte_esquerda">
+            <section class="ft_perfil">
+              <img src="" alt="" id="ft_perfil_user" />
+              <i class="bi bi-pencil-square" id="lapis_ft_perfil"></i>
+              <h3 id="nome_user"></h3>
+              <i class="bi bi-pencil-square" id="lapis_nome"></i>
+            </section>
+
+            <!-- <section class="quant_pessoas">
             <i class="bi bi-eye"></i>
             <h3> X pessoas </h3>
           </section> -->
+          </section>
+
+          <section class="parte_direita">
+            <section class="bloco_pt_direita">
+              <h3>Email:</h3>
+              <p id="email_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_email"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Telefone:</h3>
+              <p id="telefone_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_telefone"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Cidade:</h3>
+              <p id="cidade_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_cidade"></i>
+            </section>
+
+            <section class="bloco_pt_direita">
+              <h3>Idade:</h3>
+              <p id="idade_user"></p>
+              <i class="bi bi-pencil-square" id="lapis_idade"></i>
+            </section>
+          </section>
         </section>
 
-        <section class="parte_direita">
-          <section class="bloco_pt_direita">
-            <h3> Email: </h3>
-            <p id="email_user"> </p>
-            <i class="bi bi-pencil-square" id="lapis_email"></i>
-          </section>
+        <button id="editar_perfil">Editar</button>
 
-          <section class="bloco_pt_direita">
-            <h3> Telefone: </h3>
-            <p id="telefone_user"> </p>
-            <i class="bi bi-pencil-square" id="lapis_telefone"></i>
-          </section>
-
-          <section class="bloco_pt_direita">
-            <h3> Cidade: </h3>
-            <p id="cidade_user"> </p>
-            <i class="bi bi-pencil-square" id="lapis_cidade"></i>
-          </section>
-
-          <section class="bloco_pt_direita">
-            <h3> Idade: </h3>
-            <p id="idade_user"> </p>
-            <i class="bi bi-pencil-square" id="lapis_idade"></i>
-          </section>
-        </section>
+        <div>
+          <button id="botao_desconectar">
+            <i class="bi bi-box-arrow-left"></i> Desconectar
+          </button>
+          <button id="botao_excluir_conta">
+            <i class="bi bi-trash3"></i> Excluir conta
+          </button>
+        </div>
       </section>
-      
-      <button id="editar_perfil"> Editar </button>
+    </main>
 
-      <div>
-        <button id="botao_desconectar"> <i class="bi bi-box-arrow-left"></i> Desconectar </button>
-        <button id="botao_excluir_conta"> <i class="bi bi-trash3"></i> Excluir conta </button>
+    <footer>
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
       </div>
-    </section>
-  </main>
+      <ul class="social_icon">
+        <li>
+          <a href="#">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p>&copy; 2024 JOBS</p>
+    </footer>
 
-  <footer>
-    <div class="waves">
-      <div class="wave" id="wave1"></div>
-      <div class="wave" id="wave2"></div>
-      <div class="wave" id="wave3"></div>
-      <div class="wave" id="wave4"></div>
-    </div>
-    <ul class="social_icon">
-      <li>
-        <a href="#">
-          <ion-icon name="logo-facebook"></ion-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="logo-linkedin"></ion-icon>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <ion-icon name="logo-instagram"></ion-icon>
-        </a>
-      </li>
-    </ul>
-    <ul class="menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Team</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <p>
-      &copy; 2024 JOBS
-    </p>
-  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./main.js"></script>
 
-  <script src="./main.js"></script>
-
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </body>
 </html>

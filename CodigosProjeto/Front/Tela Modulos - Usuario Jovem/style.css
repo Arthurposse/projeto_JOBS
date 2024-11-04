@@ -1,23 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Livvic", sans-serif;
-  font-weight: 300;
-  font-style: italic;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Livvic", sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 :root {
-  --cor-primaria: #19a7ce;
-  --cor-secundaria: #0e566a;
-  --cor-terciaria: #9DD4D1;
-  --cor-fonte: white;
+    --cor-primaria: #19a7ce;
+    --cor-secundaria: #0e566a;
+    --cor-terciaria: #9DD4D1;
+    --cor-fonte: white;
 }
 
 body {
     background-color: var(--cor-primaria);
+}
+
+/* Fundo escuro */
+
+.fundo_escuro {
+    display: none;
+    position: fixed;
+    /* Alterado para fixed */
+    background-color: rgba(0, 0, 0, 0.96);
+    /* Preto com alta opacidade */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+/* Classe para exibir o fundo */
+.fundo_escuro.active {
+    display: block;
+    opacity: 1;
 }
 
 /* MAIN */

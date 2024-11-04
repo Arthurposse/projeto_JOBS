@@ -1,13 +1,13 @@
 // Verificando se o usuário esta logado
 
 document.addEventListener("DOMContentLoaded", () => {
-  const fundoEscuro = document.querySelector('.fundo_escuro');
-  const footer = document.querySelector('footer');
+  const fundoEscuro = document.querySelector(".fundo_escuro");
+  const footer = document.querySelector("footer");
 
   if (!localStorage.getItem("ID_user")) {
     // Adiciona a classe 'active' para exibir o fundo
-    fundoEscuro.classList.add('active');
-    footer.style.display = 'none';
+    fundoEscuro.classList.add("active");
+    footer.style.display = "none";
 
     // Usa requestAnimationFrame para garantir que o fundo seja renderizado antes do SweetAlert
     requestAnimationFrame(() => {
@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         timer: 2400,
         willClose: () => {
           // Remove o fundo após o SweetAlert fechar
-          fundoEscuro.classList.remove('active');
-          window.location.href = '../Tela Home - Sem Usuario Logado/index.html';
-        }
+          fundoEscuro.classList.remove("active");
+          window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+        },
       });
     });
   }
@@ -378,11 +378,14 @@ botao_criar_metas.onclick = async function () {
   let data = { titulo, infos, data_alterar, prioridade };
 
   // POST
-  const response = await fetch(`http://localhost:3008/api/metas/criando/${id_user}`, {
-    method: "POST",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `http://localhost:3008/api/metas/criando/${id_user}`,
+    {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(data),
+    }
+  );
 
   let content = await response.json();
   console.log(content);
@@ -455,11 +458,14 @@ botao_deletar_metas.onclick = async function () {
     data = { metas_deletar };
   }
 
-  const response = await fetch(`http://localhost:3008/api/metas/deletando/${id_user}`, {
-    method: "DELETE",
-    headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `http://localhost:3008/api/metas/deletando/${id_user}`,
+    {
+      method: "DELETE",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(data),
+    }
+  );
 
   let content = await response.json();
   console.log(content);
@@ -966,7 +972,7 @@ botao_editar.onclick = async function () {
 
 // Deletando perfil (DELETE)
 
-const botao_excluir_conta = document.getElementById('botao_excluir_conta');
+const botao_excluir_conta = document.getElementById("botao_excluir_conta");
 
 botao_excluir_conta.onclick = function () {
   Swal.fire({
@@ -976,17 +982,20 @@ botao_excluir_conta.onclick = function () {
     confirmButtonColor: "#0e566a",
     cancelButtonColor: "#d33",
     confirmButtonText: "Excluir",
-  }).then( async function (result) {
+  }).then(async function (result) {
     if (result.isConfirmed) {
-      const response = await fetch(`http://localhost:3008/api/usuario/empresa/deletando/${id_user}`, {
-        method: "DELETE",
-        headers: { "Content-type": "application/json;charset=UTF-8" }
-      });
-    
+      const response = await fetch(
+        `http://localhost:3008/api/usuario/empresa/deletando/${id_user}`,
+        {
+          method: "DELETE",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+        }
+      );
+
       let content = await response.json();
       console.log(content);
 
-      if(content.success) {
+      if (content.success) {
         Swal.fire({
           title: "Conta excluída com sucesso!!",
           icon: "success",
@@ -998,11 +1007,10 @@ botao_excluir_conta.onclick = function () {
           localStorage.removeItem("ID_user");
           localStorage.removeItem("Tipo_user");
           localStorage.removeItem("User_name");
-          
+
           window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
         }, 2000);
-      }
-      else {
+      } else {
         Swal.fire({
           title: "Erro ao deletar sua conta!!",
           text: "Tente novamente!!",
@@ -1013,7 +1021,7 @@ botao_excluir_conta.onclick = function () {
       }
     }
   });
-}
+};
 
 // Desconectando usuario
 

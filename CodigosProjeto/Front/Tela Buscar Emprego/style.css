@@ -16,6 +16,29 @@
   --cor-fonte: white;
 }
 
+/* Fundo escuro */
+
+.fundo_escuro {
+  display: none;
+  position: fixed;
+  /* Alterado para fixed */
+  background-color: rgba(0, 0, 0, 0.96);
+  /* Preto com alta opacidade */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+/* Classe para exibir o fundo */
+.fundo_escuro.active {
+  display: block;
+  opacity: 1;
+}
+
 /* Header */
 
 header {
