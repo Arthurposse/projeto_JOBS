@@ -1,3 +1,16 @@
+// Removendo localStorage que não será utilizado na página
+
+localStorage.removeItem('ID_user');
+localStorage.removeItem('Tipo_user');
+localStorage.removeItem('User_name');
+localStorage.removeItem('Modulo');
+localStorage.removeItem('Total_questoes');
+localStorage.removeItem('Ordem_questoes');
+localStorage.removeItem('Pontos');
+localStorage.removeItem('Res_user');
+localStorage.removeItem('User_name_antigo');
+localStorage.removeItem('tema_escolhido');
+
 // Alert - Fazer cadastro
 
 setTimeout(() => {

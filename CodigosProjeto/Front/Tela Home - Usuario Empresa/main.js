@@ -1,3 +1,13 @@
+// Removendo localStorage que não será utilizado na página
+
+localStorage.removeItem('Modulo');
+localStorage.removeItem('Total_questoes');
+localStorage.removeItem('Ordem_questoes');
+localStorage.removeItem('Pontos');
+localStorage.removeItem('Res_user');
+localStorage.removeItem('User_name_antigo');
+localStorage.removeItem('tema_escolhido');
+
 // Verificando se o usuário esta logado
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -980,7 +990,7 @@ botao_desconectar.onclick = function () {
       Swal.fire({
         title: "Erro!!",
         text: "Não foi possível desconectar!!",
-        icon: "success",
+        icon: "error",
         showConfirmButton: false,
         timer: 2000,
       });

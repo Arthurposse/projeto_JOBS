@@ -1,3 +1,12 @@
+// Removendo localStorage que não será utilizado na página
+
+localStorage.removeItem('Modulo');
+localStorage.removeItem('Total_questoes');
+localStorage.removeItem('Ordem_questoes');
+localStorage.removeItem('Pontos');
+localStorage.removeItem('Res_user');
+localStorage.removeItem('User_name_antigo');
+
 // Verificando se o usuário esta logado
 
 const fundoEscuro = document.querySelector(".fundo_escuro");

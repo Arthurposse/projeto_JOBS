@@ -1,3 +1,9 @@
+// Removendo localStorage que não será utilizado na página
+
+localStorage.removeItem('Modulo');
+localStorage.removeItem('User_name_antigo');
+localStorage.removeItem('tema_escolhido');
+
 // Verificando se o usuário esta logado
 
 document.addEventListener("DOMContentLoaded", () => {

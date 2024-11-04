@@ -65,7 +65,7 @@
 <br>
 
 - Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
-  - Acrescentar limitador de idade.
+  - Acrescentar limitador de idade (na parte da criação de vaga/meta e também ao editar a data de aniversário do usuário).
 
 <br>
 
