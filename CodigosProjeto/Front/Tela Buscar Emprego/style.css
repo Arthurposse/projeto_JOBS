@@ -21,9 +21,7 @@
 .fundo_escuro {
   display: none;
   position: fixed;
-  /* Alterado para fixed */
-  background-color: rgba(0, 0, 0, 0.96);
-  /* Preto com alta opacidade */
+  background-color: rgb(0, 0, 0);
   top: 0;
   left: 0;
   height: 100vh;

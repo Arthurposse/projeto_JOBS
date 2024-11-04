@@ -1,7 +1,8 @@
 // Verificando se o usuário esta logado
 
+const fundoEscuro = document.querySelector(".fundo_escuro");
+
 document.addEventListener("DOMContentLoaded", () => {
-  const fundoEscuro = document.querySelector(".fundo_escuro");
   const footer = document.querySelector("footer");
 
   if (!localStorage.getItem("ID_user")) {
@@ -93,11 +94,11 @@ if (tema_escolhido == "Currículo") {
 }
 
 const container_dica = document.querySelector(".container_dica");
-const fundo_escuro = document.querySelector(".fundo_escuro");
 
 async function gerarDica() {
   // Bloqueando a rolagem
   document.body.style.overflow = "hidden";
+  fundoEscuro.classList.add("active");
 
   Swal.fire({
     title: "Sua dica esta sendo escrita",
@@ -141,7 +142,7 @@ async function gerarDica() {
 
     setTimeout(() => {
       // Faz com que o fundo escuro desapareça
-      fundo_escuro.style.display = "none";
+      fundoEscuro.classList.remove("active");
 
       // Desbloqueando a rolagem
       document.body.style.overflow = "auto";
