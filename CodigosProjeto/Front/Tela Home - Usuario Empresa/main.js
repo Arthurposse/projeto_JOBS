@@ -1,13 +1,13 @@
 // Verificando se o usuário esta logado
 
 document.addEventListener("DOMContentLoaded", () => {
-  const fundoEscuro = document.querySelector('.fundo_escuro');
-  const footer = document.querySelector('footer');
+  const fundoEscuro = document.querySelector(".fundo_escuro");
+  const footer = document.querySelector("footer");
 
   if (!localStorage.getItem("ID_user")) {
     // Adiciona a classe 'active' para exibir o fundo
-    fundoEscuro.classList.add('active');
-    footer.style.display = 'none';
+    fundoEscuro.classList.add("active");
+    footer.style.display = "none";
 
     // Usa requestAnimationFrame para garantir que o fundo seja renderizado antes do SweetAlert
     requestAnimationFrame(() => {
@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
         timer: 2400,
         willClose: () => {
           // Remove o fundo após o SweetAlert fechar
-          fundoEscuro.classList.remove('active');
-          window.location.href = '../Tela Home - Sem Usuario Logado/index.html';
-        }
+          fundoEscuro.classList.remove("active");
+          window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+        },
       });
     });
   }
@@ -133,13 +133,13 @@ async function getVagas(nome, ordem) {
             // Adiciona a section ao corpo do documento ou em um elemento específico
             vagas_registradas.appendChild(section);
 
-          // Adicionando o evento de clique ao card da vaga
-          section.addEventListener("click", async function () {
-            const vagaSelecionada = content.data[i];
+            // Adicionando o evento de clique ao card da vaga
+            section.addEventListener("click", async function () {
+              const vagaSelecionada = content.data[i];
 
-            const { value: vagas_infos } = await Swal.fire({
-              title: "Informações da Vaga",
-              html: `
+              const { value: vagas_infos } = await Swal.fire({
+                title: "Informações da Vaga",
+                html: `
                 <div style="display: flex; flex-direction: column; gap: 2vh;">
                   <input type="text" id="titulo_vaga" class="inputs_alert_vaga" placeholder="Nome" value="${vagaSelecionada.titulo}">
                   <input type="text" id="area_vaga" class="inputs_alert_vaga" placeholder="Área" value="${vagaSelecionada.area}">
@@ -148,80 +148,102 @@ async function getVagas(nome, ordem) {
                   <textarea style="width: 100%; padding: 2%; border-radius: .5vw; resize: none;" id="descricao_vaga" class="inputs_alert_vaga" placeholder="Descrição" rows="4"> ${vagaSelecionada.descricao} </textarea>
                 </div>
               `,
-              focusConfirm: false,
-              confirmButtonColor: "#0e566a",
-              preConfirm: () => {
-                // Capturando os valores dos inputs
-                const titulo_vaga = document.getElementById("titulo_vaga").value;
-                const area_vaga = document.getElementById("area_vaga").value;
-                const faixa_etaria_vaga =
-                  document.getElementById("faixa_etaria_vaga").value;
-                const cidade_vaga =
-                  document.getElementById("cidade_vaga").value;
-                const descricao_vaga =
-                  document.getElementById("descricao_vaga").value;
+                focusConfirm: false,
+                confirmButtonColor: "#0e566a",
+                preConfirm: () => {
+                  // Capturando os valores dos inputs
+                  const titulo_vaga =
+                    document.getElementById("titulo_vaga").value;
+                  const area_vaga = document.getElementById("area_vaga").value;
+                  const faixa_etaria_vaga =
+                    document.getElementById("faixa_etaria_vaga").value;
+                  const cidade_vaga =
+                    document.getElementById("cidade_vaga").value;
+                  const descricao_vaga =
+                    document.getElementById("descricao_vaga").value;
 
-                return {
-                  titulo_vaga,
-                  area_vaga,
-                  faixa_etaria_vaga,
-                  cidade_vaga,
-                  descricao_vaga,
+                  return {
+                    titulo_vaga,
+                    area_vaga,
+                    faixa_etaria_vaga,
+                    cidade_vaga,
+                    descricao_vaga,
+                  };
+                },
+              });
+
+              if (vagas_infos) {
+                const id_vaga = vagaSelecionada.id;
+
+                const vaga_titulo = vagas_infos.titulo_vaga.trim();
+                const vaga_area = vagas_infos.area_vaga.trim();
+                const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga.trim();
+                const vaga_cidade = vagas_infos.cidade_vaga.trim();
+                const vaga_descricao = vagas_infos.descricao_vaga.trim();
+
+                let data = {
+                  vaga_titulo,
+                  vaga_area,
+                  vaga_faixa_etaria,
+                  vaga_cidade,
+                  vaga_descricao,
+                  id_vaga,
                 };
-              },
-            });
 
-            if (vagas_infos) {
+                if (
+                  (vaga_faixa_etaria === "16-18" ||
+                    vaga_faixa_etaria === "19-21" ||
+                    vaga_faixa_etaria === "22-24" ||
+                    vaga_faixa_etaria === "25-27" ||
+                    vaga_faixa_etaria === "28-30") &&
+                  (vaga_area === "Tecnologia" ||
+                    vaga_area === "Saúde" ||
+                    vaga_area === "Ciências Humanas" ||
+                    vaga_area === "Ciências Exatas" ||
+                    vaga_area === "Ciências Biológicas" ||
+                    vaga_area === "Direito e Ciências Jurídicas" ||
+                    vaga_area === "Artes e Design" ||
+                    vaga_area === "Comunicação e Marketing" ||
+                    vaga_area === "Gestão e Negócios")
+                ) {
+                  const response = await fetch(
+                    "http://localhost:3008/api/vagas/putDadosVaga",
+                    {
+                      method: "PUT",
+                      headers: {
+                        "Content-type": "application/json;charset=UTF-8",
+                      },
+                      body: JSON.stringify(data),
+                    }
+                  );
 
-              const id_vaga = vagaSelecionada.id;
+                  let content = await response.json();
 
-              const vaga_titulo = vagas_infos.titulo_vaga.trim();
-              const vaga_area = vagas_infos.area_vaga.trim();
-              const vaga_faixa_etaria = vagas_infos.faixa_etaria_vaga.trim();
-              const vaga_cidade = vagas_infos.cidade_vaga.trim();
-              const vaga_descricao = vagas_infos.descricao_vaga.trim();
+                  if (content.success) {
+                    Swal.fire({
+                      title: "Dados da vaga atualizados!!",
+                      icon: "success",
+                      showConfirmButton: false,
+                      timer: 2000,
+                    });
 
-              let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
-
-              if((vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') && (vaga_area === 'Tecnologia' || vaga_area === 'Saúde' || vaga_area === 'Ciências Humanas' || vaga_area === 'Ciências Exatas' || vaga_area === 'Ciências Biológicas' || vaga_area === 'Direito e Ciências Jurídicas' || vaga_area === 'Artes e Design' || vaga_area === 'Comunicação e Marketing' || vaga_area === 'Gestão e Negócios')) {
-                const response = await fetch(
-                  "http://localhost:3008/api/vagas/putDadosVaga",
-                  {
-                    method: "PUT",
-                    headers: { "Content-type": "application/json;charset=UTF-8" },
-                    body: JSON.stringify(data),
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 2000);
+                  } else {
+                    Swal.fire({
+                      title: "Erro ao alterar dados da vaga!!",
+                      text: "Tente novamente!!",
+                      icon: "error",
+                      showConfirmButton: false,
+                      timer: 2000,
+                    });
+                    console.error();
                   }
-                );
-  
-                let content = await response.json();
-  
-                if (content.success) {
-                  Swal.fire({
-                    title: "Dados da vaga atualizados!!",
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 2000,
-                  });
-
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 2000);
-  
                 } else {
                   Swal.fire({
-                    title: "Erro ao alterar dados da vaga!!",
-                    text: "Tente novamente!!",
-                    icon: "error",
-                    showConfirmButton: false,
-                    timer: 2000,
-                  });
-                  console.error();
-                }
-              }
-              else {
-                Swal.fire({
-                  title: "A idade inserida está fora do padrão!!",
-                  html: `
+                    title: "A idade inserida está fora do padrão!!",
+                    html: `
                     <p> Insira uma das opções abaixo: </p>
 
                     <ul style="margin-top: 2%; list-style: none;">
@@ -232,13 +254,12 @@ async function getVagas(nome, ordem) {
                       <li> '28-30' </li>
                     <ul>
                   `,
-                  icon: "error",
-                  confirmButtonColor: '#0e566a'
-                });
+                    icon: "error",
+                    confirmButtonColor: "#0e566a",
+                  });
+                }
               }
-
-            }
-          });
+            });
           }
         }
       } else {
@@ -287,7 +308,8 @@ async function getVagas(nome, ordem) {
               confirmButtonColor: "#0e566a",
               preConfirm: () => {
                 // Capturando os valores dos inputs
-                const titulo_vaga = document.getElementById("titulo_vaga").value;
+                const titulo_vaga =
+                  document.getElementById("titulo_vaga").value;
                 const area_vaga = document.getElementById("area_vaga").value;
                 const faixa_etaria_vaga =
                   document.getElementById("faixa_etaria_vaga").value;
@@ -307,7 +329,6 @@ async function getVagas(nome, ordem) {
             });
 
             if (vagas_infos) {
-
               const id_vaga = vagaSelecionada.id;
 
               const vaga_titulo = vagas_infos.titulo_vaga.trim();
@@ -316,20 +337,44 @@ async function getVagas(nome, ordem) {
               const vaga_cidade = vagas_infos.cidade_vaga.trim();
               const vaga_descricao = vagas_infos.descricao_vaga.trim();
 
-              let data = { vaga_titulo, vaga_area, vaga_faixa_etaria, vaga_cidade, vaga_descricao, id_vaga }
+              let data = {
+                vaga_titulo,
+                vaga_area,
+                vaga_faixa_etaria,
+                vaga_cidade,
+                vaga_descricao,
+                id_vaga,
+              };
 
-              if((vaga_faixa_etaria === '16-18' || vaga_faixa_etaria === '19-21' || vaga_faixa_etaria === '22-24' || vaga_faixa_etaria === '25-27' || vaga_faixa_etaria === '28-30') && (vaga_area === 'Tecnologia' || vaga_area === 'Saúde' || vaga_area === 'Ciências Humanas' || vaga_area === 'Ciências Exatas' || vaga_area === 'Ciências Biológicas' || vaga_area === 'Direito e Ciências Jurídicas' || vaga_area === 'Artes e Design' || vaga_area === 'Comunicação e Marketing' || vaga_area === 'Gestão e Negócios')) {
+              if (
+                (vaga_faixa_etaria === "16-18" ||
+                  vaga_faixa_etaria === "19-21" ||
+                  vaga_faixa_etaria === "22-24" ||
+                  vaga_faixa_etaria === "25-27" ||
+                  vaga_faixa_etaria === "28-30") &&
+                (vaga_area === "Tecnologia" ||
+                  vaga_area === "Saúde" ||
+                  vaga_area === "Ciências Humanas" ||
+                  vaga_area === "Ciências Exatas" ||
+                  vaga_area === "Ciências Biológicas" ||
+                  vaga_area === "Direito e Ciências Jurídicas" ||
+                  vaga_area === "Artes e Design" ||
+                  vaga_area === "Comunicação e Marketing" ||
+                  vaga_area === "Gestão e Negócios")
+              ) {
                 const response = await fetch(
                   "http://localhost:3008/api/vagas/putDadosVaga",
                   {
                     method: "PUT",
-                    headers: { "Content-type": "application/json;charset=UTF-8" },
+                    headers: {
+                      "Content-type": "application/json;charset=UTF-8",
+                    },
                     body: JSON.stringify(data),
                   }
                 );
-  
+
                 let content = await response.json();
-  
+
                 if (content.success) {
                   Swal.fire({
                     title: "Dados da vaga atualizados!!",
@@ -341,7 +386,6 @@ async function getVagas(nome, ordem) {
                   setTimeout(() => {
                     window.location.reload();
                   }, 2000);
-  
                 } else {
                   Swal.fire({
                     title: "Erro ao alterar dados da vaga!!",
@@ -352,9 +396,14 @@ async function getVagas(nome, ordem) {
                   });
                   console.error();
                 }
-              }
-              else {
-                if(vaga_faixa_etaria !== '16-18' && vaga_faixa_etaria !== '19-21' && vaga_faixa_etaria !== '22-24' && vaga_faixa_etaria !== '25-27' && vaga_faixa_etaria !== '28-30') {
+              } else {
+                if (
+                  vaga_faixa_etaria !== "16-18" &&
+                  vaga_faixa_etaria !== "19-21" &&
+                  vaga_faixa_etaria !== "22-24" &&
+                  vaga_faixa_etaria !== "25-27" &&
+                  vaga_faixa_etaria !== "28-30"
+                ) {
                   Swal.fire({
                     title: "A idade inserida está fora do padrão!!",
                     html: `
@@ -369,10 +418,9 @@ async function getVagas(nome, ordem) {
                       <ul>
                     `,
                     icon: "error",
-                    confirmButtonColor: '#0e566a'
+                    confirmButtonColor: "#0e566a",
                   });
-                }
-                else {
+                } else {
                   Swal.fire({
                     title: "A área inserida está fora do padrão!!",
                     html: `
@@ -392,11 +440,10 @@ async function getVagas(nome, ordem) {
                       <ul>
                     `,
                     icon: "error",
-                    confirmButtonColor: '#0e566a'
+                    confirmButtonColor: "#0e566a",
                   });
                 }
               }
-
             }
           });
         }
@@ -429,8 +476,8 @@ botao_criar_vagas.onclick = async function () {
       input: "select",
       inputOptions: {
         Áreas: {
-          "Tecnologia": "Tecnologia",
-          "Saúde": "Saúde",
+          Tecnologia: "Tecnologia",
+          Saúde: "Saúde",
           "Ciências Humanas": "Ciências Humanas",
           "Ciências Exatas": "Ciências Exatas",
           "Ciências Biológicas": "Ciências Biológicas",
@@ -489,8 +536,8 @@ botao_criar_vagas.onclick = async function () {
               faixaEtaria,
               descricao,
             };
-            
-            console.log(data)
+
+            console.log(data);
 
             // POST
             const response = await fetch(
@@ -503,7 +550,7 @@ botao_criar_vagas.onclick = async function () {
             );
 
             let content = await response.json();
-            console.log(content)
+            console.log(content);
 
             if (content.success) {
               alert("Deu bom o POST!!");
@@ -850,7 +897,7 @@ botao_editar.onclick = async function () {
 
 // Deletando perfil (DELETE)
 
-const botao_excluir_conta = document.getElementById('botao_excluir_conta');
+const botao_excluir_conta = document.getElementById("botao_excluir_conta");
 
 botao_excluir_conta.onclick = function () {
   Swal.fire({
@@ -860,17 +907,20 @@ botao_excluir_conta.onclick = function () {
     confirmButtonColor: "#0e566a",
     cancelButtonColor: "#d33",
     confirmButtonText: "Excluir",
-  }).then( async function (result) {
+  }).then(async function (result) {
     if (result.isConfirmed) {
-      const response = await fetch(`http://localhost:3008/api/usuario/empresa/deletando/${id_user}`, {
-        method: "DELETE",
-        headers: { "Content-type": "application/json;charset=UTF-8" }
-      });
-    
+      const response = await fetch(
+        `http://localhost:3008/api/usuario/empresa/deletando/${id_user}`,
+        {
+          method: "DELETE",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+        }
+      );
+
       let content = await response.json();
       console.log(content);
 
-      if(content.success) {
+      if (content.success) {
         Swal.fire({
           title: "Conta excluída com sucesso!!",
           icon: "success",
@@ -882,11 +932,10 @@ botao_excluir_conta.onclick = function () {
           localStorage.removeItem("ID_user");
           localStorage.removeItem("Tipo_user");
           localStorage.removeItem("User_name");
-          
+
           window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
         }, 2000);
-      }
-      else {
+      } else {
         Swal.fire({
           title: "Erro ao deletar sua conta!!",
           text: "Tente novamente!!",
@@ -897,7 +946,7 @@ botao_excluir_conta.onclick = function () {
       }
     }
   });
-}
+};
 
 // Desconectando usuario
 
@@ -913,11 +962,28 @@ botao_desconectar.onclick = function () {
     confirmButtonText: "Desconectar",
   }).then(function (result) {
     if (result.isConfirmed) {
-      localStorage.removeItem("ID_user");
-      localStorage.removeItem("Tipo_user");
-      localStorage.removeItem("User_name");
+      Swal.fire({
+        title: "Desconectado com sucesso!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
 
-      window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+      setTimeout(() => {
+        localStorage.removeItem("ID_user");
+        localStorage.removeItem("Tipo_user");
+        localStorage.removeItem("User_name");
+
+        window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+      }, 2000);
+    } else {
+      Swal.fire({
+        title: "Erro!!",
+        text: "Não foi possível desconectar!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   });
 };

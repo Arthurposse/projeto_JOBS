@@ -388,7 +388,6 @@ botao_criar_metas.onclick = async function () {
   );
 
   let content = await response.json();
-  console.log(content);
 
   if (content.success) {
     Swal.fire({
@@ -425,14 +424,6 @@ async function putMetas(nome, nome_antigo) {
   });
 
   let content = await response.json();
-  console.log(content);
-
-  if (content.success) {
-    // alert("Deu bom o PUT METAS!!");
-  } else {
-    // alert("Deu ruim o PUT METAS!!");
-    console.error();
-  }
 }
 
 // Metas - DELETE
@@ -468,7 +459,6 @@ botao_deletar_metas.onclick = async function () {
   );
 
   let content = await response.json();
-  console.log(content);
 
   if (content.success) {
     Swal.fire({
@@ -617,7 +607,6 @@ botao_envio_curriculo.onclick = async function () {
       );
 
       content = await response.json();
-      console.log(content);
 
       if (content.success) {
         Swal.fire({
@@ -722,7 +711,6 @@ async function getUserJovem(id_user) {
   );
 
   content = await response.json();
-  console.log(content);
 
   if (ft_user === undefined || content.data[0].ft_perfil === null) {
     ft_perfil_user.src = "../images/Usuario_nao_logado.png";
@@ -945,7 +933,6 @@ botao_editar.onclick = async function () {
     );
 
     let content = await response.json();
-    console.log(content);
 
     if (content.success) {
       Swal.fire({
@@ -993,7 +980,6 @@ botao_excluir_conta.onclick = function () {
       );
 
       let content = await response.json();
-      console.log(content);
 
       if (content.success) {
         Swal.fire({
@@ -1037,11 +1023,28 @@ botao_desconectar.onclick = function () {
     confirmButtonText: "Desconectar",
   }).then(function (result) {
     if (result.isConfirmed) {
-      localStorage.removeItem("ID_user");
-      localStorage.removeItem("Tipo_user");
-      localStorage.removeItem("User_name");
+      Swal.fire({
+        title: "Desconectado com sucesso!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
 
-      window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+      setTimeout(() => {
+        localStorage.removeItem("ID_user");
+        localStorage.removeItem("Tipo_user");
+        localStorage.removeItem("User_name");
+
+        window.location.href = "../Tela Home - Sem Usuario Logado/index.html";
+      }, 2000);
+    } else {
+      Swal.fire({
+        title: "Erro!!",
+        text: "Não foi possível desconectar!!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   });
 };
