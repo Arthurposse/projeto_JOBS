@@ -270,7 +270,7 @@ async function deleteMetasJovem(request, response) {
     request.params.id
   );
 
-  const query = "DELETE FROM metas m INNER JOIN user_jovem u ON m.id_criador = u.id WHERE m.titulo = ? AND u.id = ?";
+  const query = "DELETE m FROM metas m INNER JOIN user_jovem u ON m.id_criador = u.id WHERE m.titulo = ? AND u.id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
