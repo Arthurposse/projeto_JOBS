@@ -56,8 +56,6 @@ function buscarVagas(aleatorio = false) {
       return response.json();
     })
     .then((data) => {
-      console.log("Resposta da API Adzuna: ", data);
-
       if (data.results.length === 0) {
         alert('Não foi encontrado nenhuma vaga!');
       } else {
