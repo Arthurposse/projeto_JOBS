@@ -473,14 +473,14 @@ getVagas(User_name);
 const botao_criar_vagas = document.getElementById("criar_vaga");
 
 botao_criar_vagas.onclick = async function () {
-  const { value: titulo_vaga } = await Swal.fire({
+  const { value: titulo } = await Swal.fire({
     title: "Título vaga",
     input: "text",
     inputPlaceholder: "Digite aqui",
     confirmButtonColor: "#0e566a",
   });
 
-  if (titulo_vaga) {
+  if (titulo) {
     const { value: area } = await Swal.fire({
       title: "Selecione a área da vaga",
       input: "select",
@@ -540,7 +540,7 @@ botao_criar_vagas.onclick = async function () {
           if (descricao) {
             let data = {
               id_user,
-              titulo_vaga,
+              titulo,
               area,
               cidade,
               faixaEtaria,

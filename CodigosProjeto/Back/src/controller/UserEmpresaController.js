@@ -151,7 +151,7 @@ async function criandoVaga(request, response) {
   );
 
   const query =
-    "INSERT INTO vagas(id_criador, titulo_vaga, area, cidade, faixa_etaria, descricao) VALUES(?,?,?,?,?,?);";
+    "INSERT INTO vagas(id_criador, titulo, area, cidade, faixa_etaria, descricao) VALUES(?,?,?,?,?,?);";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -175,7 +175,7 @@ async function criandoVaga(request, response) {
 async function getVagas(request, response) {
   const params = request.params.id;
 
-  const query = "SELECT vagas.id, titulo_vaga, area, cidade, faixa_etaria, descricao FROM vagas INNER JOIN user_empresa ON vagas.id_criador = user_empresa.id WHERE user_empresa.id = ?;";
+  const query = "SELECT vagas.id, titulo, area, cidade, faixa_etaria, descricao FROM vagas INNER JOIN user_empresa ON vagas.id_criador = user_empresa.id WHERE user_empresa.id = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -207,7 +207,7 @@ async function putDadosVagas(request, response) {
   );
 
   const query =
-    "UPDATE `vagas` SET `titulo_vaga` = ?, `area` = ?, `faixa_etaria` = ?, `cidade` = ?, `descricao` = ? WHERE `id` = ?;";
+    "UPDATE `vagas` SET `titulo` = ?, `area` = ?, `faixa_etaria` = ?, `cidade` = ?, `descricao` = ? WHERE `id` = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
