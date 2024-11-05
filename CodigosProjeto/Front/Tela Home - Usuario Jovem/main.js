@@ -1,10 +1,10 @@
 // Removendo localStorage que não será utilizado na página
 
-localStorage.removeItem('Total_questoes');
-localStorage.removeItem('Ordem_questoes');
-localStorage.removeItem('Pontos');
-localStorage.removeItem('Res_user');
-localStorage.removeItem('tema_escolhido');
+localStorage.removeItem("Total_questoes");
+localStorage.removeItem("Ordem_questoes");
+localStorage.removeItem("Pontos");
+localStorage.removeItem("Res_user");
+localStorage.removeItem("tema_escolhido");
 
 // Verificando se o usuário esta logado
 
@@ -359,25 +359,39 @@ botao_criar_metas.onclick = async function () {
       });
 
       if (data_criar) {
-        const { value: prioridade_criar } = await Swal.fire({
-          title: "Selecione a prioridade da meta",
-          input: "select",
-          inputOptions: {
-            Prioridades: {
-              red: "Alta",
-              yellow: "Media",
-              green: "Baixa",
+        if (
+          data_criar.slice(0, 4) < new Date().getFullYear() ||
+          data_criar.slice(0, 4) > new Date().getFullYear() + 3
+        ) {
+          Swal.fire({
+            title: "Limite de tempo!!",
+            text: `O ano escolhido deve estar entre ${new Date().getFullYear()} e ${
+              new Date().getFullYear() + 6
+            }`,
+            icon: "error",
+            confirmButtonColor: "#0e566a",
+          });
+        } else {
+          const { value: prioridade_criar } = await Swal.fire({
+            title: "Selecione a prioridade da meta",
+            input: "select",
+            inputOptions: {
+              Prioridades: {
+                red: "Alta",
+                yellow: "Media",
+                green: "Baixa",
+              },
             },
-          },
-          inputPlaceholder: "Seleciona o nível",
-          showCancelButton: true,
-          confirmButtonColor: "#0e566a",
-        });
-        if (prioridade_criar) {
-          titulo = titulo_criar;
-          infos = infos_criar;
-          data_alterar = data_criar;
-          prioridade = prioridade_criar;
+            inputPlaceholder: "Seleciona o nível",
+            showCancelButton: true,
+            confirmButtonColor: "#0e566a",
+          });
+          if (prioridade_criar) {
+            titulo = titulo_criar;
+            infos = infos_criar;
+            data_alterar = data_criar;
+            prioridade = prioridade_criar;
+          }
         }
       }
     }
@@ -385,7 +399,6 @@ botao_criar_metas.onclick = async function () {
 
   let data = { titulo, infos, data_alterar, prioridade };
 
-  // POST
   const response = await fetch(
     `http://localhost:3008/api/metas/criando/${id_user}`,
     {
