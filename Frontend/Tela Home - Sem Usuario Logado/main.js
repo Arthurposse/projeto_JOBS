@@ -30,7 +30,7 @@ setTimeout(() => {
 const bloco_usuario = document.querySelector('.bloco_usuario');
 
 bloco_usuario.onclick = function () {
-  window.location.href = '/Front/Tela Login - Entrando/index.html';
+  window.location.href = '/Frontend/Tela Login - Entrando/index.html';
 }
 
 // Acrescentando vagas 
