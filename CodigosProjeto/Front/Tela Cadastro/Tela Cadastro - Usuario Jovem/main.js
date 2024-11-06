@@ -130,7 +130,14 @@ button.onclick = async function (e) {
       });
     }
   } else {
-    if (password !== confirm_password) {
+    if (!name || !email || !password || !confirm_password || !telefone || !cidade || !userAge) {
+      Swal.fire({
+        title: "É necessário preencher os campos!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    } else if (password !== confirm_password) {
       Swal.fire({
         title: "As senhas não coincidem!!",
         text: "Tente novamente!!",
@@ -138,13 +145,21 @@ button.onclick = async function (e) {
         showConfirmButton: false,
         timer: 2300,
       });
-    } else {
+    } else if (userAge < 14 || userAge > 24) {
       Swal.fire({
         title: "Limite de idade!!",
         text: "Não é possível realizar cadastrado no site!! Você deve possuir entre 14 a 24 anos!!",
         icon: "error",
         showConfirmButton: false,
         timer: 2500,
+      });
+    } else {
+      Swal.fire({
+        title: "ERRO NO POST!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
       });
     }
   }

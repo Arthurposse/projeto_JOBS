@@ -123,12 +123,29 @@ button.onclick = async function (e) {
       });
     }
   } else {
-    Swal.fire({
-      title: "As senhas não coincidem!!",
-      text: "Tente novamente!!",
-      icon: "error",
-      showConfirmButton: false,
-      timer: 2300,
-    });
+    if (!name || !email || !password || !confirm_password || !telefone || !nome_empresa || !razao_social || !cnpj || !setor_atividade) {
+      Swal.fire({
+        title: "É necessário preencher os campos!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    } else if (password !== confirm_password) {
+      Swal.fire({
+        title: "As senhas não coincidem!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    } else {
+      Swal.fire({
+        title: "ERRO NO POST!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2300,
+      });
+    }
   }
 };
