@@ -144,74 +144,78 @@ async function getMetas(nome, ordem) {
   let content = await response.json();
 
   if (ordem === "date") {
-    for (let i = 0; i < content.data.length; i++) {
-      const data = content.data;
+    if (content.data.length > 0) {
+      for (let i = 0; i < content.data.length; i++) {
+        const data = content.data;
 
-      const eventosOrdenados = [];
+        const eventosOrdenados = [];
 
-      data.forEach((e) => {
-        if (e.data_conclusao) {
-          const currentDate = new Date(e.data_conclusao);
+        data.forEach((e) => {
+          if (e.data_conclusao) {
+            const currentDate = new Date(e.data_conclusao);
 
-          // Adiciona o evento ao array de eventos ordenados
-          eventosOrdenados.push({
-            data: currentDate,
-            evento: e,
-          });
-        }
-      });
+            // Adiciona o evento ao array de eventos ordenados
+            eventosOrdenados.push({
+              data: currentDate,
+              evento: e,
+            });
+          }
+        });
 
-      eventosOrdenados.sort((a, b) => a.data - b.data);
+        eventosOrdenados.sort((a, b) => a.data - b.data);
 
-      section_pc_metas.innerHTML = "";
+        section_pc_metas.innerHTML = "";
 
-      // Adicionando os cards ordenados ao contêiner de acordo com a data
-      eventosOrdenados.forEach((evento) => {
-        const currentDate = evento.data;
-        const eventoData = evento.evento;
+        // Adicionando os cards ordenados ao contêiner de acordo com a data
+        eventosOrdenados.forEach((evento) => {
+          const currentDate = evento.data;
+          const eventoData = evento.evento;
 
-        // Criando elementos do card
-        const bloco_meta = document.createElement("section");
-        bloco_meta.classList.add("bloco_meta");
+          // Criando elementos do card
+          const bloco_meta = document.createElement("section");
+          bloco_meta.classList.add("bloco_meta");
 
-        const h2 = document.createElement("h2");
-        h2.textContent = eventoData.titulo; // Título do Evento
+          const h2 = document.createElement("h2");
+          h2.textContent = eventoData.titulo; // Título do Evento
 
-        const p_infos_meta = document.createElement("p");
-        p_infos_meta.classList.add("infos_meta");
-        p_infos_meta.textContent = eventoData.infos; // Informações do Evento
+          const p_infos_meta = document.createElement("p");
+          p_infos_meta.classList.add("infos_meta");
+          p_infos_meta.textContent = eventoData.infos; // Informações do Evento
 
-        const bloco_meta_rodape = document.createElement("section");
-        bloco_meta_rodape.classList.add("bloco_meta_rodape");
+          const bloco_meta_rodape = document.createElement("section");
+          bloco_meta_rodape.classList.add("bloco_meta_rodape");
 
-        function adicionarZero(numero) {
-          return numero < 10 ? "0" + numero : numero;
-        }
+          function adicionarZero(numero) {
+            return numero < 10 ? "0" + numero : numero;
+          }
 
-        const diaFormatado = adicionarZero(currentDate.getDate());
-        const mesFormatado = adicionarZero(currentDate.getMonth() + 1);
+          const diaFormatado = adicionarZero(currentDate.getDate());
+          const mesFormatado = adicionarZero(currentDate.getMonth() + 1);
 
-        const p_data_meta = document.createElement("p");
-        p_data_meta.classList.add("data_meta");
-        p_data_meta.textContent = `${diaFormatado}/${mesFormatado}`;
+          const p_data_meta = document.createElement("p");
+          p_data_meta.classList.add("data_meta");
+          p_data_meta.textContent = `${diaFormatado}/${mesFormatado}`;
 
-        const icon = document.createElement("i");
-        icon.classList.add("bi-exclamation-triangle");
-        icon.style.color = eventoData.prioridade; // Cor baseada na prioridade do evento
-        icon.style.fontSize = "1.5rem";
+          const icon = document.createElement("i");
+          icon.classList.add("bi-exclamation-triangle");
+          icon.style.color = eventoData.prioridade; // Cor baseada na prioridade do evento
+          icon.style.fontSize = "1.5rem";
 
-        // Adicionando elementos do card ao bloco_meta_rodape
-        bloco_meta_rodape.appendChild(p_data_meta);
-        bloco_meta_rodape.appendChild(icon);
+          // Adicionando elementos do card ao bloco_meta_rodape
+          bloco_meta_rodape.appendChild(p_data_meta);
+          bloco_meta_rodape.appendChild(icon);
 
-        // Adicionando elementos ao bloco_meta
-        bloco_meta.appendChild(h2);
-        bloco_meta.appendChild(p_infos_meta);
-        bloco_meta.appendChild(bloco_meta_rodape);
+          // Adicionando elementos ao bloco_meta
+          bloco_meta.appendChild(h2);
+          bloco_meta.appendChild(p_infos_meta);
+          bloco_meta.appendChild(bloco_meta_rodape);
 
-        // Adicionando o bloco_meta ao contêiner de cards
-        section_pc_metas.appendChild(bloco_meta);
-      });
+          // Adicionando o bloco_meta ao contêiner de cards
+          section_pc_metas.appendChild(bloco_meta);
+        });
+      }
+    } else {
+      section_pc_metas.innerHTML = "<h2> Nenhuma foi encontrada!! </h2>";
     }
 
     // Adicionando os cards ordenados ao contêiner de acordo com a prioridade
@@ -269,62 +273,66 @@ async function getMetas(nome, ordem) {
         }
       }
     } else {
-      section_pc_metas.innerHTML = "<h2> Nenhum foi encontrado!! </h2>";
+      section_pc_metas.innerHTML = "<h2> Nenhuma foi encontrada!! </h2>";
     }
 
     // Adicionando os cards ao carregar a página (não seguindo nenhuma ordem definida)
   } else {
-    for (let i = 0; i < content.data.length; i++) {
-      const titulo = content.data[i].titulo;
+    if (content.data.length > 0) {
+      for (let i = 0; i < content.data.length; i++) {
+        const titulo = content.data[i].titulo;
 
-      titulos_metas.push(titulo);
+        titulos_metas.push(titulo);
 
-      const infos = content.data[i].infos;
-      const data = content.data[i].data_conclusao;
-      const prioridade = content.data[i].prioridade;
+        const infos = content.data[i].infos;
+        const data = content.data[i].data_conclusao;
+        const prioridade = content.data[i].prioridade;
 
-      const pc_metas = document.querySelector(".pc_metas");
+        const pc_metas = document.querySelector(".pc_metas");
 
-      const bloco_meta = document.createElement("section");
-      bloco_meta.classList.add("bloco_meta");
+        const bloco_meta = document.createElement("section");
+        bloco_meta.classList.add("bloco_meta");
 
-      const h2 = document.createElement("h2");
-      h2.textContent = titulo;
+        const h2 = document.createElement("h2");
+        h2.textContent = titulo;
 
-      const p_infos_meta = document.createElement("p");
-      p_infos_meta.classList.add("infos_meta");
-      p_infos_meta.textContent = infos;
+        const p_infos_meta = document.createElement("p");
+        p_infos_meta.classList.add("infos_meta");
+        p_infos_meta.textContent = infos;
 
-      const bloco_meta_rodape = document.createElement("section");
-      bloco_meta_rodape.classList.add("bloco_meta_rodape");
+        const bloco_meta_rodape = document.createElement("section");
+        bloco_meta_rodape.classList.add("bloco_meta_rodape");
 
-      // let ano_user = data.slice(0, 4);
+        // let ano_user = data.slice(0, 4);
 
-      let mes_user = data.slice(5, 7);
+        let mes_user = data.slice(5, 7);
 
-      let dia_user = data.slice(8, 10);
+        let dia_user = data.slice(8, 10);
 
-      const p_data_meta = document.createElement("p");
-      p_data_meta.classList.add("data_meta");
-      p_data_meta.textContent = `${dia_user}/${mes_user}`;
+        const p_data_meta = document.createElement("p");
+        p_data_meta.classList.add("data_meta");
+        p_data_meta.textContent = `${dia_user}/${mes_user}`;
 
-      const icon = document.createElement("i");
-      icon.classList.add("bi-exclamation-triangle");
-      icon.style.color = prioridade;
-      icon.style.fontSize = "1.5rem";
+        const icon = document.createElement("i");
+        icon.classList.add("bi-exclamation-triangle");
+        icon.style.color = prioridade;
+        icon.style.fontSize = "1.5rem";
 
-      bloco_meta.appendChild(h2);
-      bloco_meta.appendChild(p_infos_meta);
-      bloco_meta_rodape.appendChild(p_data_meta);
-      bloco_meta_rodape.appendChild(icon);
-      bloco_meta.appendChild(bloco_meta_rodape);
+        bloco_meta.appendChild(h2);
+        bloco_meta.appendChild(p_infos_meta);
+        bloco_meta_rodape.appendChild(p_data_meta);
+        bloco_meta_rodape.appendChild(icon);
+        bloco_meta.appendChild(bloco_meta_rodape);
 
-      pc_metas.appendChild(bloco_meta);
+        pc_metas.appendChild(bloco_meta);
+      }
+    } else {
+      section_pc_metas.innerHTML = "<h2> Nenhuma foi encontrada!! </h2>";
     }
   }
 }
 
-getMetas(User_name);
+getMetas();
 
 // Metas - POST
 
@@ -360,18 +368,9 @@ botao_criar_metas.onclick = async function () {
 
       if (data_criar) {
         if (
-          data_criar.slice(0, 4) < new Date().getFullYear() ||
-          data_criar.slice(0, 4) > new Date().getFullYear() + 3
+          data_criar.slice(0, 4) >= new Date().getFullYear() &&
+          data_criar.slice(0, 4) <= (new Date().getFullYear() + 6)
         ) {
-          Swal.fire({
-            title: "Limite de tempo!!",
-            text: `O ano escolhido deve estar entre ${new Date().getFullYear()} e ${
-              new Date().getFullYear() + 6
-            }`,
-            icon: "error",
-            confirmButtonColor: "#0e566a",
-          });
-        } else {
           const { value: prioridade_criar } = await Swal.fire({
             title: "Selecione a prioridade da meta",
             input: "select",
@@ -422,14 +421,25 @@ botao_criar_metas.onclick = async function () {
       window.location.reload();
     }, 2000);
   } else {
-    Swal.fire({
-      title: "Erro ao criar a meta!!",
-      text: "Tente novamente!!",
-      icon: "error",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-    console.error();
+    if (data.data_conclusao === undefined) {
+      Swal.fire({
+        title: "Limite de tempo!!",
+        text: `O ano escolhido deve estar entre ${new Date().getFullYear()} e ${
+          new Date().getFullYear() + 6
+        }`,
+        icon: "error",
+        confirmButtonColor: "#0e566a",
+      });
+    } else {
+      Swal.fire({
+        title: "Erro ao criar a meta!!",
+        text: "Tente novamente!!",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      console.error();
+    }
   }
 };
 
