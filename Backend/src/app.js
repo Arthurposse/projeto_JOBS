@@ -45,7 +45,8 @@ app.use(express.static(path.join(__dirname, '..', 'Frontend')));
 
 // Rota para acessar o 'index.html' da pasta 'Tela Home - Sem Usuario Logado'
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
+    console.log('FUNFOU')
+    res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
 });
 
 // Rotas da API
