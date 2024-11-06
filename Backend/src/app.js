@@ -33,10 +33,10 @@ const swaggerOptions = {
 dotenv.config();
 
 // Serve arquivos estáticos da pasta 'Frontend'
-app.use(express.static(path.join(__dirname, 'Frontend')));
+express.use(express.static(path.join(__dirname, 'Frontend')));
 
 // Exemplo de rota para servir o arquivo index.html da pasta 'Tela Home - Sem Usuario Logado'
-app.get('/', (req, res) => {
+express.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
 });
 
