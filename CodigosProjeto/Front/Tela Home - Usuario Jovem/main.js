@@ -891,29 +891,40 @@ botao_editar.onclick = async function () {
         confirmButtonColor: "#0e566a",
       });
       if (date) {
-        let ano_user_alert = date.slice(0, 4);
+        if (date.slice(0, 4) < new Date().getFullYear() - 24) {
+          Swal.fire({
+            title: "Limite de tempo!!",
+            text: `O ano escolhido deve estar acima de ${
+              new Date().getFullYear() - 24
+            }.`,
+            icon: "error",
+            confirmButtonColor: "#0e566a",
+          });
+        } else {
+          let ano_user_alert = date.slice(0, 4);
 
-        let mes_user_alert = date.slice(5, 7);
+          let mes_user_alert = date.slice(5, 7);
 
-        let dia_user_alert = date.slice(8, 10);
+          let dia_user_alert = date.slice(8, 10);
 
-        const data = new Date();
-        const ano = data.getFullYear();
-        const mes = data.getMonth() + 1;
-        const dia = data.getDate();
+          const data = new Date();
+          const ano = data.getFullYear();
+          const mes = data.getMonth() + 1;
+          const dia = data.getDate();
 
-        let userAge = ano - ano_user_alert;
+          let userAge = ano - ano_user_alert;
 
-        if (
-          mes < mes_user_alert ||
-          (mes === mes_user_alert && dia < dia_user_alert)
-        ) {
-          userAge--;
+          if (
+            mes < mes_user_alert ||
+            (mes === mes_user_alert && dia < dia_user_alert)
+          ) {
+            userAge--;
+          }
+
+          idade.textContent = `${userAge} anos`;
+          guardar_idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
+          idade_user = guardar_idade_user;
         }
-
-        idade.textContent = `${userAge} anos`;
-        guardar_idade_user = `${ano_user_alert}-${mes_user_alert}-${dia_user_alert}`;
-        idade_user = guardar_idade_user;
       }
     };
 

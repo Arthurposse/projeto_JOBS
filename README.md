@@ -59,13 +59,8 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo e Tela Home (Sem Usuário Logado) 
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa) 
   - Ajustar responsividade.
-
-<br>
-
-- Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
-  - Acrescentar limitador de idade (na parte da criação de vaga/meta e também ao editar a data de aniversário do usuário).
 
 <br>
 

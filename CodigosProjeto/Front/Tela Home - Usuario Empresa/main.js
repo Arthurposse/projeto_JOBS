@@ -547,8 +547,6 @@ botao_criar_vagas.onclick = async function () {
               descricao,
             };
 
-            console.log(data);
-
             // POST
             const response = await fetch(
               `http://localhost:3008/api/vagas/criandoVaga/${id_user}`,
