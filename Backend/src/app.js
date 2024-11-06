@@ -6,7 +6,6 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
-const app = require("express");
 
 // Importação dos arquivos das rotas do projeto
 const routerJovem = require("./routes/UserJovemRouter");
@@ -33,14 +32,6 @@ const swaggerOptions = {
 
 dotenv.config();
 
-// Serve arquivos estáticos da pasta 'Frontend'
-express.use(express.static(path.join(__dirname, 'Frontend')));
-
-// Exemplo de rota para servir o arquivo index.html da pasta 'Tela Home - Sem Usuario Logado'
-express.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
-});
-
 const app = express();
 app.set("port", process.env.PORT || 3010);
 app.use(cors());
@@ -48,6 +39,14 @@ app.use(express.json());
 app.use(fileUpload());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Serve arquivos estáticos da pasta 'Frontend'
+app.use(express.static(path.join(__dirname, 'Frontend')));
+
+// Exemplo de rota para servir o arquivo index.html da pasta 'Tela Home - Sem Usuario Logado'
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
+});
 
 // Rotas da API
 app.use("/api", routerJovem);
