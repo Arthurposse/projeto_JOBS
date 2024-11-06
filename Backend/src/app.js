@@ -6,6 +6,7 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
+const app = require("express");
 
 // Importação dos arquivos das rotas do projeto
 const routerJovem = require("./routes/UserJovemRouter");
