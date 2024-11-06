@@ -284,6 +284,13 @@ main .bloco_cards_duvidas_jovens button:hover {
     resize: none; /* Desabilita o redimensionamento */
 }
 
+main .bloco_cards_duvidas_jovens .duvidas_usuario {
+    background-color: var(--cor-terciaria);
+    width: 20vw;
+    height: 20vh;
+    border-radius: 2vw;
+}
+
 /* Footer */
 
 footer {

@@ -116,6 +116,11 @@ async function carregarDuvidas() {
           window.location.href = "../Tela Visualizando Duvida/index.html";
         });
       }
+      else {
+        if(content.data[i].id_user === id_user) {
+          
+        }
+      }
     }
   } else {
     alert("Deu erro!!");
