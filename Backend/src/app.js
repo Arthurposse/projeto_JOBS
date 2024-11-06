@@ -44,8 +44,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, '..', 'Frontend')));
 
 // Rota para acessar o 'index.html' da pasta 'Tela Home - Sem Usuario Logado'
-app.get('/teste', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
 });
 
 // Rotas da API
