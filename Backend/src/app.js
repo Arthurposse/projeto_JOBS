@@ -33,7 +33,7 @@ const swaggerOptions = {
 
 dotenv.config();
 
-app.use(express.static(path.join(__dirname, '..', '..', 'Frontend')));
+app.use(express.static(path.join(__dirname, 'Frontend')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '..', 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
