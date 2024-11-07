@@ -15,7 +15,6 @@ const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
 const duvResRouter = require("./routes/duvResRouter");
-const IndexRouter = require("./routes/IndexRouter");
 
 // Configuração do Swegger
 const swaggerOptions = {
@@ -33,6 +32,14 @@ const swaggerOptions = {
 
 dotenv.config();
 
+// Servir arquivos estáticos da pasta 'Frontend'
+app.use(express.static(path.join(__dirname, '..', 'Frontend')));
+
+// Exemplo de rota para servir o arquivo index.html da pasta 'Tela Home - Sem Usuario Logado'
+app.get('/teste', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
+});
+
 const app = express();
 app.set("port", process.env.PORT || 3010);
 app.use(cors());
@@ -49,7 +56,6 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
-app.use("/", IndexRouter);
 
 // Rota Swagger (Documentação)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
