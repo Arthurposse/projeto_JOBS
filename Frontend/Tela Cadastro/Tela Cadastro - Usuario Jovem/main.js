@@ -65,14 +65,13 @@ button.onclick = async function (e) {
 
   if (password === confirm_password && userAge >= 14 && userAge <= 24) {
     // POST
-    const response = await fetch("api/cadastro/jovem", {
+    const response = await fetch("https://projetojobs.up.railway.app/api/cadastro/jovem", {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
       body: JSON.stringify(data),
     });
 
     let content = await response.json();
-    console.log(content)
 
     if (content.success) {
       Swal.fire({
@@ -83,7 +82,7 @@ button.onclick = async function (e) {
         timer: 2600,
       });
 
-      const response = await fetch("http:/localhost:3008/api/enviarEmail", {
+      const response = await fetch("https://projetojobs.up.railway.app/api/enviarEmail", {
         method: "POST",
         headers: { "Content-type": "application/json;charset=UTF-8" },
         body: JSON.stringify({ email }),
@@ -124,8 +123,6 @@ button.onclick = async function (e) {
         timer: 2300,
       });
     } else {
-      console.error("Erro na requisição:", response.status);
-
       Swal.fire({
         title: "ERRO NO POST!!",
         text: "Tente novamente!!",
