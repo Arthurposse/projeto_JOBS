@@ -27,6 +27,7 @@ async function logIn(request, response) {
         success: false,
         message: "Ops, deu problemas com a busca do usuário!!",
         data: err,
+        errorDetails: err.message,
       });
     }
   });
