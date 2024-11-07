@@ -61,6 +61,8 @@ button.onclick = async function (e) {
 
   let data = { name, email, password, data_nascimento, telefone, cidade };
 
+  console.log(data);
+
   if (password === confirm_password && userAge >= 14 && userAge <= 24) {
     // POST
     const response = await fetch("api/cadastro/jovem", {
