@@ -15,6 +15,7 @@ const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
 const duvResRouter = require("./routes/duvResRouter");
+const IndexRouter = require("./routes/IndexRouter");
 
 // Configuração do Swegger
 const swaggerOptions = {
@@ -40,14 +41,6 @@ app.use(fileUpload());
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Servindo a pasta 'Frontend' como estática, incluindo todas as subpastas
-app.use(express.static(path.join(__dirname, '..', 'Frontend')));
-
-// Rota para acessar o 'index.html' da pasta 'Tela Home - Sem Usuario Logado'
-app.use('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
-});
-
 // Rotas da API
 app.use("/api", routerJovem);
 app.use("/api", routerEmpresa);
@@ -56,6 +49,7 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
+app.use("/", IndexRouter);
 
 // Rota Swagger (Documentação)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
