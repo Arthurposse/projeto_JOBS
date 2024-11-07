@@ -72,6 +72,7 @@ button.onclick = async function (e) {
     });
 
     let content = await response.json();
+    console.log(content)
 
     if (content.success) {
       Swal.fire({
@@ -123,6 +124,8 @@ button.onclick = async function (e) {
         timer: 2300,
       });
     } else {
+      console.error("Erro na requisição:", response.status);
+
       Swal.fire({
         title: "ERRO NO POST!!",
         text: "Tente novamente!!",
