@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, '..', 'Frontend')));
 
 // Exemplo de rota para servir o arquivo index.html da pasta 'Tela Home - Sem Usuario Logado'
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'Frontend', 'Tela Home - Sem Usuario Logado', 'index.html'));
+  res.sendFile(path.join(__dirname, "../Frontend/Tela Home - Sem Usuario Logado/index.html"));
 });
 
 app.set("port", process.env.PORT || 3010);
