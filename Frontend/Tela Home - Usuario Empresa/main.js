@@ -50,7 +50,7 @@ const container_duvidas = document.querySelector(".container_duvidas");
 const buscar_duvidas = document.getElementById("buscar_duvidas");
 
 async function sorteandoDuvidas() {
-  const response = await fetch("http://localhost:3008/api/duvidasSorteadas", {
+  const response = await fetch(" api/duvidasSorteadas", {
     method: "GET",
     headers: { "Content-type": "application/json;charset=UTF-8" },
   });
@@ -104,7 +104,7 @@ let vagas_registradas = document.querySelector(".vagas_registradas");
 
 async function getVagas(nome, ordem) {
   const response = await fetch(
-    `http://localhost:3008/api/vagas/getVagas/${id_user}`,
+    ` api/vagas/getVagas/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -217,7 +217,7 @@ async function getVagas(nome, ordem) {
                     vaga_area === "Gestão e Negócios")
                 ) {
                   const response = await fetch(
-                    "http://localhost:3008/api/vagas/putDadosVaga",
+                    " api/vagas/putDadosVaga",
                     {
                       method: "PUT",
                       headers: {
@@ -373,7 +373,7 @@ async function getVagas(nome, ordem) {
                   vaga_area === "Gestão e Negócios")
               ) {
                 const response = await fetch(
-                  "http://localhost:3008/api/vagas/putDadosVaga",
+                  " api/vagas/putDadosVaga",
                   {
                     method: "PUT",
                     headers: {
@@ -549,7 +549,7 @@ botao_criar_vagas.onclick = async function () {
 
             // POST
             const response = await fetch(
-              `http://localhost:3008/api/vagas/criandoVaga/${id_user}`,
+              ` api/vagas/criandoVaga/${id_user}`,
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -600,7 +600,7 @@ botao_deletar_vaga.onclick = async function () {
   }
 
   const response = await fetch(
-    `http://localhost:3008/api/vagas/deletandoVaga/${id_user}`,
+    ` api/vagas/deletandoVaga/${id_user}`,
     {
       method: "DELETE",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -683,7 +683,7 @@ let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
   const response = await fetch(
-    `http://localhost:3008/api/buscandoDados/${id_user}`,
+    ` api/buscandoDados/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -871,7 +871,7 @@ botao_editar.onclick = async function () {
 
     // PUT
     const response = await fetch(
-      `http://localhost:3008/api/uptade/userEmpresa/${id_user}`,
+      ` api/uptade/userEmpresa/${id_user}`,
       {
         method: "PUT",
         body: formData,
@@ -918,7 +918,7 @@ botao_excluir_conta.onclick = function () {
   }).then(async function (result) {
     if (result.isConfirmed) {
       const response = await fetch(
-        `http://localhost:3008/api/usuario/empresa/deletando/${id_user}`,
+        ` api/usuario/empresa/deletando/${id_user}`,
         {
           method: "DELETE",
           headers: { "Content-type": "application/json;charset=UTF-8" },
