@@ -73,6 +73,7 @@
 
 - Tela Buscar Emprego
   - Desenvolver o filtro.
+  - Ajusta o botão mais, em que ao ser pressionado, as vagas não estão sendo carregadas abaixo das que foram geradas anteriormente e sim substituindo elas.
   - Ajustar responsividade.
 
 <h3 style="color: #9DD4D1;">
