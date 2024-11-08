@@ -104,7 +104,7 @@ async function buscandoCurriculos(area) {
         });
 
         if (content.data[i].ft_perfil !== null) {
-          img.src = `http:localhost:3008/uploads/img_perfil/${content.data[i].ft_perfil}`;
+          img.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[i].ft_perfil}`;
         } else {
           img.src = "../images/Usuario_nao_logado.png";
         }
