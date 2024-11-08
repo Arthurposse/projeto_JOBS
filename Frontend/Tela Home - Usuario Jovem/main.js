@@ -1023,6 +1023,7 @@ botao_excluir_conta.onclick = function () {
       );
 
       let content = await response.json();
+      console.log(content)
 
       if (content.success) {
         Swal.fire({
