@@ -35,7 +35,7 @@ bloco_usuario.onclick = function () {
 
 // Acrescentando vagas 
 
-const url = "http://localhost:3008/api/buscarVaga";
+const url = "https://projetojobs.up.railway.app/api/buscarVaga";
 let page = 1; // Inicializa a página
 let allJobs = new Set(); // Conjunto para armazenar os IDs das vagas exibidas
 

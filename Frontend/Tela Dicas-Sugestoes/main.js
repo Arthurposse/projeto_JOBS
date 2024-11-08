@@ -63,7 +63,7 @@ async function carregarDuvidas() {
   let data = { id_user };
 
   // POST
-  const response = await fetch("http://localhost:3008/api/carregarDuvidas", {
+  const response = await fetch("https://projetojobs.up.railway.app/api/carregarDuvidas", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify(data),
@@ -166,7 +166,7 @@ botao_criar_duvida.addEventListener("click", function () {
         let data = { id_user, User_name, duvida };
 
         // POST
-        const response = await fetch("http://localhost:3008/api/enviarDuvida", {
+        const response = await fetch("https://projetojobs.up.railway.app/api/enviarDuvida", {
           method: "POST",
           headers: { "Content-type": "application/json;charset=UTF-8" },
           body: JSON.stringify(data),

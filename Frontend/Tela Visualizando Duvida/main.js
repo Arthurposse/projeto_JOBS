@@ -54,7 +54,7 @@ async function carregarInfosDuvida() {
 
   // POST
   const response = await fetch(
-    "http://localhost:3008/api/carregarInfosDuvida",
+    "https://projetojobs.up.railway.app/api/carregarInfosDuvida",
     {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -81,7 +81,7 @@ carregarInfosDuvida();
 
 async function carregarRespostas() {
   // POST
-  const response = await fetch("http://localhost:3008/api/carregarRespostas", {
+  const response = await fetch("https://projetojobs.up.railway.app/api/carregarRespostas", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify({ id_duvida }),
@@ -175,7 +175,7 @@ document.getElementById("criar_resposta").onclick = async function () {
 
         // POST
         const response = await fetch(
-          "http://localhost:3008/api/responderDuvida",
+          "https://projetojobs.up.railway.app/api/responderDuvida",
           {
             method: "POST",
             headers: { "Content-type": "application/json;charset=UTF-8" },

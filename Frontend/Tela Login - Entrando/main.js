@@ -37,7 +37,7 @@ button.onclick = async function (e) {
   data = { email, password };
 
   // POST
-  const response = await fetch("/api/verif/logIn", {
+  const response = await fetch("https://projetojobs.up.railway.app/api/verif/logIn", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify(data),

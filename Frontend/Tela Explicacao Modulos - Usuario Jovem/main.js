@@ -61,7 +61,7 @@ if (tipo_modulo_escolhido == "email") {
 
 async function addDadosTabela(buscar_modulo) {
   const response = await fetch(
-    `http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
+    `https://projetojobs.up.railway.app/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
