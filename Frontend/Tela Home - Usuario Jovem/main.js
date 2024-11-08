@@ -49,7 +49,7 @@ botao_gb.onclick = async function () {
   const planos_sugerido = document.querySelector(".plano_sugerido");
   const area_usuario = document.getElementById("area_usuario").value;
 
-  const response = await fetch(`https://projetojobs.up.railway.app/api/apiGB_planejamento`, {
+  const response = await fetch(`http://localhost:3008/api/apiGB_planejamento`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify({ area_usuario }),
@@ -134,7 +134,7 @@ let titulos_metas = [];
 
 async function getMetas(nome, ordem) {
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/metas/getMetas/${id_user}`,
+    `http://localhost:3008/api/metas/getMetas/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -399,7 +399,7 @@ botao_criar_metas.onclick = async function () {
   let data = { titulo, infos, data_alterar, prioridade };
 
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/metas/criando/${id_user}`,
+    `http://localhost:3008/api/metas/criando/${id_user}`,
     {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -448,7 +448,7 @@ botao_criar_metas.onclick = async function () {
 async function putMetas(nome, nome_antigo) {
   let data = { nome, nome_antigo };
 
-  const response = await fetch(`https://projetojobs.up.railway.app/api/metas/atualizando`, {
+  const response = await fetch(`http://localhost:3008/api/metas/atualizando`, {
     method: "PUT",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify(data),
@@ -481,7 +481,7 @@ botao_deletar_metas.onclick = async function () {
   }
 
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/metas/deletando/${id_user}`,
+    `http://localhost:3008/api/metas/deletando/${id_user}`,
     {
       method: "DELETE",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -630,7 +630,7 @@ botao_envio_curriculo.onclick = async function () {
       formDataCurriculo.append("area_escolhida", area_escolhida);
 
       const response = await fetch(
-        `https://projetojobs.up.railway.app/api/enviandoCurriculo/${id_user}`,
+        `http://localhost:3008/api/enviandoCurriculo/${id_user}`,
         {
           method: "PUT",
           body: formDataCurriculo,
@@ -679,7 +679,7 @@ deletar_curriculo.onclick = async function () {
   }).then(async function (result) {
     if (result.isConfirmed) {
       const response = await fetch(
-        `https://projetojobs.up.railway.app/api/curriculo/apagando/${id_user}`,
+        `http://localhost:3008/api/curriculo/apagando/${id_user}`,
         {
           method: "PUT",
           headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -735,7 +735,7 @@ let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/get/userJovem/${id_user}`,
+    `http://localhost:3008/api/get/userJovem/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -748,8 +748,8 @@ async function getUserJovem(id_user) {
     ft_perfil_user.src = "/images/Usuario_nao_logado.png";
     ft_perfil_user_2.src = "/images/Usuario_nao_logado.png";
   } else {
-    ft_perfil_user.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
-    ft_perfil_user_2.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
+    ft_perfil_user.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+    ft_perfil_user_2.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
   }
 
   if (content.data[0].curriculo !== null) {
@@ -968,7 +968,7 @@ botao_editar.onclick = async function () {
 
     // PUT
     const response = await fetch(
-      `https://projetojobs.up.railway.app/api/uptade/userJovem/${id_user}`,
+      `http://localhost:3008/api/uptade/userJovem/${id_user}`,
       {
         method: "PUT",
         body: formData, // Enviando todos os dados e a imagem juntos
@@ -1015,7 +1015,7 @@ botao_excluir_conta.onclick = function () {
   }).then(async function (result) {
     if (result.isConfirmed) {
       const response = await fetch(
-        `https://projetojobs.up.railway.app/api/usuario/jovem/deletando/${id_user}`,
+        `http://localhost:3008/api/usuario/jovem/deletando/${id_user}`,
         {
           method: "DELETE",
           headers: { "Content-type": "application/json;charset=UTF-8" },

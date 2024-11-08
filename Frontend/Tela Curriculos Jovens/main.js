@@ -47,7 +47,7 @@ user_logado.textContent = User_name;
 
 async function buscandoCurriculos(area) {
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/curriculo/buscando`,
+    `http://localhost:3008/api/curriculo/buscando`,
     {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -77,7 +77,7 @@ async function buscandoCurriculos(area) {
 
         // Realizar fetch do arquivo
         const response = await fetch(
-          `https://projetojobs.up.railway.app/uploads/curriculos/${fileName}`
+          `http://localhost:3008/uploads/curriculos/${fileName}`
         );
         const fileBlob = await response.blob(); // Transformar o arquivo em um Blob
 
@@ -93,7 +93,7 @@ async function buscandoCurriculos(area) {
         a.addEventListener("click", async function () {
           // Quantidade de downloads currículo jovem
           const downloadResponse  = await fetch(
-            `https://projetojobs.up.railway.app/api/curriculo/quant_downloads/${content.data[i].curriculo.split("_")[0]}`,
+            `http://localhost:3008/api/curriculo/quant_downloads/${content.data[i].curriculo.split("_")[0]}`,
             {
               method: "PUT",
               headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -104,7 +104,7 @@ async function buscandoCurriculos(area) {
         });
 
         if (content.data[i].ft_perfil !== null) {
-          img.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[i].ft_perfil}`;
+          img.src = `http://localhost:3008/uploads/img_perfil/${content.data[i].ft_perfil}`;
         } else {
           img.src = "../images/Usuario_nao_logado.png";
         }

@@ -46,7 +46,7 @@ let user_logado = document.getElementById("user_logado");
 user_logado.textContent = User_name;
 
 // Exemplo de como enviar uma solicitação para o servidor
-const url = "https://projetojobs.up.railway.app/api/buscarVaga";
+const url = "http://localhost:3008/api/buscarVaga";
 let page = 1; // Inicializa a página
 let allJobs = new Set(); // Conjunto para armazenar os IDs das vagas exibidas
 

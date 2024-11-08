@@ -232,7 +232,9 @@ main .bloco_cards_duvidas_jovens {
 main .bloco_cards_duvidas_jovens .secao_cards {
     display: flex;
     justify-content: center;
+    align-self: flex-start;
     flex-wrap: wrap;
+    margin: 1.5%;
 }
 
 main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
@@ -285,10 +287,34 @@ main .bloco_cards_duvidas_jovens button:hover {
 }
 
 main .bloco_cards_duvidas_jovens .duvidas_usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 2.4vh;
     background-color: var(--cor-terciaria);
     width: 20vw;
-    height: 20vh;
+    height: 24vh;
     border-radius: 2vw;
+    color: var(--cor-secundaria);
+    text-align: center;
+    cursor: pointer;
+}
+
+main .bloco_cards_duvidas_jovens .duvidas_usuario:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-terciaria);
+    transition: all 0.3s ease-out;
+}
+
+main .bloco_cards_duvidas_jovens .duvidas_usuario i {
+    font-size: 4rem;
+}
+
+main .bloco_cards_duvidas_jovens .duvidas_usuario h2 {
+    display: flex;
+    gap: .3vw;
 }
 
 /* Footer */
