@@ -687,6 +687,7 @@ deletar_curriculo.onclick = async function () {
       );
 
       content = await response.json();
+      console.log(content);
 
       if (content.success) {
         Swal.fire({
@@ -1014,7 +1015,7 @@ botao_excluir_conta.onclick = function () {
   }).then(async function (result) {
     if (result.isConfirmed) {
       const response = await fetch(
-        `https://projetojobs.up.railway.app/api/usuario/empresa/deletando/${id_user}`,
+        `https://projetojobs.up.railway.app/api/usuario/jovem/deletando/${id_user}`,
         {
           method: "DELETE",
           headers: { "Content-type": "application/json;charset=UTF-8" },
