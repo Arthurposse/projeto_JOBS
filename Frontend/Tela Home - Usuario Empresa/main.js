@@ -697,8 +697,8 @@ async function getUserJovem(id_user) {
       ft_perfil_user.src = "../images/Usuario_nao_logado.png";
       ft_perfil_user_2.src = "../images/Usuario_nao_logado.png";
     } else {
-      ft_perfil_user.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
-      ft_perfil_user_2.src = `http:localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+      ft_perfil_user.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
+      ft_perfil_user_2.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
     }
 
     nome.textContent = content.data[0].name;
