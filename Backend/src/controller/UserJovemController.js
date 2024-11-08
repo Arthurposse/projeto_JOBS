@@ -88,7 +88,7 @@ async function getUserJovem(request, response) {
   const params = Array(request.params.id);
 
   const query =
-    "SELECT ft_perfil, name, email, curriculo, download_curriculo, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
+    "SELECT ft_perfil, name, email, curriculo, curriculo, telefone, cidade, data_nascimento FROM user_jovem WHERE id = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -391,7 +391,7 @@ async function apagarCurriculo(request, response) {
       }
 
       // Após excluir o arquivo, atualiza o banco para remover a referência
-      const deleteCurriculoQuery = "UPDATE user_jovem SET curriculo = NULL, download_curriculo = 0 WHERE id = ?;";
+      const deleteCurriculoQuery = "UPDATE user_jovem SET curriculo = NULL, curriculo = 0 WHERE id = ?;";
       connection.query(
         deleteCurriculoQuery,
         [userId],
