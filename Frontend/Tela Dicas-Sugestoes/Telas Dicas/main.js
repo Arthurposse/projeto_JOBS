@@ -118,7 +118,7 @@ async function gerarDica() {
     },
   });
 
-  const response = await fetch(`http://localhost:3008/api/apiGB_dicas`, {
+  const response = await fetch(`https://projetojobs.up.railway.app/api/apiGB_dicas`, {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
     body: JSON.stringify({ tema_escolhido }),
