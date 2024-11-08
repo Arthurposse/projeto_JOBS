@@ -418,21 +418,40 @@ async function apagarCurriculo(request, response) {
 // Deletando Usuário Jovem (DELETE)
 
 async function deleteUsuarioJovem(request, response) {
+
   const params = Array(request.params.id);
 
-  const query = "DELETE FROM user_jovem WHERE `id` = ?";
+  const query = "DELETE FROM metas WHERE `id_criador` = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {
       response.status(201).json({
         success: true,
-        message: "Sucesso ao deletar a conta!!",
+        message: "Sucesso ao deletar as metas!!",
         data: results,
+      });
+
+      const query = "DELETE FROM user_jovem WHERE `id` = ?";
+
+      connection.query(query, params, (err, results) => {
+        if (results) {
+          response.status(201).json({
+            success: true,
+            message: "Sucesso ao deletar a conta!!",
+            data: results,
+          });
+        } else {
+          response.status(400).json({
+            success: false,
+            message: "Ops, deu problemas ao deletar a conta!",
+            data: err,
+          });
+        }
       });
     } else {
       response.status(400).json({
         success: false,
-        message: "Ops, deu problemas ao deletar a conta!",
+        message: "Ops, deu problemas ao deletar as metas!!",
         data: err,
       });
     }
