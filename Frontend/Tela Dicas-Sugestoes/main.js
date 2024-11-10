@@ -109,7 +109,6 @@ async function carregarDuvidas() {
       cardDuvida.addEventListener("click", () => {
         localStorage.setItem("tipo_usuario", "Jovem");
         localStorage.setItem("id_duvida", content.data[i].id_duvida);
-        localStorage.setItem("texto_duvida", content.data[i].duvida);
         window.location.href = "../Tela Visualizando Duvida/index.html";
       });
     }
@@ -128,13 +127,12 @@ async function carregarDuvidasUser() {
   const response = await fetch("http://localhost:3008/api/duvidas/carregarDuvUser", {
     method: "POST",
     headers: { "Content-type": "application/json;charset=UTF-8" },
-    body: JSON.stringify( { id_user } ),
+    body: JSON.stringify({ id_user }),
   });
 
   let content = await response.json();
-  console.log(content);
 
-  if(content.success) {
+  if (content.success) {
     quant_duv_user.textContent = content.data.length;
   }
   else {
@@ -143,7 +141,7 @@ async function carregarDuvidasUser() {
   }
 }
 
-// carregarDuvidasUser();
+carregarDuvidasUser();
 
 // Compartilhamento da dúvida
 
@@ -189,7 +187,6 @@ botao_criar_duvida.addEventListener("click", function () {
         });
 
         let content = await response.json();
-        console.log(content);
 
         if (content.success) {
           Swal.fire({
@@ -198,6 +195,10 @@ botao_criar_duvida.addEventListener("click", function () {
             showConfirmButton: false,
             timer: 2000,
           });
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         } else {
           Swal.fire({
             title: "Erro ao enviar a dúvida!!",
@@ -216,10 +217,10 @@ botao_criar_duvida.addEventListener("click", function () {
 
 // Redirecionamento para a página das dúvidas do usuário
 
-let duvidas_usuario = document.getElementById('duvidas_usuario');
+let duvidas_usuario = document.querySelector('.duvidas_usuario');
 
-duvidas_usuario.onclick = function(){
-  if(quant_duv_user.textContent === '' || quant_duv_user.textContent === '0') {
+duvidas_usuario.onclick = async function () {
+  if (quant_duv_user.textContent === '' || quant_duv_user.textContent === '0') {
     Swal.fire({
       title: "Você ainda não enviou uma dúvida!!",
       text: "Tire sua dúvida!!",
@@ -229,6 +230,34 @@ duvidas_usuario.onclick = function(){
     });
   }
   else {
-    window.location.href = "duvidas_usuario.html";
+    const response = await fetch("http://localhost:3008/api/duvidas/carregarDuvUser", {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify({ id_user }),
+    });
+
+    let content = await response.json();
+
+    if (content.success) {
+      const opcoes = {};
+
+      for (let i = 0; i < content.data.length; i++) {
+        opcoes[`${content.data[i].id_duvida}`] = `${content.data[i].duvida.slice(0, 45)}...`;
+      }
+
+      const { value: duvidas } = await Swal.fire({
+        title: "Selecione a dúvida",
+        input: "select",
+        inputOptions: opcoes,
+        inputPlaceholder: "Selecionar aquela que desejar",
+        showCancelButton: true,
+        confirmButtonColor: "#0e566a",
+      });
+      if (duvidas) {
+        localStorage.setItem('id_duvida', duvidas);
+        localStorage.setItem('user_editor', 'true');
+        window.location.href = "../Tela Visualizando Duvida/index.html";
+      }
+    }
   }
 }

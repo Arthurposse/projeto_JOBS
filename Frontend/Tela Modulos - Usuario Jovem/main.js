@@ -83,7 +83,7 @@ function exibirPergunta(content_) {
 // GET Perguntas e Respostas
 async function getModulos(buscar_modulo) {
   const response = await fetch(
-    `api/modulosJovem?tipo_modulo=${buscar_modulo}`,
+    `http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -91,6 +91,7 @@ async function getModulos(buscar_modulo) {
   );
 
   let content = await response.json();
+  console.log(content)
   res_BD = content;
 
   let totalQuestoes = content.data.length;

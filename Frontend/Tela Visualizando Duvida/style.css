@@ -56,7 +56,12 @@ main #nome_usuario_jovem {
 }
 
 main #duvida_jovem {
+    text-align: center;
     margin-bottom: 1%;
+}
+
+main .bloco_botao_deletar button {
+    padding: 8%;
 }
 
 main .botoes {

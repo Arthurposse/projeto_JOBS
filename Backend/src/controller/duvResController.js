@@ -40,7 +40,7 @@ async function responderDuvida(request, response) {
 
   let query;
 
-  if(request.body.tipo_usuario === 'Jovem') {
+  if (request.body.tipo_usuario === 'Jovem') {
     query = "INSERT INTO respostas(id_jovem, id_duvida, resposta, type_user) VALUES (?, ?, ?, ?)";
   }
   else if (request.body.tipo_usuario === 'Empresa') {
@@ -109,7 +109,7 @@ async function carregarDuvidasUser(request, response) {
       response.status(400).json({
         success: false,
         message: "Ops, deu problemas com a busca das duvidas do usuário!!",
-        data: err
+        errorDetails: err.message,
       });
     }
   });
@@ -143,11 +143,10 @@ async function carregarRespostas(request, response) {
 
 async function carregarInfosDuvida(request, response) {
   const params = [
-    request.body.id_duvida,
-    request.body.texto_duvida
+    request.body.id_duvida
   ];
 
-  const query = "SELECT * FROM duvidas WHERE id_duvida = ? AND duvida = ?";
+  const query = "SELECT * FROM duvidas WHERE id_duvida = ?";
 
   connection.query(query, params, (err, results) => {
     if (results) {

@@ -45,20 +45,17 @@ let tipo_usuario = localStorage.getItem("Tipo_user");
 // Buscando dados salvos no localstorage para buscar as infos da dúvida no BD
 
 const id_duvida = Number(localStorage.getItem("id_duvida"));
-const texto_duvida = localStorage.getItem("texto_duvida");
 
 // Buscando as infos no BD
 
 async function carregarInfosDuvida() {
-  let data = { id_duvida, texto_duvida };
-
   // POST
   const response = await fetch(
     "http://localhost:3008/api/carregarInfosDuvida",
     {
       method: "POST",
       headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ id_duvida }),
     }
   );
 
@@ -88,6 +85,8 @@ async function carregarRespostas() {
   });
 
   let content = await response.json();
+  console.log(content)
+
   const bloco_respostas = document.querySelector(".bloco_respostas");
 
   if (content.success) {
@@ -138,9 +137,37 @@ async function carregarRespostas() {
 
 carregarRespostas();
 
+// Verificando se foi o usuário que enviou aquela dúvida
+
+const botao_resposta = document.getElementById("criar_resposta");
+
+if (localStorage.getItem('user_editor')) {
+  botao_resposta.style.display = 'none';
+
+
+}
+
+// Deletando dúvida (DELETE)
+
+const deletar_duvida = document.getElementById("deletar_duvida");
+
+deletar_duvida.onclick = async function () {
+  Swal.fire({
+    title: "Deseja mesmo deletar sua dúvida?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#0e566a",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Deletar",
+  }).then(async function (result) {
+    if (result.isConfirmed) {
+      // Adicionar rota para deletar a dúvida
+    }
+  });
+};
 // Respondendo a dúvida
 
-document.getElementById("criar_resposta").onclick = async function () {
+botao_resposta.onclick = async function () {
   Swal.fire({
     title: "Responda a dúvida!!",
     text: "Ajude com seu conhecimento!!",
@@ -218,6 +245,7 @@ document.getElementById("criar_resposta").onclick = async function () {
 document.getElementById("botao_voltar").onclick = function () {
   localStorage.removeItem("id_duvida");
   localStorage.removeItem("texto_duvida");
+  localStorage.removeItem("user_editor");
 
   if (tipo_usuario === "Jovem") {
     window.location.href = "../Tela Dicas-Sugestoes/index.html";

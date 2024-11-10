@@ -665,7 +665,7 @@ botao_envio_curriculo.onclick = async function () {
 
 // Deletando currículo
 
-let deletar_curriculo = document.getElementById("deletar_curriculo");
+const deletar_curriculo = document.getElementById("deletar_curriculo");
 
 deletar_curriculo.onclick = async function () {
   Swal.fire({

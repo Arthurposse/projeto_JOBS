@@ -77,7 +77,6 @@ async function sorteandoDuvidas() {
         bloco_duvida.addEventListener("click", () => {
           localStorage.setItem("tipo_usuario", "Empresa");
           localStorage.setItem("id_duvida", content.data[i].id_duvida);
-          localStorage.setItem("texto_duvida", content.data[i].duvida);
           window.location.href = "../Tela Visualizando Duvida/index.html";
         });
       }

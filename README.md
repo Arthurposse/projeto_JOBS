@@ -27,15 +27,16 @@
   - Procurar emprego (com pesquisa personalizada).
   - Postar seu currículo.
   - Postar suas dúvidas.
-  - Criar seu prórprio planejamento de carreira.
+  - Criar seu planejamento de carreira a partir da carreira desejada.
   - Estabelecer suas próprias metas.
 
 <br>
 
 - Usuário Empresa
   - Chat.
-  - Buscar currículos (em um hub).
+  - Buscar currículos.
   - Tirar dúvidas dos jovens.
+  - Criar vagas.
 
 <br>
 
@@ -49,7 +50,7 @@
 - <b> BD: </b> 
   - <b> Hospedagem: </b> Clever Cloud.
   - <b> Linguagem: </b> MySQL.
-- <b> Buscar por empregos: </b> Adzuna.
+- <b> Buscar por empregos: </b> API Adzuna.
 
 <br>
 
@@ -59,15 +60,24 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa) 
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo e Tela Home (Sem Usuário Logado)
   - Ajustar responsividade.
 
 <br>
 
+- Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
+  - Ajustar lógica de deletar a conta, fazer com que o backend:
+    - Usuário jovem:
+      - Delete seu currículo, suas dúvidas e metas.
+
+    - Usuário empresa:
+      - Delete suas vagas.
+  - Ajustar responsividade.
+<br>
+
 - Tela Dicas/Sugestões
-  - Desenvolver tela para visualizar as dúvidas criadas pelo usuário, para assim, ele ver as respostas de cada dúvida
-  - Desenvolver a lógica do botão mais
-  - Ajustar responsividade
+  - Desenvolver a lógica do botão mais.
+  - Ajustar responsividade.
 
 <br>
 
@@ -83,8 +93,3 @@
 - Tela Chat
   - Ajustar responsividade.
   - Planejar e desenvolver o sistema de chat.
-
-<br>
-
-- Tela Home (Usuário Jovem)
-  - Planejar e desenvolver a seção sobre as estatísticas de visualização do currículo do usuário.

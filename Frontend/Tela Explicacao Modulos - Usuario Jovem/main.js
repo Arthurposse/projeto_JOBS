@@ -1,6 +1,5 @@
 // Removendo localStorage que não será utilizado na página
 
-localStorage.removeItem('Modulo');
 localStorage.removeItem('User_name_antigo');
 localStorage.removeItem('tema_escolhido');
 
@@ -61,7 +60,7 @@ if (tipo_modulo_escolhido == "email") {
 
 async function addDadosTabela(buscar_modulo) {
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
+    `http://localhost:3008/api/modulosJovem?tipo_modulo=${buscar_modulo}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -69,6 +68,7 @@ async function addDadosTabela(buscar_modulo) {
   );
 
   content = await response.json();
+  console.log(content)
 
   if (content.success) {
     for (let i = 0; i < content.data.length; i++) {

@@ -47,34 +47,34 @@ header {
     flex-direction: column;
     height: 62vh;
     color: var(--cor-fonte);
-  }
-  
-  header .header_topo {
+}
+
+header .header_topo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  header .Logo_JOBS {
+}
+
+header .Logo_JOBS {
     width: 15%;
     margin: 1.5%;
-  }
-  
-  header nav {
+}
+
+header nav {
     display: flex;
     gap: 5vw;
-  }
-  
-  header nav a {
+}
+
+header nav a {
     color: var(--cor-terciaria);
     text-decoration: none;
-  }
-  
-  header nav a:nth-child(3) {
+}
+
+header nav a:nth-child(3) {
     text-decoration: underline;
-  }
-  
-  header .bloco_usuario {
+}
+
+header .bloco_usuario {
     background-color: rgba(25, 167, 206, 0.6);
     display: flex;
     align-items: center;
@@ -82,31 +82,31 @@ header {
     padding: 1%;
     border-radius: 2vw 0 0 2vw;
     width: 16%;
-  }
-  
-  header .bloco_usuario img {
+}
+
+header .bloco_usuario img {
     width: 20%;
-  }
-  
-  header .bloco_usuario h3 {
+}
+
+header .bloco_usuario h3 {
     font-size: 1rem;
-  }
-  
-  header .header_meio {
+}
+
+header .header_meio {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: 4%;
-  }
-  
-  header .forma {
+}
+
+header .forma {
     background-color: rgba(25, 167, 206);
     width: 4%;
     height: 2vh;
     border-radius: 2vw;
-  }
+}
 
 /* Main */
 
@@ -232,9 +232,9 @@ main .bloco_cards_duvidas_jovens {
 main .bloco_cards_duvidas_jovens .secao_cards {
     display: flex;
     justify-content: center;
-    align-self: flex-start;
-    flex-wrap: wrap;
-    margin: 1.5%;
+    align-self: center;
+    flex-wrap: nowrap;
+    margin-top: 4%;
 }
 
 main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
@@ -283,7 +283,8 @@ main .bloco_cards_duvidas_jovens button:hover {
 }
 
 .alert_textarea {
-    resize: none; /* Desabilita o redimensionamento */
+    resize: none;
+    /* Desabilita o redimensionamento */
 }
 
 main .bloco_cards_duvidas_jovens .duvidas_usuario {
@@ -294,8 +295,7 @@ main .bloco_cards_duvidas_jovens .duvidas_usuario {
     align-self: flex-start;
     gap: 2.4vh;
     background-color: var(--cor-terciaria);
-    width: 20vw;
-    height: 24vh;
+    padding: 3%;
     border-radius: 2vw;
     color: var(--cor-secundaria);
     text-align: center;
@@ -312,7 +312,7 @@ main .bloco_cards_duvidas_jovens .duvidas_usuario i {
     font-size: 4rem;
 }
 
-main .bloco_cards_duvidas_jovens .duvidas_usuario h2 {
+main .bloco_cards_duvidas_jovens .duvidas_usuario h1 {
     display: flex;
     gap: .3vw;
 }

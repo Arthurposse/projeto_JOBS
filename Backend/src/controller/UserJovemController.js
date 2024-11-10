@@ -295,7 +295,7 @@ async function getModulos(request, response) {
   const params = Array(request.query.tipo_modulo);
 
   const query =
-    "SELECT `pergunta`, `questao_1`, `questao_2`, `questao_3`, `res_correta`, `explicacao` FROM jobs.questoes_modulos WHERE tipo_modulo = ?;";
+    "SELECT `pergunta`, `questao_1`, `questao_2`, `questao_3`, `res_correta`, `explicacao` FROM questoes_modulos WHERE tipo_modulo = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -418,6 +418,8 @@ async function apagarCurriculo(request, response) {
 // Deletando Usuário Jovem (DELETE)
 
 async function deleteUsuarioJovem(request, response) {
+
+    // Fazer a lógica para deletar o currículo, as dúvidas e as metas do usuário!!
 
   const params = Array(request.params.id);
 
