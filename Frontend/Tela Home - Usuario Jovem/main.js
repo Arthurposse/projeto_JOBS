@@ -191,10 +191,11 @@ async function getMetas(nome, ordem) {
 
           const diaFormatado = adicionarZero(currentDate.getDate());
           const mesFormatado = adicionarZero(currentDate.getMonth() + 1);
+          const ano = currentDate.getFullYear();
 
           const p_data_meta = document.createElement("p");
           p_data_meta.classList.add("data_meta");
-          p_data_meta.textContent = `${diaFormatado}/${mesFormatado}`;
+          p_data_meta.textContent = `${diaFormatado}/${mesFormatado}/${ano}`;
 
           const icon = document.createElement("i");
           icon.classList.add("bi-exclamation-triangle");
@@ -248,7 +249,7 @@ async function getMetas(nome, ordem) {
           const bloco_meta_rodape = document.createElement("section");
           bloco_meta_rodape.classList.add("bloco_meta_rodape");
 
-          // let ano_user = data.slice(0, 4);
+          let ano_user = data.slice(0, 4);
 
           let mes_user = data.slice(5, 7);
 
@@ -256,7 +257,7 @@ async function getMetas(nome, ordem) {
 
           const p_data_meta = document.createElement("p");
           p_data_meta.classList.add("data_meta");
-          p_data_meta.textContent = `${dia_user}/${mes_user}`;
+          p_data_meta.textContent = `${dia_user}/${mes_user}/${ano_user}`;
 
           const icon = document.createElement("i");
           icon.classList.add("bi-exclamation-triangle");
@@ -303,7 +304,7 @@ async function getMetas(nome, ordem) {
         const bloco_meta_rodape = document.createElement("section");
         bloco_meta_rodape.classList.add("bloco_meta_rodape");
 
-        // let ano_user = data.slice(0, 4);
+        let ano_user = data.slice(0, 4);
 
         let mes_user = data.slice(5, 7);
 
@@ -311,7 +312,7 @@ async function getMetas(nome, ordem) {
 
         const p_data_meta = document.createElement("p");
         p_data_meta.classList.add("data_meta");
-        p_data_meta.textContent = `${dia_user}/${mes_user}`;
+        p_data_meta.textContent = `${dia_user}/${mes_user}/${ano_user}`;
 
         const icon = document.createElement("i");
         icon.classList.add("bi-exclamation-triangle");
@@ -421,7 +422,12 @@ botao_criar_metas.onclick = async function () {
       window.location.reload();
     }, 2000);
   } else {
-    if (data.data_conclusao === undefined) {
+    if (data.data_conclusao === undefined && titulo && infos) {
+      // titulo = titulo_criar;
+      // infos = infos_criar;
+      // data_alterar = data_criar;
+      // prioridade = prioridade_criar;
+
       Swal.fire({
         title: "Limite de tempo!!",
         text: `O ano escolhido deve estar entre ${new Date().getFullYear()} e ${
