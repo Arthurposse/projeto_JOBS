@@ -144,7 +144,7 @@ async function carregarRespostas() {
 
 carregarRespostas();
 
-// Verificando se foi o usuário que enviou aquela dúvida
+// Verificando se foi o usuário logado que enviou aquela dúvida
 
 const botao_resposta = document.getElementById("criar_resposta");
 const deletar_duvida = document.getElementById("deletar_duvida");
