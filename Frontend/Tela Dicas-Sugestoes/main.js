@@ -255,7 +255,6 @@ duvidas_usuario.onclick = async function () {
       });
       if (duvidas) {
         localStorage.setItem('id_duvida', duvidas);
-        localStorage.setItem('user_editor', 'true');
         window.location.href = "../Tela Visualizando Duvida/index.html";
       }
     }

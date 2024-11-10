@@ -50,7 +50,7 @@ const container_duvidas = document.querySelector(".container_duvidas");
 const buscar_duvidas = document.getElementById("buscar_duvidas");
 
 async function sorteandoDuvidas() {
-  const response = await fetch("http://localhost:3008/duvidasSorteadas", {
+  const response = await fetch("http://localhost:3008/api/duvidasSorteadas", {
     method: "GET",
     headers: { "Content-type": "application/json;charset=UTF-8" },
   });
@@ -103,7 +103,7 @@ let vagas_registradas = document.querySelector(".vagas_registradas");
 
 async function getVagas(nome, ordem) {
   const response = await fetch(
-    `http://localhost:3008/vagas/getVagas/${id_user}`,
+    `http://localhost:3008/api/vagas/getVagas/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -548,7 +548,7 @@ botao_criar_vagas.onclick = async function () {
 
             // POST
             const response = await fetch(
-              `https://projetojobs.up.railway.app/api/vagas/criandoVaga/${id_user}`,
+              `http://localhots:3008/api/vagas/criandoVaga/${id_user}`,
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -599,7 +599,7 @@ botao_deletar_vaga.onclick = async function () {
   }
 
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/vagas/deletandoVaga/${id_user}`,
+    `http://localhost:3008/api/vagas/deletandoVaga/${id_user}`,
     {
       method: "DELETE",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -682,7 +682,7 @@ let guardar_idade_user = "";
 
 async function getUserJovem(id_user) {
   const response = await fetch(
-    `https://projetojobs.up.railway.app/api/buscandoDados/${id_user}`,
+    `http://localhost:3008/api/buscandoDados/${id_user}`,
     {
       method: "GET",
       headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -696,8 +696,8 @@ async function getUserJovem(id_user) {
       ft_perfil_user.src = "../images/Usuario_nao_logado.png";
       ft_perfil_user_2.src = "../images/Usuario_nao_logado.png";
     } else {
-      ft_perfil_user.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
-      ft_perfil_user_2.src = `https://projetojobs.up.railway.app/uploads/img_perfil/${content.data[0].ft_perfil}`;
+      ft_perfil_user.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
+      ft_perfil_user_2.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
     }
 
     nome.textContent = content.data[0].name;
@@ -870,7 +870,7 @@ botao_editar.onclick = async function () {
 
     // PUT
     const response = await fetch(
-      `https://projetojobs.up.railway.app/api/uptade/userEmpresa/${id_user}`,
+      `http://localhost:3008/api/uptade/userEmpresa/${id_user}`,
       {
         method: "PUT",
         body: formData,

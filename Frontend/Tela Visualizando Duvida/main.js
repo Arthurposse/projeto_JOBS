@@ -45,6 +45,7 @@ let tipo_usuario = localStorage.getItem("Tipo_user");
 // Buscando dados salvos no localstorage para buscar as infos da dúvida no BD
 
 const id_duvida = Number(localStorage.getItem("id_duvida"));
+let duvida_editor = false;
 
 // Buscando as infos no BD
 
@@ -60,6 +61,8 @@ async function carregarInfosDuvida() {
   );
 
   let content = await response.json();
+  console.log('ID_USER logado: ', typeof(id_user));
+  console.log('ID_USER dúvida: ', typeof(content.data[0].id_user));
 
   if (content.success) {
     let nome_usuario_jovem = document.getElementById("nome_usuario_jovem");
@@ -67,6 +70,11 @@ async function carregarInfosDuvida() {
 
     nome_usuario_jovem.textContent = content.data[0].nome_user;
     duvida_jovem.textContent = content.data[0].duvida;
+
+    if(Number(id_user) === content.data[0].id_user) {
+      duvida_editor = true;
+      console.log('DUVIDA EDITOR ATIVADO!')
+    }
   } else {
     alert("Deu erro!!");
   }
@@ -85,7 +93,6 @@ async function carregarRespostas() {
   });
 
   let content = await response.json();
-  console.log(content)
 
   const bloco_respostas = document.querySelector(".bloco_respostas");
 
@@ -140,16 +147,17 @@ carregarRespostas();
 // Verificando se foi o usuário que enviou aquela dúvida
 
 const botao_resposta = document.getElementById("criar_resposta");
+const deletar_duvida = document.getElementById("deletar_duvida");
 
-if (localStorage.getItem('user_editor')) {
-  botao_resposta.style.display = 'none';
-
-
-}
+setTimeout(() => {
+  if (duvida_editor && tipo_usuario !== 'Empresa') {
+    botao_resposta.style.display = 'none';
+  } else {
+    deletar_duvida.style.display = 'none';
+  }
+}, 25);
 
 // Deletando dúvida (DELETE)
-
-const deletar_duvida = document.getElementById("deletar_duvida");
 
 deletar_duvida.onclick = async function () {
   Swal.fire({
