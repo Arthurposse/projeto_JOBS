@@ -8,18 +8,16 @@ localStorage.removeItem('Res_user');
 localStorage.removeItem('User_name_antigo');
 localStorage.removeItem('tema_escolhido');
 
-// Verificando se o usuário esta logado
+// Verificando se o usuário está logado
 
 document.addEventListener("DOMContentLoaded", () => {
   const fundoEscuro = document.querySelector('.fundo_escuro');
   const footer = document.querySelector('footer');
 
   if (!localStorage.getItem("ID_user")) {
-    // Adiciona a classe 'active' para exibir o fundo
     fundoEscuro.classList.add('active');
     footer.style.display = 'none';
 
-    // Usa requestAnimationFrame para garantir que o fundo seja renderizado antes do SweetAlert
     requestAnimationFrame(() => {
       Swal.fire({
         title: "É necessário realizar o LogIn!!",
@@ -28,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showConfirmButton: false,
         timer: 2400,
         willClose: () => {
-          // Remove o fundo após o SweetAlert fechar
           fundoEscuro.classList.remove('active');
           window.location.href = '../Tela Home - Sem Usuario Logado/index.html';
         }
@@ -47,17 +44,17 @@ user_logado.textContent = User_name;
 
 // Exemplo de como enviar uma solicitação para o servidor
 const url = "http://localhost:3008/api/buscarVaga";
-let page = 1; // Inicializa a página
-let allJobs = new Set(); // Conjunto para armazenar os IDs das vagas exibidas
+let page = 1;
+let allJobs = new Set();
 
 const lupa = document.getElementById('lupa');
 const botao_mais = document.getElementById('botao_mais');
 
 lupa.onclick = function (e) {
   e.preventDefault();
-  page = 1; // Reinicia a página ao buscar novas vagas
-  allJobs.clear(); // Limpa o conjunto de vagas exibidas anteriormente
-  document.getElementById("empregos_encontrados").innerHTML = ""; // Limpa o conteúdo da seção de vagas
+  page = 1;
+  allJobs.clear();
+  document.getElementById("empregos_encontrados").innerHTML = "";
   buscarVagas();
 }
 
@@ -66,9 +63,9 @@ const input_ = document.querySelector('input');
 input_.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     e.preventDefault();
-    page = 1; // Reinicia a página ao buscar novas vagas
-    allJobs.clear(); // Limpa o conjunto de vagas exibidas anteriormente
-    document.getElementById("empregos_encontrados").innerHTML = ""; // Limpa o conteúdo da seção de vagas
+    page = 1;
+    allJobs.clear();
+    document.getElementById("empregos_encontrados").innerHTML = "";
     buscarVagas();
   }
 });
@@ -86,7 +83,7 @@ function buscarVagas() {
   const payload = {
     keywords: input,
     location: "",
-    page: page // Adiciona o número da página na requisição
+    page: page
   };
 
   const headers = {
@@ -96,7 +93,7 @@ function buscarVagas() {
   fetch(url, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ payload }), // Envolve o payload dentro de um objeto
+    body: JSON.stringify({ payload }),
   })
     .then((response) => {
       if (!response.ok) {
@@ -107,14 +104,12 @@ function buscarVagas() {
     .then((data) => {
       if (data.results.length === 0) {
         alert('Não foi encontrado nenhuma vaga!');
-
       } else {
         const jobsListElement = document.getElementById("empregos_encontrados");
-        empregos_encontrados.textContent = '';
-        
+
         data.results.forEach(job => {
-          if (!allJobs.has(job.id)) { // Verifica se a vaga já foi exibida
-            allJobs.add(job.id); // Adiciona o ID da vaga ao conjunto
+          if (!allJobs.has(job.id)) {
+            allJobs.add(job.id);
 
             const jobElement = createJobElement(job);
             jobsListElement.appendChild(jobElement);
@@ -128,7 +123,6 @@ function buscarVagas() {
       console.error("Erro:", error);
     });
 }
-
 
 // Função para criar elemento HTML para cada vaga
 function createJobElement(job) {
@@ -155,7 +149,7 @@ function createJobElement(job) {
   const dataElement = document.createElement("p");
   let data_criacao = job.created;
   dataElement.appendChild(dataLabel);
-  dataElement.appendChild(document.createTextNode(` ${data_criacao.slice(8, 10)}/${data_criacao.slice(5, 7)}/${data_criacao.slice(0, 4)} as ${data_criacao.slice(11, 16)}`));
+  dataElement.appendChild(document.createTextNode(` ${data_criacao.slice(8, 10)}/${data_criacao.slice(5, 7)}/${data_criacao.slice(0, 4)} às ${data_criacao.slice(11, 16)}`));
 
   const linkElement = document.createElement('a');
   linkElement.href = job.redirect_url;

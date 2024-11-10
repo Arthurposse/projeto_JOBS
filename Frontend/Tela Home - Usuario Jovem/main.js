@@ -745,8 +745,8 @@ async function getUserJovem(id_user) {
   content = await response.json();
 
   if (ft_user === undefined || content.data[0].ft_perfil === null) {
-    ft_perfil_user.src = "/images/Usuario_nao_logado.png";
-    ft_perfil_user_2.src = "/images/Usuario_nao_logado.png";
+    ft_perfil_user.src = "../images/Usuario_nao_logado.png";
+    ft_perfil_user_2.src = "../images/Usuario_nao_logado.png";
   } else {
     ft_perfil_user.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
     ft_perfil_user_2.src = `http://localhost:3008/uploads/img_perfil/${content.data[0].ft_perfil}`;
