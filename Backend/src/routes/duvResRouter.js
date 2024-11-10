@@ -7,7 +7,8 @@ const {
   carregarDuvidas,
   carregarDuvidasUser,
   carregarRespostas,
-  carregarInfosDuvida
+  carregarInfosDuvida,
+  deleteDuvJovem
 } = require("../controller/duvResController");
 
 // POST
@@ -125,5 +126,24 @@ router.post("/carregarRespostas", carregarRespostas);
  *                  example: 
  */
 router.post("/carregarInfosDuvida", carregarInfosDuvida);
+
+/**
+ * @swagger
+ * /carregarInfosDuvida:
+ *  delete:
+ *    summary: Deletando a dúvida do usuário
+ *    responses:
+ *      200:
+ *        description: Sucesso!!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: 
+ */
+router.delete("/duvidas/deletar", deleteDuvJovem);
 
 module.exports = router;

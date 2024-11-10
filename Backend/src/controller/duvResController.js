@@ -165,11 +165,62 @@ async function carregarInfosDuvida(request, response) {
   });
 }
 
+// Deletando dúvida Usuário Jovem (DELETE)
+
+async function deleteDuvJovem(request, response) {
+  const params = Array(
+    request.params.id_duvida
+  );
+
+  const query = "DELETE FROM respostas WHERE id_duvida = ?;";
+
+  connection.query(query, params, (err, results) => {
+    if (results) {
+      response.status(201).json({
+        success: true,
+        message: "Sucesso ao deletar as respostas da dúvida!!",
+        data: results,
+      });
+    
+      const params_ = Array(
+        request.params.id,
+        request.params.id_duvida
+      );
+
+      const query_ = "DELETE FROM duvidas WHERE id_user = ? AND id_duvida = ?;";
+    
+      connection.query(query_, params_, (err, results) => {
+        if (results) {
+          response.status(201).json({
+            success: true,
+            message: "Sucesso ao deletar a dúvida!!",
+            data: results,
+          });          
+        } else {
+          response.status(400).json({
+            success: false,
+            message: "Ops, deu problemas ao deletar a dúvida!!",
+            data: err,
+          });
+        }
+      });
+
+    } else {
+      response.status(400).json({
+        success: false,
+        message: "Ops, deu problemas ao deletar as respostas da dúvida!!",
+        data: err,
+      });
+    }
+  });
+}
+
 module.exports = {
   enviarDuvida,
   responderDuvida,
   carregarDuvidas,
   carregarDuvidasUser,
   carregarRespostas,
-  carregarInfosDuvida
+  carregarInfosDuvida,
+  deleteDuvJovem
 };

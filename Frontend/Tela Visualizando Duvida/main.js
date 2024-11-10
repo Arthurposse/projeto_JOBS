@@ -152,6 +152,7 @@ const deletar_duvida = document.getElementById("deletar_duvida");
 setTimeout(() => {
   if (duvida_editor && tipo_usuario !== 'Empresa') {
     botao_resposta.style.display = 'none';
+    nome_usuario_jovem.textContent = 'Sua dúvida:'
   } else {
     deletar_duvida.style.display = 'none';
   }
@@ -169,7 +170,24 @@ deletar_duvida.onclick = async function () {
     confirmButtonText: "Deletar",
   }).then(async function (result) {
     if (result.isConfirmed) {
-      // Adicionar rota para deletar a dúvida
+      const response = await fetch(
+        "http://localhost:3008/api/duvidas/deletar",
+        {
+          method: "DELETE",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+          body: JSON.stringify( { id_user, id_duvida } ),
+        }
+      );
+
+      let content = await response.json();
+      console.log(content);
+
+      if(content.success) {
+        alert('deu bom excluir dúvida')
+      }
+      else {
+        alert('deu RUIM ao excluir dúvida')
+      }
     }
   });
 };

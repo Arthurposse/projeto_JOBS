@@ -249,7 +249,7 @@ duvidas_usuario.onclick = async function () {
         title: "Selecione a dúvida",
         input: "select",
         inputOptions: opcoes,
-        inputPlaceholder: "Selecionar aquela que desejar",
+        inputPlaceholder: "Selecionar sua dúvida que deseja visualizar",
         showCancelButton: true,
         confirmButtonColor: "#0e566a",
       });

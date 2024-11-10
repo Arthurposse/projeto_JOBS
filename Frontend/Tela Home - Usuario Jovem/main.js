@@ -423,11 +423,6 @@ botao_criar_metas.onclick = async function () {
     }, 2000);
   } else {
     if (data.data_conclusao === undefined && titulo && infos) {
-      // titulo = titulo_criar;
-      // infos = infos_criar;
-      // data_alterar = data_criar;
-      // prioridade = prioridade_criar;
-
       Swal.fire({
         title: "Limite de tempo!!",
         text: `O ano escolhido deve estar entre ${new Date().getFullYear()} e ${

@@ -12,7 +12,7 @@
 :root {
     --cor-primaria: #19a7ce;
     --cor-secundaria: #0e566a;
-    --cor-terciaria: #9DD4D1;
+    --cor-terciaria: #9dd4d1;
     --cor-fonte: white;
 }
 
@@ -117,7 +117,6 @@ main {
 
 main .buscar_oportunidade {
     background-color: var(--cor-primaria);
-    height: 80vh;
     padding: 2%;
 }
 
@@ -131,7 +130,7 @@ main .buscar_oportunidade hr {
     margin-top: .5%;
 }
 
-main .buscar_oportunidade h3 {
+main .buscar_oportunidade .titulo_dica_sugest {
     padding: 2%;
     color: var(--cor-secundaria);
 }
@@ -139,7 +138,8 @@ main .buscar_oportunidade h3 {
 main .bloco_dicas_importantes {
     display: flex;
     justify-content: center;
-    gap: 3vw;
+    gap: 5vw;
+    flex-wrap: wrap;
 }
 
 main .bloco_dicas_importantes .quadrado_dica {
@@ -157,10 +157,17 @@ main .bloco_dicas_importantes .quadrado_dica {
 
 main .quadrado_dica {
     text-align: center;
+    color: var(--cor-secundaria);
+}
+
+main .quadrado_dica:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-terciaria);
+    transition: all 0.3s ease-out;
 }
 
 main .quadrado_dica img {
-    width: 70%;
+   width: 70%;
 }
 
 /* Main - Dúvidas dos jovens */
