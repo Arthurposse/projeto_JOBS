@@ -111,6 +111,7 @@ header .header_meio {
   align-items: center;
   gap: 10px;
   margin-top: 4%;
+  text-align: center;
 }
 
 header .forma {
