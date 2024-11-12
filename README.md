@@ -62,7 +62,7 @@
 
 - Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
   - Ajustar responsividade.
-  
+
 <br>
 
 - Tela Dicas/Sugestões
@@ -73,7 +73,6 @@
 
 - Tela Buscar Emprego
   - Desenvolver o filtro.
-  - Ajusta o botão mais, em que ao ser pressionado, as vagas não estão sendo carregadas abaixo das que foram geradas anteriormente e sim substituindo elas.
   - Ajustar responsividade.
 
 <h3 style="color: #9DD4D1;">
