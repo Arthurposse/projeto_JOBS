@@ -335,24 +335,35 @@ async function sorteandoDuvida(request, response) {
 // Deletando Usuário Empresa (DELETE)
 
 async function deleteUsuarioEmpresa(request, response) {
-  const params = Array(request.params.id);
+  const params = [request.params.id];
 
-  const query = "DELETE FROM user_empresa WHERE `id` = ?";
-
-  connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Sucesso ao deletar a conta!!",
-        data: results,
-      });
-    } else {
-      response.status(400).json({
+  // Deletar as metas do usuário primeiro
+  connection.query("DELETE FROM vagas WHERE `id_criador` = ?", params, (err, results) => {
+    if (err) {
+      return response.status(400).json({
         success: false,
-        message: "Ops, deu problemas ao deletar a conta!",
-        data: err,
+        message: "Erro ao deletar as vagas!!",
+        error: err.message,
       });
     }
+
+    // Agora, depois de deletar as metas, deletar o usuário
+    connection.query("DELETE FROM user_empresa WHERE `id` = ?", params, (err, results) => {
+      if (err) {
+        return response.status(400).json({
+          success: false,
+          message: "Erro ao deletar o usuário!!",
+          error: err.message,
+        });
+      }
+
+      // Se tudo ocorrer bem, enviar a resposta de sucesso
+      response.status(201).json({
+        success: true,
+        message: "Usuário e vagas deletados com sucesso!!",
+        data: results,
+      });
+    });
   });
 }
 

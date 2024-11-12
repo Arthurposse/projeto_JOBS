@@ -216,7 +216,7 @@ async function getVagas(nome, ordem) {
                     vaga_area === "Gestão e Negócios")
                 ) {
                   const response = await fetch(
-                    "http://localhost:3008/vagas/putDadosVaga",
+                    "http://localhost:3008/api/vagas/putDadosVaga",
                     {
                       method: "PUT",
                       headers: {
@@ -372,7 +372,7 @@ async function getVagas(nome, ordem) {
                   vaga_area === "Gestão e Negócios")
               ) {
                 const response = await fetch(
-                  "http://localhost:3008/vagas/putDadosVaga",
+                  "http://localhost:3008/api/vagas/putDadosVaga",
                   {
                     method: "PUT",
                     headers: {
@@ -548,7 +548,7 @@ botao_criar_vagas.onclick = async function () {
 
             // POST
             const response = await fetch(
-              `http://localhots:3008/api/vagas/criandoVaga/${id_user}`,
+              `http://localhost:3008/api/vagas/criandoVaga/${id_user}`,
               {
                 method: "POST",
                 headers: { "Content-type": "application/json;charset=UTF-8" },
@@ -917,7 +917,7 @@ botao_excluir_conta.onclick = function () {
   }).then(async function (result) {
     if (result.isConfirmed) {
       const response = await fetch(
-        `http://localhost:3008/usuario/empresa/deletando/${id_user}`,
+        `http://localhost:3008/api/usuario/empresa/deletando/${id_user}`,
         {
           method: "DELETE",
           headers: { "Content-type": "application/json;charset=UTF-8" },

@@ -417,7 +417,6 @@ async function apagarCurriculo(request, response) {
 
 // Deletando Usuário Jovem (DELETE)
 
-// Deletando Usuário Jovem (DELETE)
 async function deleteUsuarioJovem(request, response) {
   const params = [request.params.id];
 

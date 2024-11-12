@@ -60,19 +60,9 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo e Tela Home (Sem Usuário Logado)
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
   - Ajustar responsividade.
-
-<br>
-
-- Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
-  - Ajustar lógica de deletar a conta, fazer com que o backend:
-    - Usuário jovem:
-      - Delete seu currículo, suas dúvidas e metas.
-
-    - Usuário empresa:
-      - Delete suas vagas.
-  - Ajustar responsividade.
+  
 <br>
 
 - Tela Dicas/Sugestões
