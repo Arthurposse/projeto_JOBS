@@ -59,68 +59,6 @@ cards.forEach((card) => {
 
 // Carregando as dúvidas
 
-// async function carregarDuvidas() {
-//   let data = { id_user };
-
-//   // POST
-//   const response = await fetch("http://localhost:3008/api/carregarDuvidas", {
-//     method: "POST",
-//     headers: { "Content-type": "application/json;charset=UTF-8" },
-//     body: JSON.stringify(data),
-//   });
-
-//   let content = await response.json();
-
-//   if (content.success) {
-//     for (let i = 0; i < content.data.length; i++) {
-//       // Criando o elemento <section> com a classe "card_duv_jovem"
-//       const cardDuvida = document.createElement("section");
-//       cardDuvida.className = "card_duv_jovem";
-
-//       // Criando o elemento <section> com a classe "usuario_duvida"
-//       const usuarioDuvida = document.createElement("section");
-//       usuarioDuvida.className = "usuario_duvida";
-
-//       // Criando o elemento <img> para a imagem do perfil
-//       const imgPerfil = document.createElement("img");
-//       imgPerfil.src = "../images/Usuario_nao_logado.png";
-//       imgPerfil.alt = "Foto de perfil do usuário";
-
-//       // Criando o elemento <h2> para o nome do usuário
-//       const nomeUsuario = document.createElement("h2");
-//       nomeUsuario.textContent = content.data[i].nome_user;
-
-//       // Criando o parágrafo <p> para a dúvida
-//       const duvidaTexto = document.createElement("p");
-//       duvidaTexto.id = "duvida";
-//       duvidaTexto.textContent = content.data[i].duvida;
-
-//       // Montando a estrutura do DOM
-//       usuarioDuvida.appendChild(imgPerfil);
-//       usuarioDuvida.appendChild(nomeUsuario);
-
-//       cardDuvida.appendChild(usuarioDuvida);
-//       cardDuvida.appendChild(duvidaTexto);
-
-//       // Adicionando o card dentro da tag HTML
-//       document.querySelector(".secao_cards").appendChild(cardDuvida);
-
-//       // Adicionando o evento de clique ao card
-//       cardDuvida.addEventListener("click", () => {
-//         localStorage.setItem("tipo_usuario", "Jovem");
-//         localStorage.setItem("id_duvida", content.data[i].id_duvida);
-//         window.location.href = "../Tela Visualizando Duvida/index.html";
-//       });
-//     }
-//   } else {
-//     alert("Deu erro!!");
-//   }
-// }
-
-// carregarDuvidas();
-
-// TESTE DUVIDA
-
 // Variáveis para controlar a exibição das dúvidas em blocos de 3
 let currentIndex = 0;
 let duvidas = [];
@@ -139,7 +77,12 @@ function exibirProximasDuvidas() {
 
   // Verifica se há dúvidas restantes para exibir
   if (currentIndex >= duvidas.length) {
-    alert("Não há mais dúvidas para carregar.");
+    Swal.fire({
+      title: "Não tem mais dúvidas para carregar.",
+      icon: "warning",
+      showConfirmButton: false,
+      timer: 2000,
+    });
     return;
   }
 
@@ -209,7 +152,12 @@ async function carregarDuvidas() {
     currentIndex = 0; // Reinicia o índice
     exibirProximasDuvidas(); // Exibe o primeiro grupo de 3 dúvidas
   } else {
-    alert("Deu erro ao carregar as dúvidas!!");
+    Swal.fire({
+      title: "Não foi possível carregar a dúvida!!",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 2000,
+    });
   }
 }
 
