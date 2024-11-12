@@ -241,13 +241,13 @@ main .bloco_cards_duvidas_jovens .secao_cards {
     display: flex;
     justify-content: center;
     align-self: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     margin-top: 4%;
 }
 
 main .bloco_cards_duvidas_jovens .secao_cards .card_duv_jovem {
     background-color: var(--cor-terciaria);
-    padding: 5%;
+    padding: 3%;
     border-radius: 1vw;
     color: var(--cor-secundaria);
     margin: 2%;

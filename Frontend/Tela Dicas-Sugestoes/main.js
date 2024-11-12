@@ -59,6 +59,138 @@ cards.forEach((card) => {
 
 // Carregando as dúvidas
 
+// async function carregarDuvidas() {
+//   let data = { id_user };
+
+//   // POST
+//   const response = await fetch("http://localhost:3008/api/carregarDuvidas", {
+//     method: "POST",
+//     headers: { "Content-type": "application/json;charset=UTF-8" },
+//     body: JSON.stringify(data),
+//   });
+
+//   let content = await response.json();
+
+//   if (content.success) {
+//     for (let i = 0; i < content.data.length; i++) {
+//       // Criando o elemento <section> com a classe "card_duv_jovem"
+//       const cardDuvida = document.createElement("section");
+//       cardDuvida.className = "card_duv_jovem";
+
+//       // Criando o elemento <section> com a classe "usuario_duvida"
+//       const usuarioDuvida = document.createElement("section");
+//       usuarioDuvida.className = "usuario_duvida";
+
+//       // Criando o elemento <img> para a imagem do perfil
+//       const imgPerfil = document.createElement("img");
+//       imgPerfil.src = "../images/Usuario_nao_logado.png";
+//       imgPerfil.alt = "Foto de perfil do usuário";
+
+//       // Criando o elemento <h2> para o nome do usuário
+//       const nomeUsuario = document.createElement("h2");
+//       nomeUsuario.textContent = content.data[i].nome_user;
+
+//       // Criando o parágrafo <p> para a dúvida
+//       const duvidaTexto = document.createElement("p");
+//       duvidaTexto.id = "duvida";
+//       duvidaTexto.textContent = content.data[i].duvida;
+
+//       // Montando a estrutura do DOM
+//       usuarioDuvida.appendChild(imgPerfil);
+//       usuarioDuvida.appendChild(nomeUsuario);
+
+//       cardDuvida.appendChild(usuarioDuvida);
+//       cardDuvida.appendChild(duvidaTexto);
+
+//       // Adicionando o card dentro da tag HTML
+//       document.querySelector(".secao_cards").appendChild(cardDuvida);
+
+//       // Adicionando o evento de clique ao card
+//       cardDuvida.addEventListener("click", () => {
+//         localStorage.setItem("tipo_usuario", "Jovem");
+//         localStorage.setItem("id_duvida", content.data[i].id_duvida);
+//         window.location.href = "../Tela Visualizando Duvida/index.html";
+//       });
+//     }
+//   } else {
+//     alert("Deu erro!!");
+//   }
+// }
+
+// carregarDuvidas();
+
+// TESTE DUVIDA
+
+// Variáveis para controlar a exibição das dúvidas em blocos de 3
+let currentIndex = 0;
+let duvidas = [];
+
+// Função para embaralhar o array de dúvidas
+function embaralharArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// Função para exibir o próximo grupo de 3 dúvidas
+function exibirProximasDuvidas() {
+  const secaoCards = document.querySelector(".secao_cards");
+
+  // Verifica se há dúvidas restantes para exibir
+  if (currentIndex >= duvidas.length) {
+    alert("Não há mais dúvidas para carregar.");
+    return;
+  }
+
+  // Exibe até 3 dúvidas por vez
+  for (let i = currentIndex; i < currentIndex + 4 && i < duvidas.length; i++) {
+    const duvida = duvidas[i];
+
+    // Criando o elemento <section> com a classe "card_duv_jovem"
+    const cardDuvida = document.createElement("section");
+    cardDuvida.className = "card_duv_jovem";
+
+    // Criando o elemento <section> com a classe "usuario_duvida"
+    const usuarioDuvida = document.createElement("section");
+    usuarioDuvida.className = "usuario_duvida";
+
+    // Criando o elemento <img> para a imagem do perfil
+    const imgPerfil = document.createElement("img");
+    imgPerfil.src = "../images/Usuario_nao_logado.png";
+    imgPerfil.alt = "Foto de perfil do usuário";
+
+    // Criando o elemento <h2> para o nome do usuário
+    const nomeUsuario = document.createElement("h2");
+    nomeUsuario.textContent = duvida.nome_user;
+
+    // Criando o parágrafo <p> para a dúvida
+    const duvidaTexto = document.createElement("p");
+    duvidaTexto.id = "duvida";
+    duvidaTexto.textContent = duvida.duvida;
+
+    // Montando a estrutura do DOM
+    usuarioDuvida.appendChild(imgPerfil);
+    usuarioDuvida.appendChild(nomeUsuario);
+    cardDuvida.appendChild(usuarioDuvida);
+    cardDuvida.appendChild(duvidaTexto);
+
+    // Adicionando o card dentro da tag HTML
+    secaoCards.appendChild(cardDuvida);
+
+    // Adicionando o evento de clique ao card
+    cardDuvida.addEventListener("click", () => {
+      localStorage.setItem("tipo_usuario", "Jovem");
+      localStorage.setItem("id_duvida", duvida.id_duvida);
+      window.location.href = "../Tela Visualizando Duvida/index.html";
+    });
+  }
+
+  // Atualiza o índice para o próximo grupo de 3 dúvidas
+  currentIndex += 4
+}
+
+// Função para carregar as dúvidas do servidor
 async function carregarDuvidas() {
   let data = { id_user };
 
@@ -72,51 +204,19 @@ async function carregarDuvidas() {
   let content = await response.json();
 
   if (content.success) {
-    for (let i = 0; i < content.data.length; i++) {
-      // Criando o elemento <section> com a classe "card_duv_jovem"
-      const cardDuvida = document.createElement("section");
-      cardDuvida.className = "card_duv_jovem";
-
-      // Criando o elemento <section> com a classe "usuario_duvida"
-      const usuarioDuvida = document.createElement("section");
-      usuarioDuvida.className = "usuario_duvida";
-
-      // Criando o elemento <img> para a imagem do perfil
-      const imgPerfil = document.createElement("img");
-      imgPerfil.src = "../images/Usuario_nao_logado.png";
-      imgPerfil.alt = "Foto de perfil do usuário";
-
-      // Criando o elemento <h2> para o nome do usuário
-      const nomeUsuario = document.createElement("h2");
-      nomeUsuario.textContent = content.data[i].nome_user;
-
-      // Criando o parágrafo <p> para a dúvida
-      const duvidaTexto = document.createElement("p");
-      duvidaTexto.id = "duvida";
-      duvidaTexto.textContent = content.data[i].duvida;
-
-      // Montando a estrutura do DOM
-      usuarioDuvida.appendChild(imgPerfil);
-      usuarioDuvida.appendChild(nomeUsuario);
-
-      cardDuvida.appendChild(usuarioDuvida);
-      cardDuvida.appendChild(duvidaTexto);
-
-      // Adicionando o card dentro da tag HTML
-      document.querySelector(".secao_cards").appendChild(cardDuvida);
-
-      // Adicionando o evento de clique ao card
-      cardDuvida.addEventListener("click", () => {
-        localStorage.setItem("tipo_usuario", "Jovem");
-        localStorage.setItem("id_duvida", content.data[i].id_duvida);
-        window.location.href = "../Tela Visualizando Duvida/index.html";
-      });
-    }
+    duvidas = content.data; // Armazena as dúvidas recebidas
+    embaralharArray(duvidas); // Embaralha as dúvidas para exibição aleatória
+    currentIndex = 0; // Reinicia o índice
+    exibirProximasDuvidas(); // Exibe o primeiro grupo de 3 dúvidas
   } else {
-    alert("Deu erro!!");
+    alert("Deu erro ao carregar as dúvidas!!");
   }
 }
 
+// Evento para carregar mais dúvidas ao clicar em um botão
+document.getElementById("botao_mais").addEventListener("click", exibirProximasDuvidas);
+
+// Inicia carregando as dúvidas
 carregarDuvidas();
 
 // Carregando a quantidade de dúvidas do usuário

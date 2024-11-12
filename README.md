@@ -60,13 +60,7 @@
   Alterações a serem feitas na aplicação
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem) e Tela Home (Usuário Empresa)
-  - Ajustar responsividade.
-
-<br>
-
-- Tela Dicas/Sugestões
-  - Desenvolver a lógica do botão mais.
+- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem), Tela Home (Usuário Empresa) e - Tela Dicas/Sugestões
   - Ajustar responsividade.
 
 <br>
