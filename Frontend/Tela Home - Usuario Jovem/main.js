@@ -1015,6 +1015,16 @@ botao_excluir_conta.onclick = function () {
     confirmButtonText: "Excluir",
   }).then(async function (result) {
     if (result.isConfirmed) {
+      const response_ = await fetch(
+        `http://localhost:3008/api/curriculo/apagando/${id_user}`,
+        {
+          method: "PUT",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+        }
+      );
+
+      let content_ = await response_.json();
+
       const response = await fetch(
         `http://localhost:3008/api/usuario/jovem/deletando/${id_user}`,
         {
@@ -1024,7 +1034,6 @@ botao_excluir_conta.onclick = function () {
       );
 
       let content = await response.json();
-      console.log(content)
 
       if (content.success) {
         Swal.fire({

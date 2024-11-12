@@ -44,7 +44,6 @@ button.onclick = async function (e) {
   });
 
   let content = await response.json();
-  console.log(content);
 
   if (content.success) {
     if (content.data.length !== 0) {

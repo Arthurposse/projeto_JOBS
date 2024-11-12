@@ -417,46 +417,37 @@ async function apagarCurriculo(request, response) {
 
 // Deletando Usuário Jovem (DELETE)
 
+// Deletando Usuário Jovem (DELETE)
 async function deleteUsuarioJovem(request, response) {
+  const params = [request.params.id];
 
-    // Fazer a lógica para deletar o currículo, as dúvidas e as metas do usuário!!
-
-  const params = Array(request.params.id);
-
-  const query = "DELETE FROM metas WHERE `id_criador` = ?";
-
-  connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Sucesso ao deletar as metas!!",
-        data: results,
-      });
-
-      const query = "DELETE FROM user_jovem WHERE `id` = ?";
-
-      connection.query(query, params, (err, results) => {
-        if (results) {
-          response.status(201).json({
-            success: true,
-            message: "Sucesso ao deletar a conta!!",
-            data: results,
-          });
-        } else {
-          response.status(400).json({
-            success: false,
-            message: "Ops, deu problemas ao deletar a conta!",
-            data: err,
-          });
-        }
-      });
-    } else {
-      response.status(400).json({
+  // Deletar as metas do usuário primeiro
+  connection.query("DELETE FROM metas WHERE `id_criador` = ?", params, (err, results) => {
+    if (err) {
+      return response.status(400).json({
         success: false,
-        message: "Ops, deu problemas ao deletar as metas!!",
-        data: err,
+        message: "Erro ao deletar as metas!",
+        error: err.message,
       });
     }
+
+    // Agora, depois de deletar as metas, deletar o usuário
+    connection.query("DELETE FROM user_jovem WHERE `id` = ?", params, (err, results) => {
+      if (err) {
+        return response.status(400).json({
+          success: false,
+          message: "Erro ao deletar o usuário!",
+          error: err.message,
+        });
+      }
+
+      // Se tudo ocorrer bem, enviar a resposta de sucesso
+      response.status(201).json({
+        success: true,
+        message: "Usuário e metas deletados com sucesso!",
+        data: results,
+      });
+    });
   });
 }
 
