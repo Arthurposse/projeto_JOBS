@@ -120,7 +120,7 @@ async function carregarDuvidasUser(request, response) {
 async function carregarRespostas(request, response) {
   const params = [request.body.id_duvida];
 
-  const query = "SELECT * FROM respostas WHERE id_duvida = ?";
+  const query = "SELECT r.id, r.id_jovem, r.id_empresa, r.id_duvida, r.resposta, r.type_user, CASE WHEN r.type_user = 'Jovem' THEN uj.name WHEN r.type_user = 'Empresa' THEN ue.name END AS nome_usuario FROM respostas r LEFT JOIN user_jovem uj ON r.id_jovem = uj.id LEFT JOIN user_empresa ue ON r.id_empresa = ue.id WHERE r.id_duvida = ?;";
 
   connection.query(query, params, (err, results) => {
     if (results) {
@@ -168,52 +168,41 @@ async function carregarInfosDuvida(request, response) {
 // Deletando dúvida Usuário Jovem (DELETE)
 
 async function deleteDuvJovem(request, response) {
-  const params = Array(
-    request.params.id_duvida
-  );
+  const params = [request.body.id_duvida];
 
   const query = "DELETE FROM respostas WHERE id_duvida = ?;";
 
   connection.query(query, params, (err, results) => {
-    if (results) {
-      response.status(201).json({
-        success: true,
-        message: "Sucesso ao deletar as respostas da dúvida!!",
-        data: results,
-      });
-    
-      const params_ = Array(
-        request.params.id,
-        request.params.id_duvida
-      );
-
-      const query_ = "DELETE FROM duvidas WHERE id_user = ? AND id_duvida = ?;";
-    
-      connection.query(query_, params_, (err, results) => {
-        if (results) {
-          response.status(201).json({
-            success: true,
-            message: "Sucesso ao deletar a dúvida!!",
-            data: results,
-          });          
-        } else {
-          response.status(400).json({
-            success: false,
-            message: "Ops, deu problemas ao deletar a dúvida!!",
-            data: err,
-          });
-        }
-      });
-
-    } else {
-      response.status(400).json({
+    if (err) {
+      return response.status(400).json({
         success: false,
         message: "Ops, deu problemas ao deletar as respostas da dúvida!!",
         data: err,
       });
     }
+
+    const params_ = [request.body.id_user, request.body.id_duvida];
+
+    const query_ = "DELETE FROM duvidas WHERE id_user = ? AND id_duvida = ?;";
+
+    connection.query(query_, params_, (err, results) => {
+      if (err) {
+        return response.status(400).json({
+          success: false,
+          message: "Ops, deu problemas ao deletar a dúvida!!",
+          data: err,
+        });
+      }
+
+      return response.status(201).json({
+        success: true,
+        message: "Sucesso ao deletar a dúvida e suas respostas!!",
+        data: results,
+      });
+    });
   });
 }
+
 
 module.exports = {
   enviarDuvida,

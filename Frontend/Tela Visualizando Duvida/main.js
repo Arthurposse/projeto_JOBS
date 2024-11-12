@@ -61,8 +61,6 @@ async function carregarInfosDuvida() {
   );
 
   let content = await response.json();
-  console.log('ID_USER logado: ', typeof(id_user));
-  console.log('ID_USER dúvida: ', typeof(content.data[0].id_user));
 
   if (content.success) {
     let nome_usuario_jovem = document.getElementById("nome_usuario_jovem");
@@ -73,7 +71,6 @@ async function carregarInfosDuvida() {
 
     if(Number(id_user) === content.data[0].id_user) {
       duvida_editor = true;
-      console.log('DUVIDA EDITOR ATIVADO!')
     }
   } else {
     alert("Deu erro!!");
@@ -108,13 +105,9 @@ async function carregarRespostas() {
       const divPerfil = document.createElement("div");
       divPerfil.className = "bloco_resposta_perfil";
 
-      const img = document.createElement("img");
-      img.src = "../images/Usuario_nao_logado.png";
-      img.alt = "";
-
       const h2 = document.createElement("h2");
       h2.className = "bloco_resposta_nome_user";
-      h2.textContent = "Teste";
+      h2.textContent = content.data[i].nome_usuario;
 
       if (content.data[i].id_jovem === null) {
         h2.textContent += " - Usuário Empresa";
@@ -126,7 +119,6 @@ async function carregarRespostas() {
       p.textContent = content.data[i].resposta;
 
       // Estruturando os elementos
-      divPerfil.appendChild(img);
       divPerfil.appendChild(h2);
 
       divRespostaUser.appendChild(divPerfil);
@@ -175,22 +167,36 @@ deletar_duvida.onclick = async function () {
         {
           method: "DELETE",
           headers: { "Content-type": "application/json;charset=UTF-8" },
-          body: JSON.stringify( { id_user, id_duvida } ),
+          body: JSON.stringify({ id_user, id_duvida }),
         }
       );
 
       let content = await response.json();
-      console.log(content);
 
       if(content.success) {
-        alert('deu bom excluir dúvida')
+        Swal.fire({
+          title: "Dúvida deletada com sucesso!!",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
+        setTimeout(() => {
+          window.location.href = '../Tela Dicas-Sugestoes/index.html';
+        }, 2000);
       }
       else {
-        alert('deu RUIM ao excluir dúvida')
+        Swal.fire({
+          title: "Erro ao deletar a dúvida!!",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     }
   });
 };
+
 // Respondendo a dúvida
 
 botao_resposta.onclick = async function () {
@@ -237,7 +243,6 @@ botao_resposta.onclick = async function () {
         );
 
         let content = await response.json();
-        console.log(content);
 
         if (content.success) {
           Swal.fire({
