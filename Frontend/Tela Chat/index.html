@@ -6,18 +6,14 @@
     <title>JOBS - Chat</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <script src="/socket.io/socket.io.js"></script> <!-- Carregando Socket.IO -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
 <body>
     <div class="fundo_escuro"></div>
 
     <header>
         <section class="header_topo">
-            <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="" />
+            <img class="Logo_JOBS" src="../images/Logo_JOBS.png" alt="Logo JOBS" />
 
             <nav>
                 <a href="../Tela Home - Usuario Jovem/index.html"> Início </a>
@@ -27,8 +23,8 @@
             </nav>
 
             <section class="bloco_usuario">
-                <img src="../images/Usuario_nao_logado.png" alt="" />
-                <h3 id="user_logado"></h3>
+                <img src="../images/Usuario_nao_logado.png" alt="Imagem de usuário" />
+                <h3 id="user_logado"></h3> <!-- Nome do usuário logado -->
             </section>
         </section>
 
@@ -47,14 +43,14 @@
 
             <section class="conversas_favoritas">
                 <h2>Favoritos</h2>
-                <section></section>
+                <section></section> <!-- Lista de conversas favoritas -->
             </section>
 
             <hr />
 
             <section class="lista_conversas">
                 <h2>Suas mensagens</h2>
-                <div id="messages"></div> <!-- Área onde as mensagens serão exibidas -->
+                <div id="lista_usuarios"></div>
             </section>
         </section>
 
@@ -68,7 +64,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    <script src="./main.js"></script>
+    <script src="./main.js"></script> <!-- Incluindo o JavaScript para o chat -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

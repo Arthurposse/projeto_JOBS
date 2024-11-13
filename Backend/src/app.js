@@ -16,6 +16,7 @@ const LoginRouter = require("./routes/LoginRouter");
 const BuscarVagaRouter = require("./routes/BuscarVagaRouter");
 const ApiGbRouter = require("./routes/ApiGbRouter");
 const duvResRouter = require("./routes/duvResRouter");
+const chatRouter = require("./routes/chatRouter");
 
 // Configuração do Swegger
 const swaggerOptions = {
@@ -55,6 +56,7 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
+app.use("/chat", chatRouter);
 
 // Rota Swagger (Documentação)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

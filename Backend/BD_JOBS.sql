@@ -89,6 +89,14 @@ CREATE TABLE questoes_modulos(
     explicacao TEXT NOT NULL
 );
 
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    room_id VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL,
+    message_text TEXT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Perguntas e Respostas das questões dos módulos
 
 INSERT INTO questoes_modulos(tipo_modulo, pergunta, questao_1, questao_2, questao_3, res_correta, explicacao) 

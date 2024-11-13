@@ -1,4 +1,4 @@
-const connection = require("../config/db");
+const { connection } = require("../config/db");
 const dotenv = require("dotenv").config();
 
 // LogIn / Buscar ID user (POST)
