@@ -51,7 +51,7 @@ async function buscandoUsuario() {
     const content = await response.json();
     console.log(content);
 
-    if(content.success) {
+    if (content.success) {
       console.log('sucesso ao buscar usuário');
     } else {
       console.log('deu ruim ao buscar usuário');
@@ -61,7 +61,7 @@ async function buscandoUsuario() {
   }
 }
 
-document.getElementById("pesquisa_usuario").addEventListener('input', function() {
+document.getElementById("pesquisa_usuario").addEventListener('input', function () {
   buscandoUsuario();
 });
 
@@ -77,27 +77,34 @@ const messagesContainer = document.querySelector(".bloco_mensagem");
 // Conectar ao servidor WebSocket
 const socket = new WebSocket("ws://localhost:3008"); // Endereço do servidor WebSocket
 let currentUserId = id_user; // ID do usuário logado
-let otherUserId = 11; // ID do outro usuário (ajuste conforme necessário)
+let otherUserId = 13; // ID do outro usuário (ajuste conforme necessário)
 
 // Conectar-se à sala assim que o WebSocket estiver aberto
 socket.onopen = () => {
-  socket.send(JSON.stringify({ type: "join", userId: currentUserId, otherUserId }));
+  socket.send(JSON.stringify({
+    type: "join",
+    userId: currentUserId,
+    otherUserId,
+    userType: localStorage.getItem("Tipo_user"), // Tipo do usuário logado
+    otherUserType: "jovem" // ou "empresa", conforme necessário
+  }));
 };
+
 
 // Receber mensagens e histórico do servidor WebSocket
 socket.onmessage = (event) => {
   const message = JSON.parse(event.data);
-
+  console.log("Mensagem recebida no frontend:", message);  // Log para depuração
   if (message.type === "message") {
-    displayMessage(message.text, message.senderId); // Exibe a mensagem recebida
+    displayMessage(message.text, message.senderId);
   }
-
   if (message.type === "history") {
     message.messages.forEach((msg) => {
-      displayMessage(msg.message_text, msg.user_id); // Exibe o histórico de mensagens
+      displayMessage(msg.message_text, msg.user_id);
     });
   }
 };
+
 
 // Função para exibir mensagem na interface
 function displayMessage(text, senderId) {

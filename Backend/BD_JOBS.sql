@@ -91,7 +91,7 @@ CREATE TABLE questoes_modulos(
 
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
-    room_id VARCHAR(255) NOT NULL,
+    room_id VARCHAR(20) NOT NULL,
     user_id INT NOT NULL,
     message_text TEXT NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP

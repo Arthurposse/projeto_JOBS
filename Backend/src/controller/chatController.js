@@ -1,8 +1,20 @@
 let userConnections = {}; // Armazena as conexões dos usuários por sala
 
-// Função para gerar o ID da sala com base nos IDs dos usuários
-function getRoomId(userId, otherUserId) {
-    return [userId, otherUserId].sort().join('-');
+// Função para gerar o ID da sala com IDs em ordem
+function getRoomId(userId, otherUserId, userType, otherUserType) {
+    const prefix1 = userType === 'empresa' ? 'E' : 'J';
+    const prefix2 = otherUserType === 'empresa' ? 'E' : 'J';
+
+    // Ordena os IDs para que o maior ID sempre venha primeiro
+    let roomId = "";
+    if (userId > otherUserId) {
+        roomId = `${prefix1}${userId}-${prefix2}${otherUserId}`;
+    } else {
+        roomId = `${prefix2}${otherUserId}-${prefix1}${userId}`;
+    }
+
+    console.log("ID da sala gerado:", roomId); // Debugging
+    return roomId;
 }
 
 // Importa a função de conexão ao banco de dados
@@ -10,6 +22,7 @@ const { connectToDatabase, connection } = require('../config/db');
 
 // Função para salvar uma mensagem no banco de dados
 async function saveMessage(roomId, userId, messageText) {
+    console.log(`Salvando mensagem para sala ${roomId}, usuário ${userId}: ${messageText}`);
     try {
         const connection = await connectToDatabase();
         const [result] = await connection.query(
@@ -63,36 +76,37 @@ async function handleConnection(ws) {
         try {
             const message = JSON.parse(data);
 
+            // Usuário entra na sala
             if (message.type === "join") {
                 currentUserId = message.userId;
-                currentRoom = getRoomId(message.userId, message.otherUserId);
+                currentRoom = getRoomId(
+                    message.userId,
+                    message.otherUserId,
+                    message.userType,
+                    message.otherUserType
+                );
                 ws.roomId = currentRoom;
                 userConnections[currentRoom] = userConnections[currentRoom] || [];
                 userConnections[currentRoom].push(ws);
 
                 console.log(`Usuário ${currentUserId} entrou na sala ${currentRoom}`);
 
+                // Obtenção do histórico de mensagens
                 const messages = await getMessages(currentRoom);
                 ws.send(JSON.stringify({ type: "history", messages }));
             }
 
-            if (message.type === "message" && currentRoom) {
-                // Salva a mensagem no banco de dados
-                const savedMessage = await saveMessage(currentRoom, currentUserId, message.text);
-
-                // Envia a mensagem para todos os clientes na sala
-                sendMessageToRoom(currentRoom, {
-                    type: "message",
-                    senderId: currentUserId, // ID do remetente
-                    text: message.text,
-                    timestamp: new Date().toISOString()
-                });
+            // Salvando e enviando mensagens na sala
+            if (message.type === "message") {
+                await saveMessage(currentRoom, message.senderId, message.text);  // Salva a mensagem no banco de dados
+                sendMessageToRoom(currentRoom, message);  // Envia a mensagem para todos os usuários na sala
             }
 
         } catch (error) {
             console.error("Erro ao processar mensagem:", error);
         }
     });
+
 
     ws.on("close", () => {
         if (currentRoom && userConnections[currentRoom]) {
