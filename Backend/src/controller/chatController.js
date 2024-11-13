@@ -2,8 +2,8 @@ let userConnections = {}; // Armazena as conexões dos usuários por sala
 
 // Função para gerar o ID da sala com IDs em ordem
 function getRoomId(userId, otherUserId, userType, otherUserType) {
-    const prefix1 = userType === 'empresa' ? 'E' : 'J';
-    const prefix2 = otherUserType === 'empresa' ? 'E' : 'J';
+    const prefix1 = userType === 'Empresa' ? 'E' : 'J';
+    const prefix2 = otherUserType === 'Empresa' ? 'E' : 'J';
 
     // Ordena os IDs para que o maior ID sempre venha primeiro
     let roomId = "";
@@ -42,14 +42,33 @@ async function saveMessage(roomId, userId, messageText) {
 async function getMessages(roomId) {
     try {
         const connection = await connectToDatabase();
-        const [rows] = await connection.query('SELECT * FROM mensagens WHERE room_id = ? ORDER BY timestamp ASC', [roomId]);
+        const [rows] = await connection.query(`
+            SELECT 
+                m.id,
+                m.message_text,
+                m.room_id,
+                m.timestamp,
+                m.user_id,
+                COALESCE(uj.name, ue.name) AS sender_name
+            FROM 
+                mensagens m
+            LEFT JOIN 
+                user_jovem uj ON m.user_id = uj.id
+            LEFT JOIN 
+                user_empresa ue ON m.user_id = ue.id
+            WHERE 
+                m.room_id = ?
+            ORDER BY 
+                m.timestamp ASC
+        `, [roomId]);
         await connection.end(); // Fecha a conexão após a execução
-        return rows; // Retorna as mensagens recuperadas
+        return rows; // Retorna as mensagens recuperadas com o nome do remetente
     } catch (error) {
         console.error("Erro ao obter mensagens:", error);
         throw error; // Lança o erro para ser tratado na camada superior
     }
 }
+
 
 // Função para enviar uma mensagem para todos os clientes na sala
 function sendMessageToRoom(roomId, message) {
@@ -58,7 +77,8 @@ function sendMessageToRoom(roomId, message) {
             if (client.readyState === client.OPEN) {
                 client.send(JSON.stringify({
                     type: "message",
-                    senderId: message.userId, // Inclui o ID do remetente para controle no frontend
+                    senderId: message.userId,
+                    senderName: message.senderName, // Adiciona o nome do remetente
                     text: message.text,
                     timestamp: new Date().toISOString()
                 }));
@@ -119,20 +139,20 @@ async function handleConnection(ws) {
 // Buscar usuários através da pesquisa
 
 async function buscaUsuarios(request, response) {
-    const nome_usuario = request.body.nome_usuario;
+    const email_usuario = request.body.email_usuario;
 
-    // Ajuste da query para usar placeholders corretamente
+    // Atualize a consulta para buscar pelo e-mail
     const query = `
-        (SELECT DISTINCT uj.id as 'id_jovem', uj.name AS 'jovem', NULL AS 'empresa' 
+        (SELECT DISTINCT uj.id as 'id_jovem', uj.email AS 'jovem_email', NULL AS 'empresa_email' 
          FROM user_jovem uj 
-         WHERE uj.name LIKE ?) 
+         WHERE uj.email LIKE ?) 
         UNION 
-        (SELECT DISTINCT NULL AS 'jovem', ue.id as 'id_empresa', ue.name AS 'empresa' 
+        (SELECT DISTINCT NULL AS 'jovem_email', ue.id as 'id_empresa', ue.email AS 'empresa_email' 
          FROM user_empresa ue 
-         WHERE ue.name LIKE ?) 
+         WHERE ue.email LIKE ?) 
         LIMIT 5;
     `;
-    const params = [`${nome_usuario}%`, `${nome_usuario}%`];
+    const params = [`${email_usuario}%`, `${email_usuario}%`];
 
     connection.query(query, params, (err, results) => {
         if (err) {

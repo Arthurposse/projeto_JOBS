@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // Realizando busca de usuários
 
 async function buscandoUsuario() {
-  let nome_usuario = document.getElementById("pesquisa_usuario").value;
+  let email_usuario = document.getElementById("pesquisa_usuario").value;  // Alterar para e-mail
 
-  const data = { nome_usuario };
+  const data = { email_usuario };  // Mudar a chave para e-mail
   console.log(data);
 
   try {
@@ -77,41 +77,56 @@ const messagesContainer = document.querySelector(".bloco_mensagem");
 // Conectar ao servidor WebSocket
 const socket = new WebSocket("ws://localhost:3008"); // Endereço do servidor WebSocket
 let currentUserId = id_user; // ID do usuário logado
-let otherUserId = 13; // ID do outro usuário (ajuste conforme necessário)
+let otherUserId = 11; // ID do outro usuário (ajuste conforme necessário)
 
-// Conectar-se à sala assim que o WebSocket estiver aberto
 socket.onopen = () => {
   socket.send(JSON.stringify({
     type: "join",
     userId: currentUserId,
     otherUserId,
     userType: localStorage.getItem("Tipo_user"), // Tipo do usuário logado
-    otherUserType: "jovem" // ou "empresa", conforme necessário
+    otherUserType: "Jovem" // ou "empresa", conforme necessário
   }));
 };
-
 
 // Receber mensagens e histórico do servidor WebSocket
 socket.onmessage = (event) => {
   const message = JSON.parse(event.data);
-  console.log("Mensagem recebida no frontend:", message);  // Log para depuração
+  console.log("Mensagem recebida no frontend:", message);
   if (message.type === "message") {
-    displayMessage(message.text, message.senderId);
+    displayMessage(message.text, message.senderId, message.senderName, message.timestamp);
   }
   if (message.type === "history") {
     message.messages.forEach((msg) => {
-      displayMessage(msg.message_text, msg.user_id);
+      displayMessage(msg.message_text, msg.user_id, msg.sender_name, msg.timestamp);
     });
   }
 };
 
-
 // Função para exibir mensagem na interface
-function displayMessage(text, senderId) {
+function displayMessage(text, senderId, senderName, timestamp) {
   const messageDiv = document.createElement("div");
   messageDiv.classList.add("message");
   messageDiv.classList.add(senderId === currentUserId ? "sent" : "received");
-  messageDiv.textContent = text;
+
+  // Verifica se senderName existe e se não está vazio
+  const senderNameDiv = document.createElement("div");
+  senderNameDiv.classList.add("sender-name");
+  senderNameDiv.textContent = senderName && senderName.trim() !== "" ? senderName : "Usuário"; // Alterado aqui
+
+  const timestampDiv = document.createElement("div");
+  timestampDiv.classList.add("timestamp");
+  timestampDiv.textContent = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  const textDiv = document.createElement("div");
+  textDiv.classList.add("text");
+  textDiv.textContent = text;
+
+  // Adiciona os elementos à mensagem
+  messageDiv.appendChild(senderNameDiv);
+  messageDiv.appendChild(textDiv);
+  messageDiv.appendChild(timestampDiv);
+
   messagesContainer.appendChild(messageDiv);
 }
 
