@@ -29,6 +29,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Realizando busca de usuários
+
+async function buscandoUsuario() {
+  let nome_usuario = document.getElementById("pesquisa_usuario").value;
+
+  const data = { nome_usuario };
+  console.log(data);
+
+  try {
+    const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.statusText}`);
+    }
+
+    const content = await response.json();
+    console.log(content);
+
+    if(content.success) {
+      console.log('sucesso ao buscar usuário');
+    } else {
+      console.log('deu ruim ao buscar usuário');
+    }
+  } catch (error) {
+    console.error('Erro:', error);
+  }
+}
+
+document.getElementById("pesquisa_usuario").addEventListener('input', function() {
+  buscandoUsuario();
+});
+
 // Inicializando variáveis
 const id_user = Number(localStorage.getItem("ID_user"));
 const User_name = localStorage.getItem("User_name");

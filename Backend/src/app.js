@@ -56,7 +56,7 @@ app.use("/api", LoginRouter);
 app.use("/api", BuscarVagaRouter);
 app.use("/api", ApiGbRouter);
 app.use("/api", duvResRouter);
-app.use("/chat", chatRouter);
+app.use("/api", chatRouter);
 
 // Rota Swagger (Documentação)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

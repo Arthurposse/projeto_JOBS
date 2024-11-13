@@ -6,7 +6,7 @@ function getRoomId(userId, otherUserId) {
 }
 
 // Importa a função de conexão ao banco de dados
-const { connectToDatabase } = require('../config/db');
+const { connectToDatabase, connection } = require('../config/db');
 
 // Função para salvar uma mensagem no banco de dados
 async function saveMessage(roomId, userId, messageText) {
@@ -79,7 +79,7 @@ async function handleConnection(ws) {
             if (message.type === "message" && currentRoom) {
                 // Salva a mensagem no banco de dados
                 const savedMessage = await saveMessage(currentRoom, currentUserId, message.text);
-                
+
                 // Envia a mensagem para todos os clientes na sala
                 sendMessageToRoom(currentRoom, {
                     type: "message",
@@ -102,4 +102,42 @@ async function handleConnection(ws) {
     });
 }
 
-module.exports = { handleConnection };
+// Buscar usuários através da pesquisa
+
+async function buscaUsuarios(request, response) {
+    const nome_usuario = request.body.nome_usuario;
+
+    // Ajuste da query para usar placeholders corretamente
+    const query = `
+        (SELECT DISTINCT uj.id as 'id_jovem', uj.name AS 'jovem', NULL AS 'empresa' 
+         FROM user_jovem uj 
+         WHERE uj.name LIKE ?) 
+        UNION 
+        (SELECT DISTINCT NULL AS 'jovem', ue.id as 'id_empresa', ue.name AS 'empresa' 
+         FROM user_empresa ue 
+         WHERE ue.name LIKE ?) 
+        LIMIT 5;
+    `;
+    const params = [`${nome_usuario}%`, `${nome_usuario}%`];
+
+    connection.query(query, params, (err, results) => {
+        if (err) {
+            return response.status(400).json({
+                success: false,
+                message: "Ops, deu problemas com a busca de usuários!",
+                data: err,
+            });
+        }
+
+        response.status(200).json({
+            success: true,
+            message: "Sucesso com a busca de usuários!",
+            data: results,
+        });
+    });
+}
+
+module.exports = {
+    handleConnection,
+    buscaUsuarios
+};

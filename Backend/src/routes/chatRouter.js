@@ -1,6 +1,6 @@
 // src/router/chatRouter.js
 const express = require("express");
-const { getMessages } = require("../controller/chatController"); // Importa diretamente de chatController
+const { getMessages, buscaUsuarios } = require("../controller/chatController"); // Importa diretamente de chatController
 
 const router = express.Router();
 
@@ -14,5 +14,7 @@ router.get("/history/:roomId", async (req, res) => {
         res.status(500).json({ error: "Erro ao buscar mensagens" });
     }
 });
+
+router.post("/buscar/usuarios", buscaUsuarios)
 
 module.exports = router;

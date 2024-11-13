@@ -73,6 +73,9 @@
   Se der tempo:
 </h3>
 
-- Tela Chat
+- Tela Chat (Em desenvolvimento 🔨)
+  - Fazer com que seja possível pesquisar o usuário para conversar.
+  - Desenvolver a lógica onde é possível diferenciar o tipo de usuário para que assim o projeto consiga realizar a busca do usuário na tabela correta.
+  - Ao clicar no nome de usuário, após a pesquisa personalizada, remover da tela do usuário o icon do balão de conversa e o texto embaixo.
+  - Estilizar o input e botão do chat, além de realizar a lógica de quando o usuário escolher o usuário para conversar, o input e o botão deverão aparecer (eles vão estar ocultos). 
   - Ajustar responsividade.
-  - Planejar e desenvolver o sistema de chat.
