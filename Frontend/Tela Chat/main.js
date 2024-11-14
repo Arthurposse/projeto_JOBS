@@ -29,41 +29,69 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Realizando busca de usuários
-
+// Função para realizar busca de usuários pelo e-mail
 async function buscandoUsuario() {
-  let email_usuario = document.getElementById("pesquisa_usuario").value;  // Alterar para e-mail
+  let email_usuario = document.getElementById("pesquisa_usuario").value;
 
-  const data = { email_usuario };  // Mudar a chave para e-mail
-  console.log(data);
-
+  const data = { email_usuario };
   try {
-    const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
-      method: "POST",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify(data),
-    });
+      const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
+          method: "POST",
+          headers: { "Content-type": "application/json;charset=UTF-8" },
+          body: JSON.stringify(data),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.statusText}`);
-    }
+      if (!response.ok) {
+          throw new Error(`Erro na requisição: ${response.statusText}`);
+      }
 
-    const content = await response.json();
-    console.log(content);
+      const content = await response.json();
+      const listaUsuarios = document.getElementById("lista_usuarios");
+      listaUsuarios.innerHTML = ''; // Limpa a lista antes de atualizar
 
-    if (content.success) {
-      console.log('sucesso ao buscar usuário');
-    } else {
-      console.log('deu ruim ao buscar usuário');
-    }
+      // Exibe os usuários encontrados
+      content.data.forEach(user => {
+          const userDiv = document.createElement("div");
+          userDiv.classList.add("user-item");
+          userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
+          userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type);
+          listaUsuarios.appendChild(userDiv);
+      });
+
   } catch (error) {
-    console.error('Erro:', error);
+      console.error('Erro:', error);
   }
 }
 
-document.getElementById("pesquisa_usuario").addEventListener('input', function () {
-  buscandoUsuario();
-});
+// Função para iniciar uma conversa com o usuário selecionado
+function iniciarConversa(userId, userType) {
+  otherUserId = userId; // Atualiza o ID do outro usuário com quem vai conversar
+  otherUserType = userType; // Atualiza o tipo de usuário
+
+  // Envia uma solicitação para abrir uma conversa
+  socket.send(JSON.stringify({
+      type: "join",
+      userId: currentUserId,
+      otherUserId,
+      userType: localStorage.getItem("Tipo_user"),
+      otherUserType
+  }));
+
+  // Oculta o ícone e a mensagem "Inicie uma conversa!!"
+  document.querySelector(".bloco_mensagem i").style.display = "none";
+  document.querySelector(".bloco_mensagem h1").style.display = "none";
+  
+  // Exibe o campo de input e o botão de envio
+  document.getElementById("messageInput").style.display = "block";
+  document.getElementById("sendButton").style.display = "block";
+
+  // Limpa a área de mensagens e define um cabeçalho com o nome do usuário
+  messagesContainer.innerHTML = "";
+  document.querySelector(".bloco_mensagem h1").textContent = `Conversa com ${userType}`;
+}
+
+document.getElementById("pesquisa_usuario").addEventListener('input', buscandoUsuario);
+
 
 // Inicializando variáveis
 const id_user = Number(localStorage.getItem("ID_user"));
@@ -77,16 +105,19 @@ const messagesContainer = document.querySelector(".bloco_mensagem");
 // Conectar ao servidor WebSocket
 const socket = new WebSocket("ws://localhost:3008"); // Endereço do servidor WebSocket
 let currentUserId = id_user; // ID do usuário logado
-let otherUserId = 11; // ID do outro usuário (ajuste conforme necessário)
+let otherUserId; // Inicialmente indefinido, será atualizado dinamicamente
+let otherUserType;
 
 socket.onopen = () => {
-  socket.send(JSON.stringify({
-    type: "join",
-    userId: currentUserId,
-    otherUserId,
-    userType: localStorage.getItem("Tipo_user"), // Tipo do usuário logado
-    otherUserType: "Jovem" // ou "empresa", conforme necessário
-  }));
+  if (otherUserId) {  // Verifica se otherUserId já foi definido
+    socket.send(JSON.stringify({
+      type: "join",
+      userId: currentUserId,
+      otherUserId,
+      userType: localStorage.getItem("Tipo_user"), // Tipo do usuário logado
+      otherUserType
+    }));
+  }
 };
 
 // Receber mensagens e histórico do servidor WebSocket

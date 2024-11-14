@@ -141,15 +141,14 @@ async function handleConnection(ws) {
 async function buscaUsuarios(request, response) {
     const email_usuario = request.body.email_usuario;
 
-    // Atualize a consulta para buscar pelo e-mail
     const query = `
-        (SELECT DISTINCT uj.id as 'id_jovem', uj.email AS 'jovem_email', NULL AS 'empresa_email' 
+        (SELECT uj.id as 'user_id', uj.email AS 'email', uj.name AS 'name', 'Jovem' AS 'user_type'
          FROM user_jovem uj 
          WHERE uj.email LIKE ?) 
         UNION 
-        (SELECT DISTINCT NULL AS 'jovem_email', ue.id as 'id_empresa', ue.email AS 'empresa_email' 
+        (SELECT ue.id as 'user_id', ue.email AS 'email', ue.name AS 'name', 'Empresa' AS 'user_type'
          FROM user_empresa ue 
-         WHERE ue.email LIKE ?) 
+         WHERE ue.email LIKE ?)
         LIMIT 5;
     `;
     const params = [`${email_usuario}%`, `${email_usuario}%`];

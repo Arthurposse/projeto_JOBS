@@ -479,7 +479,7 @@ main .perfil h2 {
 
 main .perfil .secao_perfil {
   display: flex;
-  gap: 3vw;
+  gap: 5vw;
   padding-top: 4%;
   color: var(--cor-secundaria);
 }
@@ -498,13 +498,13 @@ main .perfil .parte_esquerda .ft_perfil {
   align-items: center;
   flex-direction: column;
   gap: 2vw;
-  padding: 30%;
+  padding: 50%;
   border-radius: 1vw;
   text-align: center;
 }
 
 #ft_perfil_user {
-  width: 100%;
+  width: 5vw;
   height: 10vh;
   border-radius: 30vw;
 }
