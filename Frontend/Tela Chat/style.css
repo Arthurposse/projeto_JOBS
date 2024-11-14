@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Livvic", sans-serif;
-    font-weight: 300;
-    font-style: italic;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Livvic", sans-serif;
+  font-weight: 300;
+  font-style: italic;
 }
 
 :root {
-    --cor-primaria: #19a7ce;
-    --cor-secundaria: #0e566a;
-    --cor-terciaria: #9DD4D1;
-    --cor-fonte: white;
+  --cor-primaria: #19a7ce;
+  --cor-secundaria: #0e566a;
+  --cor-terciaria: #9DD4D1;
+  --cor-fonte: white;
 }
 
 /* Fundo escuro */
@@ -40,152 +40,152 @@
 /* Header */
 
 header {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    height: 62vh;
-    color: var(--cor-fonte);
-  }
-  
-  header .header_topo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  header .Logo_JOBS {
-    width: 15%;
-    margin: 1.5%;
-  }
-  
-  header nav {
-    display: flex;
-    gap: 5vw;
-  }
-  
-  header nav a {
-    color: var(--cor-terciaria);
-    text-decoration: none;
-  }
-  
-  header nav a:nth-child(4) {
-    text-decoration: underline;
-  }
-  
-  header .bloco_usuario {
-    background-color: rgba(25, 167, 206, 0.6);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 1%;
-    border-radius: 2vw 0 0 2vw;
-    width: 16%;
-  }
-  
-  header .bloco_usuario img {
-    width: 20%;
-  }
-  
-  header .bloco_usuario h3 {
-    font-size: 1rem;
-  }
-  
-  header .header_meio {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 4%;
-    text-align: center;
-  }
-  
-  header .forma {
-    background-color: rgba(25, 167, 206);
-    width: 4%;
-    height: 2vh;
-    border-radius: 2vw;
-  }
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/Background_header.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 62vh;
+  color: var(--cor-fonte);
+}
+
+header .header_topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .Logo_JOBS {
+  width: 15%;
+  margin: 1.5%;
+}
+
+header nav {
+  display: flex;
+  gap: 5vw;
+}
+
+header nav a {
+  color: var(--cor-terciaria);
+  text-decoration: none;
+}
+
+header nav a:nth-child(4) {
+  text-decoration: underline;
+}
+
+header .bloco_usuario {
+  background-color: rgba(25, 167, 206, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 1%;
+  border-radius: 2vw 0 0 2vw;
+  width: 16%;
+}
+
+header .bloco_usuario img {
+  width: 20%;
+}
+
+header .bloco_usuario h3 {
+  font-size: 1rem;
+}
+
+header .header_meio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4%;
+  text-align: center;
+}
+
+header .forma {
+  background-color: rgba(25, 167, 206);
+  width: 4%;
+  height: 2vh;
+  border-radius: 2vw;
+}
 
 /* Main */
 
 main {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 /* Main - Bloco Lista de Conversas */
 
 main .bloco_conversas {
-    background-color: var(--cor-secundaria);
-    width: 25%;
-    height: 100vh;
+  background-color: var(--cor-secundaria);
+  width: 25%;
+  height: 100vh;
 }
 
 main .barra_pesquisa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2vw;
-    margin-top: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  margin-top: 15%;
 }
 
 main .barra_pesquisa input {
-    background-color: var(--cor-terciaria);
-    width: 70%;
-    padding: 3%;
-    border-radius: 1vw;
-    border: 0;
+  background-color: var(--cor-terciaria);
+  width: 70%;
+  padding: 3%;
+  border-radius: 1vw;
+  border: 0;
 }
 
 main .barra_pesquisa i {
-    font-size: 1.5rem;
-    cursor: pointer;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 main .conversas_favoritas {
-    padding: 5%;
-    margin-top: 10%;
+  padding: 5%;
+  margin-top: 10%;
 }
 
 main .conversas_favoritas h2 {
-    color: var(--cor-fonte);
+  color: var(--cor-fonte);
 }
 
 main hr {
-    border: 1px solid var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
 }
 
 main .lista_conversas {
-    padding: 5%;
-    margin-top: 4%;
+  padding: 5%;
+  margin-top: 4%;
 }
 
 main .lista_conversas h2 {
-    color: var(--cor-fonte);
+  color: var(--cor-fonte);
 }
 
 /* Main - Bloco Mensagem */
 
 main .bloco_mensagem {
-    background-color: var(--cor-primaria);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1vw;
-    width: 75%;
-    height: 100vh;
+  background-color: var(--cor-primaria);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1vw;
+  width: 75%;
+  height: 100vh;
 }
 
 main .bloco_mensagem i {
-    font-size: 4rem;
-    color: var(--cor-secundaria);
+  font-size: 4rem;
+  color: var(--cor-secundaria);
 }
 
 main .bloco_mensagem h1 {
-    font-size: 2rem;
-    color: var(--cor-secundaria);
+  font-size: 2rem;
+  color: var(--cor-secundaria);
 }
