@@ -172,9 +172,9 @@ main .lista_conversas h2 {
 main .bloco_mensagem {
   background-color: var(--cor-primaria);
   display: flex;
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   gap: 1vw;
   width: 75%;
   height: 100vh;
@@ -188,4 +188,35 @@ main .bloco_mensagem i {
 main .bloco_mensagem h1 {
   font-size: 2rem;
   color: var(--cor-secundaria);
+}
+
+#messageInput, #sendButton {
+  display: none;
+}
+
+/* CSS para alinhar mensagens */
+
+.messages_area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.message.sent {
+  align-self: flex-end;
+  text-align: right;
+  background-color: #e0f7fa; /* Cor de fundo para mensagens enviadas */
+  border-radius: 10px;
+  padding: 5px 10px;
+  max-width: 60%
+}
+
+.message.received {
+  align-self: flex-start;
+  text-align: left;
+  margin-right: auto;
+  background-color: #f1f1f1; /* Cor de fundo para mensagens recebidas */
+  border-radius: 10px;
+  padding: 5px 10px;
+  max-width: 60%;
 }

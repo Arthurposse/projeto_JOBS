@@ -81,22 +81,10 @@ function iniciarConversa(userId, userType) {
 
   // Limpa a área de mensagens e adiciona o input e o botão
   messagesContainer.innerHTML = `
-    <div class="messages_area"></div>
-    <div class="input_area">
-      <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
-      <button id="sendButton">Enviar</button>
-    </div>
+    <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
+    <button id="sendButton">Enviar</button>
   `;
-
-  // Redefine referências ao botão e input após recriação no DOM
-  const messageInput = document.getElementById("messageInput");
-  const sendButton = document.getElementById("sendButton");
-
-  // Envio de mensagem
-  sendButton.addEventListener("click", enviarMensagem);
-  messageInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendButton.click();
-  });
+  // document.querySelector(".bloco_mensagem h1").textContent = `Conversa com ${userType}`;
 }
 
 document.getElementById("pesquisa_usuario").addEventListener('input', buscandoUsuario);
@@ -117,12 +105,12 @@ let otherUserId; // Inicialmente indefinido, será atualizado dinamicamente
 let otherUserType;
 
 socket.onopen = () => {
-  if (otherUserId) {
+  if (otherUserId) {  // Verifica se otherUserId já foi definido
     socket.send(JSON.stringify({
       type: "join",
       userId: currentUserId,
       otherUserId,
-      userType: localStorage.getItem("Tipo_user"),
+      userType: localStorage.getItem("Tipo_user"), // Tipo do usuário logado
       otherUserType
     }));
   }
@@ -144,13 +132,14 @@ socket.onmessage = (event) => {
 
 // Função para exibir mensagem na interface
 function displayMessage(text, senderId, senderName, timestamp) {
-  const messagesArea = messagesContainer.querySelector(".messages_area");
-  
   const messageDiv = document.createElement("div");
-  messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
+  messageDiv.classList.add("message");
+
+  // Adiciona classe de alinhamento com base no ID do remetente
+  messageDiv.classList.add(senderId === currentUserId ? "sent" : "received");
 
   const senderNameDiv = document.createElement("div");
-  senderNameDiv.classList.add("sender_name");
+  senderNameDiv.classList.add("sender-name");
   senderNameDiv.textContent = senderName && senderName.trim() !== "" ? senderName : "Usuário";
 
   const timestampDiv = document.createElement("div");
@@ -161,21 +150,32 @@ function displayMessage(text, senderId, senderName, timestamp) {
   textDiv.classList.add("text");
   textDiv.textContent = text;
 
+  // Adiciona os elementos à mensagem
+  messageDiv.appendChild(timestampDiv);
   messageDiv.appendChild(senderNameDiv);
   messageDiv.appendChild(textDiv);
-  messageDiv.appendChild(timestampDiv);
 
-  messagesArea.appendChild(messageDiv);
-  messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
+  messagesContainer.appendChild(messageDiv);
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Rolagem automática para a última mensagem
 }
 
-// Enviar mensagem
-function enviarMensagem() {
-  const messageInput = document.getElementById("messageInput");
+// Captura do campo de entrada e botão de envio
+const messageInput = document.getElementById("messageInput"); // Campo de entrada de mensagem
+const sendButton = document.getElementById("sendButton"); // Botão de envio
+
+// Enviar mensagem ao clicar no botão de envio
+sendButton.addEventListener("click", () => {
   const messageText = messageInput.value.trim();
   if (messageText !== "") {
-    const message = { type: "message", text: messageText, senderId: currentUserId };
-    socket.send(JSON.stringify(message));
-    messageInput.value = "";
+    const message = { type: "message", text: messageText, senderId: currentUserId }; // Inclui o ID do remetente
+    socket.send(JSON.stringify(message)); // Envia a mensagem pelo WebSocket
+    messageInput.value = ""; // Limpa o campo de entrada
   }
-}
+});
+
+// Permitir envio ao pressionar Enter
+messageInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    sendButton.click();
+  }
+});
