@@ -46,17 +46,17 @@ async function buscandoUsuario() {
     }
 
     const content = await response.json();
-    const listaUsuarios = document.getElementById("lista_usuarios");
-    listaUsuarios.innerHTML = ''; // Limpa a lista antes de atualizar
+    const listaUsuariosPesquisados = document.getElementById("lista_usuarios_pesquisados");
+    listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
 
-    // Exibe os usuários encontrados
+    // Exibe os usuários encontrados na área de sugestões
     content.data.forEach(user => {
       if (user.user_id !== currentUserId) { // Verifica se não é o próprio usuário
         const userDiv = document.createElement("div");
         userDiv.classList.add("user-item");
         userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
         userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type);
-        listaUsuarios.appendChild(userDiv);
+        listaUsuariosPesquisados.appendChild(userDiv);
       }
     });
 

@@ -89,7 +89,7 @@ CREATE TABLE questoes_modulos(
     explicacao TEXT NOT NULL
 );
 
-CREATE TABLE messages (
+CREATE TABLE mensagens (
     id SERIAL PRIMARY KEY,
     room_id VARCHAR(20) NOT NULL,
     user_id INT NOT NULL,

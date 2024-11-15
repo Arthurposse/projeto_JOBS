@@ -128,21 +128,32 @@ main .barra_pesquisa {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 2vw;
   margin-top: 15%;
+}
+main .barra_pesquisa .bloco_pesquisar {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  width: 78%;
 }
 
 main .barra_pesquisa input {
   background-color: var(--cor-terciaria);
-  width: 70%;
-  padding: 3%;
+  width: 100%;
+  padding: 6%;
   border-radius: 1vw;
   border: 0;
 }
 
 main .barra_pesquisa i {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
+}
+
+main .barra_pesquisa .lista_usuarios_pesquisados {
+  font-size: 2rem;
 }
 
 main .conversas_favoritas {
