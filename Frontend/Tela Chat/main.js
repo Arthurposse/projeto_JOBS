@@ -81,8 +81,8 @@ function iniciarConversa(userId, userType) {
 
   // Limpa a área de mensagens e adiciona o input e o botão
   messagesContainer.innerHTML = `
-    <div class="messages_area"></div>
-    <div class="input_area">
+    <div class="mensagens"></div>
+    <div class="input-container">
       <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
       <button id="sendButton">Enviar</button>
     </div>
@@ -91,6 +91,9 @@ function iniciarConversa(userId, userType) {
   // Redefine referências ao botão e input após recriação no DOM
   const messageInput = document.getElementById("messageInput");
   const sendButton = document.getElementById("sendButton");
+
+  messageInput.style.display = 'block';
+  sendButton.style.display = 'block';
 
   // Envio de mensagem
   sendButton.addEventListener("click", enviarMensagem);
@@ -144,14 +147,18 @@ socket.onmessage = (event) => {
 
 // Função para exibir mensagem na interface
 function displayMessage(text, senderId, senderName, timestamp) {
-  const messagesArea = messagesContainer.querySelector(".messages_area");
-  
+  const messagesArea = messagesContainer.querySelector(".mensagens");
+
   const messageDiv = document.createElement("div");
+  // Checa se o senderId corresponde ao currentUser Id
   messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
+
+  console.log('SenderID: ', senderId);
+  console.log('currentUser ID: ', currentUserId);
 
   const senderNameDiv = document.createElement("div");
   senderNameDiv.classList.add("sender_name");
-  senderNameDiv.textContent = senderName && senderName.trim() !== "" ? senderName : "Usuário";
+  senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName && senderName.trim() !== "" ? senderName : "Usuário");
 
   const timestampDiv = document.createElement("div");
   timestampDiv.classList.add("timestamp");
@@ -161,9 +168,14 @@ function displayMessage(text, senderId, senderName, timestamp) {
   textDiv.classList.add("text");
   textDiv.textContent = text;
 
-  messageDiv.appendChild(senderNameDiv);
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("containerDiv");
+
+  containerDiv.appendChild(senderNameDiv);
+  containerDiv.appendChild(timestampDiv);
+  
+  messageDiv.appendChild(containerDiv);
   messageDiv.appendChild(textDiv);
-  messageDiv.appendChild(timestampDiv);
 
   messagesArea.appendChild(messageDiv);
   messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
@@ -174,8 +186,13 @@ function enviarMensagem() {
   const messageInput = document.getElementById("messageInput");
   const messageText = messageInput.value.trim();
   if (messageText !== "") {
-    const message = { type: "message", text: messageText, senderId: currentUserId };
-    socket.send(JSON.stringify(message));
-    messageInput.value = "";
+      const message = {
+          type: "message",
+          text: messageText,
+          senderId: currentUserId, // ID do usuário logado
+          senderName: User_name // Nome do usuário logado
+      };
+      socket.send(JSON.stringify(message));
+      messageInput.value = "";
   }
 }

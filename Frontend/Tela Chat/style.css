@@ -172,9 +172,9 @@ main .lista_conversas h2 {
 main .bloco_mensagem {
   background-color: var(--cor-primaria);
   display: flex;
-  /* justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column; */
+  flex-direction: column;
   gap: 1vw;
   width: 75%;
   height: 100vh;
@@ -196,27 +196,82 @@ main .bloco_mensagem h1 {
 
 /* CSS para alinhar mensagens */
 
-.messages_area {
+.mensagens {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.containerDiv {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 2%;
+}
+
+.timestamp {
+  font-size: .6rem;
 }
 
 .message.sent {
   align-self: flex-end;
-  text-align: right;
   background-color: #e0f7fa; /* Cor de fundo para mensagens enviadas */
   border-radius: 10px;
   padding: 5px 10px;
-  max-width: 60%
+  max-width: 60%;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.message.sent .containerDiv .sender_name {
+  font-weight: bold;
+  color: var(--cor-secundaria);
 }
 
 .message.received {
   align-self: flex-start;
-  text-align: left;
   margin-right: auto;
   background-color: #f1f1f1; /* Cor de fundo para mensagens recebidas */
   border-radius: 10px;
   padding: 5px 10px;
   max-width: 60%;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.message.received .containerDiv .sender_name {
+  font-weight: bold;
+  color: var(--cor-primaria);
+}
+
+.input-container {
+  display: flex;
+  gap: 2vw;
+}
+
+.input-container input {
+  background-color: var(--cor-terciaria);
+  width: 45vw;
+  padding: 3%;
+  border-radius: 1vw;
+  border: 0;
+}
+
+.input-container button {
+  background-color: var(--cor-secundaria);
+  /* width: 10%; */
+  padding: 2%;
+  border: 0;
+  border-radius: 1vw;
+  font-size: 1rem;
+  color: var(--cor-terciaria);
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  transition: all .6s ease;
 }

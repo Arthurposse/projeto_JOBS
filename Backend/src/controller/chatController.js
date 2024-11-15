@@ -77,8 +77,8 @@ function sendMessageToRoom(roomId, message) {
             if (client.readyState === client.OPEN) {
                 client.send(JSON.stringify({
                     type: "message",
-                    senderId: message.userId,
-                    senderName: message.senderName, // Adiciona o nome do remetente
+                    senderId: message.senderId,  // ID do usuário que enviou a mensagem
+                    senderName: message.senderName, // Nome do usuário que enviou a mensagem
                     text: message.text,
                     timestamp: new Date().toISOString()
                 }));
