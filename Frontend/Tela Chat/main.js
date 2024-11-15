@@ -134,7 +134,6 @@ socket.onopen = () => {
 // Receber mensagens e histórico do servidor WebSocket
 socket.onmessage = (event) => {
   const message = JSON.parse(event.data);
-  console.log("Mensagem recebida no frontend:", message);
   if (message.type === "message") {
     displayMessage(message.text, message.senderId, message.senderName, message.timestamp);
   }
@@ -146,39 +145,56 @@ socket.onmessage = (event) => {
 };
 
 // Função para exibir mensagem na interface
+let lastMessageDate = null; // Variável para armazenar a última data exibida
+
 function displayMessage(text, senderId, senderName, timestamp) {
-  const messagesArea = messagesContainer.querySelector(".mensagens");
+    const messagesArea = messagesContainer.querySelector(".mensagens");
 
-  const messageDiv = document.createElement("div");
-  // Checa se o senderId corresponde ao currentUser Id
-  messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
+    // Cria um objeto de data a partir do timestamp
+    const messageDate = new Date(timestamp);
+    const messageDateString = messageDate.toLocaleDateString(); // Formato padrão da data
 
-  console.log('SenderID: ', senderId);
-  console.log('currentUser ID: ', currentUserId);
+    // Verifica se a data da mensagem é diferente da última data exibida
+    if (lastMessageDate !== messageDateString) {
+        // Se for diferente, atualiza a última data e cria um cabeçalho
+        lastMessageDate = messageDateString;
 
-  const senderNameDiv = document.createElement("div");
-  senderNameDiv.classList.add("sender_name");
-  senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName && senderName.trim() !== "" ? senderName : "Usuário");
+        const dateHeader = document.createElement("div");
+        dateHeader.classList.add("date-header");
+        dateHeader.textContent = messageDate.toLocaleDateString('pt-BR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }); // Formata a data para o formato desejado
+        messagesArea.appendChild(dateHeader);
+    }
 
-  const timestampDiv = document.createElement("div");
-  timestampDiv.classList.add("timestamp");
-  timestampDiv.textContent = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
 
-  const textDiv = document.createElement("div");
-  textDiv.classList.add("text");
-  textDiv.textContent = text;
+    const senderNameDiv = document.createElement("div");
+    senderNameDiv.classList.add("sender_name");
+    senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName && senderName.trim() !== "" ? senderName : "Usuário");
 
-  const containerDiv = document.createElement("div");
-  containerDiv.classList.add("containerDiv");
+    const timestampDiv = document.createElement("div");
+    timestampDiv.classList.add("timestamp");
+    timestampDiv.textContent = messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  containerDiv.appendChild(senderNameDiv);
-  containerDiv.appendChild(timestampDiv);
-  
-  messageDiv.appendChild(containerDiv);
-  messageDiv.appendChild(textDiv);
+    const textDiv = document.createElement("div");
+    textDiv.classList.add("text");
+    textDiv.textContent = text;
 
-  messagesArea.appendChild(messageDiv);
-  messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
+    const containerDiv = document.createElement("div");
+    containerDiv.classList.add("containerDiv");
+
+    containerDiv.appendChild(senderNameDiv);
+    containerDiv.appendChild(timestampDiv);
+    
+    messageDiv.appendChild(containerDiv);
+    messageDiv.appendChild(textDiv);
+
+    messagesArea.appendChild(messageDiv);
+    messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
 }
 
 // Enviar mensagem

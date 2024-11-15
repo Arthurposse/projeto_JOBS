@@ -204,6 +204,12 @@ main .bloco_mensagem h1 {
   overflow-y: auto;
 }
 
+.date-header {
+  text-align: center;
+  font-weight: bold;
+  color: var(--cor-secundaria);
+}
+
 .containerDiv {
   display: flex;
   align-items: center;
