@@ -35,52 +35,58 @@ async function buscandoUsuario() {
 
   const data = { email_usuario };
   try {
-    const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
-      method: "POST",
-      headers: { "Content-type": "application/json;charset=UTF-8" },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.statusText}`);
-    }
-
-    const content = await response.json();
     const listaUsuariosPesquisados = document.getElementById("lista_usuarios_pesquisados");
-    listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
 
-    // Exibe os usuários encontrados na área de sugestões
-    content.data.forEach(user => {
-      if (user.user_id !== currentUserId) { // Verifica se não é o próprio usuário
-        const userDiv = document.createElement("div");
-        userDiv.classList.add("user-item");
-        userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
-        userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type);
-        listaUsuariosPesquisados.appendChild(userDiv);
+    if (email_usuario !== '') {
+      const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
+        method: "POST",
+        headers: { "Content-type": "application/json;charset=UTF-8" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro na requisição: ${response.statusText}`);
       }
-    });
+
+      const content = await response.json();
+      listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
+
+      // Exibe os usuários encontrados na área de sugestões
+      content.data.forEach(user => {
+        if (user.user_id !== currentUserId) { // Verifica se não é o próprio usuário
+          const userDiv = document.createElement("div");
+          userDiv.classList.add("user-item");
+          userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
+          userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type);
+          listaUsuariosPesquisados.appendChild(userDiv);
+        }
+      });
+    }
+    else {
+      listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
+    }
 
   } catch (error) {
     console.error('Erro:', error);
   }
 }
 
+let otherUserName; // Nome do outro usuário
+
 // Função para iniciar uma conversa com o usuário selecionado
 function iniciarConversa(userId, userType) {
-  otherUserId = userId; // Define o ID do outro usuário com quem vai conversar
-  otherUserType = userType; // Define o tipo de usuário
+  otherUserId = userId;
+  otherUserType = userType;
 
-  // Envia uma solicitação para abrir uma conversa
-  socket.send(JSON.stringify({
-    type: "join",
-    userId: currentUserId,
-    otherUserId,
-    userType: localStorage.getItem("Tipo_user"),
-    otherUserType
-  }));
+  // Captura o nome do usuário clicado
+  const userDiv = Array.from(document.querySelectorAll(".user-item"))
+    .find(user => user.textContent.includes(`(${userType})`) && user.textContent.includes(` - `));
+  otherUserName = userDiv ? userDiv.textContent.split(" (")[0] : "Desconhecido";
 
-  // Limpa a área de mensagens e adiciona o input e o botão
+  // Adiciona o título com o nome do outro usuário
   messagesContainer.innerHTML = `
+    <h3 class="nome_outro_usuario">${otherUserName}</h3>
+  
     <div class="mensagens"></div>
     <div class="input-container">
       <input type="text" id="messageInput" placeholder="Digite sua mensagem..." />
@@ -88,19 +94,26 @@ function iniciarConversa(userId, userType) {
     </div>
   `;
 
-  // Redefine referências ao botão e input após recriação no DOM
   const messageInput = document.getElementById("messageInput");
   const sendButton = document.getElementById("sendButton");
 
   messageInput.style.display = 'block';
   sendButton.style.display = 'block';
 
-  // Envio de mensagem
   sendButton.addEventListener("click", enviarMensagem);
   messageInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendButton.click();
   });
+
+  socket.send(JSON.stringify({
+    type: "join",
+    userId: currentUserId,
+    otherUserId,
+    userType: localStorage.getItem("Tipo_user"),
+    otherUserType
+  }));
 }
+
 
 document.getElementById("pesquisa_usuario").addEventListener('input', buscandoUsuario);
 
@@ -148,67 +161,63 @@ socket.onmessage = (event) => {
 let lastMessageDate = null; // Variável para armazenar a última data exibida
 
 function displayMessage(text, senderId, senderName, timestamp) {
-    const messagesArea = messagesContainer.querySelector(".mensagens");
+  const messagesArea = messagesContainer.querySelector(".mensagens");
+  const messageDate = new Date(timestamp);
+  const messageDateString = messageDate.toLocaleDateString();
 
-    // Cria um objeto de data a partir do timestamp
-    const messageDate = new Date(timestamp);
-    const messageDateString = messageDate.toLocaleDateString(); // Formato padrão da data
+  // Exibir a data se for uma nova data
+  if (lastMessageDate !== messageDateString) {
+    lastMessageDate = messageDateString;
+    const dateHeader = document.createElement("div");
+    dateHeader.classList.add("date-header");
+    dateHeader.textContent = messageDate.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+    messagesArea.appendChild(dateHeader);
+  }
 
-    // Verifica se a data da mensagem é diferente da última data exibida
-    if (lastMessageDate !== messageDateString) {
-        // Se for diferente, atualiza a última data e cria um cabeçalho
-        lastMessageDate = messageDateString;
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
 
-        const dateHeader = document.createElement("div");
-        dateHeader.classList.add("date-header");
-        dateHeader.textContent = messageDate.toLocaleDateString('pt-BR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        }); // Formata a data para o formato desejado
-        messagesArea.appendChild(dateHeader);
-    }
+  const senderNameDiv = document.createElement("div");
+  senderNameDiv.classList.add("sender_name");
+  senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName || otherUserName || "Usuário");
 
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message", senderId === currentUserId ? "sent" : "received");
+  const timestampDiv = document.createElement("div");
+  timestampDiv.classList.add("timestamp");
+  timestampDiv.textContent = messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    const senderNameDiv = document.createElement("div");
-    senderNameDiv.classList.add("sender_name");
-    senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName && senderName.trim() !== "" ? senderName : "Usuário");
+  const textDiv = document.createElement("div");
+  textDiv.classList.add("text");
+  textDiv.textContent = text;
 
-    const timestampDiv = document.createElement("div");
-    timestampDiv.classList.add("timestamp");
-    timestampDiv.textContent = messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("containerDiv");
+  containerDiv.appendChild(senderNameDiv);
+  containerDiv.appendChild(timestampDiv);
 
-    const textDiv = document.createElement("div");
-    textDiv.classList.add("text");
-    textDiv.textContent = text;
+  messageDiv.appendChild(containerDiv);
+  messageDiv.appendChild(textDiv);
 
-    const containerDiv = document.createElement("div");
-    containerDiv.classList.add("containerDiv");
-
-    containerDiv.appendChild(senderNameDiv);
-    containerDiv.appendChild(timestampDiv);
-    
-    messageDiv.appendChild(containerDiv);
-    messageDiv.appendChild(textDiv);
-
-    messagesArea.appendChild(messageDiv);
-    messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
+  messagesArea.appendChild(messageDiv);
+  messagesArea.scrollTop = messagesArea.scrollHeight;
 }
+
 
 // Enviar mensagem
 function enviarMensagem() {
   const messageInput = document.getElementById("messageInput");
   const messageText = messageInput.value.trim();
   if (messageText !== "") {
-      const message = {
-          type: "message",
-          text: messageText,
-          senderId: currentUserId, // ID do usuário logado
-          senderName: User_name // Nome do usuário logado
-      };
-      socket.send(JSON.stringify(message));
-      messageInput.value = "";
+    const message = {
+      type: "message",
+      text: messageText,
+      senderId: currentUserId, // ID do usuário logado
+      senderName: User_name // Nome do usuário logado
+    };
+    socket.send(JSON.stringify(message));
+    messageInput.value = "";
   }
 }
