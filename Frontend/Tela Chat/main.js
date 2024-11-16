@@ -29,6 +29,47 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Inicializando variáveis
+const id_user = Number(localStorage.getItem("ID_user"));
+const User_name = localStorage.getItem("User_name");
+const userLogado = document.getElementById("user_logado");
+userLogado.textContent = User_name;
+
+// Função para carregar a lista de conversas do usuário logado
+async function carregarConversas(userId) {
+  const listaUsuarios = document.getElementById("lista_usuarios");
+  listaUsuarios.innerHTML = "<p>Carregando...</p>";
+
+  try {
+    const response = await fetch(`http://localhost:3008/api/conversas/${userId}`);
+    if (!response.ok) {
+      throw new Error('Erro ao carregar conversas: ' + response.statusText);
+    }
+    const content = await response.json();
+    console.log(content)
+
+    if (content.data.length === 0) {
+      listaUsuarios.innerHTML = "<p>Você ainda não teve conversas.</p>";
+      return;
+    }
+
+    listaUsuarios.innerHTML = ""; // Limpa antes de exibir as conversas
+    content.data.forEach((conversa) => {
+      const conversaDiv = document.createElement("div");
+      conversaDiv.classList.add("conversa-item");
+      conversaDiv.textContent = conversa.otherUserName; // Nome do outro usuário
+      conversaDiv.onclick = () => iniciarConversa(conversa.otherUserId, conversa.userType, conversa.otherUserName);
+      listaUsuarios.appendChild(conversaDiv);
+    });
+  } catch (error) {
+    console.error("Erro ao carregar conversas:", error);
+    listaUsuarios.innerHTML = "<p>Erro ao carregar conversas.</p>";
+  }
+}
+
+// Chamada inicial para carregar conversas ao abrir a página
+document.addEventListener("DOMContentLoaded", carregarConversas(id_user));
+
 // Função para realizar busca de usuários pelo e-mail
 async function buscandoUsuario() {
   let email_usuario = document.getElementById("pesquisa_usuario").value;
@@ -40,7 +81,7 @@ async function buscandoUsuario() {
     if (email_usuario !== '') {
       const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
         method: "POST",
-        headers: { "Content-type": "application/json;charset=UTF-8" },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify(data),
       });
 
@@ -57,12 +98,11 @@ async function buscandoUsuario() {
           const userDiv = document.createElement("div");
           userDiv.classList.add("user-item");
           userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
-          userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type);
+          userDiv.onclick = () => iniciarConversa(user.user_id, user.user_type, user.name); // Passar o nome do usuário
           listaUsuariosPesquisados.appendChild(userDiv);
         }
       });
-    }
-    else {
+    } else {
       listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
     }
 
@@ -71,17 +111,10 @@ async function buscandoUsuario() {
   }
 }
 
-let otherUserName; // Nome do outro usuário
-
 // Função para iniciar uma conversa com o usuário selecionado
-function iniciarConversa(userId, userType) {
+function iniciarConversa(userId, userType, otherUserName) {
   otherUserId = userId;
   otherUserType = userType;
-
-  // Captura o nome do usuário clicado
-  const userDiv = Array.from(document.querySelectorAll(".user-item"))
-    .find(user => user.textContent.includes(`(${userType})`) && user.textContent.includes(` - `));
-  otherUserName = userDiv ? userDiv.textContent.split(" (")[0] : "Desconhecido";
 
   // Adiciona o título com o nome do outro usuário
   messagesContainer.innerHTML = `
@@ -116,12 +149,6 @@ function iniciarConversa(userId, userType) {
 
 
 document.getElementById("pesquisa_usuario").addEventListener('input', buscandoUsuario);
-
-// Inicializando variáveis
-const id_user = Number(localStorage.getItem("ID_user"));
-const User_name = localStorage.getItem("User_name");
-const userLogado = document.getElementById("user_logado");
-userLogado.textContent = User_name;
 
 // Seleciona o elemento onde as mensagens serão exibidas
 const messagesContainer = document.querySelector(".bloco_mensagem");

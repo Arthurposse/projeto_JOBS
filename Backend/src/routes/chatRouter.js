@@ -1,6 +1,6 @@
 // src/router/chatRouter.js
 const express = require("express");
-const { getMessages, buscaUsuarios } = require("../controller/chatController"); // Importa diretamente de chatController
+const { getMessages, buscaUsuarios, getConversas, getUserNamesByConversations } = require("../controller/chatController"); // Importa diretamente de chatController
 
 const router = express.Router();
 
@@ -15,6 +15,17 @@ router.get("/history/:roomId", async (req, res) => {
     }
 });
 
-router.post("/buscar/usuarios", buscaUsuarios)
+router.post("/buscar/usuarios", buscaUsuarios);
+
+router.get('/conversas/:userId', async (req, res) => {
+    const userId = req.params.userId; // Obtendo o userId da rota
+    try {
+        const conversas = await getConversas(userId); // Passando userId como argumento
+        res.json(conversas);
+    } catch (error) {
+        console.error('Erro ao carregar conversas:', error);
+        res.status(500).json({ error: 'Erro ao carregar conversas' });
+    }
+});
 
 module.exports = router;

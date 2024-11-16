@@ -170,7 +170,69 @@ async function buscaUsuarios(request, response) {
     });
 }
 
+// Função para buscar as conversas do usuário logado
+async function getConversas(userId) {
+    const query = `
+        SELECT 
+            m.room_id,
+            CASE 
+                WHEN SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT('J', ?) THEN SUBSTRING_INDEX(m.room_id, '-', -1)
+                ELSE SUBSTRING_INDEX(m.room_id, '-', 1)
+            END AS otherUserId
+        FROM 
+            mensagens m
+        WHERE 
+            SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT('J', ?) OR 
+            SUBSTRING_INDEX(m.room_id, '-', -1) = CONCAT('J', ?)
+    `;
+
+    try {
+        const connection = await connectToDatabase();
+        const [results] = await connection.query(query, [userId, userId, userId]);
+
+        // Array para armazenar as conversas com os nomes dos usuários
+        const conversasComNomes = [];
+
+        for (const result of results) {
+            const otherUserId = result.otherUserId;
+
+            // Verifica se o ID do outro usuário começa com 'J' ou 'E'
+            let userName;
+            let userType;
+            if (otherUserId.startsWith('J')) {
+                // Busca o nome na tabela user_jovem
+                const [userJovem] = await connection.query('SELECT name FROM user_jovem WHERE id = ?', [otherUserId.substring(1)]);
+                userName = userJovem.length > 0 ? userJovem[0].name : null;
+                userType = 'Jovem';
+            } else if (otherUserId.startsWith('E')) {
+                // Busca o nome na tabela user_empresa
+                const [userEmpresa] = await connection.query('SELECT name FROM user_empresa WHERE id = ?', [otherUserId.substring(1)]);
+                userName = userEmpresa.length > 0 ? userEmpresa[0].name : null;
+                userType = 'Empresa';
+            }
+
+            // Adiciona a conversa com o nome do usuário
+            conversasComNomes.push({
+                room_id: result.room_id,
+                otherUserId: otherUserId.substring(1),
+                otherUserName: userName,
+                userType: userType
+            });
+        }
+
+        return {
+            success: true,
+            message: "Conversas carregadas com sucesso.",
+            data: conversasComNomes,
+        };
+    } catch (error) {
+        console.error("Erro ao buscar conversas:", error);
+        throw new Error("Erro ao carregar conversas.");
+    }
+}
+
 module.exports = {
     handleConnection,
-    buscaUsuarios
+    buscaUsuarios,
+    getConversas
 };

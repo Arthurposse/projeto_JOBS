@@ -131,6 +131,7 @@ main .barra_pesquisa {
   flex-direction: column;
   gap: 2vw;
   margin-top: 15%;
+  margin-bottom: 8%;
 }
 
 main .barra_pesquisa .bloco_pesquisar {
@@ -177,14 +178,14 @@ main .barra_pesquisa #lista_usuarios_pesquisados .user-item:hover {
   transition: all .6s ease;
 }
 
-main .conversas_favoritas {
+/* main .conversas_favoritas {
   padding: 5%;
   margin-top: 10%;
 }
 
 main .conversas_favoritas h2 {
   color: var(--cor-fonte);
-}
+} */
 
 main hr {
   border: 1px solid var(--cor-primaria);
@@ -197,6 +198,21 @@ main .lista_conversas {
 
 main .lista_conversas h2 {
   color: var(--cor-fonte);
+}
+
+main .lista_conversas .conversa-item {
+  background-color: var(--cor-primaria);
+  margin-top: 5%;
+  padding: 4%;
+  border-radius: 1vw;
+  color: white;
+  cursor: pointer;
+}
+
+main .lista_conversas .conversa-item:hover {
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  transition: all .6s ease;
 }
 
 /* Main - Bloco Mensagem */
