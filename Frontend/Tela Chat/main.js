@@ -116,6 +116,9 @@ function iniciarConversa(userId, userType, otherUserName) {
   otherUserId = userId;
   otherUserType = userType;
 
+  // Redefina lastMessageDate para garantir que a data da primeira mensagem seja exibida
+  lastMessageDate = null;
+
   // Adiciona o título com o nome do outro usuário
   messagesContainer.innerHTML = `
     <h3 class="nome_outro_usuario">${otherUserName}</h3>
@@ -210,7 +213,7 @@ function displayMessage(text, senderId, senderName, timestamp) {
 
   const senderNameDiv = document.createElement("div");
   senderNameDiv.classList.add("sender_name");
-  senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName || otherUserName || "Usuário");
+  senderNameDiv.textContent = senderId === currentUserId ? "Você" : (senderName || "Usuário");
 
   const timestampDiv = document.createElement("div");
   timestampDiv.classList.add("timestamp");
@@ -229,7 +232,7 @@ function displayMessage(text, senderId, senderName, timestamp) {
   messageDiv.appendChild(textDiv);
 
   messagesArea.appendChild(messageDiv);
-  messagesArea.scrollTop = messagesArea.scrollHeight;
+  messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
 }
 
 
