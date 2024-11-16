@@ -13,7 +13,7 @@ function getRoomId(userId, otherUserId, userType, otherUserType) {
         roomId = `${prefix2}${otherUserId}-${prefix1}${userId}`;
     }
 
-    console.log("ID da sala gerado:", roomId); // Debugging
+    console.log("ID da sala gerado:", roomId);
     return roomId;
 }
 
@@ -23,6 +23,7 @@ const { connectToDatabase, connection } = require('../config/db');
 // Função para salvar uma mensagem no banco de dados
 async function saveMessage(roomId, userId, messageText) {
     console.log(`Salvando mensagem para sala ${roomId}, usuário ${userId}: ${messageText}`);
+
     try {
         const connection = await connectToDatabase();
         const [result] = await connection.query(
@@ -31,10 +32,10 @@ async function saveMessage(roomId, userId, messageText) {
         );
         await connection.end(); // Fecha a conexão após a execução
         console.log(`Mensagem salva na sala ${roomId} por usuário ${userId}: ${messageText}`);
-        return result; // Retorna o resultado da inserção
+        return result;
     } catch (error) {
         console.error("Erro ao salvar mensagem:", error);
-        throw error; // Lança o erro para ser tratado na camada superior
+        throw error;
     }
 }
 
@@ -62,10 +63,10 @@ async function getMessages(roomId) {
                 m.timestamp ASC
         `, [roomId]);
         await connection.end(); // Fecha a conexão após a execução
-        return rows; // Retorna as mensagens recuperadas com o nome do remetente
+        return rows;
     } catch (error) {
         console.error("Erro ao obter mensagens:", error);
-        throw error; // Lança o erro para ser tratado na camada superior
+        throw error;
     }
 }
 
@@ -126,7 +127,6 @@ async function handleConnection(ws) {
             console.error("Erro ao processar mensagem:", error);
         }
     });
-
 
     ws.on("close", () => {
         if (currentRoom && userConnections[currentRoom]) {

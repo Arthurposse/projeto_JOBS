@@ -38,7 +38,7 @@ userLogado.textContent = User_name;
 // Função para carregar a lista de conversas do usuário logado
 async function carregarConversas(userId) {
   const listaUsuarios = document.getElementById("lista_usuarios");
-  listaUsuarios.innerHTML = "<p style='text-align: center; color: var(cor-terciaria);'>Carregando...</p>";
+  listaUsuarios.innerHTML = "<p class='texto_inicie_conv'>Carregando...</p>";
 
   try {
     const response = await fetch(`http://localhost:3008/api/conversas/${userId}`);
@@ -53,17 +53,17 @@ async function carregarConversas(userId) {
       return;
     }
 
-    listaUsuarios.innerHTML = ""; // Limpa antes de exibir as conversas
+    listaUsuarios.innerHTML = "";
     content.data.forEach((conversa) => {
       const conversaDiv = document.createElement("div");
       conversaDiv.classList.add("conversa-item");
-      conversaDiv.textContent = conversa.otherUserName; // Nome do outro usuário
+      conversaDiv.textContent = conversa.otherUserName;
       conversaDiv.onclick = () => iniciarConversa(conversa.otherUserId, conversa.userType, conversa.otherUserName);
       listaUsuarios.appendChild(conversaDiv);
     });
   } catch (error) {
     console.error("Erro ao carregar conversas:", error);
-    listaUsuarios.innerHTML = "<p style='text-align: center; color: var(cor-terciaria);'>Erro ao carregar conversas.</p>";
+    listaUsuarios.innerHTML = "<p class='texto_inicie_conv'>Erro ao carregar conversas.</p>";
   }
 }
 
@@ -90,7 +90,7 @@ async function buscandoUsuario() {
       }
 
       const content = await response.json();
-      listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
+      listaUsuariosPesquisados.innerHTML = ''; 
 
       // Exibe os usuários encontrados na área de sugestões
       content.data.forEach(user => {
@@ -103,7 +103,7 @@ async function buscandoUsuario() {
         }
       });
     } else {
-      listaUsuariosPesquisados.innerHTML = ''; // Limpa as sugestões antes de atualizar
+      listaUsuariosPesquisados.innerHTML = '';
     }
 
   } catch (error) {
@@ -150,7 +150,7 @@ function iniciarConversa(userId, userType, otherUserName) {
   }));
 }
 
-
+// Ao pesquisar por usuários, atualiza a lista de sugestões de usuários
 document.getElementById("pesquisa_usuario").addEventListener('input', buscandoUsuario);
 
 // Seleciona o elemento onde as mensagens serão exibidas
@@ -159,9 +159,10 @@ const messagesContainer = document.querySelector(".bloco_mensagem");
 // Conectar ao servidor WebSocket
 const socket = new WebSocket("ws://localhost:3008"); // Endereço do servidor WebSocket
 let currentUserId = id_user; // ID do usuário logado
-let otherUserId; // Inicialmente indefinido, será atualizado dinamicamente
-let otherUserType;
+let otherUserId; // ID do usuário selecionado
+let otherUserType; // Tipo do usuário selecionado
 
+// Após a conexão estabelecida, envia a mensagem de conexão
 socket.onopen = () => {
   if (otherUserId) {
     socket.send(JSON.stringify({

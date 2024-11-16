@@ -15,12 +15,14 @@ router.get("/history/:roomId", async (req, res) => {
     }
 });
 
+// Rota para buscar os usuário filtrados a partir da pesquisa do usuário logado
 router.post("/buscar/usuarios", buscaUsuarios);
 
+// Rota para pegar os nomes dos usuários que o usuário logado já conversou
 router.get('/conversas/:userId', async (req, res) => {
-    const userId = req.params.userId; // Obtendo o userId da rota
+    const userId = req.params.userId;
     try {
-        const conversas = await getConversas(userId); // Passando userId como argumento
+        const conversas = await getConversas(userId);
         res.json(conversas);
     } catch (error) {
         console.error('Erro ao carregar conversas:', error);
