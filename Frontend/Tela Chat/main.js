@@ -38,7 +38,7 @@ userLogado.textContent = User_name;
 // Função para carregar a lista de conversas do usuário logado
 async function carregarConversas(userId) {
   const listaUsuarios = document.getElementById("lista_usuarios");
-  listaUsuarios.innerHTML = "<p>Carregando...</p>";
+  listaUsuarios.innerHTML = "<p style='text-align: center; color: var(cor-terciaria);'>Carregando...</p>";
 
   try {
     const response = await fetch(`http://localhost:3008/api/conversas/${userId}`);
@@ -49,7 +49,7 @@ async function carregarConversas(userId) {
     console.log(content)
 
     if (content.data.length === 0) {
-      listaUsuarios.innerHTML = "<p>Você ainda não teve conversas.</p>";
+      listaUsuarios.innerHTML = "<p class='texto_inicie_conv'> <i class='bi bi-chat-dots-fill'></i> Inicie uma conversa!! </p>";
       return;
     }
 
@@ -63,7 +63,7 @@ async function carregarConversas(userId) {
     });
   } catch (error) {
     console.error("Erro ao carregar conversas:", error);
-    listaUsuarios.innerHTML = "<p>Erro ao carregar conversas.</p>";
+    listaUsuarios.innerHTML = "<p style='text-align: center; color: var(cor-terciaria);'>Erro ao carregar conversas.</p>";
   }
 }
 

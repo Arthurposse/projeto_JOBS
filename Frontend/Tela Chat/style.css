@@ -215,6 +215,17 @@ main .lista_conversas .conversa-item:hover {
   transition: all .6s ease;
 }
 
+main .lista_conversas .texto_inicie_conv {
+  margin-top: 4%;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--cor-primaria);
+}
+
+main .lista_conversas .texto_inicie_conv i {
+  font-size: 1.6rem;
+}
+
 /* Main - Bloco Mensagem */
 
 main .bloco_mensagem {
