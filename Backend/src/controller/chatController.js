@@ -192,13 +192,19 @@ async function getConversas(userId) {
 
         // Array para armazenar as conversas com os nomes dos usuários
         const conversasComNomes = [];
-
+        const processedUsers = new Set(); // Conjunto para rastrear usuários processados
+        
         for (const result of results) {
-            const otherUserId = result.otherUserId;
-
-            // Verifica se o ID do outro usuário começa com 'J' ou 'E'
+            const otherUserId = result.otherUserId; // Supondo que você já tenha esse valor
+        
+            // Verifica se o usuário já foi processado
+            if (processedUsers.has(otherUserId)) {
+                continue; // Se já foi processado, pula para a próxima iteração
+            }
+        
             let userName;
             let userType;
+        
             if (otherUserId.startsWith('J')) {
                 // Busca o nome na tabela user_jovem
                 const [userJovem] = await connection.query('SELECT name FROM user_jovem WHERE id = ?', [otherUserId.substring(1)]);
@@ -210,7 +216,7 @@ async function getConversas(userId) {
                 userName = userEmpresa.length > 0 ? userEmpresa[0].name : null;
                 userType = 'Empresa';
             }
-
+        
             // Adiciona a conversa com o nome do usuário
             conversasComNomes.push({
                 room_id: result.room_id,
@@ -218,6 +224,9 @@ async function getConversas(userId) {
                 otherUserName: userName,
                 userType: userType
             });
+        
+            // Marca o usuário como processado
+            processedUsers.add(otherUserId);
         }
 
         return {
