@@ -1,8 +1,9 @@
 // src/router/chatRouter.js
 const express = require("express");
-const { getMessages, buscaUsuarios, getConversas, getUserNamesByConversations } = require("../controller/chatController"); // Importa diretamente de chatController
+const { getMessages, buscaUsuarios, getConversas } = require("../controller/chatController"); // Importa diretamente de chatController
 
 const router = express.Router();
+
 
 // Rota para pegar o histórico de mensagens de uma sala
 router.get("/history/:roomId", async (req, res) => {
