@@ -43,14 +43,19 @@
 <hr>
 
 <h3 style="color: #9DD4D1;">
-  🚀 Tecnologias que serão utilizadas
+  🚀 Tecnologias que foram utilizadas
 </h3>
 
-- <b> Chat: </b> O modelo desenvolvido pelo Manual do Dev (https://github.com/manualdodev/chat/tree/main) utilizou-se a biblioteca Socket.IO, na qual foi usada como base para o desenvolvimento do chat da aplicação, porém, foram realizadas algumas modificações para atender as necessidades do projeto.
+- <b> Frotend: </b> Html, Css e JavaScript.
+- <b> Backend: </b> Node.js e Express.
 - <b> BD: </b> 
   - <b> Hospedagem: </b> Clever Cloud.
   - <b> Linguagem: </b> MySQL.
 - <b> Buscar por empregos: </b> API Adzuna.
+- <b> Inteligência Artificial: </b> API Gemini.
+- <b> Chat: </b> O modelo desenvolvido pelo Manual do Dev (https://github.com/manualdodev/chat/tree/main) utilizou-se a biblioteca Socket.IO, na qual foi usada como base para o desenvolvimento do chat da aplicação, porém, foram realizadas algumas modificações para atender as necessidades do projeto.
+- <b> Upload de arquivo: </b> Express-fileupload.
+- <b> Documentação: </b> Swagger e JSDoc.
 
 <br>
 
