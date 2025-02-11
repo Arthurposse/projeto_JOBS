@@ -19,7 +19,7 @@
 <hr>
 
 <h3 style="color: #9DD4D1;">
-  Usuários
+  👤 Usuários
 </h3>
 
 - Usuário Jovem
@@ -43,10 +43,10 @@
 <hr>
 
 <h3 style="color: #9DD4D1;">
-  Tecnologias que serão utilizadas
+  🚀 Tecnologias que serão utilizadas
 </h3>
 
-- <b> Chat: </b> Procurar ainda.
+- <b> Chat: </b> O modelo desenvolvido pelo Manual do Dev (https://github.com/manualdodev/chat/tree/main) utilizou-se a biblioteca Socket.IO, na qual foi usada como base para o desenvolvimento do chat da aplicação, porém, foram realizadas algumas modificações para atender as necessidades do projeto.
 - <b> BD: </b> 
   - <b> Hospedagem: </b> Clever Cloud.
   - <b> Linguagem: </b> MySQL.
@@ -57,25 +57,9 @@
 <hr>
 
 <h3 style="color: #9DD4D1;">
-  Alterações a serem feitas na aplicação
+  ⚠️ Bugs
 </h3>
 
-- Tela Cadastro Empresa/Jovem, Tela Verificando Código, Tela Verificando Tipo Usuário, Tela Login (Entrando), Tela Módulos, Tela Explicação Módulo, Tela Home (Sem Usuário Logado), Tela Home (Usuário Jovem), Tela Home (Usuário Empresa) e - Tela Dicas/Sugestões
-  - Ajustar responsividade.
+- Ao gerar o planejamento de carreira e as dicas, a estrutura do HTML é gerada de forma incorreta.
 
-<br>
-
-- Tela Buscar Emprego
-  - Desenvolver o filtro.
-  - Ajustar responsividade.
-
-<h3 style="color: #9DD4D1;">
-  Se der tempo:
-</h3>
-
-- Tela Chat (Em desenvolvimento 🔨)
-  - Fazer com que seja possível pesquisar o usuário para conversar.
-  - Desenvolver a lógica onde é possível diferenciar o tipo de usuário para que assim o projeto consiga realizar a busca do usuário na tabela correta.
-  - Ao clicar no nome de usuário, após a pesquisa personalizada, remover da tela do usuário o icon do balão de conversa e o texto embaixo.
-  - Estilizar o input e botão do chat, além de realizar a lógica de quando o usuário escolher o usuário para conversar, o input e o botão deverão aparecer (eles vão estar ocultos). 
-  - Ajustar responsividade.
+- Na tela de chat, o backend está confundindo os tipo de usuários ao realizar a busca das pessoas que o usuário logado conversou.
