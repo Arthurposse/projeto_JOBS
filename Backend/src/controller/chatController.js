@@ -1,17 +1,12 @@
-let userConnections = {}; // Armazena as conexões dos usuários por sala
+let userConnections = {}; // Armazena as conexões dos usuários por sala 
 
 // Função para gerar o ID da sala com IDs em ordem
 function getRoomId(userId, otherUserId, userType, otherUserType) {
     const prefix1 = userType === 'Empresa' ? 'E' : 'J';
     const prefix2 = otherUserType === 'Empresa' ? 'E' : 'J';
 
-    // Ordena os IDs para que o maior ID sempre venha primeiro
-    let roomId = "";
-    if (userId > otherUserId) {
-        roomId = `${prefix1}${userId}-${prefix2}${otherUserId}`;
-    } else {
-        roomId = `${prefix2}${otherUserId}-${prefix1}${userId}`;
-    }
+    // Sempre irá por quem mandou a mensagem
+    let roomId = `${prefix1}${userId}-${prefix2}${otherUserId}`;
 
     console.log("ID da sala gerado:", roomId);
     return roomId;
@@ -21,14 +16,14 @@ function getRoomId(userId, otherUserId, userType, otherUserType) {
 const { connectToDatabase, connection } = require('../config/db');
 
 // Função para salvar uma mensagem no banco de dados
-async function saveMessage(roomId, userId, messageText) {
+async function saveMessage(roomId, userId, userType, messageText) {
     console.log(`Salvando mensagem para sala ${roomId}, usuário ${userId}: ${messageText}`);
 
     try {
         const connection = await connectToDatabase();
         const [result] = await connection.query(
-            'INSERT INTO mensagens (room_id, user_id, message_text, timestamp) VALUES (?, ?, ?, ?)',
-            [roomId, userId, messageText, new Date()]
+            'INSERT INTO mensagens (room_id, user_id, user_type, message_text, timestamp) VALUES (?, ?, ?, ?, ?)',
+            [roomId, userId, userType, messageText, new Date()]
         );
         await connection.end(); // Fecha a conexão após a execução
         console.log(`Mensagem salva na sala ${roomId} por usuário ${userId}: ${messageText}`);
@@ -70,15 +65,16 @@ async function getMessages(roomId) {
     }
 }
 
-
 // Função para enviar uma mensagem para todos os clientes na sala
 function sendMessageToRoom(roomId, message) {
     if (userConnections[roomId]) {
         userConnections[roomId].forEach((client) => {
+
             if (client.readyState === client.OPEN) {
                 client.send(JSON.stringify({
                     type: "message",
                     senderId: message.senderId,  // ID do usuário que enviou a mensagem
+                    // senderId: message.senderId,  // Tipo do usuário que enviou a mensagem
                     senderName: message.senderName, // Nome do usuário que enviou a mensagem
                     text: message.text,
                     timestamp: new Date().toISOString()
@@ -92,6 +88,7 @@ function sendMessageToRoom(roomId, message) {
 async function handleConnection(ws) {
     let currentRoom = null;
     let currentUserId = null;
+    let type_user;
 
     ws.on("message", async (data) => {
         try {
@@ -100,12 +97,16 @@ async function handleConnection(ws) {
             // Usuário entra na sala
             if (message.type === "join") {
                 currentUserId = message.userId;
+
+                type_user = message.userType;
+
                 currentRoom = getRoomId(
                     message.userId,
                     message.otherUserId,
                     message.userType,
                     message.otherUserType
                 );
+
                 ws.roomId = currentRoom;
                 userConnections[currentRoom] = userConnections[currentRoom] || [];
                 userConnections[currentRoom].push(ws);
@@ -119,7 +120,10 @@ async function handleConnection(ws) {
 
             // Salvando e enviando mensagens na sala
             if (message.type === "message") {
-                await saveMessage(currentRoom, message.senderId, message.text);  // Salva a mensagem no banco de dados
+
+                type_user = type_user === "Jovem" ? "J" : "E";
+
+                await saveMessage(currentRoom, message.senderId, type_user, message.text);  // Salva a mensagem no banco de dados
                 sendMessageToRoom(currentRoom, message);  // Envia a mensagem para todos os usuários na sala
             }
 
@@ -139,19 +143,31 @@ async function handleConnection(ws) {
 // Buscar usuários através da pesquisa
 
 async function buscaUsuarios(request, response) {
-    const email_usuario = request.body.email_usuario;
+    const params = Array(
+        `%${request.body.pesquisa_usuario}%`,
+        request.body.User_email,
+        `%${request.body.pesquisa_usuario}%`,
+        request.body.User_email,
+    );
 
     const query = `
-        (SELECT uj.id as 'user_id', uj.email AS 'email', uj.name AS 'name', 'Jovem' AS 'user_type'
-         FROM user_jovem uj 
-         WHERE uj.email LIKE ?) 
+        (SELECT 
+            uj.id as 'user_id', 
+            uj.email AS 'email', 
+            uj.name AS 'name', 
+            'Jovem' AS 'user_type'
+        FROM user_jovem uj 
+        WHERE uj.email LIKE ? and uj.email != ?) 
         UNION 
-        (SELECT ue.id as 'user_id', ue.email AS 'email', ue.name AS 'name', 'Empresa' AS 'user_type'
-         FROM user_empresa ue 
-         WHERE ue.email LIKE ?)
+        (SELECT 
+            ue.id as 'user_id', 
+            ue.email AS 'email', 
+            ue.name AS 'name', 
+            'Empresa' AS 'user_type'
+        FROM user_empresa ue 
+        WHERE ue.email LIKE ? and ue.email != ?)
         LIMIT 5;
     `;
-    const params = [`${email_usuario}%`, `${email_usuario}%`];
 
     connection.query(query, params, (err, results) => {
         if (err) {
@@ -171,24 +187,26 @@ async function buscaUsuarios(request, response) {
 }
 
 // Função para buscar as conversas do usuário logado
-async function getConversas(userId) {
+async function getConversas(userId, userType) {
+    const prefix = userType === 'Empresa' ? 'E' : 'J';
+
     const query = `
         SELECT 
             m.room_id,
             CASE 
-                WHEN SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT('J', ?) THEN SUBSTRING_INDEX(m.room_id, '-', -1)
+                WHEN SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT(?, ?) THEN SUBSTRING_INDEX(m.room_id, '-', -1)
                 ELSE SUBSTRING_INDEX(m.room_id, '-', 1)
             END AS otherUserId
         FROM 
             mensagens m
         WHERE 
-            SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT('J', ?) OR 
-            SUBSTRING_INDEX(m.room_id, '-', -1) = CONCAT('J', ?)
+            SUBSTRING_INDEX(m.room_id, '-', 1) = CONCAT(?, ?) OR 
+            SUBSTRING_INDEX(m.room_id, '-', -1) = CONCAT(?, ?)
     `;
 
     try {
         const connection = await connectToDatabase();
-        const [results] = await connection.query(query, [userId, userId, userId]);
+        const [results] = await connection.query(query, [prefix, userId, prefix, userId, prefix, userId]);
 
         // Array para armazenar as conversas com os nomes dos usuários
         const conversasComNomes = [];
@@ -209,11 +227,13 @@ async function getConversas(userId) {
                 // Busca o nome na tabela user_jovem
                 const [userJovem] = await connection.query('SELECT name FROM user_jovem WHERE id = ?', [otherUserId.substring(1)]);
                 userName = userJovem.length > 0 ? userJovem[0].name : null;
+                userEmail = userJovem.length > 0 ? userJovem[0].email : null;
                 userType = 'Jovem';
             } else if (otherUserId.startsWith('E')) {
                 // Busca o nome na tabela user_empresa
                 const [userEmpresa] = await connection.query('SELECT name FROM user_empresa WHERE id = ?', [otherUserId.substring(1)]);
                 userName = userEmpresa.length > 0 ? userEmpresa[0].name : null;
+                userEmail = userEmpresa.length > 0 ? userEmpresa[0].email : null;
                 userType = 'Empresa';
             }
 
@@ -222,6 +242,7 @@ async function getConversas(userId) {
                 room_id: result.room_id,
                 otherUserId: otherUserId.substring(1),
                 otherUserName: userName,
+                otherUserEmail: userEmail,
                 userType: userType
             });
 

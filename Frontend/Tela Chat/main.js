@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Inicializando variáveis
 const id_user = Number(localStorage.getItem("ID_user"));
 const User_name = localStorage.getItem("User_name");
+const User_email = localStorage.getItem("User_email");
+const Tipo_user = localStorage.getItem("Tipo_user");
 const userLogado = document.getElementById("user_logado");
 userLogado.textContent = User_name;
 
@@ -41,26 +43,37 @@ async function carregarConversas(userId) {
   listaUsuarios.innerHTML = "<p class='texto_inicie_conv'>Carregando...</p>";
 
   try {
-    const response = await fetch(`http://localhost:3008/api/conversas/${userId}`);
+    let data = { userId, Tipo_user };
+    const response = await fetch(`http://localhost:3008/api/conversas`, {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body: JSON.stringify(data),
+    });
+
     if (!response.ok) {
       throw new Error('Erro ao carregar conversas: ' + response.statusText);
     }
+
     const content = await response.json();
-    console.log(content)
+    console.log(content);
 
     if (content.data.length === 0) {
       listaUsuarios.innerHTML = "<p class='texto_inicie_conv'> <i class='bi bi-chat-dots-fill'></i> Inicie uma conversa!! </p>";
       return;
+    } else {
+      listaUsuarios.innerHTML = "";
+      for (let i = 0; i < content.data.length; i++) {
+        if (User_email !== content.data[i].otherUserEmail) {
+          content.data.forEach((conversa) => {
+            const conversaDiv = document.createElement("div");
+            conversaDiv.classList.add("conversa-item");
+            conversaDiv.textContent = conversa.otherUserName;
+            conversaDiv.onclick = () => iniciarConversa(conversa.otherUserId, conversa.userType, conversa.otherUserName);
+            listaUsuarios.appendChild(conversaDiv);
+          });
+        }
+      }
     }
-
-    listaUsuarios.innerHTML = "";
-    content.data.forEach((conversa) => {
-      const conversaDiv = document.createElement("div");
-      conversaDiv.classList.add("conversa-item");
-      conversaDiv.textContent = conversa.otherUserName;
-      conversaDiv.onclick = () => iniciarConversa(conversa.otherUserId, conversa.userType, conversa.otherUserName);
-      listaUsuarios.appendChild(conversaDiv);
-    });
   } catch (error) {
     console.error("Erro ao carregar conversas:", error);
     listaUsuarios.innerHTML = "<p class='texto_inicie_conv'>Erro ao carregar conversas.</p>";
@@ -72,13 +85,13 @@ document.addEventListener("DOMContentLoaded", carregarConversas(id_user));
 
 // Função para realizar busca de usuários pelo e-mail
 async function buscandoUsuario() {
-  let email_usuario = document.getElementById("pesquisa_usuario").value;
+  let pesquisa_usuario = document.getElementById("pesquisa_usuario").value;
 
-  const data = { email_usuario };
+  const data = { pesquisa_usuario, User_email };
   try {
     const listaUsuariosPesquisados = document.getElementById("lista_usuarios_pesquisados");
 
-    if (email_usuario !== '') {
+    if (pesquisa_usuario !== '') {
       const response = await fetch("http://localhost:3008/api/buscar/usuarios", {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -90,11 +103,11 @@ async function buscandoUsuario() {
       }
 
       const content = await response.json();
-      listaUsuariosPesquisados.innerHTML = ''; 
+      listaUsuariosPesquisados.innerHTML = '';
 
       // Exibe os usuários encontrados na área de sugestões
       content.data.forEach(user => {
-        if (user.user_id !== currentUserId) { // Verifica se não é o próprio usuário
+        if (user.user_id !== currentUserId || user.email !== User_email) { // Verifica se não é o próprio usuário
           const userDiv = document.createElement("div");
           userDiv.classList.add("user-item");
           userDiv.textContent = `${user.name} (${user.user_type}) - ${user.email}`;
@@ -145,7 +158,7 @@ function iniciarConversa(userId, userType, otherUserName) {
     type: "join",
     userId: currentUserId,
     otherUserId,
-    userType: localStorage.getItem("Tipo_user"),
+    userType: Tipo_user,
     otherUserType
   }));
 }
@@ -169,7 +182,7 @@ socket.onopen = () => {
       type: "join",
       userId: currentUserId,
       otherUserId,
-      userType: localStorage.getItem("Tipo_user"),
+      userType: Tipo_user,
       otherUserType
     }));
   }
@@ -235,7 +248,6 @@ function displayMessage(text, senderId, senderName, timestamp) {
   messagesArea.appendChild(messageDiv);
   messagesArea.scrollTop = messagesArea.scrollHeight; // Rolagem automática para a última mensagem
 }
-
 
 // Enviar mensagem
 function enviarMensagem() {

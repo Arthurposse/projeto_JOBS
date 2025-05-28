@@ -49,6 +49,7 @@ button.onclick = async function (e) {
     if (content.data.length !== 0) {
       localStorage.setItem("ID_user", content.data[0].id);
       localStorage.setItem("User_name", content.data[0].name);
+      localStorage.setItem("User_email", content.data[0].email);
 
       Swal.fire({
         title: "LogIn realizado com sucesso!!",

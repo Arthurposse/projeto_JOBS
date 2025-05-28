@@ -75,17 +75,6 @@ function embaralharArray(array) {
 function exibirProximasDuvidas() {
   const secaoCards = document.querySelector(".secao_cards");
 
-  // Verifica se há dúvidas restantes para exibir
-  if (currentIndex >= duvidas.length) {
-    Swal.fire({
-      title: "Não tem mais dúvidas para carregar.",
-      icon: "warning",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-    return;
-  }
-
   // Exibe até 3 dúvidas por vez
   for (let i = currentIndex; i < currentIndex + 4 && i < duvidas.length; i++) {
     const duvida = duvidas[i];

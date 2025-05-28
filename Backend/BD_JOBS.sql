@@ -93,6 +93,7 @@ CREATE TABLE mensagens (
     id SERIAL PRIMARY KEY,
     room_id VARCHAR(20) NOT NULL,
     user_id INT NOT NULL,
+    user_type ENUM("J", "E") NOT NULL,
     message_text TEXT NOT NULL,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -187,6 +188,17 @@ VALUES
     "2006-12-03",
     "519999999",
     "Sapucaia do Sul"
+);
+
+INSERT INTO user_jovem(name, email, password, data_nascimento, telefone, cidade) 
+VALUES
+(
+    "João da Silva",
+    "joao@gmail.com",
+    "123",
+    "2006-12-03",
+    "519999999",
+    "Esteio"
 );
 
 -- User Empresa

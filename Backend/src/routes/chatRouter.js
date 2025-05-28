@@ -4,7 +4,6 @@ const { getMessages, buscaUsuarios, getConversas } = require("../controller/chat
 
 const router = express.Router();
 
-
 // Rota para pegar o histórico de mensagens de uma sala
 router.get("/history/:roomId", async (req, res) => {
     const roomId = req.params.roomId;
@@ -20,10 +19,11 @@ router.get("/history/:roomId", async (req, res) => {
 router.post("/buscar/usuarios", buscaUsuarios);
 
 // Rota para pegar os nomes dos usuários que o usuário logado já conversou
-router.get('/conversas/:userId', async (req, res) => {
-    const userId = req.params.userId;
+router.post('/conversas', async (req, res) => {
+    const userId = req.body.userId;
+    const userType = req.body.Tipo_user;
     try {
-        const conversas = await getConversas(userId);
+        const conversas = await getConversas(userId, userType);
         res.json(conversas);
     } catch (error) {
         console.error('Erro ao carregar conversas:', error);
