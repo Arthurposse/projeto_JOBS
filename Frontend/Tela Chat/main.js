@@ -257,8 +257,10 @@ function enviarMensagem() {
     const message = {
       type: "message",
       text: messageText,
-      senderId: currentUserId, // ID do usuário logado
-      senderName: User_name // Nome do usuário logado
+      senderId: currentUserId,
+      senderName: User_name,
+      receiverId: otherUserId,
+      receiverType: otherUserType
     };
     socket.send(JSON.stringify(message));
     messageInput.value = "";

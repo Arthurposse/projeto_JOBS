@@ -5,8 +5,14 @@ function getRoomId(userId, otherUserId, userType, otherUserType) {
     const prefix1 = userType === 'Empresa' ? 'E' : 'J';
     const prefix2 = otherUserType === 'Empresa' ? 'E' : 'J';
 
-    // Sempre irá por quem mandou a mensagem
-    let roomId = `${prefix1}${userId}-${prefix2}${otherUserId}`;
+    let roomId;
+
+    if(prefix1 === "J") {
+        roomId = `${prefix1}${userId}-${prefix2}${otherUserId}`;
+    }
+    else {
+        roomId = `${prefix2}${otherUserId}-${prefix1}${userId}`;
+    }
 
     console.log("ID da sala gerado:", roomId);
     return roomId;
@@ -57,7 +63,7 @@ async function getMessages(roomId) {
             ORDER BY 
                 m.timestamp ASC
         `, [roomId]);
-        await connection.end(); // Fecha a conexão após a execução
+        await connection.end();
         return rows;
     } catch (error) {
         console.error("Erro ao obter mensagens:", error);
